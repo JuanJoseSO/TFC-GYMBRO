@@ -1,0 +1,183 @@
+<resources>
+    <string name="app_name">TFC</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <!--ActivityBienvenida-->
+    <string name="btnAcceso">acceso</string>
+
+    <!-- Categorias ejericios -->
+    <string name="pecho">Pecho</string>
+    <string name="espalda">Espalda</string>
+    <string name="biceps">Biceps</string>
+    <string name="triceps">Triceps</string>
+    <string name="abs">ABS</string>
+    <string name="hombros">Hombros</string>
+    <string name="gluteo">Gluteo</string>
+    <string name="cuadriceps">Cuádriceps</string>
+    <string name="gemelo">Gemelo</string>
+
+    <!-- Ejercicios de Pecho -->
+    <string-array name="ejercicios_pecho">
+        <item>Cruces en máquina</item>
+        <item>Cruces en polea alta</item>
+        <item>Cruces en polea baja</item>
+        <item>Flexiones</item>
+        <item>Flexiones de arquero</item>
+        <item>Flexiones con mancuernas</item>
+        <item>Fondos</item>
+        <item>Fondos en banco</item>
+        <item>Hex Press</item>
+        <item>Press de banca con barra</item>
+        <item>Press con mancuernas</item>
+        <item>Press de banca con agarre cerrado</item>
+        <item>Press de banca inclinado</item>
+        <item>Press inclinado con mancuerdas</item>
+        <item>Press de banca inclinado con agarre cerrado</item>
+        <item>Press de banca declinado</item>
+        <item>Press declinado con mancuernas</item>
+        <item>Press de banca declinado con agarre cerrado</item>
+    </string-array>
+
+
+    <!-- Ejercicios de Espalda -->
+    <string-array name="ejercicios_espalda">
+        <item>Bent over underhand barbell row</item>
+        <item>Dominadas</item>
+        <item>Paso del granjero</item>
+        <item>Peso muerto</item>
+        <item>Polea al pecho</item>
+        <item>Pullover</item>
+        <item>Pullover con mancuerna</item>
+        <item>Remo con barra</item>
+        <item>Remo con mancuerdas</item>
+        <item>Remo en máquina</item>
+        <item>Remo inclinado</item>
+        <item>Remo invertido</item>
+        <item>Renegade row</item>
+        <item>Sentadilla</item>
+        <item>Sentadilla frontal</item>
+        <item>Swings con pesa rusa</item>
+    </string-array>
+
+    <!-- Ejercicios de Biceps -->
+    <string-array name="ejercicios_biceps">
+        <item>Bent over remo con barra</item>
+        <item>Curl Zottman</item>
+        <item>Curl con barra</item>
+        <item>Curl con barra Z</item>
+        <item>Curl concentrado</item>
+        <item>Curl de martillo</item>
+        <item>Curl en polea baja</item>
+        <item>Curl en polea con cuerda</item>
+        <item>Curl simultáneo</item>
+        <item>Flexiones de bíceps con cable</item>
+        <item>Preacher curl</item>
+        <item>Spider curl</item>
+    </string-array>
+
+    <!-- Ejercicios de triceps -->
+    <string-array name="ejercicios_triceps">
+        <item>Extensiones a una mano</item>
+        <item>Extensiones con barra Z</item>
+        <item>Extensiones con mancuerna</item>
+        <item>Extensiones con mancuerna en banco</item>
+        <item>Flexiones diamante</item>
+        <item>Fondos</item>
+        <item>Fondos en banco</item>
+        <item>Patada de tríceps</item>
+        <item>Polea a una mano</item>
+        <item>Polea con barra</item>
+        <item>Press JM</item>
+        <item>Press francés con barra Z</item>
+        <item>Press francés con mancuernas</item>
+        <item>Triceps Gravity Press</item>
+    </string-array>
+
+    <!-- Ejercicios de ABS -->
+    <string-array name="ejercicios_abs">
+        <item>Abdominales</item>
+        <item>Ball slam</item>
+        <item>Battle ropes</item>
+        <item>Bird dog</item>
+        <item>Cable crunch</item>
+        <item>Corkscrew hollow rock</item>
+        <item>Dragon flag</item>
+        <item>Gator rolls</item>
+        <item>Hollow circuit</item>
+        <item>Hollow hold</item>
+        <item>Kettlebell decline core crush</item>
+        <item>Mountain climbers</item>
+        <item>Pallof press</item>
+        <item>Partner Hollow Body Pallof Game</item>
+        <item>Plancha Superman</item>
+        <item>Plancha isométrica</item>
+        <item>Plank pull</item>
+        <item>Russian twist</item>
+        <item>Step core getup</item>
+        <item>The decline dumbbell ab fryer</item>
+    </string-array>
+
+    <!-- Ejercicios de Hombro -->
+    <string-array name="ejercicios_hombro">
+        <item>Elevaciones frontales</item>
+        <item>Elevaciones laterales con mancuerna</item>
+        <item>Elevaciones laterales en polea</item>
+        <item>Encogimientos de hombros</item>
+        <item>Flexiones para hombro</item>
+        <item>Levantamiento frontal alterno</item>
+        <item>Press Arnold</item>
+        <item>Press Militar</item>
+        <item>Press militar con mancuerna</item>
+        <item>Press militar en máquina</item>
+        <item>Press trasnuca con barra</item>
+        <item>Remo al mentón</item>
+    </string-array>
+
+    <!-- Ejercicios de Gluteo -->
+    <string-array name="ejercicios_gluteo">
+        <item>Bear crawls</item>
+        <item>Femoral en máquina</item>
+        <item>Hack squats</item>
+        <item>Hip thrust</item>
+        <item>Paso del granjero</item>
+        <item>Peso muerto</item>
+        <item>Peso muerto a una pierna</item>
+        <item>Peso muerto rumano</item>
+        <item>Prensa</item>
+        <item>Saltos de rana</item>
+        <item>Sentadilla búlgara</item>
+        <item>Sentadilla goblet</item>
+        <item>Sentadillas a una pierna</item>
+        <item>Sentadillas aéreas</item>
+        <item>Sentadillas con barra frontal</item>
+        <item>Sentadillas con barra trasera</item>
+        <item>Skipping</item>
+        <item>Split squat</item>
+        <item>Wall shoots</item>
+        <item>Zancadas</item>
+        <item>Zancadas inversas</item>
+    </string-array>
+
+    <!-- Ejercicios de Cuádriceps -->
+    <string-array name="ejercicios_cuadriceps">
+        <item>Extensiones de cuádriceps</item>
+        <item>Hip thrust</item>
+        <item>Sentadilla</item>
+        <item>Sentadilla búlgara</item>
+        <item>Sentadilla pistol</item>
+        <item>Step-up</item>
+        <item>Zancada</item>
+    </string-array>
+
+    <!-- Ejercicios de Gemelo -->
+    <string-array name="ejercicios_gemelo">
+        <item>Elevaciones de gemelos</item>
+        <item>Elevaciones de gemelos en máquina</item>
+        <item>Elevaciones de gemelos en prensa</item>
+        <item>Elevaciones de gemelos en step</item>
+        <item>Máquina de gemelos</item>
+        <item>Sentadillas con elevación de talones</item>
+        <item>Sentadillas con salto</item>
+    </string-array>
+</resources>
