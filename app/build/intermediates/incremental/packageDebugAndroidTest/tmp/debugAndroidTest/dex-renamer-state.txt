@@ -1,0 +1,10 @@
+#Mon Feb 12 20:54:54 CET 2024
+base.0=D\:\\DAM\\PROGRAMACION-MULTIMEDIA\\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\\TFC\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeExtDexDebugAndroidTest\\classes.dex
+base.1=D\:\\DAM\\PROGRAMACION-MULTIMEDIA\\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\\TFC\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
+base.2=D\:\\DAM\\PROGRAMACION-MULTIMEDIA\\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\\TFC\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\2\\classes.dex
+path.0=classes.dex
+path.1=0/classes.dex
+path.2=2/classes.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex
+renamed.2=classes3.dex

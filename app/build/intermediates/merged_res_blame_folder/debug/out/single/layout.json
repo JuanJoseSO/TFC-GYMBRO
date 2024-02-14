@@ -1,0 +1,66 @@
+[
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-mergeDebugResources-32:\\layout\\activity_info_ejercicios.xml",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\activity_info_ejercicios.xml"
+    },
+    {
+        "merged": "com.example.tfc.app-mergeDebugResources-32:/layout/fragment_categorias.xml",
+        "source": "com.example.tfc.app-main-35:/layout/fragment_categorias.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-mergeDebugResources-32:\\layout\\activity_seleccion_usuario.xml",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\activity_seleccion_usuario.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-mergeDebugResources-32:\\layout\\fragment_ejercicios.xml",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\fragment_ejercicios.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-mergeDebugResources-32:\\layout\\fragment_info_user.xml",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\fragment_info_user.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-mergeDebugResources-32:\\layout\\fragment_categorias.xml",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\fragment_categorias.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-mergeDebugResources-32:\\layout\\activity_opciones_usuario.xml",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\activity_opciones_usuario.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-mergeDebugResources-32:\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-mergeDebugResources-32:\\layout\\fragment_entrenamiento.xml",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\fragment_entrenamiento.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-mergeDebugResources-32:\\layout\\layout_ejercicio.xml",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\layout_ejercicio.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-mergeDebugResources-32:\\layout\\activity_bienvenida.xml",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\activity_bienvenida.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-mergeDebugResources-32:\\layout\\activity_login.xml",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-mergeDebugResources-32:\\layout\\activity_principal.xml",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\activity_principal.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-mergeDebugResources-32:\\layout\\fragment_item.xml",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\fragment_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-mergeDebugResources-32:\\layout\\layout_cat_ejercicios.xml",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\layout_cat_ejercicios.xml"
+    },
+    {
+        "merged": "com.example.tfc.app-mergeDebugResources-32:/layout/fragment_ejercicios.xml",
+        "source": "com.example.tfc.app-main-35:/layout/fragment_ejercicios.xml"
+    }
+]

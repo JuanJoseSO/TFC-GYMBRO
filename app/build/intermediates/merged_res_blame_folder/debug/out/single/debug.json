@@ -1,0 +1,194 @@
+[
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\mipmap-xxxhdpi_ic_toro_launcher.webp.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\mipmap-xxxhdpi\\ic_toro_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_pecho.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_pecho.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\mipmap-anydpi-v26_ic_toro_launcher.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\mipmap-anydpi-v26\\ic_toro_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_male.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_male.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_hombros.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_hombros.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_btn_edit.png.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\btn_edit.png"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_gluteo.png.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_gluteo.png"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_background.png.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\background.png"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_pesas.png.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_pesas.png"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\layout_fragment_item.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\fragment_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_biceps.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_biceps.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\layout_activity_opciones_usuario.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\activity_opciones_usuario.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\layout_layout_cat_ejercicios.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\layout_cat_ejercicios.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\layout_activity_bienvenida.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\activity_bienvenida.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\mipmap-xxxhdpi_ic_toro_launcher_round.webp.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\mipmap-xxxhdpi\\ic_toro_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_switch_personalizado.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\switch_personalizado.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\layout_activity_info_ejercicios.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\activity_info_ejercicios.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_female.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_female.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\mipmap-anydpi-v26_ic_toro_launcher_round.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\mipmap-anydpi-v26\\ic_toro_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\menu_menu.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\menu\\menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_triceps.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_triceps.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\mipmap-xxxhdpi_ic_toro_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\mipmap-xxxhdpi\\ic_toro_launcher_foreground.webp"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_user.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_user.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\layout_activity_principal.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\activity_principal.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\layout_layout_ejercicio.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\layout_ejercicio.xml"
+    },
+    {
+        "merged": "com.example.tfc.app-merged_res-33:/layout_fragment_categorias.xml.flat",
+        "source": "com.example.tfc.app-main-35:/layout/fragment_categorias.xml"
+    },
+    {
+        "merged": "com.example.tfc.app-merged_res-33:/layout_fragment_ejercicios.xml.flat",
+        "source": "com.example.tfc.app-main-35:/layout/fragment_ejercicios.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_espalda.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_espalda.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_cuadriceps.png.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_cuadriceps.png"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_home.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\layout_fragment_categorias.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\fragment_categorias.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\layout_fragment_ejercicios.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\fragment_ejercicios.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_abs.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_abs.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_gemelo.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_gemelo.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\layout_fragment_home.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_toro_launcher.png.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\toro_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_restar.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_restar.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_borde_switch_personalizado.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\borde_switch_personalizado.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_dieta.png.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_dieta.png"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_btn_redondo.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\btn_redondo.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\layout_fragment_entrenamiento.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\fragment_entrenamiento.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\layout_activity_seleccion_usuario.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\activity_seleccion_usuario.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\layout_fragment_info_user.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\layout\\fragment_info_user.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_icon_toro.png.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\icon_toro.png"
+    },
+    {
+        "merged": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-merged_res-33:\\drawable_ic_sumar.xml.flat",
+        "source": "C:\\Users\\juanj\\.gradle\\daemon\\8.0\\com.example.tfc.app-main-35:\\drawable\\ic_sumar.xml"
+    }
+]

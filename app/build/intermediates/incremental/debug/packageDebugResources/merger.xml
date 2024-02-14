@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res"><file name="background" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\background.png" qualifiers="" type="drawable"/><file name="borde_switch_personalizado" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\borde_switch_personalizado.xml" qualifiers="" type="drawable"/><file name="btn_edit" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\btn_edit.png" qualifiers="" type="drawable"/><file name="btn_redondo" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\btn_redondo.xml" qualifiers="" type="drawable"/><file name="icon_toro" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\icon_toro.png" qualifiers="" type="drawable"/><file name="ic_abs" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_abs.xml" qualifiers="" type="drawable"/><file name="ic_biceps" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_biceps.xml" qualifiers="" type="drawable"/><file name="ic_cuadriceps" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_cuadriceps.png" qualifiers="" type="drawable"/><file name="ic_dieta" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_dieta.png" qualifiers="" type="drawable"/><file name="ic_espalda" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_espalda.xml" qualifiers="" type="drawable"/><file name="ic_female" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_female.xml" qualifiers="" type="drawable"/><file name="ic_gemelo" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_gemelo.xml" qualifiers="" type="drawable"/><file name="ic_gluteo" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_gluteo.png" qualifiers="" type="drawable"/><file name="ic_hombros" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_hombros.xml" qualifiers="" type="drawable"/><file name="ic_home" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_home.xml" qualifiers="" type="drawable"/><file name="ic_male" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_male.xml" qualifiers="" type="drawable"/><file name="ic_pecho" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_pecho.xml" qualifiers="" type="drawable"/><file name="ic_pesas" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_pesas.png" qualifiers="" type="drawable"/><file name="ic_restar" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_restar.xml" qualifiers="" type="drawable"/><file name="ic_sumar" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_sumar.xml" qualifiers="" type="drawable"/><file name="ic_triceps" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_triceps.xml" qualifiers="" type="drawable"/><file name="ic_user" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\ic_user.xml" qualifiers="" type="drawable"/><file name="switch_personalizado" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\switch_personalizado.xml" qualifiers="" type="drawable"/><file name="toro_launcher" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\drawable\toro_launcher.png" qualifiers="" type="drawable"/><file name="activity_bienvenida" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\layout\activity_bienvenida.xml" qualifiers="" type="layout"/><file name="activity_info_ejercicios" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\layout\activity_info_ejercicios.xml" qualifiers="" type="layout"/><file name="activity_login" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\layout\activity_login.xml" qualifiers="" type="layout"/><file name="activity_opciones_usuario" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\layout\activity_opciones_usuario.xml" qualifiers="" type="layout"/><file name="activity_principal" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\layout\activity_principal.xml" qualifiers="" type="layout"/><file name="activity_seleccion_usuario" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\layout\activity_seleccion_usuario.xml" qualifiers="" type="layout"/><file name="fragment_categorias" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\layout\fragment_categorias.xml" qualifiers="" type="layout"/><file name="fragment_ejercicios" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\layout\fragment_ejercicios.xml" qualifiers="" type="layout"/><file name="fragment_entrenamiento" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\layout\fragment_entrenamiento.xml" qualifiers="" type="layout"/><file name="fragment_home" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\layout\fragment_home.xml" qualifiers="" type="layout"/><file name="fragment_info_user" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\layout\fragment_info_user.xml" qualifiers="" type="layout"/><file name="fragment_item" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\layout\fragment_item.xml" qualifiers="" type="layout"/><file name="layout_cat_ejercicios" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\layout\layout_cat_ejercicios.xml" qualifiers="" type="layout"/><file name="layout_ejercicio" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\layout\layout_ejercicio.xml" qualifiers="" type="layout"/><file name="menu" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\menu\menu.xml" qualifiers="" type="menu"/><file name="ic_toro_launcher" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\mipmap-anydpi-v26\ic_toro_launcher.xml" qualifiers="anydpi-v26" type="mipmap"/><file name="ic_toro_launcher_round" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\mipmap-anydpi-v26\ic_toro_launcher_round.xml" qualifiers="anydpi-v26" type="mipmap"/><file name="ic_toro_launcher" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\mipmap-xxxhdpi\ic_toro_launcher.webp" qualifiers="xxxhdpi-v4" type="mipmap"/><file name="ic_toro_launcher_foreground" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\mipmap-xxxhdpi\ic_toro_launcher_foreground.webp" qualifiers="xxxhdpi-v4" type="mipmap"/><file name="ic_toro_launcher_round" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\mipmap-xxxhdpi\ic_toro_launcher_round.webp" qualifiers="xxxhdpi-v4" type="mipmap"/><file path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\values\attrs.xml" qualifiers=""><declare-styleable name="FullscreenAttrs">
+        <attr format="color" name="fullscreenBackgroundColor"/>
+        <attr format="color" name="fullscreenTextColor"/>
+    </declare-styleable></file><file path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\values\colors.xml" qualifiers=""><color name="teal_200">#FF03DAC5</color><color name="teal_700">#FF018786</color><color name="black">#FF000000</color><color name="botones">#8B3E2A96</color><color name="rojo">#FF0000</color><color name="background">#B34AC5</color><color name="white">#FFFFFF</color><color name="negro">#FF000000</color><color name="gris">#A5A5A5</color><color name="transparente">#00000000</color><color name="background_component">#343770</color><color name="background_component_selected">#FF111328</color><color name="light_blue_600">#FF039BE5</color><color name="light_blue_900">#FF01579B</color><color name="light_blue_A200">#FF40C4FF</color><color name="light_blue_A400">#FF00B0FF</color><color name="black_overlay">#66000000</color><color name="purple_200">#FFBB86FC</color><color name="purple_500">#FF6200EE</color><color name="purple_700">#FF3700B3</color></file><file path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\values\dimens.xml" qualifiers=""><dimen name="text_margin">16dp</dimen></file><file path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\values\ic_toro_launcher_background.xml" qualifiers=""><color name="ic_toro_launcher_background">#530E76</color></file><file path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\values\strings.xml" qualifiers=""><string name="app_name">TFC</string><string name="dummy_button">Dummy Button</string><string name="dummy_content">DUMMY\nCONTENT</string><string name="btnAcceso">acceso</string><string name="pecho">Pecho</string><string name="espalda">Espalda</string><string name="biceps">Biceps</string><string name="triceps">Triceps</string><string name="abs">ABS</string><string name="hombros">Hombros</string><string name="gluteo">Gluteo</string><string name="cuadriceps">Cuádriceps</string><string name="gemelo">Gemelo</string><string-array name="ejercicios_pecho">
+        <item>Cruces en máquina</item>
+        <item>Cruces en polea alta</item>
+        <item>Cruces en polea baja</item>
+        <item>Flexiones</item>
+        <item>Flexiones de arquero</item>
+        <item>Flexiones con mancuernas</item>
+        <item>Fondos</item>
+        <item>Fondos en banco</item>
+        <item>Hex Press</item>
+        <item>Press de banca con barra</item>
+        <item>Press con mancuernas</item>
+        <item>Press de banca con agarre cerrado</item>
+        <item>Press de banca inclinado</item>
+        <item>Press inclinado con mancuerdas</item>
+        <item>Press de banca inclinado con agarre cerrado</item>
+        <item>Press de banca declinado</item>
+        <item>Press declinado con mancuernas</item>
+        <item>Press de banca declinado con agarre cerrado</item>
+    </string-array><string-array name="ejercicios_espalda">
+        <item>Bent over underhand barbell row</item>
+        <item>Dominadas</item>
+        <item>Paso del granjero</item>
+        <item>Peso muerto</item>
+        <item>Polea al pecho</item>
+        <item>Pullover</item>
+        <item>Pullover con mancuerna</item>
+        <item>Remo con barra</item>
+        <item>Remo con mancuerdas</item>
+        <item>Remo en máquina</item>
+        <item>Remo inclinado</item>
+        <item>Remo invertido</item>
+        <item>Renegade row</item>
+        <item>Sentadilla</item>
+        <item>Sentadilla frontal</item>
+        <item>Swings con pesa rusa</item>
+    </string-array><string-array name="ejercicios_biceps">
+        <item>Bent over remo con barra</item>
+        <item>Curl Zottman</item>
+        <item>Curl con barra</item>
+        <item>Curl con barra Z</item>
+        <item>Curl concentrado</item>
+        <item>Curl de martillo</item>
+        <item>Curl en polea baja</item>
+        <item>Curl en polea con cuerda</item>
+        <item>Curl simultáneo</item>
+        <item>Flexiones de bíceps con cable</item>
+        <item>Preacher curl</item>
+        <item>Spider curl</item>
+    </string-array><string-array name="ejercicios_triceps">
+        <item>Extensiones a una mano</item>
+        <item>Extensiones con barra Z</item>
+        <item>Extensiones con mancuerna</item>
+        <item>Extensiones con mancuerna en banco</item>
+        <item>Flexiones diamante</item>
+        <item>Fondos</item>
+        <item>Fondos en banco</item>
+        <item>Patada de tríceps</item>
+        <item>Polea a una mano</item>
+        <item>Polea con barra</item>
+        <item>Press JM</item>
+        <item>Press francés con barra Z</item>
+        <item>Press francés con mancuernas</item>
+        <item>Triceps Gravity Press</item>
+    </string-array><string-array name="ejercicios_abs">
+        <item>Abdominales</item>
+        <item>Ball slam</item>
+        <item>Battle ropes</item>
+        <item>Bird dog</item>
+        <item>Cable crunch</item>
+        <item>Corkscrew hollow rock</item>
+        <item>Dragon flag</item>
+        <item>Gator rolls</item>
+        <item>Hollow circuit</item>
+        <item>Hollow hold</item>
+        <item>Kettlebell decline core crush</item>
+        <item>Mountain climbers</item>
+        <item>Pallof press</item>
+        <item>Partner Hollow Body Pallof Game</item>
+        <item>Plancha Superman</item>
+        <item>Plancha isométrica</item>
+        <item>Plank pull</item>
+        <item>Russian twist</item>
+        <item>Step core getup</item>
+        <item>The decline dumbbell ab fryer</item>
+    </string-array><string-array name="ejercicios_hombro">
+        <item>Elevaciones frontales</item>
+        <item>Elevaciones laterales con mancuerna</item>
+        <item>Elevaciones laterales en polea</item>
+        <item>Encogimientos de hombros</item>
+        <item>Flexiones para hombro</item>
+        <item>Levantamiento frontal alterno</item>
+        <item>Press Arnold</item>
+        <item>Press Militar</item>
+        <item>Press militar con mancuerna</item>
+        <item>Press militar en máquina</item>
+        <item>Press trasnuca con barra</item>
+        <item>Remo al mentón</item>
+    </string-array><string-array name="ejercicios_gluteo">
+        <item>Bear crawls</item>
+        <item>Femoral en máquina</item>
+        <item>Hack squats</item>
+        <item>Hip thrust</item>
+        <item>Paso del granjero</item>
+        <item>Peso muerto</item>
+        <item>Peso muerto a una pierna</item>
+        <item>Peso muerto rumano</item>
+        <item>Prensa</item>
+        <item>Saltos de rana</item>
+        <item>Sentadilla búlgara</item>
+        <item>Sentadilla goblet</item>
+        <item>Sentadillas a una pierna</item>
+        <item>Sentadillas aéreas</item>
+        <item>Sentadillas con barra frontal</item>
+        <item>Sentadillas con barra trasera</item>
+        <item>Skipping</item>
+        <item>Split squat</item>
+        <item>Wall shoots</item>
+        <item>Zancadas</item>
+        <item>Zancadas inversas</item>
+    </string-array><string-array name="ejercicios_cuadriceps">
+        <item>Extensiones de cuádriceps</item>
+        <item>Hip thrust</item>
+        <item>Sentadilla</item>
+        <item>Sentadilla búlgara</item>
+        <item>Sentadilla pistol</item>
+        <item>Step-up</item>
+        <item>Zancada</item>
+    </string-array><string-array name="ejercicios_gemelo">
+        <item>Elevaciones de gemelos</item>
+        <item>Elevaciones de gemelos en máquina</item>
+        <item>Elevaciones de gemelos en prensa</item>
+        <item>Elevaciones de gemelos en step</item>
+        <item>Máquina de gemelos</item>
+        <item>Sentadillas con elevación de talones</item>
+        <item>Sentadillas con salto</item>
+    </string-array></file><file path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\values\styles.xml" qualifiers=""><style name="Widget.Theme.TFC.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style></file><file path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\values\themes.xml" qualifiers=""><style name="Theme.TFC" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:windowBackground">@color/black</item>
+        
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/negro</item>
+        
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style><style name="ThemeOverlay.TFC.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style></file><file path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\values\yt_videos.xml" qualifiers=""><string-array name="yt_pecho">
+        <item>U5lV7oPW3CA?si=AfWeRu9obD7VmI10</item> 
+        <item>XnaMi2Gb_9Q?si=GKj-AhorJ8lP45zY</item> 
+        <item>6oqK95erRik?si=E7vLNq7XVDqlNhzg</item> 
+        <item>44JzAk3rvRM?si=3QBlwfTEdoNqwYJS</item> 
+        <item>bouCFhjGytc?si=TYACXaEKVvt2rCBP</item> 
+        <item>slVtQI9N31E?si=qf0kCpRj9HRK4Sf5</item> 
+        <item>CkX5QdEz4IE?si=rno2u6blA9B9tH8W</item> 
+        <item>H6r0fh2-YNU?si=T3YmLX6hv6u7AFjJ</item> 
+        <item>MjOeSCRwAQY?si=Dv8Hb9rRQ_kwshlr</item> 
+        <item>GeLq8cMODLc?si=enZ_p4boOqOoCuNv</item> 
+        <item>2XtuyTKBU5A?si=udiauqHfoAz0rVDV</item> 
+        <item>ZUyebllQ0VU?si=nA2DjqvqFFxS0Gr5</item> 
+        <item>swMjJqFzxCQ?si=hmXSvZbLz7Cxao6N</item> 
+        <item>MkMf308jXww?si=Fi4T6gX6D_-cUzvf</item> 
+        <item>0qOazzFccxE?si=Z30yWrnD4snGwfH2</item> 
+        <item>lrkMoax-TSs?si=LVBsOkKBgmhw7n3D</item> 
+        <item>lrkMoax-TSs?si=LVBsOkKBgmhw7n3D</item> 
+        <item>lrkMoax-TSs?si=LVBsOkKBgmhw7n3D</item> 
+    </string-array><string-array name="yt_espalda">
+        <item>LnH7CkBZfN8?si=EzIhM099OQ_qhf-T</item> 
+        <item>u6zqhOLK-Jg?si=1qKcUp3kXId8Zy7K</item> 
+        <item>y4A5srqb2xc?si=au3oadPGKYyFSrBs</item> 
+        <item>7KL8SgCP4KQ?si=56QvoQaG3oCLVDdw</item> 
+        <item>xpIlNU4qZd8?si=TbSDcErLWK80xHs5</item> 
+        <item>SDg8qmUDHyw?si=FS9EgwlP7cahnHAW</item> 
+        <item>5XO5KyDUAbE?si=aEQjt9vl2Yo9XpkI</item> 
+        <item>3uiWjik2yEQ?si=5C8sFdQj83UDaLUs</item> 
+        <item>inp7pjrEY1w?si=ghXDKrp05omN_yOe</item> 
+        <item>FOusO8JMU3Q?si=2cASpRg1U6PbVe4p</item> 
+        <item>KgEZTNLBMMQ?si=vVCsdIsfVtD5Xo2A</item> 
+        <item>7Qf8GOf--a0?si=nBjg19Lj4fQS87SR</item> 
+        <item>bi1Nf5G86gU?si=cQVWQKA88qF5rHmA</item> 
+        <item>CCI8zADyQQc?si=IBRgpn32OITpsWE1</item> 
+        <item>CCI8zADyQQc?si=IBRgpn32OITpsWE1</item> 
+        <item>FCKuqUyzD0g?si=gW1LfeLfJJ7diVWy</item> 
+    </string-array><string-array name="yt_biceps">
+        <item>LnH7CkBZfN8?si=EzIhM099OQ_qhf-T</item> 
+        <item>ZrpRBgswtHs?si=aTM_ePHipuv86FPS</item> 
+        <item>PY9QylAMtyE?si=KWqjVUcz9l2_JdCF</item> 
+        <item>Ks5KNBSmw6A?si=DaQsAHyN1aCKbkZf</item> 
+        <item>E6idMdmNyxI?si=OoHlkj7klJN5ga36</item> 
+        <item>yjP-_KkLwys?si=JbWkVbjQTILuj8mN</item> 
+        <item>7Jc4jHxax60?si=LeMm0DaV-b0VajzU</item> 
+        <item>fx9VW2lDx_s?si=e-VmyRnF--j78tMs</item> 
+        <item>rGNADHvRlxg?si=NR_4MiIbI8RS3UcW</item> 
+        <item>7Jc4jHxax60?si=D8xGaP0bk_TkI3i0</item> 
+        <item>DUTcx5B-ddk?si=hMOTHeADKlfJD0r</item> 
+        <item>LCCCImzeQUc?si=zzHTROlcQD2G9KNR</item> 
+    </string-array><string-array name="yt_triceps">
+        <item>Z8DINkd5Kw4?si=wgvn6xOlJbArF6hu</item> 
+        <item>dRkTreltpnc?si=dXp1ISLrRpnyiXxF</item> 
+        <item>fQ-KB40W3d8?si=LKzSKCFdA4pcLEfD</item> 
+        <item>Qndo_OXdHZo?si=qhcf3o3T2-KrONpZ</item> 
+        <item>J0DnG1_S92I?si=6HVNXxqy8QAiEn-9</item> 
+        <item>CkX5QdEz4IE?si=rno2u6blA9B9tH8W</item> 
+        <item>H6r0fh2-YNU?si=T3YmLX6hv6u7AFjJ</item> 
+        <item>dpZxd4ax0eg?si=KXnruwAiKwfrS3Rl</item> 
+        <item>ChdOh_M0uY8?si=yBhA2tjTk9INkLO_</item> 
+        <item>42orORe9AME?si=REYcL5sifBidU4qt</item> 
+        <item>7EAfX9TTIQo?si=eRLMiACHq3j81-ox</item> 
+        <item>VN_QtPv4Ugo?si=GnWG9IaFM9AWhYq4</item> 
+        <item>4YSHZBrq4Ag?si=_gXGR616XEJIK1hL</item> 
+        <item>HeXRkJg1Bos?si=WCZzRujpBu2fWK6K</item> 
+    </string-array><string-array name="yt_abs">
+        <item>CwhxepX7aR8?si=dvCjxDA673FG01UR</item> 
+        <item>CkO1mfSBvv4?si=jytOsTnxAlzYsJug</item> 
+        <item>yxWrWFXiI9c?si=Zoyr0weo-LE1X4NK</item> 
+        <item>cqe97lhKVP4?si=N2RkKj6HwdIl12nR</item> 
+        <item>W6zFHkMp3_U?si=sbu0cLN2Zdxkv9sa</item> 
+        <item>STv31k-AMg8?si=mm3fJ482A_nBhBy4</item> 
+        <item>8d0sQcw9xik?si=gX0YHCmA6nwkN_dY</item> 
+        <item>H6Sco2y0m34?si=Re3dcttlfMEJPSt_</item> 
+        <item>STv31k-AMg8?si=KBZP8oDgYw04XfQZ</item> 
+        <item>STv31k-AMg8?si=KBZP8oDgYw04XfQZ</item> 
+        <item>cqIX4Bdjb3w?si=_mowqHZAQHSgNY7s</item> 
+        <item>SMs2N1_ce7g?si=BvuwRhdz-KKPMZ0I</item> 
+        <item>cDo8Rt2BNDo?si=T_cqt1XVSzjtnIRV</item> 
+        <item>xfG3c_6hB5I?si=Gzz05lMGQ3FxPjjq</item> 
+        <item>g2b7GVdyQ9Q?si=aI4Xr39GDot6XBHK</item> 
+        <item>7S-ytR7Jobw?si=bj7H9ojDsGLPGM2W</item> 
+        <item>KZrG4rCcuVw?si=vJ6nskwQddPqAQEO</item> 
+        <item>IonlY_lFmF0?si=c5TyXsFCkhUII4fC</item> 
+        <item>sgd8n917Zv0?si=XrprCFHyqTboUXIR</item> 
+        <item>MJ5EQusKJrQ?si=LdtAIKy1Le4R_mrV</item> 
+    </string-array><string-array name="yt_hombros">
+        <item>joO2vLGujcA?si=rEZ2zW8BfnuPK7-V</item> 
+        <item>nOAUECQEpHs?si=ip6euiIP5zoZ38Cp</item> 
+        <item>qMW1B73Zbk4?si=IyEt-0vMjdyjtVz</item> 
+        <item>qlIv6nW5kHU?si=MQir2BUS_bhS2uel</item> 
+        <item>oLPyqyExD8M?si=euPfo9Rt0SsKpSI5</item> 
+        <item>ZLG2Ed8C87A?si=kG-bKPg11m-fxRle</item> 
+        <item>6zUrUsCa3KQ?si=cu9cmps-8dtaISRH</item> 
+        <item>f3E1jQFRONs?si=05nVXPRTM4xEo-22</item> 
+        <item>o5M9RZ-vWrc?si=k_CFz8ptMsbGdmN3</item> 
+        <item>Wz8ifiRefB0?si=jkmj90Xu73aaAPzO</item> 
+        <item>CNATw54G57M?si=uFn6gt0rxZuK7D3B</item> 
+        <item>Vl-93Ol2xdg?si=POGhrrNojuWYZslG</item> 
+    </string-array><string-array name="yt_gluteo">
+        <item>HtArplPBMr8?si=rSn6_NdT2TbSJ6iJ</item> 
+        <item>H_ADCsf0JOw?si=TnjmjfTy7SFOosOH</item> 
+        <item>_P5Q0jDG0OM?si=6AO9e3UjGBrwTEbg</item> 
+        <item>gdUC0EFGWfQ?si=jBYm0dZm1ld3PfSk</item> 
+        <item>y4A5srqb2xc?si=au3oadPGKYyFSrBs</item> 
+        <item>7KL8SgCP4KQ?si=56QvoQaG3oCLVDdw</item> 
+        <item>EERrhuuOtnE?si=F2wmG01HJTyG8Zjh</item> 
+        <item>NIng2JWF1Rs?si=f4ABNCReYfXcrFuC</item> 
+        <item>xvCynwyNoP4?si=UVA250Bo3z0OQMjX</item> 
+        <item>2eWtmRQdv88?si=bH1_gHYfJDnIOEk-</item> 
+        <item>K-6DG1hcHzU?si=4xYCOapIqgCf4YUK</item> 
+        <item>AgD7XRyH05o?si=BFILlMcK9KVd_4HS</item> 
+        <item>GM3qasWpvwU?si=MlZA-VTm6llbtsSL</item> 
+        <item>B8depoxABLU?si=Kx6_ejWaAHCZB8p8</item> 
+        <item>CCI8zADyQQc?si=IBRgpn32OITpsWE1</item> 
+        <item>CCI8zADyQQc?si=IBRgpn32OITpsWE1</item> 
+        <item>PY4l9jqkuP4?si=WFzgsBiJvp8612uu</item> 
+        <item>WHlBuTr43U8?si=DVKULwbuapUBZEq2</item> 
+        <item>CKtBasC1aDo?si=X_NYy8dAY9F8HgNT</item> 
+        <item>Xcfs_3DMKlc?si=NSo6-x3ap2WbBFBC</item> 
+        <item>wF96HPOuf7E?si=WuY2DfzbmRk7RAUk</item> 
+    </string-array><string-array name="yt_cuadriceps">
+        <item>GXG5nKXIeEo?si=UrkRl9hXlyzYITaS</item> 
+        <item>gdUC0EFGWfQ?si=jBYm0dZm1ld3PfSk</item> 
+        <item>CCI8zADyQQc?si=IBRgpn32OITpsWE1</item> 
+        <item>K-6DG1hcHzU?si=4xYCOapIqgCf4YUK</item> 
+        <item>Hh2hIJDGCz8?si=gyb0LIiowBt6pJt5</item> 
+        <item>QxZzLH4UwvY?si=6wyWNjnby9YHazKl</item> 
+        <item>Xcfs_3DMKlc?si=VM7MPHJAcYWabtRq</item> 
+    </string-array><string-array name="yt_gemelo">
+        <item>L4YnlvVLxtU?si=-gLWjwSJ102PcrCb</item> 
+        <item>Z27RhPA66_8?si=C5d2SYVgG29tD9ZT</item> 
+        <item>mROxEgJV5D0?si=je1yrMdm5x7IUeRO</item> 
+        <item>z03KmwIOT5g?si=JD-AdvI2itdKuDIO</item> 
+        <item>R9eS_1An8L0?si=uak8w1UW8N4Jd5cX</item> 
+        <item>3muwy0wyVWY?si=zgceHgwcrxdAw2D0</item> 
+        <item>2VoHEWxXG4s?si=Wnb-kHCJANeJv5LN</item> 
+    </string-array></file><file name="backup_rules" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\xml\backup_rules.xml" qualifiers="" type="xml"/><file name="data_extraction_rules" path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\main\res\xml\data_extraction_rules.xml" qualifiers="" type="xml"/></source></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\debug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\src\debug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\build\generated\res\resValues\debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\DAM\PROGRAMACION-MULTIMEDIA\PROGRAMACION-MULTIMEDIA-Y-DISPOSITIVOS-MOVILES-PROYECTOS\TFC\app\build\generated\res\resValues\debug"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="FullscreenAttrs">
+        <attr format="color" name="fullscreenBackgroundColor"/>
+        <attr format="color" name="fullscreenTextColor"/>
+    </declare-styleable></configuration></mergedItems></merger>

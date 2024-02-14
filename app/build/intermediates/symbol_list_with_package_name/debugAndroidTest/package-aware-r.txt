@@ -1,0 +1,3 @@
+com.example.tfc.test
+style WhiteBackgroundDialogTheme
+style WhiteBackgroundTheme

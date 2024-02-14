@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCrearUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Crear Usuario"
+
+        android:background="@color/background"
+        android:textColor="@color/white"
+        />
+
+    <!-- <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCambiarUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cambiar Usuario"
+        android:background="@color/background"
+        android:textColor="@color/white"
+        />-->
+
+
+
+        <!-- Agrega más componentes según sea necesario -->
+    </LinearLayout>
+
+
