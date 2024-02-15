@@ -16,6 +16,11 @@
     <string name="gluteo">Gluteo</string>
     <string name="cuadriceps">Cuádriceps</string>
     <string name="gemelo">Gemelo</string>
+    <string name="_4">4</string>
+    <string name="logo">logo</string>
+    <string name="ejercicio">Ejercicio</string>
+    <string name="repeticiones">REPETICIONES</string>
+    <string name="suma">suma</string>
 
     <!-- Ejercicios de Pecho -->
     <string-array name="ejercicios_pecho">

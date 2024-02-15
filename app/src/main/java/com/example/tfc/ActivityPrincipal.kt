@@ -15,31 +15,31 @@ class ActivityPrincipal : AppCompatActivity() {
         setContentView(R.layout.activity_principal)
 
         configurarBottomNavigationView()
-        if (savedInstanceState == null) {
-            cargarFragmento(FragmentHome()) //Cargamos HomeFragment por defecto
-        }
+        cargarFragmento(FragmentHome()) //Cargamos HomeFragment por defecto
     }
 
     //Funcion para configurar la barra de navegación de la aplicacion
     private fun configurarBottomNavigationView() {
 
-            val bottomNavigationView = findViewById<BottomNavigationView>(R.id.menuNavegacion)
-            bottomNavigationView.setOnItemSelectedListener { item ->
-                //Los distintos fragmentos a los que podemos navegar
-                when (item.itemId) {
-                    R.id.menu_home -> {
-                        cargarFragmento(FragmentHome())
-                    }
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.menuNavegacion)
 
-                    R.id.menu_pesas -> {
-                        cargarFragmento(FragmentEntrenamiento())
-                    }
 
-                    R.id.menu_perfil -> {
-                        cargarFragmento(FragmentInfoUser())
-                    }
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            //Los distintos fragmentos a los que podemos navegar
+            when (item.itemId) {
+                R.id.menu_home -> {
+                    cargarFragmento(FragmentHome())
                 }
-                true
+
+                R.id.menu_pesas -> {
+                    cargarFragmento(FragmentEntrenamiento())
+                }
+
+                R.id.menu_perfil -> {
+                    cargarFragmento(FragmentInfoUser())
+                }
+            }
+            true
         }
     }
 

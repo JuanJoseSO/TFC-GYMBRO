@@ -1,6 +1,5 @@
 package com.example.tfc
 
-import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.database.sqlite.SQLiteException
@@ -14,41 +13,20 @@ import com.example.tfc.clasesAuxiliares.Ejercicio
 
 
 class ActivityBienvenida : AppCompatActivity() {
-    private val db = DatabaseHelper(this)
-
-    private lateinit var btnAcceso: Button
-
-    //Iniciamos componenestes
-    private fun iniciaComponentes() {
-        btnAcceso = findViewById(R.id.btnAcceso)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bienvenida)
 
         iniciaComponentes()
+        val db = DatabaseHelper(this)
+        cargarTablaEjercicios( db,resources, categoriasEjercicios)
 
-        cargarCategoriasEjercicios(db, resources, categoriasEjercicios)
 
-        btnAcceso.setText(R.string.btnAcceso)
-
-        //Con sharedPreferences podemos comprobar sí es la primera ves que se inicia la aplicación
-        //Si fuera así cargamos los ejercicios, con esto eviatamos que se carguen cada vez que de abre la app
-        val prefs = getSharedPreferences("Prefs", Context.MODE_PRIVATE)
-        if (prefs.getBoolean("firstTime", true)) {
-            //Es la primera vez que se ejecuta la app
-
-            prefs.edit().putBoolean("firstTime", false).apply()
-        }
         try {
-            btnAcceso.setOnClickListener {
-                Toast.makeText(this, "Botón presionado", Toast.LENGTH_SHORT).show()
-            }
-
             //Realizamos una consulta para saber si existe el usuario
             //Si existe
-            if (db.getUsuario() != null) {
+            if (db.contarUsuarios() != 0) {
                 //Redirigimos a la actividad de principal
                 btnAcceso.setOnClickListener {
                     val intent = Intent(this, ActivityPrincipal::class.java)
@@ -68,39 +46,39 @@ class ActivityBienvenida : AppCompatActivity() {
     }
 
     // Función para cargar los ejercicios de una categoría
-    fun cargarEjerciciosCategoria(
+    fun crearObjetosEjercico(
         categoria: String,
         ejercicios: Array<String>,
         videos: Array<String>,
         db: DatabaseHelper
     ) {
+        //Por cada ejercicio recoge el video por su mismo indice y lo añade a la base de datos
         ejercicios.forEachIndexed { indice, ejercicio ->
-            val videoId =
-                videos.getOrNull(indice) ?: "" // Obtener el ID del video correspondiente si existe
+            val videoId = videos.getOrNull(indice) ?: ""
             db.addEjercicio(Ejercicio(categoria = categoria, nombre = ejercicio, video = videoId))
         }
     }
 
-    // Función para cargar las categorías de ejercicios
-    fun cargarCategoriasEjercicios(
+    private fun cargarTablaEjercicios(
         db: DatabaseHelper,
         resources: Resources,
         categoriasEjercicios: Map<Int, Pair<Int, Int>>
     ) {
-        categoriasEjercicios.forEach { (categoriaResId, recursos) ->
-            val categoria = resources.getString(categoriaResId)
-            val ejerciciosResId = recursos.first
-            val videosResId = recursos.second
+        /*Crea la tabla a través de las posiciones de los ejercicios en el mapeo,es decir,recoge mismo indice para el nombre del
+          ejercicio y del video para poder crear los objetos Ejercicio*/
+        categoriasEjercicios.forEach { (categoria, recursos) ->
+            val categoriaPosition = resources.getString(categoria)
+            val ejerciciosPosition = recursos.first
+            val videosIdPosition = recursos.second
 
-            val ejercicios = resources.getStringArray(ejerciciosResId)
-            val videos = resources.getStringArray(videosResId)
+            val ejercicios = resources.getStringArray(ejerciciosPosition)
+            val videos = resources.getStringArray(videosIdPosition)
 
-            cargarEjerciciosCategoria(categoria, ejercicios, videos, db)
+            crearObjetosEjercico(categoriaPosition, ejercicios, videos,db)
         }
     }
 
-
-    // Uso de las funciones anteriores
+    //Mapeo de ejercicios y videos por categorias
     val categoriasEjercicios = mapOf(
         R.string.pecho to Pair(R.array.ejercicios_pecho, R.array.yt_pecho),
         R.string.espalda to Pair(R.array.ejercicios_espalda, R.array.yt_espalda),
@@ -114,10 +92,17 @@ class ActivityBienvenida : AppCompatActivity() {
     )
 
     override fun onDestroy() {
-        // Cierra la base de datos cuando la actividad es destruida
-        db.close()
+        //Cierra la base de datos cuando la actividad es destruida
+        //db.close()
         super.onDestroy()
     }
+
+    private fun iniciaComponentes() {
+        btnAcceso = findViewById(R.id.btnAcceso)
+        btnAcceso.setText(R.string.btnAcceso)
+
+    }
+    private lateinit var btnAcceso: Button
 }
 
 

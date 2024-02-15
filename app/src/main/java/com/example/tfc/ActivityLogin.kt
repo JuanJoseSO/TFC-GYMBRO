@@ -17,27 +17,6 @@ import java.text.DecimalFormat
 
 class ActivityLogin : AppCompatActivity() {
 
-    private lateinit var viewHombre: CardView
-    private lateinit var viewMujer: CardView
-
-    private var pesoActual:Int=70//Weight peso
-    private var edadActual:Int=20
-    private var alturaActual=120
-
-    private var isMaleSelected: Boolean = true //El género masculino está seleccionado
-    private var isFemaleSelected: Boolean = false //El género femenino no está seleccionado
-    private lateinit var tvAltura: TextView
-    private lateinit var rsAltura: RangeSlider
-    private lateinit var botonSumarEdad: FloatingActionButton
-    private lateinit var botonRestarEdad: FloatingActionButton
-    private lateinit var botonRestarPeso: FloatingActionButton
-    private lateinit var botonSumarPeso: FloatingActionButton
-    private lateinit var tvPeso: TextView
-    private lateinit var tvEdad: TextView
-    private lateinit var btnCrearUser: Button
-    private lateinit var nombre: EditText
-
-    private val db = DatabaseHelper(this)
 
 
 
@@ -47,40 +26,29 @@ class ActivityLogin : AppCompatActivity() {
         iniciaComponentes()
         iniciaListeners()
         initUI()
-
     }
 
-    private fun iniciaComponentes() {
-        viewHombre = findViewById(R.id.viewHombre) // Recupera la vista masculina por su ID
-        viewMujer = findViewById(R.id.viewMujer) // Recupera la vista femenina por su ID
-        tvAltura = findViewById(R.id.tvAltura) // Recupera el campo de texto de altura por su ID
-        rsAltura = findViewById(R.id.rsAltura) // Recupera el control deslizante de altura por su ID
-        botonSumarEdad=findViewById(R.id.botonSumarEdad)
-        botonRestarEdad=findViewById(R.id.botonRestarEdad)
-        botonRestarPeso=findViewById(R.id.botonRestarPeso)
-        botonSumarPeso=findViewById(R.id.botonSumarPeso)
-        tvPeso=findViewById(R.id.tvPeso)
-        tvEdad=findViewById(R.id.tvEdad)
-        btnCrearUser=findViewById(R.id.btnCrearUser)
-        nombre=findViewById(R.id.etNombreUsuario)
-    }
 
     private fun iniciaListeners() {
+        //Listener para seleccionar u aumentar/reducir según el componenete y guardar el usuario en la base de datos
         viewHombre.setOnClickListener {
+            //Selecciona masculino y cambia el color (selección por defecto)
             isMaleSelected = true
-            isFemaleSelected = false//Actualiza la selección de género al hacer clic en el componente masculino
-            setColorGenero() //Actualiza el color de fondo del componente
+            isFemaleSelected = false
+            setColorGenero()
         }
         viewMujer.setOnClickListener {
+            //Selecciona femenino y cambia el color
             isMaleSelected = false
-            isFemaleSelected = true //Actualiza la selección de género al hacer clic en el componente femenino
-            setColorGenero() //Actualiza el color de fondo del componente
+            isFemaleSelected = true
+            setColorGenero()
         }
 
         rsAltura.addOnChangeListener { slider, value, fromUser ->
+            //Actualiza el campo de texto de altura con el valor seleccionado al deslizar la barra
             val df = DecimalFormat("#.##")
-            alturaActual = df.format(value).toInt()
-            tvAltura.text = "$alturaActual cm" //Actualiza el campo de texto de altura con el valor seleccionado
+            df.format(value).toInt().also { this.alturaActual = it }
+            tvAltura.text = "$alturaActual cm"
         }
 
         botonSumarPeso.setOnClickListener{
@@ -95,18 +63,15 @@ class ActivityLogin : AppCompatActivity() {
         botonSumarEdad.setOnClickListener{
             edadActual++
             setEdad()
-
         }
         botonRestarEdad.setOnClickListener{
             edadActual--
             setEdad()
         }
 
-
-
         btnCrearUser.setOnClickListener {
             val nombreUsuario=nombre.text.toString()
-
+            //Creamos el usuario y lo guardamos en la base de datos al pulsar el botón
             if (nombreUsuario.isEmpty()) {
                 Toast.makeText(this, "Por favor, ingrese un nombre", Toast.LENGTH_SHORT).show()
             } else {
@@ -123,20 +88,20 @@ class ActivityLogin : AppCompatActivity() {
                    val db=DatabaseHelper(this)
                    db.addUsuario(usuario)
                    Toast.makeText(this, "Usuario creado correctamente", Toast.LENGTH_SHORT).show()
-                   irVentanaPrincipal()
+                   navegarActivityPrincipal()
               }catch (e: Exception) {
                   Toast.makeText(this, "Error al crear el usuario", Toast.LENGTH_SHORT).show()
               }
             }
         }
-
     }
 
-    private fun irVentanaPrincipal(){
+    private fun navegarActivityPrincipal(){
         val intent= Intent(this,ActivityPrincipal::class.java)
         startActivity(intent)
     }
 
+    //Funciones SETTER/GETTER con seguridad de parametros
     private fun calcularIMC():Double{
         val df= DecimalFormat("#.##")
         val imc=pesoActual/(alturaActual.toDouble()/100*alturaActual.toDouble()/100)
@@ -179,6 +144,41 @@ class ActivityLogin : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        db.close() // Asumiendo que `db` es accesible a nivel de clase y su ciclo de vida está bien gestionado
+        db.close()
     }
+
+    private fun iniciaComponentes() {
+        viewHombre = findViewById(R.id.viewHombre) // Recupera la vista masculina por su ID
+        viewMujer = findViewById(R.id.viewMujer) // Recupera la vista femenina por su ID
+        tvAltura = findViewById(R.id.tvAltura) // Recupera el campo de texto de altura por su ID
+        rsAltura = findViewById(R.id.rsAltura) // Recupera el control deslizante de altura por su ID
+        botonSumarEdad=findViewById(R.id.botonSumarEdad)
+        botonRestarEdad=findViewById(R.id.botonRestarEdad)
+        botonRestarPeso=findViewById(R.id.botonRestarPeso)
+        botonSumarPeso=findViewById(R.id.botonSumarPeso)
+        tvPeso=findViewById(R.id.tvPeso)
+        tvEdad=findViewById(R.id.tvEdad)
+        btnCrearUser=findViewById(R.id.btnCrearUser)
+        nombre=findViewById(R.id.etNombreUsuario)
+    }
+
+    private lateinit var viewHombre: CardView
+    private lateinit var viewMujer: CardView
+    private var pesoActual:Int=70//Weight peso
+    private var edadActual:Int=20
+    private var alturaActual=120
+    private var isMaleSelected: Boolean = true //El género masculino está seleccionado
+    private var isFemaleSelected: Boolean = false //El género femenino no está seleccionado
+    private lateinit var tvAltura: TextView
+    private lateinit var rsAltura: RangeSlider
+    private lateinit var botonSumarEdad: FloatingActionButton
+    private lateinit var botonRestarEdad: FloatingActionButton
+    private lateinit var botonRestarPeso: FloatingActionButton
+    private lateinit var botonSumarPeso: FloatingActionButton
+    private lateinit var tvPeso: TextView
+    private lateinit var tvEdad: TextView
+    private lateinit var btnCrearUser: Button
+    private lateinit var nombre: EditText
+    private val db = DatabaseHelper(this)
+
 }

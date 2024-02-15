@@ -26,23 +26,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        />
+        android:contentDescription="@string/logo" />
 
     <TextView
         android:id="@+id/tvEjercicio"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="Ejercicio"
+        android:text="@string/ejercicio"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintVertical_bias="0.07"
-        android:layout_marginStart="-50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/logo"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07" />
 
 
     <androidx.cardview.widget.CardView
@@ -75,7 +75,7 @@
                     android:layout_width="148dp"
                     android:layout_height="31dp"
                     android:gravity="center"
-                    android:text="REPETICIONES"
+                    android:text="@string/repeticiones"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="21sp"
@@ -95,7 +95,8 @@
                     app:layout_constraintEnd_toStartOf="@+id/tvNumRepeticiones"
                     app:layout_constraintStart_toEndOf="@+id/tvRepeticiones"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white" />
+                    app:tint="@color/white"
+                    android:contentDescription="@string/suma" />
 
                 <TextView
                     android:id="@+id/tvNumRepeticiones"
@@ -161,7 +162,7 @@
                     android:id="@+id/tvNumSeries"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4"
+                    android:text="@string/_4"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="30sp"

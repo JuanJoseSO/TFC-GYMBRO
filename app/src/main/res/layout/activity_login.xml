@@ -65,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Nombre de usuario"
+            android:inputType="text"
             android:textColor="@color/white" />
 
         <LinearLayout
@@ -179,7 +180,11 @@
                     android:layout_height="wrap_content"
                     android:stepSize="1"
                     android:valueFrom="120"
-                    android:valueTo="200" />
+                    android:valueTo="200"
+                    app:trackColor="@color/purple_700"
+                    app:thumbColor="@color/purple_500"
+                    app:tickColor="@color/purple_500"
+                    app:haloColor="@color/background_component_selected" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>

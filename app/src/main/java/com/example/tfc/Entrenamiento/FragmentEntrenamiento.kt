@@ -11,7 +11,7 @@ import com.example.tfc.R
 
 
 class FragmentEntrenamiento : Fragment() {
-
+    //Fragmento que forma parte del menú que contrendra un "Swicth" y un contenedor para otros fragmentos
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

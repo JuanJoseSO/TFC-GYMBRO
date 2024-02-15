@@ -4,30 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    >
+    android:padding="16dp"
+    android:background="@color/black">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCrearUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Crear Usuario"
-
         android:background="@color/background"
         android:textColor="@color/white"
+        android:layout_marginBottom="16dp"
         />
 
-    <!-- <androidx.appcompat.widget.AppCompatButton
+   <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCambiarUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cambiar Usuario"
         android:background="@color/background"
-        android:textColor="@color/white"
-        />-->
-
-
-
-        <!-- Agrega más componentes según sea necesario -->
-    </LinearLayout>
+        android:textColor="@color/white"/>
+</LinearLayout>
 
 

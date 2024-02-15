@@ -14,7 +14,6 @@ import com.example.tfc.clasesAuxiliares.AdapterCategoriasEjercicios
 
 class FragmentCategorias : Fragment() {
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,12 +27,11 @@ class FragmentCategorias : Fragment() {
         initUI(vista)
     }
 
-    //Función con la lógica de la activity
     private fun initUI(vista:View){
         //Relacionamos con la ListView en el layout del fragment
         val lista = vista.findViewById<ListView>(R.id.listaCategorias)
         //Obtenemos las categorias de la base de datos
-        val db= DatabaseHelper(requireContext())
+        db= DatabaseHelper(requireContext())
         val listaSinImagenes = db.obtenerCategorias()
 
         //Relacionamos cada categoria con un icono con la función iconoPorCategoria
@@ -46,26 +44,25 @@ class FragmentCategorias : Fragment() {
         //Une el adaptador a la lista
         lista.adapter=adapter
 
-        navegacionLista(lista)
+        initListeners(lista)
     }
 
-    private fun navegacionLista(lista:ListView){
+    private fun initListeners(lista:ListView){
         //Listener para saber que categoria seleccionamos
         lista.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            val categoria = lista.adapter.getItem(position) as Pair<Int, String>
+            val categoria = lista.adapter.getItem(position) as Pair<*, *>
             val nombreCategoria = categoria.second
 
             //Lanzamos el nuevo fragment
             mostrarEjerciciosCategoria(nombreCategoria)
         }
-
     }
 
-    private fun mostrarEjerciciosCategoria(categoria: String) {
+    private fun mostrarEjerciciosCategoria(categoria: Any?) {
         //Enviamos la categoria seleccionada al fragmet siguiente
         val fragmentEjerciciosCategoria = FragmentEjercicios().apply {
             arguments = Bundle().apply {
-                putString("categoria", categoria)
+                putString("categoria", categoria.toString())
             }
         }
 
@@ -93,7 +90,12 @@ class FragmentCategorias : Fragment() {
             //La sentencia return when siempre requiere un else
             else -> R.drawable.ic_gluteo
         }
-
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        db.close() // Asumiendo que `db` es accesible a nivel de clase y su ciclo de vida está bien gestionado
+    }
+
+    private lateinit var db : DatabaseHelper
 }
 

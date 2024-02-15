@@ -25,19 +25,20 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         private const val ALTURA = "altura"
         private const val IMC = "IMC_usuario"
         private const val GENERO = "genero"
+        private const val SELECCION = "isSelected"
 
         //Tabla ejercicios
         private const val TABLA_EJERCICIOS = "ejercicios"
         private const val ID_EJERCICIO = "id_ejercicio"
         private const val CATEGORIA_EJERCICIOS = "categoria"
         private const val NOMBRE_EJERCICIOS = "nombre_ejercicio"
-        private const val YT_VIDEO="yt_video"
+        private const val YT_VIDEO = "yt_video"
     }
 
     //Creamos las tablas
     override fun onCreate(db: SQLiteDatabase?) {
-         try {
-             val CREATE_USERS_TABLE = """
+        try {
+            val CREATE_USERS_TABLE = """
                     CREATE TABLE $TABLA_USERS (
                         $ID_USUARIO INTEGER PRIMARY KEY AUTOINCREMENT,
                         $NOMBRE_USUARIO TEXT,
@@ -46,25 +47,51 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                         $ALTURA INTEGER,
                         $IMC REAL,
                         $GENERO INTEGER,
-                        isSelected INTEGER DEFAULT 0
+                        $SELECCION INTEGER DEFAULT 0
                     )
              """.trimIndent()
-             //INTEGER para representar booleano
-             db?.execSQL(CREATE_USERS_TABLE)
+            db?.execSQL(CREATE_USERS_TABLE)
 
-             val CREATE_EJERCICIOS_TABLE = """
-                    CREATE TABLE $TABLA_EJERCICIOS (
-                        $ID_EJERCICIO INTEGER PRIMARY KEY AUTOINCREMENT,
-                        $CATEGORIA_EJERCICIOS TEXT,
-                        $NOMBRE_EJERCICIOS TEXT,
-                        $YT_VIDEO TEXT
-                    )
-             """.trimIndent()
+            val CREATE_EJERCICIOS_TABLE = """
+                CREATE TABLE $TABLA_EJERCICIOS (
+                    $ID_EJERCICIO INTEGER PRIMARY KEY AUTOINCREMENT,
+                    $CATEGORIA_EJERCICIOS TEXT,
+                    $NOMBRE_EJERCICIOS TEXT,
+                    $YT_VIDEO TEXT
+                )
+            """.trimIndent()
+            db?.execSQL(CREATE_EJERCICIOS_TABLE)
 
-             db?.execSQL(CREATE_EJERCICIOS_TABLE)
-         }catch (e: SQLiteException) {
-             Log.e("SQLite", "Error al crear las tablas", e)
-         }
+            //Dos trigger que mantendra SOLO un usuario seleccionado a la vez ya que SQLite no permite INSERT OR UPDATE
+            val CREATE_TRIGGER_INSERT_USER="""
+                CREATE TRIGGER insert_usuario_seleccionado
+                AFTER INSERT ON $TABLA_USERS
+                FOR EACH ROW
+                WHEN NEW.$SELECCION=1
+                BEGIN
+                    UPDATE $TABLA_USERS
+                    SET $SELECCION=0
+                    WHERE $ID_USUARIO != NEW.$ID_USUARIO AND $SELECCION=1;
+                END;                
+            """.trimIndent()
+            db?.execSQL(CREATE_TRIGGER_INSERT_USER)
+
+            val CREATE_TRIGGER_UPDATE_USER="""
+                CREATE TRIGGER update_usuario_seleccionado
+                AFTER UPDATE ON $TABLA_USERS
+                FOR EACH ROW
+                WHEN NEW.$SELECCION=1
+                BEGIN
+                    UPDATE $TABLA_USERS
+                    SET $SELECCION=0
+                    WHERE $ID_USUARIO != NEW.$ID_USUARIO AND $SELECCION=1;
+                END;                
+            """.trimIndent()
+            db?.execSQL(CREATE_TRIGGER_UPDATE_USER)
+
+        } catch (e: SQLiteException) {
+            Log.e("SQLite", "Error al crear las tablas", e)
+        }
     }
 
 
@@ -89,74 +116,114 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                 GENERO,
                 if (usuario.genero) 1 else 0
             ) //El genero será un 1 o un 0 dependiendo de la opcion elegida
-            values.put(
-                "isSelected",
-                if (contarUsuarios() == 0) 1 else 0
-            ) //Selecciona el ultimo usuario creado por defecto
+            values.put(SELECCION, 1) //Siempre selecciona el último usuario creado
 
             db.insert(TABLA_USERS, null, values)
         } catch (e: SQLiteException) {
             Log.e("SQLite", "Error al añadir usuario", e)
-
         }
-    }
-
-    //Recogemos la informacion del usuario
-    @SuppressLint("Range")
-    fun getUsuario(): Usuario? {
-        val db = this.readableDatabase
-        var usuario: Usuario?= null
-
-        try {
-        //Obtenemos todas las columnas de la tabla
-        val cursor = db.query(TABLA_USERS, null, "isSelected=1", null, null, null, null)
-            //Movemos el cursor al inicio y creamos un objeto usuario con todos sus datos
-            if (cursor.moveToFirst()) {
-                usuario = Usuario(
-                    cursor.getString(cursor.getColumnIndex(NOMBRE_USUARIO)),
-                    cursor.getInt(cursor.getColumnIndex(EDAD)),
-                    cursor.getInt(cursor.getColumnIndex(PESO)),
-                    cursor.getInt(cursor.getColumnIndex(ALTURA)),
-                    cursor.getDouble(cursor.getColumnIndex(IMC)),
-                    cursor.getInt(cursor.getColumnIndex(GENERO)) != 0
-                )
-            }
-            cursor.close()
-        }catch (e:SQLiteException){
-            Log.e("SQLite", "Error al obtener usuario", e)
-        }
-        return usuario
     }
 
     //Contamos el número de usuarios y lo aplicaremos a la lógica de la aplicacion
     fun contarUsuarios(): Int {
         val db = this.readableDatabase
-        var suma=0
+        var suma = 0
         try {
             val cursor = db.rawQuery("SELECT * FROM $TABLA_USERS", null)
             suma = cursor.count
             cursor.close()
-        }catch (e:SQLiteException) {
+        } catch (e: SQLiteException) {
             Log.e("SQLite", "Error al contar usuarios", e)
         }
         return suma
+    }
+
+    // Función para obtener todos los usuarios
+    @SuppressLint("Range")
+    fun getUsuarios(): List<Usuario> {
+        val listaUsuarios = ArrayList<Usuario>()
+        val selectQuery = "SELECT * FROM $TABLA_USERS"
+
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(selectQuery, null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val usuario = Usuario(
+                    cursor.getInt(cursor.getColumnIndex(ID_USUARIO)), // ID del usuario
+                    cursor.getString(cursor.getColumnIndex(NOMBRE_USUARIO)), // Nombre de Usuario
+                    cursor.getInt(cursor.getColumnIndex(EDAD)), // Edad
+                    cursor.getInt(cursor.getColumnIndex(PESO)), // Peso
+                    cursor.getInt(cursor.getColumnIndex(ALTURA)), // Altura
+                    cursor.getDouble(cursor.getColumnIndex(IMC)), // IMC
+                    cursor.getInt(cursor.getColumnIndex(GENERO)) != 0 // Género
+                )
+                listaUsuarios.add(usuario)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return listaUsuarios
+    }
+
+    fun seleccionUsuario(usuarioId: Int): Boolean {
+        val db = this.writableDatabase
+        var exito = false
+        try {
+            db.beginTransaction()
+            //Selecciona al usuario
+            val seleccionar = ContentValues().apply { put(SELECCION, 1) }
+            val seleccionarUsuario = db.update(TABLA_USERS, seleccionar, "$ID_USUARIO = ?", arrayOf(usuarioId.toString()))
+
+            if (seleccionarUsuario > 0) exito = true
+
+            db.setTransactionSuccessful()
+        } catch (e: Exception) {
+            Log.e("DBError", "Error al seleccionar usuario", e)
+        } finally {
+            db.endTransaction()
+        }
+        return exito
+    }
+
+    @SuppressLint("Range")
+    fun getUsuarioSeleccionado(): Usuario? {
+        val db = this.readableDatabase
+        //Cursor para recoger solo los usuarios seleccionados
+        val cursor = db.query(TABLA_USERS, null, "$SELECCION=1", null, null, null, null)
+
+        var usuario: Usuario? = null
+
+        if (cursor.moveToFirst()) {
+            usuario = Usuario(
+                cursor.getInt(cursor.getColumnIndex(ID_USUARIO)),
+                cursor.getString(cursor.getColumnIndex(NOMBRE_USUARIO)), // Obtener el nombre de usuario
+                cursor.getInt(cursor.getColumnIndex(EDAD)), // Obtener la edad
+                cursor.getInt(cursor.getColumnIndex(PESO)), // Obtener el peso
+                cursor.getInt(cursor.getColumnIndex(ALTURA)), // Obtener la altura
+                cursor.getDouble(cursor.getColumnIndex(IMC)), // Obtener el IMC
+                cursor.getInt(cursor.getColumnIndex(GENERO)) != 0 // Obtener el género (convertido de entero a booleano)
+            )
+        }
+        cursor.close()
+        return usuario
     }
 
 
     //*****MÉTODOS EJERCICIOS
     fun addEjercicio(ejercicio: Ejercicio) {
         val db = this.writableDatabase
-       // try {
-            val values = ContentValues().apply {
-                put(CATEGORIA_EJERCICIOS, ejercicio.categoria)
-                put(NOMBRE_EJERCICIOS, ejercicio.nombre)
-                put(YT_VIDEO,ejercicio.video)
-            }
+        try {
+        val values = ContentValues().apply {
+            put(CATEGORIA_EJERCICIOS, ejercicio.categoria)
+            put(NOMBRE_EJERCICIOS, ejercicio.nombre)
+            put(YT_VIDEO, ejercicio.video)
+        }
 
-            db.insertOrThrow(TABLA_EJERCICIOS, null, values)
-      //  }catch (e:SQLiteException) {
-        //    Log.e("SQLite", "Error al añadir ejercicios", e)
-        //}
+        db.insertOrThrow(TABLA_EJERCICIOS, null, values)
+    }catch (e:SQLiteException) {
+            Log.e("SQLite", "Error al añadir ejercicios", e)
+        }
+
     }
 
 
@@ -197,7 +264,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         val lista = mutableListOf<String>()
         val db = this.readableDatabase
         try {
-            val cursor = db.rawQuery("SELECT DISTINCT "+CATEGORIA_EJERCICIOS+" FROM "+ TABLA_EJERCICIOS, null)
+            val cursor = db.rawQuery("SELECT DISTINCT $CATEGORIA_EJERCICIOS FROM $TABLA_EJERCICIOS", null)
             //Necesitamos el indice para asegurarnos de que no es -1,lo cual seria una excepcion que rompería la aplicación
             val indiceCategoria = cursor.getColumnIndex("categoria")
             if (indiceCategoria != -1 && cursor.moveToFirst()) {
@@ -248,96 +315,5 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
 
 
 
-    //*************ESTO SERIA SI QUISIERAMOS MÁS DE UN USUARIO POR DISPOSITIVO
-    /*
-    //Regemos la informacion de un usuario
-    fun getUsuario(id: Int): Usuario {
-        val db = this.readableDatabase
-
-        val cursor = db.query(TABLA_USERS, arrayOf(ID_USUARIO, NOMBRE_USUARIO, EDAD, PESO, ALTURA, IMC, GENERO), "$ID_USUARIO=?",
-            arrayOf(id.toString()), null, null, null, null)
-
-        cursor?.moveToFirst()
-
-        val user = Usuario(
-            cursor.getString(1), // Nombre Usuario
-            cursor.getInt(2), // Edad
-            cursor.getInt(3), // Peso
-            cursor.getInt(4), // Altura
-            cursor.getDouble(5), // IMC
-            cursor.getInt(6) != 0 // esHombre, convierte 1 o 0 a Boolean
-        )
-        cursor.close()
-        return user
-    }
 
 
-
-    // Función para obtener todos los usuarios
-    fun getUsuarios(): List<Usuario> {
-        val listaUsuarios = ArrayList<Usuario>()
-        val selectQuery = "SELECT * FROM $TABLA_USERS"
-
-        val db = this.readableDatabase
-        val cursor = db.rawQuery(selectQuery, null)
-
-        if (cursor.moveToFirst()) {
-            do {
-                val usuario = Usuario(
-                    cursor.getString(1), // Nombre de Usuario
-                    cursor.getInt(2), // Edad
-                    cursor.getInt(3), // Peso
-                    cursor.getInt(4), // Altura
-                    cursor.getDouble(5), // IMC
-                    cursor.getInt(6) != 0 // Genero
-                )
-                listaUsuarios.add(usuario)
-            } while (cursor.moveToNext())
-        }
-        cursor.close()
-        return listaUsuarios
-    }
-
-    fun seleccionUsuario(usuarioId:Int){
-        val db=this.writableDatabase
-
-        //Primero deselecciono todos los usuarios
-        val deseleccion=ContentValues().apply {
-            put("isSelected",0)
-        }
-        //Actualizo la seleccion a 0 en toda la BBDD
-        db.update(TABLA_USERS,deseleccion,null,null)
-
-        //Seleccionamos a un usuario
-        val seleccion=ContentValues().apply {
-            put("isSelected",1)
-        }
-        db.update(TABLA_USERS,seleccion,"$ID_USUARIO=?", arrayOf(usuarioId.toString()))
-
-        db.close()
-
-
-    }
-
-    @SuppressLint("Range")
-    fun getUsuarioSeleccionado():Usuario?{
-        val db=this.readableDatabase
-        //Cursor para recoger solo los usuarios seleccionados
-        val cursor=db.query(TABLA_USERS,null,"isSelected=1",null,null,null,null)
-
-        var usuario:Usuario?=null
-
-        if(cursor.moveToFirst()){
-            usuario= Usuario(
-                cursor.getString(cursor.getColumnIndex(NOMBRE_USUARIO)), // Obtener el nombre de usuario
-                cursor.getInt(cursor.getColumnIndex(EDAD)), // Obtener la edad
-                cursor.getInt(cursor.getColumnIndex(PESO)), // Obtener el peso
-                cursor.getInt(cursor.getColumnIndex(ALTURA)), // Obtener la altura
-                cursor.getDouble(cursor.getColumnIndex(IMC)), // Obtener el IMC
-                cursor.getInt(cursor.getColumnIndex(GENERO)) != 0 // Obtener el género (convertido de entero a booleano)
-            )
-        }
-        cursor.close()
-        return usuario
-    }
-    */

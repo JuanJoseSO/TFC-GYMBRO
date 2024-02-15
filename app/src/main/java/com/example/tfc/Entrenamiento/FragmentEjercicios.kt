@@ -13,9 +13,6 @@ import com.example.tfc.clasesAuxiliares.AdapterEjercicios
 
 class FragmentEjercicios : Fragment() {
 
-    private lateinit var db: DatabaseHelper
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_ejercicios, container, false)
     }
@@ -53,5 +50,7 @@ class FragmentEjercicios : Fragment() {
         super.onDestroy()
         db.close() // Asumiendo que `db` es accesible a nivel de clase y su ciclo de vida está bien gestionado
     }
+
+    private lateinit var db: DatabaseHelper
 
 }

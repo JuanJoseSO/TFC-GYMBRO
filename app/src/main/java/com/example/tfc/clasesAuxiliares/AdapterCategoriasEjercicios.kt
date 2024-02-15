@@ -14,20 +14,30 @@ class AdapterCategoriasEjercicios(private val contexto: Context, private val lis
 
     /*Con esta función optimizamos el codigo evitando crear una clase contenedor individual para las categorias lo que nos va a
     permitir trabajar con una consulta a la base de datos y darle una imagen para inflar la ListView                         */
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        //ConvertView nos permite reciclar las vistas (aumenta el rendimiento)
-        val view =convertView?:LayoutInflater.from(contexto).inflate(R.layout.layout_cat_ejercicios, parent, false)
-        //Relacionamos con el layout
-        val icono = view.findViewById<ImageView>(R.id.icono)
-        val nombre = view.findViewById<TextView>(R.id.nombre)
+
+    override fun getView(posicion: Int, convertView: View?, parent: ViewGroup): View {
+        //ConvertView nos permite reciclar las vistas(aumenta el rendimiento)
+        val vista =convertView?:LayoutInflater.from(contexto).inflate(R.layout.layout_cat_ejercicios, parent, false)
+
+        initComponentes(vista)
+        initUI(posicion)
+
+        return vista
+    }
+
+    private fun initUI(posicion :Int){
         //Recogemos la categoria por su posicion
-        val categoria = listaCategorias[position]
+        val categoria = listaCategorias[posicion]
         //Le damos el icono y el nombre
         icono.setImageResource(categoria.first) //La imagen
         nombre.text = categoria.second //El nombre de la categoría
-
-        return view
-
     }
+
+    private fun initComponentes(vista:View){
+        icono=vista.findViewById(R.id.icono)
+        nombre=vista.findViewById(R.id.nombre)
+    }
+    lateinit var icono: ImageView
+    lateinit var nombre:TextView
 
 }

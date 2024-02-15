@@ -18,9 +18,6 @@
             android:name=".Entrenamiento.ActivityInfoEjercicios"
             android:exported="false" />
         <activity
-            android:name=".ActivityInfoUser"
-            android:exported="false" />
-        <activity
             android:name=".ActivityLogin"
             android:exported="false" />
         <activity
