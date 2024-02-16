@@ -1,5 +1,6 @@
 package com.example.tfc
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
-import com.example.tfc.SQLite.DatabaseHelper
+import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.clasesAuxiliares.Usuario
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.slider.RangeSlider
@@ -29,6 +30,7 @@ class ActivityLogin : AppCompatActivity() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun iniciaListeners() {
         //Listener para seleccionar u aumentar/reducir según el componenete y guardar el usuario en la base de datos
         viewHombre.setOnClickListener {
@@ -44,7 +46,7 @@ class ActivityLogin : AppCompatActivity() {
             setColorGenero()
         }
 
-        rsAltura.addOnChangeListener { slider, value, fromUser ->
+        rsAltura.addOnChangeListener { _, value, _ ->
             //Actualiza el campo de texto de altura con el valor seleccionado al deslizar la barra
             val df = DecimalFormat("#.##")
             df.format(value).toInt().also { this.alturaActual = it }

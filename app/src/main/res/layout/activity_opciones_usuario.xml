@@ -11,8 +11,8 @@
         android:id="@+id/btnCrearUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Crear Usuario"
-        android:background="@color/background"
+        android:text="@string/crear_usuario"
+        android:background="@color/background_component"
         android:textColor="@color/white"
         android:layout_marginBottom="16dp"
         />
@@ -21,8 +21,8 @@
         android:id="@+id/btnCambiarUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cambiar Usuario"
-        android:background="@color/background"
+        android:text="@string/cambiar_usuario"
+        android:background="@color/background_component"
         android:textColor="@color/white"/>
 </LinearLayout>
 

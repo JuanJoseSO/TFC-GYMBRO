@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.tfc.ActivityLogin
 import com.example.tfc.R
-import com.example.tfc.SQLite.DatabaseHelper
+import com.example.tfc.sqlite.DatabaseHelper
 
 
 class DialogOpcionesUsuario : DialogFragment() {
@@ -67,7 +67,7 @@ class DialogOpcionesUsuario : DialogFragment() {
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setTitle("Selecciona un usuario")
 
-                builder.setItems(nombresUsuario) { dialog, which ->
+                builder.setItems(nombresUsuario) { _, which ->
                     val idUsuarioSeleccionado = idsUsuarios[which]
                     //Seleccionamos el usuarios con una función que devuelve directamente un boolean
                     val seleccion= db.seleccionUsuario(idUsuarioSeleccionado)
@@ -81,7 +81,7 @@ class DialogOpcionesUsuario : DialogFragment() {
                     }
                 }
 
-                builder.setNegativeButton("Atrás") { dialog, which ->
+                builder.setNegativeButton("Atrás") { _, _ ->
                     //Este dissmss solo cierra la lista de usuarios
                     dismiss()
                 }

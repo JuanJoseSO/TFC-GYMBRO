@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityInfoUser"
+    tools:context=".infoUser.FragmentInfoUser"
     android:background="@drawable/background">
 
     <ImageView
@@ -22,7 +22,8 @@
         app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.041" />
+        app:layout_constraintVertical_bias="0.041"
+        android:contentDescription="@string/logo" />
 
 
 
@@ -32,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="-50dp"
         android:fontFamily="sans-serif-black"
-        android:text="Información Personal"
+        android:text="@string/informaci_n_personal"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -47,16 +48,16 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="30dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/btnEdit"
+        app:layout_constraintBottom_toTopOf="@+id/menuNavegacion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Titulo"
-        app:layout_constraintVertical_bias="0.0"
-        android:layout_marginTop="40dp">
+        app:layout_constraintVertical_bias="0.0">
 
 
         <TableRow
@@ -70,7 +71,7 @@
                 android:layout_height="42dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
-                android:text="Usuario:"
+                android:text="@string/usuario"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
@@ -96,7 +97,7 @@
                 android:layout_height="44dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
-                android:text="Altura: "
+                android:text="@string/altura_"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
@@ -122,7 +123,7 @@
                 android:layout_height="42dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
-                android:text="Peso: "
+                android:text="@string/peso_"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
@@ -147,7 +148,7 @@
                 android:layout_height="43dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
-                android:text="IMC: "
+                android:text="@string/imc"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
@@ -172,7 +173,7 @@
                 android:layout_height="49dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
-                android:text="Edad: "
+                android:text="@string/edad_"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
@@ -189,34 +190,6 @@
 
 
     </TableLayout>
-
-    <ImageButton
-        android:id="@+id/btnEdit"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:background="@drawable/btn_redondo"
-        android:scaleType="fitXY"
-        android:src="@drawable/btn_edit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.86" />
-
-   <!-- <ImageButton
-        android:id="@+id/btnAtras"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="#970EA1"
-        android:scaleType="fitXY"
-        android:src="@drawable/vector_back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.897"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.932" />-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menuNavegacion"
         android:layout_width="0dp"
@@ -226,6 +199,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu"
-        />
+        tools:ignore="VisualLintBottomNav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

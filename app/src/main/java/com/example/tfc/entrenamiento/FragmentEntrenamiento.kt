@@ -1,4 +1,4 @@
-package com.example.tfc.Entrenamiento
+package com.example.tfc.entrenamiento
 
 
 

@@ -1,4 +1,4 @@
-package com.example.tfc.Entrenamiento
+package com.example.tfc.entrenamiento
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.example.tfc.R
-import com.example.tfc.SQLite.DatabaseHelper
+import com.example.tfc.sqlite.DatabaseHelper
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ActivityInfoEjercicios : AppCompatActivity() {
@@ -93,8 +93,8 @@ class ActivityInfoEjercicios : AppCompatActivity() {
     //Función que recoge la ruta del video del ejercicio seleccionado y le da formato
     @SuppressLint("SetJavaScriptEnabled")
     private fun setVideo(ruta:String?){
-        val video : String=
-            "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/$ruta\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
+        //String que consigura el video con su enlace
+        val video="<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/$ruta\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
         vvReproductor.loadData(video,"text/html","utf-8")
         vvReproductor.settings.javaScriptEnabled=true //Habilita javaScript para reproducir el video
         vvReproductor.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW//Mejora el rendimietno del reproductor
@@ -122,6 +122,9 @@ class ActivityInfoEjercicios : AppCompatActivity() {
         vvReproductor = findViewById(R.id.vvReproductor)
         btnAnadir = findViewById(R.id.btnAnadir)
         tvNumPeso.text=pesoInicial.toString()
+        tvNumRepeticiones.text=repeticiones.toString()
+        tvNumPeso.text=pesoInicial.toString()
+        tvNumSeries.text=series.toString()
         infoEjercicio()
     }
 

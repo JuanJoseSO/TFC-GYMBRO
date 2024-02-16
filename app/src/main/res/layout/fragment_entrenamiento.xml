@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background">
@@ -11,42 +12,47 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
         android:background="@drawable/borde_switch_personalizado"
         android:checkedButton="@+id/switch_ejercicio"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextSizeCheck">
 
         <RadioButton
             android:id="@+id/switch_ejercicio"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="1dp"
+            android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
             android:background="@drawable/switch_personalizado"
             android:button="@null"
             android:gravity="center"
-            android:text="Ejercicios"
-            android:textColor="@color/white" />
+            android:text="@string/ejercicios"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck,VisualLintButtonSize" />
 
         <RadioButton
             android:id="@+id/switch_rutina"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
-            android:layout_marginRight="1dp"
+            android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
             android:background="@drawable/switch_personalizado"
             android:button="@null"
             android:gravity="center"
-            android:text="Rutinas"
-            android:textColor="@color/white" />
+            android:text="@string/rutinas"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            tools:ignore="TouchTargetSizeCheck,VisualLintButtonSize" />
     </RadioGroup>
 
     <FrameLayout

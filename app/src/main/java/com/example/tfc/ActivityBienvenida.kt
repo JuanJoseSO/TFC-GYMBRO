@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
-import com.example.tfc.SQLite.DatabaseHelper
+import com.example.tfc.sqlite.DatabaseHelper
 
 import com.example.tfc.clasesAuxiliares.Ejercicio
 
@@ -19,11 +19,12 @@ class ActivityBienvenida : AppCompatActivity() {
         setContentView(R.layout.activity_bienvenida)
 
         iniciaComponentes()
-        val db = DatabaseHelper(this)
-        cargarTablaEjercicios( db,resources, categoriasEjercicios)
-
 
         try {
+            //Si no existe el ejercicio,cargamos todos los ejercicios,asi evitamos cargarlos siempre al abrir la app
+            if(db.getEjercicio(1)==null)
+                cargarTablaEjercicios(resources, categoriasEjercicios)
+
             //Realizamos una consulta para saber si existe el usuario
             //Si existe
             if (db.contarUsuarios() != 0) {
@@ -46,11 +47,10 @@ class ActivityBienvenida : AppCompatActivity() {
     }
 
     // Función para cargar los ejercicios de una categoría
-    fun crearObjetosEjercico(
+    private fun crearObjetosEjercico(
         categoria: String,
         ejercicios: Array<String>,
-        videos: Array<String>,
-        db: DatabaseHelper
+        videos: Array<String>
     ) {
         //Por cada ejercicio recoge el video por su mismo indice y lo añade a la base de datos
         ejercicios.forEachIndexed { indice, ejercicio ->
@@ -60,7 +60,6 @@ class ActivityBienvenida : AppCompatActivity() {
     }
 
     private fun cargarTablaEjercicios(
-        db: DatabaseHelper,
         resources: Resources,
         categoriasEjercicios: Map<Int, Pair<Int, Int>>
     ) {
@@ -74,35 +73,35 @@ class ActivityBienvenida : AppCompatActivity() {
             val ejercicios = resources.getStringArray(ejerciciosPosition)
             val videos = resources.getStringArray(videosIdPosition)
 
-            crearObjetosEjercico(categoriaPosition, ejercicios, videos,db)
+            crearObjetosEjercico(categoriaPosition, ejercicios, videos)
         }
     }
 
     //Mapeo de ejercicios y videos por categorias
-    val categoriasEjercicios = mapOf(
+    private val categoriasEjercicios = mapOf(
         R.string.pecho to Pair(R.array.ejercicios_pecho, R.array.yt_pecho),
         R.string.espalda to Pair(R.array.ejercicios_espalda, R.array.yt_espalda),
         R.string.biceps to Pair(R.array.ejercicios_biceps, R.array.yt_biceps),
         R.string.triceps to Pair(R.array.ejercicios_triceps, R.array.yt_triceps),
         R.string.abs to Pair(R.array.ejercicios_abs, R.array.yt_abs),
-        R.string.hombros to Pair(R.array.ejercicios_hombro, R.array.yt_hombros),
+        R.string.hombro to Pair(R.array.ejercicios_hombro, R.array.yt_hombro),
         R.string.gluteo to Pair(R.array.ejercicios_gluteo, R.array.yt_gluteo),
         R.string.cuadriceps to Pair(R.array.ejercicios_cuadriceps, R.array.yt_cuadriceps),
         R.string.gemelo to Pair(R.array.ejercicios_gemelo, R.array.yt_gemelo)
     )
 
     override fun onDestroy() {
-        //Cierra la base de datos cuando la actividad es destruida
-        //db.close()
+        db.close()
         super.onDestroy()
     }
 
     private fun iniciaComponentes() {
         btnAcceso = findViewById(R.id.btnAcceso)
-        btnAcceso.setText(R.string.btnAcceso)
+        db = DatabaseHelper(this)
 
     }
     private lateinit var btnAcceso: Button
+    private lateinit var db : DatabaseHelper
 }
 
 

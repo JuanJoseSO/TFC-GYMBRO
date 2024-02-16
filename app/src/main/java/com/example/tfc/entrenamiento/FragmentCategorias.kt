@@ -1,4 +1,4 @@
-package com.example.tfc.Entrenamiento
+package com.example.tfc.entrenamiento
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ListView
 import com.example.tfc.R
-import com.example.tfc.SQLite.DatabaseHelper
+import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.clasesAuxiliares.AdapterCategoriasEjercicios
 
 
@@ -82,7 +82,7 @@ class FragmentCategorias : Fragment() {
             getString(R.string.biceps)-> R.drawable.ic_biceps
             getString(R.string.triceps)-> R.drawable.ic_triceps
             getString(R.string.abs)-> R.drawable.ic_abs
-            getString(R.string.hombros)-> R.drawable.ic_hombros
+            getString(R.string.hombro)-> R.drawable.ic_hombros
             getString(R.string.gluteo)-> R.drawable.ic_gluteo
             getString(R.string.cuadriceps)-> R.drawable.ic_cuadriceps
             getString(R.string.gemelo)-> R.drawable.ic_gemelo

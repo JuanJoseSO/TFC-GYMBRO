@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!--Videos de youtube por categorias-->
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Categorias ejericios -->
+    <string name="pecho">Pecho</string>
+    <string name="espalda">Espalda</string>
+    <string name="biceps">Biceps</string>
+    <string name="triceps">Triceps</string>
+    <string name="abs">ABS</string>
+    <string name="hombro">Hombro</string>
+    <string name="gluteo">Gluteo</string>
+    <string name="cuadriceps">Cuádriceps</string>
+    <string name="gemelo">Gemelo</string>
+
+
+
+    <!-- Ejercicios de Pecho -->
+    <string-array name="ejercicios_pecho">
+        <item>Cruces en máquina</item>
+        <item>Cruces en polea alta</item>
+        <item>Cruces en polea baja</item>
+        <item>Flexiones</item>
+        <item>Flexiones de arquero</item>
+        <item>Flexiones con mancuernas</item>
+        <item>Fondos</item>
+        <item>Fondos en banco</item>
+        <item>Hex Press</item>
+        <item>Press de banca con barra</item>
+        <item>Press con mancuernas</item>
+        <item>Press de banca con agarre cerrado</item>
+        <item>Press de banca inclinado</item>
+        <item>Press inclinado con mancuerdas</item>
+        <item>Press de banca inclinado con agarre cerrado</item>
+        <item>Press de banca declinado</item>
+        <item>Press declinado con mancuernas</item>
+        <item>Press de banca declinado con agarre cerrado</item>
+    </string-array>
     <string-array name="yt_pecho">
         <item>U5lV7oPW3CA?si=AfWeRu9obD7VmI10</item> <!--Cruces en máquina-->
         <item>XnaMi2Gb_9Q?si=GKj-AhorJ8lP45zY</item> <!--Cruces en polea alta-->
@@ -22,6 +56,25 @@
         <item>lrkMoax-TSs?si=LVBsOkKBgmhw7n3D</item> <!--Press de banca declinado con agarre cerrado-->
     </string-array>
 
+    <!-- Ejercicios de Espalda -->
+    <string-array name="ejercicios_espalda">
+        <item>Bent over underhand barbell row</item>
+        <item>Dominadas</item>
+        <item>Paso del granjero</item>
+        <item>Peso muerto</item>
+        <item>Polea al pecho</item>
+        <item>Pullover</item>
+        <item>Pullover con mancuerna</item>
+        <item>Remo con barra</item>
+        <item>Remo con mancuerdas</item>
+        <item>Remo en máquina</item>
+        <item>Remo inclinado</item>
+        <item>Remo invertido</item>
+        <item>Renegade row</item>
+        <item>Sentadilla</item>
+        <item>Sentadilla frontal</item>
+        <item>Swings con pesa rusa</item>
+    </string-array>
     <string-array name="yt_espalda">
         <item>LnH7CkBZfN8?si=EzIhM099OQ_qhf-T</item> <!-- Bent over underhand barbell row -->
         <item>u6zqhOLK-Jg?si=1qKcUp3kXId8Zy7K</item> <!-- Dominadas -->
@@ -32,15 +85,30 @@
         <item>5XO5KyDUAbE?si=aEQjt9vl2Yo9XpkI</item> <!-- Pullover con mancuerna -->
         <item>3uiWjik2yEQ?si=5C8sFdQj83UDaLUs</item> <!-- Remo con barra -->
         <item>inp7pjrEY1w?si=ghXDKrp05omN_yOe</item> <!-- Remo con mancuerdas -->
-        <item>FOusO8JMU3Q?si=2cASpRg1U6PbVe4p</item> <!-- Remo en máquina -->
+        <item tools:ignore="Typos">FOusO8JMU3Q?si=2cASpRg1U6PbVe4p</item> <!-- Remo en máquina -->
         <item>KgEZTNLBMMQ?si=vVCsdIsfVtD5Xo2A</item> <!-- Remo inclinado -->
-        <item>7Qf8GOf--a0?si=nBjg19Lj4fQS87SR</item> <!-- Remo invertido -->
-        <item>bi1Nf5G86gU?si=cQVWQKA88qF5rHmA</item> <!-- Renegade row -->
-        <item>CCI8zADyQQc?si=IBRgpn32OITpsWE1</item> <!-- Sentadilla -->
-        <item>CCI8zADyQQc?si=IBRgpn32OITpsWE1</item> <!-- Sentadilla frontal -->
-        <item>FCKuqUyzD0g?si=gW1LfeLfJJ7diVWy</item> <!-- Swings con pesa rusa -->
+        <item tools:ignore="TypographyDashes">7Qf8GOf--a0?si=nBjg19Lj4fQS87SR</item> <!-- Remo invertido -->
+        <item tools:ignore="Typos">bi1Nf5G86gU?si=cQVWQKA88qF5rHmA</item> <!-- Renegade row -->
+        <item tools:ignore="Typos">CCI8zADyQQc?si=IBRgpn32OITpsWE1</item> <!-- Sentadilla -->
+        <item tools:ignore="Typos">CCI8zADyQQc?si=IBRgpn32OITpsWE1</item> <!-- Sentadilla frontal -->
+        <item tools:ignore="Typos">FCKuqUyzD0g?si=gW1LfeLfJJ7diVWy</item> <!-- Swings con pesa rusa -->
     </string-array>
 
+    <!-- Ejercicios de Biceps -->
+    <string-array name="ejercicios_biceps">
+        <item>Bent over remo con barra</item>
+        <item>Curl Zottman</item>
+        <item>Curl con barra</item>
+        <item>Curl con barra Z</item>
+        <item>Curl concentrado</item>
+        <item>Curl de martillo</item>
+        <item>Curl en polea baja</item>
+        <item>Curl en polea con cuerda</item>
+        <item>Curl simultáneo</item>
+        <item>Flexiones de bíceps con cable</item>
+        <item>Preacher curl</item>
+        <item>Spider curl</item>
+    </string-array>
     <string-array name="yt_biceps">
         <item>LnH7CkBZfN8?si=EzIhM099OQ_qhf-T</item> <!-- Bent over remo con barra -->
         <item>ZrpRBgswtHs?si=aTM_ePHipuv86FPS</item> <!-- Curl Zottman -->
@@ -49,20 +117,36 @@
         <item>E6idMdmNyxI?si=OoHlkj7klJN5ga36</item> <!-- Curl concentrado -->
         <item>yjP-_KkLwys?si=JbWkVbjQTILuj8mN</item> <!-- Curl de martillo -->
         <item>7Jc4jHxax60?si=LeMm0DaV-b0VajzU</item> <!-- Curl en polea baja -->
-        <item>fx9VW2lDx_s?si=e-VmyRnF--j78tMs</item> <!-- Curl en polea con cuerda -->
+        <item tools:ignore="TypographyDashes">fx9VW2lDx_s?si=e-VmyRnF--j78tMs</item> <!-- Curl en polea con cuerda -->
         <item>rGNADHvRlxg?si=NR_4MiIbI8RS3UcW</item> <!-- Curl simultáneo -->
         <item>7Jc4jHxax60?si=D8xGaP0bk_TkI3i0</item> <!-- Flexiones de bíceps con cable -->
         <item>DUTcx5B-ddk?si=hMOTHeADKlfJD0r</item> <!-- Preacher curl -->
         <item>LCCCImzeQUc?si=zzHTROlcQD2G9KNR</item> <!-- Spider curl -->
     </string-array>
 
-
+    <!-- Ejercicios de triceps -->
+    <string-array name="ejercicios_triceps">
+        <item>Extensiones a una mano</item>
+        <item>Extensiones con barra Z</item>
+        <item>Extensiones con mancuerna</item>
+        <item>Extensiones con mancuerna en banco</item>
+        <item>Flexiones diamante</item>
+        <item>Fondos</item>
+        <item>Fondos en banco</item>
+        <item>Patada de tríceps</item>
+        <item>Polea a una mano</item>
+        <item>Polea con barra</item>
+        <item>Press JM</item>
+        <item>Press francés con barra Z</item>
+        <item>Press francés con mancuernas</item>
+        <item>Triceps Gravity Press</item>
+    </string-array>
     <string-array name="yt_triceps">
         <item>Z8DINkd5Kw4?si=wgvn6xOlJbArF6hu</item> <!-- Extensiones a una mano -->
-        <item>dRkTreltpnc?si=dXp1ISLrRpnyiXxF</item> <!-- Extensiones con barra Z -->
+        <item tools:ignore="Typos">dRkTreltpnc?si=dXp1ISLrRpnyiXxF</item> <!-- Extensiones con barra Z -->
         <item>fQ-KB40W3d8?si=LKzSKCFdA4pcLEfD</item> <!-- Extensiones con mancuerna -->
         <item>Qndo_OXdHZo?si=qhcf3o3T2-KrONpZ</item> <!-- Extensiones con mancuerna en banco -->
-        <item>J0DnG1_S92I?si=6HVNXxqy8QAiEn-9</item> <!-- Flexiones diamante -->
+        <item tools:ignore="Typos">J0DnG1_S92I?si=6HVNXxqy8QAiEn-9</item> <!-- Flexiones diamante -->
         <item>CkX5QdEz4IE?si=rno2u6blA9B9tH8W</item> <!-- Fondos -->
         <item>H6r0fh2-YNU?si=T3YmLX6hv6u7AFjJ</item> <!-- Fondos en banco -->
         <item>dpZxd4ax0eg?si=KXnruwAiKwfrS3Rl</item> <!-- Patada de tríceps -->
@@ -71,13 +155,36 @@
         <item>7EAfX9TTIQo?si=eRLMiACHq3j81-ox</item> <!-- Press JM -->
         <item>VN_QtPv4Ugo?si=GnWG9IaFM9AWhYq4</item> <!-- Press francés con barra Z -->
         <item>4YSHZBrq4Ag?si=_gXGR616XEJIK1hL</item> <!-- Press francés con mancuernas -->
-        <item>HeXRkJg1Bos?si=WCZzRujpBu2fWK6K</item> <!-- Triceps Gravity Press -->
+        <item tools:ignore="Typos">HeXRkJg1Bos?si=WCZzRujpBu2fWK6K</item> <!-- Triceps Gravity Press -->
     </string-array>
 
+    <!-- Ejercicios de ABS -->
+    <string-array name="ejercicios_abs">
+        <item>Abdominales</item>
+        <item>Ball slam</item>
+        <item>Battle ropes</item>
+        <item>Bird dog</item>
+        <item>Cable crunch</item>
+        <item>Corkscrew hollow rock</item>
+        <item>Dragon flag</item>
+        <item>Gator rolls</item>
+        <item>Hollow circuit</item>
+        <item>Hollow hold</item>
+        <item>Kettlebell decline core crush</item>
+        <item>Mountain climbers</item>
+        <item>Pallof press</item>
+        <item>Partner Hollow Body Pallof Game</item>
+        <item>Plancha Superman</item>
+        <item>Plancha isométrica</item>
+        <item>Plank pull</item>
+        <item>Russian twist</item>
+        <item>Step core getup</item>
+        <item>The decline dumbbell ab fryer</item>
+    </string-array>
     <string-array name="yt_abs">
         <item>CwhxepX7aR8?si=dvCjxDA673FG01UR</item> <!-- Abdominales -->
         <item>CkO1mfSBvv4?si=jytOsTnxAlzYsJug</item> <!-- Ball slam -->
-        <item>yxWrWFXiI9c?si=Zoyr0weo-LE1X4NK</item> <!-- Battle ropes -->
+        <item tools:ignore="Typos">yxWrWFXiI9c?si=Zoyr0weo-LE1X4NK</item> <!-- Battle ropes -->
         <item>cqe97lhKVP4?si=N2RkKj6HwdIl12nR</item> <!-- Bird dog -->
         <item>W6zFHkMp3_U?si=sbu0cLN2Zdxkv9sa</item> <!-- Cable crunch -->
         <item>STv31k-AMg8?si=mm3fJ482A_nBhBy4</item> <!-- Corkscrew hollow rock -->
@@ -87,20 +194,35 @@
         <item>STv31k-AMg8?si=KBZP8oDgYw04XfQZ</item> <!-- Hollow hold -->
         <item>cqIX4Bdjb3w?si=_mowqHZAQHSgNY7s</item> <!-- Kettlebell decline core crush -->
         <item>SMs2N1_ce7g?si=BvuwRhdz-KKPMZ0I</item> <!-- Mountain climbers -->
-        <item>cDo8Rt2BNDo?si=T_cqt1XVSzjtnIRV</item> <!-- Pallof press -->
+        <item tools:ignore="Typos">cDo8Rt2BNDo?si=T_cqt1XVSzjtnIRV</item> <!-- Pallof press -->
         <item>xfG3c_6hB5I?si=Gzz05lMGQ3FxPjjq</item> <!-- Partner Hollow Body Pallof Game -->
         <item>g2b7GVdyQ9Q?si=aI4Xr39GDot6XBHK</item> <!-- Plancha Superman -->
         <item>7S-ytR7Jobw?si=bj7H9ojDsGLPGM2W</item> <!-- Plancha isométrica -->
         <item>KZrG4rCcuVw?si=vJ6nskwQddPqAQEO</item> <!-- Plank pull -->
         <item>IonlY_lFmF0?si=c5TyXsFCkhUII4fC</item> <!-- Russian twist -->
         <item>sgd8n917Zv0?si=XrprCFHyqTboUXIR</item> <!-- Step core getup -->
-        <item>MJ5EQusKJrQ?si=LdtAIKy1Le4R_mrV</item> <!-- The decline dumbbell ab fryer -->
+        <item tools:ignore="Typos">MJ5EQusKJrQ?si=LdtAIKy1Le4R_mrV</item> <!-- The decline dumbbell ab fryer -->
     </string-array>
 
-    <string-array name="yt_hombros">
+    <!-- Ejercicios de Hombro -->
+    <string-array name="ejercicios_hombro">
+        <item>Elevaciones frontales</item>
+        <item>Elevaciones laterales con mancuerna</item>
+        <item>Elevaciones laterales en polea</item>
+        <item>Encogimientos de hombros</item>
+        <item>Flexiones para hombro</item>
+        <item>Levantamiento frontal alterno</item>
+        <item>Press Arnold</item>
+        <item>Press Militar</item>
+        <item>Press militar con mancuerna</item>
+        <item>Press militar en máquina</item>
+        <item>Press trasnuca con barra</item>
+        <item>Remo al mentón</item>
+    </string-array>
+    <string-array name="yt_hombro">
         <item>joO2vLGujcA?si=rEZ2zW8BfnuPK7-V</item> <!-- Elevaciones frontales -->
         <item>nOAUECQEpHs?si=ip6euiIP5zoZ38Cp</item> <!-- Elevaciones laterales con mancuerna -->
-        <item>qMW1B73Zbk4?si=IyEt-0vMjdyjtVz</item> <!-- Elevaciones laterales en polea -->
+        <item tools:ignore="Typos">qMW1B73Zbk4?si=IyEt-0vMjdyjtVz</item> <!-- Elevaciones laterales en polea -->
         <item>qlIv6nW5kHU?si=MQir2BUS_bhS2uel</item> <!-- Encogimientos de hombros -->
         <item>oLPyqyExD8M?si=euPfo9Rt0SsKpSI5</item> <!-- Flexiones para hombro -->
         <item>ZLG2Ed8C87A?si=kG-bKPg11m-fxRle</item> <!-- Levantamiento frontal alterno -->
@@ -112,6 +234,30 @@
         <item>Vl-93Ol2xdg?si=POGhrrNojuWYZslG</item> <!-- Remo al mentón -->
     </string-array>
 
+    <!-- Ejercicios de Gluteo -->
+    <string-array name="ejercicios_gluteo">
+        <item>Bear crawls</item>
+        <item>Femoral en máquina</item>
+        <item>Hack squats</item>
+        <item>Hip thrust</item>
+        <item>Paso del granjero</item>
+        <item>Peso muerto</item>
+        <item>Peso muerto a una pierna</item>
+        <item>Peso muerto rumano</item>
+        <item>Prensa</item>
+        <item>Saltos de rana</item>
+        <item>Sentadilla búlgara</item>
+        <item>Sentadilla goblet</item>
+        <item>Sentadillas a una pierna</item>
+        <item>Sentadillas aéreas</item>
+        <item>Sentadillas con barra frontal</item>
+        <item>Sentadillas con barra trasera</item>
+        <item>Skipping</item>
+        <item>Split squat</item>
+        <item>Wall shoots</item>
+        <item>Zancadas</item>
+        <item>Zancadas inversas</item>
+    </string-array>
     <string-array name="yt_gluteo">
         <item>HtArplPBMr8?si=rSn6_NdT2TbSJ6iJ</item> <!-- Bear crawls -->
         <item>H_ADCsf0JOw?si=TnjmjfTy7SFOosOH</item> <!-- Femoral en máquina -->
@@ -120,15 +266,15 @@
         <item>y4A5srqb2xc?si=au3oadPGKYyFSrBs</item> <!-- Paso del granjero -->
         <item>7KL8SgCP4KQ?si=56QvoQaG3oCLVDdw</item> <!-- Peso muerto -->
         <item>EERrhuuOtnE?si=F2wmG01HJTyG8Zjh</item> <!-- Peso muerto a una pierna -->
-        <item>NIng2JWF1Rs?si=f4ABNCReYfXcrFuC</item> <!-- Peso muerto rumano -->
+        <item tools:ignore="Typos">NIng2JWF1Rs?si=f4ABNCReYfXcrFuC</item> <!-- Peso muerto rumano -->
         <item>xvCynwyNoP4?si=UVA250Bo3z0OQMjX</item> <!-- Prensa -->
-        <item>2eWtmRQdv88?si=bH1_gHYfJDnIOEk-</item> <!-- Saltos de rana -->
+        <item tools:ignore="Typos">2eWtmRQdv88?si=bH1_gHYfJDnIOEk-</item> <!-- Saltos de rana -->
         <item>K-6DG1hcHzU?si=4xYCOapIqgCf4YUK</item> <!-- Sentadilla búlgara -->
         <item>AgD7XRyH05o?si=BFILlMcK9KVd_4HS</item> <!-- Sentadilla goblet -->
         <item>GM3qasWpvwU?si=MlZA-VTm6llbtsSL</item> <!-- Sentadillas a una pierna -->
         <item>B8depoxABLU?si=Kx6_ejWaAHCZB8p8</item> <!-- Sentadillas aéreas -->
-        <item>CCI8zADyQQc?si=IBRgpn32OITpsWE1</item> <!-- Sentadillas con barra frontal -->
-        <item>CCI8zADyQQc?si=IBRgpn32OITpsWE1</item> <!-- Sentadillas con barra trasera -->
+        <item tools:ignore="Typos">CCI8zADyQQc?si=IBRgpn32OITpsWE1</item> <!-- Sentadillas con barra frontal -->
+        <item tools:ignore="Typos">CCI8zADyQQc?si=IBRgpn32OITpsWE1</item> <!-- Sentadillas con barra trasera -->
         <item>PY4l9jqkuP4?si=WFzgsBiJvp8612uu</item> <!-- Skipping -->
         <item>WHlBuTr43U8?si=DVKULwbuapUBZEq2</item> <!-- Split squat -->
         <item>CKtBasC1aDo?si=X_NYy8dAY9F8HgNT</item> <!-- Wall shoots -->
@@ -136,22 +282,42 @@
         <item>wF96HPOuf7E?si=WuY2DfzbmRk7RAUk</item> <!-- Zancadas inversas -->
     </string-array>
 
+    <!-- Ejercicios de Cuádriceps -->
+    <string-array name="ejercicios_cuadriceps">
+        <item>Extensiones de cuádriceps</item>
+        <item>Hip thrust</item>
+        <item>Sentadilla</item>
+        <item>Sentadilla búlgara</item>
+        <item>Sentadilla pistol</item>
+        <item>Step-up</item>
+        <item>Zancada</item>
+    </string-array>
     <string-array name="yt_cuadriceps">
         <item>GXG5nKXIeEo?si=UrkRl9hXlyzYITaS</item> <!-- Extensiones de cuádriceps -->
         <item>gdUC0EFGWfQ?si=jBYm0dZm1ld3PfSk</item> <!-- Hip thrust -->
-        <item>CCI8zADyQQc?si=IBRgpn32OITpsWE1</item> <!-- Sentadilla -->
+        <item tools:ignore="Typos">CCI8zADyQQc?si=IBRgpn32OITpsWE1</item> <!-- Sentadilla -->
         <item>K-6DG1hcHzU?si=4xYCOapIqgCf4YUK</item> <!-- Sentadilla búlgara -->
         <item>Hh2hIJDGCz8?si=gyb0LIiowBt6pJt5</item> <!-- Sentadilla pistol -->
         <item>QxZzLH4UwvY?si=6wyWNjnby9YHazKl</item> <!-- Step-up -->
         <item>Xcfs_3DMKlc?si=VM7MPHJAcYWabtRq</item> <!-- Zancada -->
     </string-array>
 
+    <!-- Ejercicios de Gemelo -->
+    <string-array name="ejercicios_gemelo">
+        <item>Elevaciones de gemelos</item>
+        <item>Elevaciones de gemelos en máquina</item>
+        <item>Elevaciones de gemelos en prensa</item>
+        <item>Elevaciones de gemelos en step</item>
+        <item>Máquina de gemelos</item>
+        <item>Sentadillas con elevación de talones</item>
+        <item>Sentadillas con salto</item>
+    </string-array>
     <string-array name="yt_gemelo">
         <item>L4YnlvVLxtU?si=-gLWjwSJ102PcrCb</item> <!-- Elevaciones de gemelos -->
         <item>Z27RhPA66_8?si=C5d2SYVgG29tD9ZT</item> <!-- Elevaciones de gemelos en máquina -->
         <item>mROxEgJV5D0?si=je1yrMdm5x7IUeRO</item> <!-- Elevaciones de gemelos en prensa -->
         <item>z03KmwIOT5g?si=JD-AdvI2itdKuDIO</item> <!-- Elevaciones de gemelos en step -->
-        <item>R9eS_1An8L0?si=uak8w1UW8N4Jd5cX</item> <!-- Máquina de gemelos -->
+        <item tools:ignore="Typos">R9eS_1An8L0?si=uak8w1UW8N4Jd5cX</item> <!-- Máquina de gemelos -->
         <item>3muwy0wyVWY?si=zgceHgwcrxdAw2D0</item> <!-- Sentadillas con elevación de talones -->
         <item>2VoHEWxXG4s?si=Wnb-kHCJANeJv5LN</item> <!-- Sentadillas con salto -->
     </string-array>

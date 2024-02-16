@@ -25,14 +25,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        />
+        android:contentDescription="@string/logo" />
 
     <TextView
         android:id="@+id/Titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="Registro GYMBRO"
+        android:text="@string/registro_gymbro"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -64,9 +64,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="Nombre de usuario"
+            android:hint="@string/nombre_de_usuario"
             android:inputType="text"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:autofillHints="" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -93,12 +94,13 @@
                         android:layout_height="60dp"
                         android:layout_marginBottom="8dp"
                         android:src="@drawable/ic_male"
-                        app:tint="@color/white" />
+                        app:tint="@color/white"
+                        android:contentDescription="@string/logo" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hombre"
+                        android:text="@string/hombre"
                         android:textAllCaps="true"
                         android:textColor="@color/white" />
 
@@ -119,19 +121,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    tools:ignore="UseCompoundDrawables">
 
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@drawable/ic_female"
-                        app:tint="@color/white" />
+                        app:tint="@color/white"
+                        android:contentDescription="@string/mujer" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Mujer"
+                        android:text="@string/mujer"
                         android:textAllCaps="true"
                         android:textColor="@color/white" />
 
@@ -161,7 +165,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Altura"
+                    android:text="@string/altura"
                     android:textAllCaps="true"
                     android:textColor="@color/white" />
 
@@ -169,7 +173,7 @@
                     android:id="@+id/tvAltura"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="120 cm"
+                    android:text="@string/alturaDefecto"
                     android:textColor="@color/white"
                     android:textSize="38sp"
                     android:textStyle="bold" />
@@ -214,7 +218,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Peso"
+                android:text="@string/peso"
                 android:textAllCaps="true"
                 android:textColor="@color/white" />
 
@@ -237,10 +241,11 @@
                     android:id="@+id/botonSumarPeso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
                     android:src="@drawable/ic_sumar"
                     app:backgroundTint="@color/purple_500"
-                    app:tint="@color/white" />
+                    app:tint="@color/white"
+                    android:contentDescription="@string/suma" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/botonRestarPeso"
@@ -248,7 +253,8 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_restar"
                     app:backgroundTint="@color/purple_500"
-                    app:tint="@color/white" />
+                    app:tint="@color/white"
+                    android:contentDescription="@string/resta" />
 
             </LinearLayout>
         </LinearLayout>
@@ -281,7 +287,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edad"
+                android:text="@string/edad"
                 android:textAllCaps="true"
                 android:textColor="@color/white" />
 
@@ -304,10 +310,11 @@
                     android:id="@+id/botonSumarEdad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
                     android:src="@drawable/ic_sumar"
                     app:backgroundTint="@color/purple_500"
-                    app:tint="@color/white" />
+                    app:tint="@color/white"
+                    android:contentDescription="@string/suma"/>
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/botonRestarEdad"
@@ -315,7 +322,8 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_restar"
                     app:backgroundTint="@color/purple_500"
-                    app:tint="@color/white" />
+                    app:tint="@color/white"
+                    android:contentDescription="@string/resta"/>
 
             </LinearLayout>
 
@@ -332,7 +340,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cvEdad"
-        android:text="Crear usuario"
+        android:text="@string/crear_usuario"
         android:textColor="@color/white"
         android:backgroundTint="@color/background_component"
         android:layout_margin="16dp"

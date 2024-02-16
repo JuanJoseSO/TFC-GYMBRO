@@ -1,14 +1,13 @@
-package com.example.tfc.InfoUser
+package com.example.tfc.infoUser
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.TextView
 import com.example.tfc.R
-import com.example.tfc.SQLite.DatabaseHelper
+import com.example.tfc.sqlite.DatabaseHelper
 
 class FragmentInfoUser : Fragment() {
 
@@ -48,7 +47,6 @@ class FragmentInfoUser : Fragment() {
         tvPeso=view.findViewById(R.id.tvPeso)
         tvIMC=view.findViewById(R.id.tvIMC)
         tvEdad=view.findViewById(R.id.tvEdad)
-        btnEdit=view.findViewById(R.id.btnEdit)
     }
 
     private lateinit var tvNombre: TextView
@@ -56,9 +54,5 @@ class FragmentInfoUser : Fragment() {
     private lateinit var tvPeso: TextView
     private lateinit var tvIMC: TextView
     private lateinit var tvEdad: TextView
-    private lateinit var btnEdit:ImageButton
     private lateinit var db: DatabaseHelper
-
-
-
 }

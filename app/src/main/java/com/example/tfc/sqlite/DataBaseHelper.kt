@@ -1,4 +1,4 @@
-package com.example.tfc.SQLite
+package com.example.tfc.sqlite
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
@@ -38,7 +38,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
     //Creamos las tablas
     override fun onCreate(db: SQLiteDatabase?) {
         try {
-            val CREATE_USERS_TABLE = """
+            val createUserTable = """
                     CREATE TABLE $TABLA_USERS (
                         $ID_USUARIO INTEGER PRIMARY KEY AUTOINCREMENT,
                         $NOMBRE_USUARIO TEXT,
@@ -50,9 +50,9 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                         $SELECCION INTEGER DEFAULT 0
                     )
              """.trimIndent()
-            db?.execSQL(CREATE_USERS_TABLE)
+            db?.execSQL(createUserTable)
 
-            val CREATE_EJERCICIOS_TABLE = """
+            val createEjerciciosTable = """
                 CREATE TABLE $TABLA_EJERCICIOS (
                     $ID_EJERCICIO INTEGER PRIMARY KEY AUTOINCREMENT,
                     $CATEGORIA_EJERCICIOS TEXT,
@@ -60,10 +60,10 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                     $YT_VIDEO TEXT
                 )
             """.trimIndent()
-            db?.execSQL(CREATE_EJERCICIOS_TABLE)
+            db?.execSQL(createEjerciciosTable)
 
             //Dos trigger que mantendra SOLO un usuario seleccionado a la vez ya que SQLite no permite INSERT OR UPDATE
-            val CREATE_TRIGGER_INSERT_USER="""
+            val createTriggerInsertUser="""
                 CREATE TRIGGER insert_usuario_seleccionado
                 AFTER INSERT ON $TABLA_USERS
                 FOR EACH ROW
@@ -74,9 +74,9 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                     WHERE $ID_USUARIO != NEW.$ID_USUARIO AND $SELECCION=1;
                 END;                
             """.trimIndent()
-            db?.execSQL(CREATE_TRIGGER_INSERT_USER)
+            db?.execSQL(createTriggerInsertUser)
 
-            val CREATE_TRIGGER_UPDATE_USER="""
+            val createTriggerUpdateUser="""
                 CREATE TRIGGER update_usuario_seleccionado
                 AFTER UPDATE ON $TABLA_USERS
                 FOR EACH ROW
@@ -87,7 +87,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                     WHERE $ID_USUARIO != NEW.$ID_USUARIO AND $SELECCION=1;
                 END;                
             """.trimIndent()
-            db?.execSQL(CREATE_TRIGGER_UPDATE_USER)
+            db?.execSQL(createTriggerUpdateUser)
 
         } catch (e: SQLiteException) {
             Log.e("SQLite", "Error al crear las tablas", e)

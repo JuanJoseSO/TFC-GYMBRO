@@ -34,7 +34,6 @@
         android:gravity="center"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="@string/ejercicio"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -83,12 +82,14 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/botonSumarRepeticiones"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextSizeCheck" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/botonSumarRepeticiones"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/suma"
                     android:src="@drawable/ic_sumar"
                     app:backgroundTint="@color/purple_500"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -96,13 +97,12 @@
                     app:layout_constraintStart_toEndOf="@+id/tvRepeticiones"
                     app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/white"
-                    android:contentDescription="@string/suma" />
+                    tools:ignore="DuplicateSpeakableTextCheck,ImageContrastCheck" />
 
                 <TextView
                     android:id="@+id/tvNumRepeticiones"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="30sp"
@@ -116,13 +116,15 @@
                     android:id="@+id/botonRestarRepeticiones"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/resta"
                     android:src="@drawable/ic_restar"
                     app:backgroundTint="@color/purple_500"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tvNumRepeticiones"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white" />
+                    app:tint="@color/white"
+                    tools:ignore="ImageContrastCheck" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -136,7 +138,7 @@
                     android:layout_width="148dp"
                     android:layout_height="31dp"
                     android:gravity="center"
-                    android:text="SERIES"
+                    android:text="@string/series"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="21sp"
@@ -144,25 +146,27 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/botonSumarSeries"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextSizeCheck" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/botonSumarSeries"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/suma"
                     android:src="@drawable/ic_sumar"
                     app:backgroundTint="@color/purple_500"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/tvNumSeries"
                     app:layout_constraintStart_toEndOf="@+id/tvSeries"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white" />
+                    app:tint="@color/white"
+                    tools:ignore="ImageContrastCheck" />
 
                 <TextView
                     android:id="@+id/tvNumSeries"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/_4"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="30sp"
@@ -176,13 +180,15 @@
                     android:id="@+id/botonRestarSeries"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/resta"
                     android:src="@drawable/ic_restar"
                     app:backgroundTint="@color/purple_500"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tvNumSeries"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white" />
+                    app:tint="@color/white"
+                    tools:ignore="ImageContrastCheck" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -196,7 +202,7 @@
                     android:layout_width="148dp"
                     android:layout_height="31dp"
                     android:gravity="center"
-                    android:text="PESO INICIAL"
+                    android:text="@string/peso_inicial"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="21sp"
@@ -205,24 +211,26 @@
                     app:layout_constraintEnd_toStartOf="@+id/botonSumarPeso"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.52" />
+                    app:layout_constraintVertical_bias="0.52"
+                    tools:ignore="TextSizeCheck" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/botonSumarPeso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/suma"
                     android:src="@drawable/ic_sumar"
                     app:backgroundTint="@color/purple_500"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/tvNumPeso"
                     app:layout_constraintStart_toEndOf="@+id/tvPeso"
-                    app:tint="@color/white" />
+                    app:tint="@color/white"
+                    tools:ignore="ImageContrastCheck" />
 
                 <TextView
                     android:id="@+id/tvNumPeso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="30sp"
@@ -236,13 +244,15 @@
                     android:id="@+id/botonRestarPeso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/resta"
                     android:src="@drawable/ic_restar"
                     app:backgroundTint="@color/purple_500"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tvNumPeso"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white" />
+                    app:tint="@color/white"
+                    tools:ignore="ImageContrastCheck" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <WebView
@@ -272,12 +282,13 @@
             android:id="@+id/btnAnadir"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="añadir a rutina"
-            android:textSize="20dp"
+            android:text="@string/a_adir_a_rutina"
+            android:textSize="20sp"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:background="@color/background_component"/>
+            android:background="@color/background_component"
+            tools:ignore="VisualLintButtonSize" />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

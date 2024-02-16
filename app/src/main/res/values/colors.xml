@@ -2,7 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="red">#FF0000</color>
-    <color name="background">#B34AC5</color>
     <color name="white">#FFFFFF</color>
     <color name="grey">#A5A5A5</color>
     <color name="background_component">#343770</color>
@@ -10,6 +9,8 @@
     <color name="background_component_selected">#FF111328</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_700">#FF3700B3</color>
+
+    <color name="ic_toro_launcher_background">#530E76</color>
 
     <color name="black_overlay">#66000000</color>>
     <color name="purple_500">#FF6200EE</color>

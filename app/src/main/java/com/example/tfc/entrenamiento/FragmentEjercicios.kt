@@ -1,4 +1,4 @@
-package com.example.tfc.Entrenamiento
+package com.example.tfc.entrenamiento
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import com.example.tfc.R
-import com.example.tfc.SQLite.DatabaseHelper
+import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.clasesAuxiliares.AdapterEjercicios
 
 class FragmentEjercicios : Fragment() {

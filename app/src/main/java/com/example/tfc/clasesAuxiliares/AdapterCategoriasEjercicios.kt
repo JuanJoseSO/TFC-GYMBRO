@@ -37,7 +37,7 @@ class AdapterCategoriasEjercicios(private val contexto: Context, private val lis
         icono=vista.findViewById(R.id.icono)
         nombre=vista.findViewById(R.id.nombre)
     }
-    lateinit var icono: ImageView
-    lateinit var nombre:TextView
+    private lateinit var icono: ImageView
+    private lateinit var nombre:TextView
 
 }

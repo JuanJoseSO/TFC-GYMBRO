@@ -4,8 +4,8 @@ package com.example.tfc
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.tfc.Entrenamiento.FragmentEntrenamiento
-import com.example.tfc.InfoUser.FragmentInfoUser
+import com.example.tfc.entrenamiento.FragmentEntrenamiento
+import com.example.tfc.infoUser.FragmentInfoUser
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ActivityPrincipal : AppCompatActivity() {

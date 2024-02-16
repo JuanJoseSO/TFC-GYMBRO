@@ -20,29 +20,30 @@
 
     <!-- ** Botón que permite Multiusuario**-->
 
-        <androidx.appcompat.widget.AppCompatImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btnUsuarios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintVertical_bias="0.03"
-        app:layout_constraintHorizontal_bias="0.9"
         android:background="@drawable/btn_redondo"
         android:padding="10dp"
-        android:src="@drawable/icon_opciones"
-        android:textSize="20sp"
         android:scaleType="fitXY"
+        android:src="@drawable/icon_opciones"
         android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03"
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:text="Resumen diario:"
+        android:text="@string/resumen_diario"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
