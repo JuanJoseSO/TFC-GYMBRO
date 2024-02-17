@@ -33,6 +33,28 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         private const val CATEGORIA_EJERCICIOS = "categoria"
         private const val NOMBRE_EJERCICIOS = "nombre_ejercicio"
         private const val YT_VIDEO = "yt_video"
+
+        //Tabla rutina
+        private const val TABLA_RUTINAS= "rutinas"
+        private const val ID_RUTINA= "id_rutina"
+        private const val NOMBRE_RUTINA= "nombre_rutina"
+        private const val TIEMPO_OBJETIVO= "tiempo_objetivo"
+        private const val INTENSIDAD= "intensidad"
+
+        //Tabla rutina_ejercicios,resultado de la relación N:M de estas
+        private const val TABLA_RUTINA_EJERCICIOS= "rutina_ejercicios"
+        private const val ID_RUTINA_FK= "id_rutina"
+        private const val ID_EJERCICIO_FK= "id_ejercicio"
+        private const val HORA_INICIO= "hora_inicio"
+        private const val TIEMPO_ENTRENAMIENTO= "tiempo_entrenamiento"
+        private const val CALORIAS_QUEMADAS= "calorias_quemadas"
+
+        //Tabla usuario-rutina
+
+        //"id_rutina_fk"
+        private const val TABLA_USUARIOS_RUTINAS= "usuarios_rutinas"
+        private const val ID_USUARIO_FK= "id_ejercicio"
+
     }
 
     //Creamos las tablas
@@ -61,6 +83,42 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                 )
             """.trimIndent()
             db?.execSQL(createEjerciciosTable)
+
+            val createRutinaTable = """
+                CREATE TABLE $TABLA_RUTINAS (
+                    $ID_RUTINA INTEGER PRIMARY KEY AUTOINCREMENT,
+                    $NOMBRE_RUTINA TEXT,
+                    $TIEMPO_OBJETIVO INTEGER,
+                    $INTENSIDAD TEXT
+                )                
+            """.trimIndent()
+            db?.execSQL(createRutinaTable)
+
+            val createRutinaEjercicioTable = """
+                   CREATE TABLE $TABLA_RUTINA_EJERCICIOS( 
+                   $ID_RUTINA_FK INTEGER,
+                   $ID_EJERCICIO_FK INTEGER,                                                             
+                   PRIMARY KEY ($ID_RUTINA_FK,$ID_EJERCICIO_FK),
+                   FOREIGN KEY ($ID_RUTINA_FK) REFERENCES $TABLA_RUTINAS($ID_RUTINA),
+                   FOREIGN KEY ($ID_EJERCICIO_FK) REFERENCES $TABLA_EJERCICIOS($ID_EJERCICIO)
+                )
+                """.trimIndent()
+            db?.execSQL(createRutinaEjercicioTable)
+
+            val createUsuariosRutinasTable = """
+                   CREATE TABLE $TABLA_USUARIOS_RUTINAS(      
+                   $ID_USUARIO_FK INTEGER,                                 
+                   $ID_RUTINA_FK INTEGER,       
+                   $HORA_INICIO TIME,
+                   $TIEMPO_ENTRENAMIENTO INTEGER,
+                   $CALORIAS_QUEMADAS INTEGER,  
+                   PRIMARY KEY ($ID_USUARIO_FK,$ID_RUTINA_FK),               
+                   FOREIGN KEY ($ID_USUARIO_FK) REFERENCES $TABLA_USERS($ID_USUARIO),
+                   FOREIGN KEY ($ID_RUTINA_FK) REFERENCES $TABLA_RUTINAS($ID_RUTINA)
+                )
+                """.trimIndent()
+            db?.execSQL(createUsuariosRutinasTable)
+
 
             //Dos trigger que mantendra SOLO un usuario seleccionado a la vez ya que SQLite no permite INSERT OR UPDATE
             val createTriggerInsertUser="""

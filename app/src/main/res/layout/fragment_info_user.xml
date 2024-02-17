@@ -16,7 +16,7 @@
         android:scaleType="fitXY"
         android:scaleX="2"
         android:scaleY="2"
-        android:src="@drawable/icon_toro"
+        android:src="@drawable/ic_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.091"
@@ -82,8 +82,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/white"
-                android:textSize="24sp"
-                tools:text=" maximo decimo meridio" />
+                android:textSize="24sp" />
 
         </TableRow>
 
@@ -108,8 +107,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/white"
-                android:textSize="24sp"
-                tools:text="18" />
+                android:textSize="24sp" />
 
         </TableRow>
 
@@ -134,8 +132,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/white"
-                android:textSize="24sp"
-                tools:text="18" />
+                android:textSize="24sp" />
         </TableRow>
 
         <TableRow
@@ -159,8 +156,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/white"
-                android:textSize="24sp"
-                tools:text="18" />
+                android:textSize="24sp" />
         </TableRow>
 
         <TableRow
@@ -184,8 +180,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/white"
-                android:textSize="24sp"
-                tools:text="18" />
+                android:textSize="24sp" />
         </TableRow>
 
 

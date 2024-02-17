@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityLogin"
-    android:background="@drawable/background"
-   >
+    tools:context=".entrenamiento.ActivityCrearRutina"
+    android:background="@drawable/background">
 
     <ImageView
         android:id="@+id/logo"
@@ -26,89 +25,82 @@
         app:layout_constraintVertical_bias="0.0"
         android:contentDescription="@string/logo" />
 
+
     <TextView
         android:id="@+id/tvEjercicio"
         android:layout_width="0dp"
-        android:gravity="center"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="@string/creaci_n_rutina"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/logo"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.07" />
+        app:layout_constraintVertical_bias="0.064" />
 
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
+    <EditText
+        android:id="@+id/etNombreRutina"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintVertical_bias="0.2"
-        app:cardBackgroundColor="@color/background_component"
-        app:cardCornerRadius="20dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginEnd="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="8dp"
+        android:hint="@string/nombre_de_la_rutina"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEjercicio">
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        app:cardBackgroundColor="@color/background_component"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEjercicio"
+        app:layout_constraintVertical_bias="0.2">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/tvRepeticiones"
-                    android:layout_width="148dp"
+                    android:id="@+id/tvTiempoObjetivo"
+                    android:layout_width="0dp"
                     android:layout_height="31dp"
                     android:gravity="center"
-                    android:text="@string/repeticiones"
+                    android:text="@string/tiempo_objetivo"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="21sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btnRestarRepIntensidad"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.164"
                     tools:ignore="TextSizeCheck" />
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btnRestarRepIntensidad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/resta"
-                    android:src="@drawable/ic_restar"
-                    app:backgroundTint="@color/purple_500"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/tvResultadoTiempo"
-                    app:layout_constraintStart_toEndOf="@+id/tvRepeticiones"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white"
-                    tools:ignore="ImageContrastCheck" />
-
-                <TextView
-                    android:id="@+id/tvResultadoTiempo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btnRestarRepIntensidad"
-                    app:layout_constraintStart_toEndOf="@+id/btnSumarTiempo"
-                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/btnSumarTiempo"
@@ -119,55 +111,13 @@
                     app:backgroundTint="@color/purple_500"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tvResultadoTiempo"
-                    app:layout_constraintTop_toTopOf="parent"
-
+                    app:layout_constraintStart_toEndOf="@id/tvResultadoTiempo"
+                    app:layout_constraintTop_toBottomOf="@id/tvTiempoObjetivo"
                     app:tint="@color/white"
                     tools:ignore="DuplicateSpeakableTextCheck,ImageContrastCheck" />
 
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:gravity="center">
-
                 <TextView
-                    android:id="@+id/tvSeries"
-                    android:layout_width="148dp"
-                    android:layout_height="31dp"
-                    android:gravity="center"
-                    android:text="@string/series"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="21sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btnRestarSeries"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="TextSizeCheck" />
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btnSumarSeries"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/suma"
-                    android:src="@drawable/ic_sumar"
-                    app:backgroundTint="@color/purple_500"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.555"
-                    app:layout_constraintStart_toEndOf="@+id/tvNumSeries"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:tint="@color/white"
-                    tools:ignore="ImageContrastCheck" />
-
-                <TextView
-                    android:id="@+id/tvNumSeries"
+                    android:id="@+id/tvResultadoTiempo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAllCaps="true"
@@ -175,51 +125,51 @@
                     android:textSize="30sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btnRestarSeries"
-                    app:layout_constraintStart_toEndOf="@+id/btnSumarSeries"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toStartOf="@+id/btnRestarTiempo"
+                    app:layout_constraintStart_toEndOf="@+id/btnSumarTiempo"
+                    app:layout_constraintTop_toBottomOf="@id/tvTiempoObjetivo" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btnRestarSeries"
+                    android:id="@+id/btnRestarTiempo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/resta"
                     android:src="@drawable/ic_restar"
                     app:backgroundTint="@color/purple_500"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/tvNumSeries"
-                    app:layout_constraintStart_toEndOf="@+id/tvSeries"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
+                    app:layout_constraintEnd_toStartOf="@+id/tvResultadoTiempo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTiempoObjetivo"
                     app:tint="@color/white"
-                    tools:ignore="ImageContrastCheck" />
+                    tools:ignore="ImageContrastCheck,DuplicateSpeakableTextCheck" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:layout_marginBottom="8dp">
 
                 <TextView
-                    android:id="@+id/tvPeso"
-                    android:layout_width="148dp"
+                    android:id="@+id/tvIntensidad"
+                    android:layout_width="0dp"
                     android:layout_height="31dp"
                     android:gravity="center"
-                    android:text="@string/peso_inicial"
+                    android:text="@string/intensidad"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="21sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btnRestarPeso"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.52"
+                    app:layout_constraintVertical_bias="0.164"
                     tools:ignore="TextSizeCheck" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btnSumarPeso"
+                    android:id="@+id/btnSumarIntensidad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/suma"
@@ -227,13 +177,15 @@
                     app:backgroundTint="@color/purple_500"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tvNumPeso"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintHorizontal_bias="0.503"
+                    app:layout_constraintStart_toEndOf="@id/tvResultadoIntensidad"
+                    app:layout_constraintTop_toBottomOf="@id/tvIntensidad"
+                    app:layout_constraintVertical_bias="0.0"
                     app:tint="@color/white"
-                    tools:ignore="ImageContrastCheck" />
+                    tools:ignore="DuplicateSpeakableTextCheck,ImageContrastCheck" />
 
                 <TextView
-                    android:id="@+id/tvNumPeso"
+                    android:id="@+id/tvResultadoIntensidad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAllCaps="true"
@@ -241,55 +193,54 @@
                     android:textSize="30sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btnRestarPeso"
-                    app:layout_constraintStart_toEndOf="@+id/btnSumarPeso"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toStartOf="@+id/btnRestarIntensidad"
+                    app:layout_constraintStart_toEndOf="@+id/btnSumarIntensidad"
+                    app:layout_constraintTop_toBottomOf="@id/tvIntensidad" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btnRestarPeso"
+                    android:id="@+id/btnRestarIntensidad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/resta"
                     android:src="@drawable/ic_restar"
                     app:backgroundTint="@color/purple_500"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/tvNumPeso"
-                    app:layout_constraintStart_toEndOf="@+id/tvPeso"
-
+                    app:layout_constraintEnd_toStartOf="@+id/tvResultadoIntensidad"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvIntensidad"
                     app:tint="@color/white"
                     tools:ignore="ImageContrastCheck" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <WebView
-                android:id="@+id/vvReproductor"
-                android:layout_width="360dp"
-                android:layout_height="240dp"
-                android:layout_gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginBottom="14dp"/>
-
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_fitness"
+        app:layout_constraintBottom_toTopOf="@+id/cardView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        android:contentDescription="@string/logo_pesa_coraz_n" />
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="14dp"
         app:cardBackgroundColor="@color/background_component"
         app:cardCornerRadius="20dp"
-        android:layout_margin="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        >
+        app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAnadirRutina"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/background_component"
-            android:text="@string/a_adir_a_rutina"
+            android:text="@string/crear_rutina"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -297,5 +248,6 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="VisualLintButtonSize" />
     </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

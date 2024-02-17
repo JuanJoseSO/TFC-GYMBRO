@@ -156,8 +156,8 @@ class ActivityLogin : AppCompatActivity() {
         rsAltura = findViewById(R.id.rsAltura) // Recupera el control deslizante de altura por su ID
         botonSumarEdad=findViewById(R.id.botonSumarEdad)
         botonRestarEdad=findViewById(R.id.botonRestarEdad)
-        botonRestarPeso=findViewById(R.id.botonRestarPeso)
-        botonSumarPeso=findViewById(R.id.botonSumarPeso)
+        botonRestarPeso=findViewById(R.id.btnRestarPeso)
+        botonSumarPeso=findViewById(R.id.btnSumarPeso)
         tvPeso=findViewById(R.id.tvPeso)
         tvEdad=findViewById(R.id.tvEdad)
         btnCrearUser=findViewById(R.id.btnCrearUser)

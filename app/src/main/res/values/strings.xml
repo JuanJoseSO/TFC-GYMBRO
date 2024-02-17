@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">TFC</string>
-
-
     <!--ActivityBienvenida-->
     <string name="acceso">acceso</string>
 
@@ -10,7 +8,7 @@
     <string name="ejercicios">Ejercicios</string>
     <string name="repeticiones">REPETICIONES</string>
     <string name="suma">suma</string>
-    <string name="resta">suma</string>
+    <string name="resta">resta</string>
     <string name="series">SERIES</string>
     <string name="peso_inicial">PESO INICIAL</string>
     <string name="a_adir_a_rutina">añadir a rutina</string>
@@ -42,7 +40,20 @@
     <string name="peso_">Peso:</string>
     <string name="imc">IMC:</string>
     <string name="edad_">Edad:</string>
+
+    <!--layout_cat_ejercicio.xml-->
     <string name="logo_ejercicio">Logo ejercicio</string>
+
+    <!--FragmentRutina-->
+    <string name="crear">Crear</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="modificar_rutina">Modificar Rutina</string>
+    <string name="creaci_n_rutina">CREACIÓN RUTINA</string>
+    <string name="crear_rutina">Crear Rutina</string>
+    <string name="nombre_de_la_rutina">Nombre de la rutina</string>
+    <string name="intensidad">INTENSIDAD</string>
+    <string name="tiempo_objetivo">TIEMPO OBJETIVO</string>
+    <string name="logo_pesa_coraz_n">Logo Pesa-Corazón</string>
 
 
 </resources>

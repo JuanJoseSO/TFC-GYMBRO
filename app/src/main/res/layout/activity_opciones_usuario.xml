@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -15,7 +16,7 @@
         android:background="@color/background_component"
         android:textColor="@color/white"
         android:layout_marginBottom="16dp"
-        />
+        tools:ignore="VisualLintButtonSize" />
 
    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCambiarUser"
@@ -23,7 +24,8 @@
         android:layout_height="wrap_content"
         android:text="@string/cambiar_usuario"
         android:background="@color/background_component"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+       tools:ignore="VisualLintButtonSize" />
 </LinearLayout>
 
 

@@ -17,15 +17,15 @@ class FragmentEjercicios : Fragment() {
         return inflater.inflate(R.layout.fragment_ejercicios, container, false)
     }
 
-    override fun onViewCreated(vista: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(vista, savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         db = DatabaseHelper(requireContext())
-        initUI(vista)
+        initUI(view)
     }
 
-    private fun initUI(vista : View) {
-        val lista = vista.findViewById<ListView>(R.id.listaEjercicios)
+    private fun initUI(view : View) {
+        val lista = view.findViewById<ListView>(R.id.listaEjercicios)
 
         /*Creamos una variable ejercicio de tipo lista(SmartCast) y hacemos la consulta con el string de intent,ahorrando
           la creacion de dos variables*/

@@ -22,14 +22,14 @@ class FragmentCategorias : Fragment() {
         return inflater.inflate(R.layout.fragment_categorias, container, false)
     }
 
-    override fun onViewCreated(vista: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(vista, savedInstanceState)
-        initUI(vista)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initUI(view)
     }
 
-    private fun initUI(vista:View){
+    private fun initUI(view:View){
         //Relacionamos con la ListView en el layout del fragment
-        val lista = vista.findViewById<ListView>(R.id.listaCategorias)
+        val lista = view.findViewById<ListView>(R.id.listaCategorias)
         //Obtenemos las categorias de la base de datos
         db= DatabaseHelper(requireContext())
         val listaSinImagenes = db.obtenerCategorias()

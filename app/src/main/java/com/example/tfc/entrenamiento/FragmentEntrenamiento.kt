@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import com.example.tfc.R
 
@@ -22,21 +23,44 @@ class FragmentEntrenamiento : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initComponentes(view)
+        initListeners()
         //Mostramos el fragmento de categorías
         if (savedInstanceState == null) { // Evita agregar el fragmento si ya está presente
-            mostrarFragmentCategorias()
+            mostrarFragment(FragmentCategorias())
         }
     }
 
-    private fun mostrarFragmentCategorias() {
+    private fun mostrarFragment(fragment: Fragment) {
         // Crea una nueva instancia del FragmentCategorias
-        val fragmentCategorias = FragmentCategorias()
 
         // Realiza la transacción del fragmento aquí
         parentFragmentManager.beginTransaction().apply {
             // Usamos childFragmentManager ya que estamos dentro de otro fragmento
-            replace(R.id.fragment_contenedor, fragmentCategorias)
+            replace(R.id.fragment_contenedor, fragment)
             commit()
         }
     }
+
+    private fun initListeners() {
+        switchEjercicio.setOnClickListener{
+            mostrarFragment(FragmentCategorias())
+        }
+
+        switchRutina.setOnClickListener{
+            mostrarFragment(FragmentRutina())
+        }
+
+    }
+
+    private fun initComponentes(view:View){
+        switchEjercicio=view.findViewById(R.id.switch_ejercicio)
+        switchRutina=view.findViewById(R.id.switch_rutina)
+
+    }
+
+    private lateinit var switchEjercicio : RadioButton
+    private lateinit var switchRutina : RadioButton
+
 }

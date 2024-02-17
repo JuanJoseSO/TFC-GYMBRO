@@ -108,19 +108,19 @@ class ActivityInfoEjercicios : AppCompatActivity() {
     private fun initComponentes() {
         tvEjercicio =findViewById(R.id.tvEjercicio)
         tvRepeticiones = findViewById(R.id.tvRepeticiones)
-        botonSumarRepeticiones =findViewById(R.id.botonSumarRepeticiones)
-        tvNumRepeticiones = findViewById(R.id.tvNumRepeticiones)
-        botonRestarRepeticiones = findViewById(R.id.botonRestarRepeticiones)
-        botonSumarSeries = findViewById(R.id.botonSumarSeries)
+        botonSumarRepeticiones =findViewById(R.id.btnSumarTiempo)
+        tvNumRepeticiones = findViewById(R.id.tvResultadoTiempo)
+        botonRestarRepeticiones = findViewById(R.id.btnRestarRepIntensidad)
+        botonSumarSeries = findViewById(R.id.btnSumarSeries)
         tvSeries = findViewById(R.id.tvSeries)
-        botonRestarSeries = findViewById(R.id.botonRestarSeries)
+        botonRestarSeries = findViewById(R.id.btnRestarSeries)
         tvPeso = findViewById(R.id.tvPeso)
         tvNumSeries = findViewById(R.id.tvNumSeries)
-        botonSumarPeso = findViewById(R.id.botonSumarPeso)
-        botonRestarPeso = findViewById(R.id.botonRestarPeso)
+        botonSumarPeso = findViewById(R.id.btnSumarPeso)
+        botonRestarPeso = findViewById(R.id.btnRestarPeso)
         tvNumPeso = findViewById(R.id.tvNumPeso)
         vvReproductor = findViewById(R.id.vvReproductor)
-        btnAnadir = findViewById(R.id.btnAnadir)
+        btnAnadir = findViewById(R.id.btnAnadirRutina)
         tvNumPeso.text=pesoInicial.toString()
         tvNumRepeticiones.text=repeticiones.toString()
         tvNumPeso.text=pesoInicial.toString()
@@ -143,9 +143,9 @@ class ActivityInfoEjercicios : AppCompatActivity() {
     private lateinit var botonRestarPeso: FloatingActionButton
     private lateinit var vvReproductor: WebView
     private lateinit var btnAnadir: Button
-    private var repeticiones:Int= 4
-    private var series:Int= 4
-    private var pesoInicial:Double= 20.0
+    private var repeticiones= 4
+    private var series= 4
+    private var pesoInicial= 20.0
     private val db = DatabaseHelper(this)
 }
 

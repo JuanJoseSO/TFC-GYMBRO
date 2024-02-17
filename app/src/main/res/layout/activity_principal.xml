@@ -15,7 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu" />
+        app:menu="@menu/menu"
+        tools:ignore="VisualLintBottomNav" />
 
     <!-- En tu archivo de layout de la actividad principal -->
     <FrameLayout
