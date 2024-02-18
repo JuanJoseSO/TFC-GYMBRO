@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.example.tfc.sqlite.DatabaseHelper
@@ -72,28 +72,25 @@ class ActivityLogin : AppCompatActivity() {
         }
 
         btnCrearUser.setOnClickListener {
-            val nombreUsuario=nombre.text.toString()
             //Creamos el usuario y lo guardamos en la base de datos al pulsar el botón
-            if (nombreUsuario.isEmpty()) {
+            if (nombre.text.toString().isEmpty()) {
                 Toast.makeText(this, "Por favor, ingrese un nombre", Toast.LENGTH_SHORT).show()
             } else {
                 val usuario = Usuario(
-                    nombreUsuario,
+                    nombre.text.toString(),
                     edadActual,
                     pesoActual,
                     alturaActual,
                     calcularIMC(),
                     isMaleSelected
                 )
-
-              try{
-                   val db=DatabaseHelper(this)
-                   db.addUsuario(usuario)
-                   Toast.makeText(this, "Usuario creado correctamente", Toast.LENGTH_SHORT).show()
-                   navegarActivityPrincipal()
-              }catch (e: Exception) {
-                  Toast.makeText(this, "Error al crear el usuario", Toast.LENGTH_SHORT).show()
-              }
+                try{
+                    db.addUsuario(usuario)
+                    Toast.makeText(this, "Usuario creado correctamente", Toast.LENGTH_SHORT).show()
+                    navegarActivityPrincipal()
+                }catch (e: Exception) {
+                    Toast.makeText(this, "Error al crear el usuario", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -179,7 +176,7 @@ class ActivityLogin : AppCompatActivity() {
     private lateinit var botonSumarPeso: FloatingActionButton
     private lateinit var tvPeso: TextView
     private lateinit var tvEdad: TextView
-    private lateinit var btnCrearUser: Button
+    private lateinit var btnCrearUser: AppCompatButton
     private lateinit var nombre: EditText
     private val db = DatabaseHelper(this)
 

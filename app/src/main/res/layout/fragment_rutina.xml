@@ -1,92 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".entrenamiento.FragmentRutina">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".entrenamiento.FragmentRutina">
 
-    <ListView
-        android:id="@+id/listaRutinas"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/cvBtnCrearRutina"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvBtnCrearRutina"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/background_component"
-        app:cardCornerRadius="20dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@id/cvBtnEliminarRutina"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/listaRutinas"
-        app:layout_constraintBottom_toTopOf="@+id/cvBtnModificarRutina">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnCrearRutina"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/background_component"
-            android:text="@string/crear"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            tools:ignore="VisualLintButtonSize" />
-    </androidx.cardview.widget.CardView>
+<ListView
+    android:id="@+id/listaRutinas"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    app:layout_constraintBottom_toTopOf="@+id/btnCrearRutina"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
 
+<androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/btnCrearRutina"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/layout_btns"
+    android:text="@string/crear"
+    android:textColor="@color/white"
+    android:textSize="18sp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginEnd="8dp"
+    tools:ignore="VisualLintButtonSize"
+    app:layout_constraintEnd_toStartOf="@id/btnEliminarRutina"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/listaRutinas"
+    app:layout_constraintBottom_toTopOf="@+id/btnModificarRutina"/>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvBtnEliminarRutina"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginStart="8dp"
-        app:cardBackgroundColor="@color/background_component"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@id/cvBtnModificarRutina"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/cvBtnCrearRutina"
-        app:layout_constraintTop_toBottomOf="@id/listaRutinas">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnEliminarRutina"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/background_component"
-            android:text="@string/eliminar"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            tools:ignore="VisualLintButtonSize" />
+<androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/btnEliminarRutina"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/layout_btns"
+    android:text="@string/eliminar"
+    android:textColor="@color/white"
+    android:textSize="18sp"
+    tools:ignore="VisualLintButtonSize"
+    app:layout_constraintBottom_toTopOf="@id/btnModificarRutina"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@id/btnCrearRutina"
+    app:layout_constraintTop_toBottomOf="@id/listaRutinas"
+    android:layout_marginBottom="4dp"
+    android:layout_marginStart="8dp"/>
 
-    </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvBtnModificarRutina"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnModificarRutina"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        app:cardBackgroundColor="@color/background_component"
-        app:cardCornerRadius="20dp"
+        android:background="@drawable/layout_btns"
+        android:text="@string/modificar_rutina"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cvBtnCrearRutina">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnModificarRutina"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/background_component"
-            android:text="@string/modificar_rutina"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            tools:ignore="VisualLintButtonSize" />
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toBottomOf="@id/btnCrearRutina"
+        tools:ignore="VisualLintButtonSize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

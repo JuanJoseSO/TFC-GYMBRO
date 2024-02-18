@@ -95,7 +95,7 @@
                     app:layout_constraintStart_toEndOf="@+id/tvRepeticiones"
                     app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/white"
-                    tools:ignore="ImageContrastCheck" />
+                    tools:ignore="ImageContrastCheck,DuplicateSpeakableTextCheck" />
 
                 <TextView
                     android:id="@+id/tvResultadoTiempo"
@@ -124,8 +124,6 @@
 
                     app:tint="@color/white"
                     tools:ignore="DuplicateSpeakableTextCheck,ImageContrastCheck" />
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -268,34 +266,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginBottom="14dp"/>
-
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAnadirRutina"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/background_component"
-        app:cardCornerRadius="20dp"
-        android:layout_margin="14dp"
+        android:background="@drawable/layout_btns"
+        android:text="@string/a_adir_a_rutina"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="VisualLintButtonSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
-        >
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnAnadirRutina"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/background_component"
-            android:text="@string/a_adir_a_rutina"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="VisualLintButtonSize" />
-    </androidx.cardview.widget.CardView>
+        android:layout_margin="14dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

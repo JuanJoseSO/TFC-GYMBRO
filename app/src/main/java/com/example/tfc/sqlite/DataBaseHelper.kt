@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import com.example.tfc.clasesAuxiliares.Usuario
 import com.example.tfc.clasesAuxiliares.Ejercicio
+import com.example.tfc.clasesAuxiliares.Rutina
 
 //No hay mucho que comentar,gestión de la base de datos,creación y métodos de consulta o persistencia
 class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -40,6 +41,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         private const val NOMBRE_RUTINA= "nombre_rutina"
         private const val TIEMPO_OBJETIVO= "tiempo_objetivo"
         private const val INTENSIDAD= "intensidad"
+        private const val DIA_PREFERENTE= "dia_preferente"
 
         //Tabla rutina_ejercicios,resultado de la relación N:M de estas
         private const val TABLA_RUTINA_EJERCICIOS= "rutina_ejercicios"
@@ -89,7 +91,8 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                     $ID_RUTINA INTEGER PRIMARY KEY AUTOINCREMENT,
                     $NOMBRE_RUTINA TEXT,
                     $TIEMPO_OBJETIVO INTEGER,
-                    $INTENSIDAD TEXT
+                    $INTENSIDAD TEXT,
+                    $DIA_PREFERENTE TEXT
                 )                
             """.trimIndent()
             db?.execSQL(createRutinaTable)
@@ -365,6 +368,29 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         }
         return lista
     }
+
+
+    //**************** MÉTODOS RUTINA ********************
+    fun addRutina(rutina : Rutina){
+        val db = this.writableDatabase
+        try {
+            val values = ContentValues().apply {
+                put(NOMBRE_RUTINA, rutina.nombre)
+                put(TIEMPO_OBJETIVO, rutina.tiempoObjetivo)
+                put(INTENSIDAD, rutina.intensidad)
+                put(DIA_PREFERENTE,rutina.diaPreferente)
+            }
+
+            db.insertOrThrow(TABLA_RUTINAS, null, values)
+        }catch (e:SQLiteException) {
+            Log.e("SQLite", "Error al añadir ejercicios", e)
+        }
+
+
+    }
+
+
+
 }
 
 

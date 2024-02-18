@@ -41,7 +41,6 @@
         app:layout_constraintStart_toEndOf="@+id/logo"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Botón de Registro -->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
@@ -50,12 +49,11 @@
         android:layout_marginEnd="16dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/cvBoton"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Titulo"
         app:layout_constraintVertical_bias="0.12">
-        <!-- Nombre de Usuario o Email -->
 
         <EditText
             android:id="@+id/etNombreUsuario"
@@ -81,7 +79,7 @@
                 android:layout_marginEnd="16dp"
                 app:cardBackgroundColor="@color/background_component_selected"
                 app:cardCornerRadius="20dp">
-                <!-- AQUI VAMOS A INSERTAR UN LINEAR LAYOUT DENTRO DEL CARD VIEW PARA PONER COSAS -->
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -102,12 +100,8 @@
                         android:text="@string/hombre"
                         android:textAllCaps="true"
                         android:textColor="@color/white" />
-
                 </androidx.appcompat.widget.LinearLayoutCompat>
-
-
             </androidx.cardview.widget.CardView>
-
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/viewMujer"
@@ -137,12 +131,9 @@
                         android:text="@string/mujer"
                         android:textAllCaps="true"
                         android:textColor="@color/white" />
-
-
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvAltura"
@@ -193,7 +184,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvPeso"
@@ -260,10 +250,7 @@
 
             </LinearLayout>
         </LinearLayout>
-
-
     </androidx.cardview.widget.CardView>
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvEdad"
@@ -327,38 +314,25 @@
                     android:src="@drawable/ic_sumar"
                     app:backgroundTint="@color/purple_500"
                     app:tint="@color/white" />
-
             </LinearLayout>
-
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvBoton"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCrearUser"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_margin="14dp"
+        android:background="@drawable/layout_btns"
         android:maxHeight="30dp"
-        app:cardBackgroundColor="@color/background_component"
-        app:cardCornerRadius="20dp"
+        android:text="@string/crear_usuario"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_max="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cvEdad"
-       >
-
-        <Button
-            android:id="@+id/btnCrearUser"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/background_component"
-            android:text="@string/crear_usuario"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            tools:ignore="VisualLintButtonSize" />
-
-    </androidx.cardview.widget.CardView>
-
+        app:layout_constraintVertical_bias="0.481"
+        tools:ignore="VisualLintButtonSize" />
 </androidx.constraintlayout.widget.ConstraintLayout>
