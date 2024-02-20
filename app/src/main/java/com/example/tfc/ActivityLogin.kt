@@ -15,6 +15,8 @@ import com.example.tfc.clasesAuxiliares.Usuario
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.slider.RangeSlider
 import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.Locale
 
 class ActivityLogin : AppCompatActivity() {
 
@@ -102,9 +104,13 @@ class ActivityLogin : AppCompatActivity() {
 
     //Funciones SETTER/GETTER con seguridad de parametros
     private fun calcularIMC():Double{
-        val df= DecimalFormat("#.##")
+        //Hay que realizar esto por que rompia la aplicación,asi que nos aseguramos de darle un formato y lo cambiamos luego
+
+        val df= DecimalFormat("#.##", DecimalFormatSymbols(Locale.ENGLISH))
         val imc=pesoActual/(alturaActual.toDouble()/100*alturaActual.toDouble()/100)
-        return df.format(imc).toDouble()
+        val imcFormateado = df.format(imc).replace(",",".")
+
+        return imcFormateado.toDouble()
     }
 
     private fun setEdad(){

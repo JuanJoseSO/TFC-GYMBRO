@@ -107,17 +107,14 @@ class ActivityInfoEjercicios : AppCompatActivity() {
 
     private fun initComponentes() {
         tvEjercicio =findViewById(R.id.tvEjercicio)
-        tvRepeticiones = findViewById(R.id.tvRepeticiones)
-        botonSumarRepeticiones =findViewById(R.id.btnSumarTiempo)
-        tvNumRepeticiones = findViewById(R.id.tvResultadoTiempo)
-        botonRestarRepeticiones = findViewById(R.id.btnRestarRepIntensidad)
-        botonSumarSeries = findViewById(R.id.btnSumarSeries)
-        tvSeries = findViewById(R.id.tvSeries)
-        botonRestarSeries = findViewById(R.id.btnRestarSeries)
-        tvPeso = findViewById(R.id.tvPeso)
+        botonSumarRepeticiones =findViewById(R.id.btnSumarRepeticiones)
+        tvNumRepeticiones = findViewById(R.id.tvNumRepeticiones)
+        botonRestarRepeticiones = findViewById(R.id.botonRestarRepeticiones)
+        botonSumarSeries = findViewById(R.id.botonSumarSeries)
+        botonRestarSeries = findViewById(R.id.botonRestarSeries)
         tvNumSeries = findViewById(R.id.tvNumSeries)
-        botonSumarPeso = findViewById(R.id.btnSumarPeso)
-        botonRestarPeso = findViewById(R.id.btnRestarPeso)
+        botonSumarPeso = findViewById(R.id.botonSumarPeso)
+        botonRestarPeso = findViewById(R.id.botonRestarPeso)
         tvNumPeso = findViewById(R.id.tvNumPeso)
         vvReproductor = findViewById(R.id.vvReproductor)
         btnAnadir = findViewById(R.id.btnAnadirRutina)
@@ -129,15 +126,12 @@ class ActivityInfoEjercicios : AppCompatActivity() {
     }
 
     private lateinit var tvEjercicio: TextView
-    private lateinit var tvRepeticiones: TextView
     private lateinit var botonSumarRepeticiones: FloatingActionButton
     private lateinit var tvNumRepeticiones: TextView
     private lateinit var botonRestarRepeticiones: FloatingActionButton
-    private lateinit var tvSeries: TextView
     private lateinit var botonSumarSeries: FloatingActionButton
     private lateinit var tvNumSeries: TextView
     private lateinit var botonRestarSeries: FloatingActionButton
-    private lateinit var tvPeso: TextView
     private lateinit var botonSumarPeso: FloatingActionButton
     private lateinit var tvNumPeso: TextView
     private lateinit var botonRestarPeso: FloatingActionButton
