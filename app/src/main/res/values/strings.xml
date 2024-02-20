@@ -56,5 +56,12 @@
     <string name="logo_pesa_coraz_n">Logo Pesa-Corazón</string>
     <string name="d_a_de_la_semana">DÍA DE LA SEMANA</string>
 
+    <!--FragmentDietas-->
+    <string name="dieta_d_ficit">Dieta déficit</string>
+    <string name="dieta_mantenimiento">Dieta mantenimiento</string>
+    <string name="dieta_volum_n">Dieta volumen</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

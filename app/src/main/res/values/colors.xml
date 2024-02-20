@@ -12,6 +12,10 @@
 
     <color name="ic_toro_launcher_background">#530E76</color>
 
+    <!--Colores nivel dieta-->
+    <color name="green">#44FF00</color>
+    <color name="orange">#FF6F00</color>
+
     <color name="black_overlay">#66000000</color>>
     <color name="purple_500">#FF6200EE</color>
 </resources>

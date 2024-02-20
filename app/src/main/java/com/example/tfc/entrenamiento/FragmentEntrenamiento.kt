@@ -27,18 +27,16 @@ class FragmentEntrenamiento : Fragment() {
         initComponentes(view)
         initListeners()
         //Mostramos el fragmento de categorías
-        if (savedInstanceState == null) { // Evita agregar el fragmento si ya está presente
+        if (savedInstanceState == null) { //Evitamor cargar el fragmento si ya está presente
             mostrarFragment(FragmentCategorias())
         }
     }
-
+    //Funcion para cambiar el Fragment al que le pasamos el NUEVO fragment a mostrar por parametro
     private fun mostrarFragment(fragment: Fragment) {
-        // Crea una nueva instancia del FragmentCategorias
 
-        // Realiza la transacción del fragmento aquí
         parentFragmentManager.beginTransaction().apply {
-            // Usamos childFragmentManager ya que estamos dentro de otro fragmento
-            replace(R.id.fragment_contenedor, fragment)
+            //Cambiamos el fragment indicando el contenedor requerido para la tarea definido en el layout
+            replace(R.id.fragmentContenedorEntrenamiento, fragment)
             commit()
         }
     }
@@ -57,9 +55,9 @@ class FragmentEntrenamiento : Fragment() {
     private fun initComponentes(view:View){
         switchEjercicio=view.findViewById(R.id.switch_ejercicio)
         switchRutina=view.findViewById(R.id.switch_rutina)
-
     }
 
+    private lateinit var contenedor : Fragment
     private lateinit var switchEjercicio : RadioButton
     private lateinit var switchRutina : RadioButton
 

@@ -68,7 +68,7 @@ class FragmentCategorias : Fragment() {
 
         //Cambiamos el fragment,pasamos de la lista de categorias a la lista de ejercicios
         activity?.supportFragmentManager?.beginTransaction()?.apply {
-            replace(R.id.fragment_contenedor, fragmentEjerciciosCategoria)
+            replace(R.id.fragmentContenedorEntrenamiento, fragmentEjerciciosCategoria)
             addToBackStack(null) //El boton atrás vuelve al fragment anterior
             commit()
         }

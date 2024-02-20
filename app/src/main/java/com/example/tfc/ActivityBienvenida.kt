@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import com.example.tfc.clasesAuxiliares.Dieta
 import com.example.tfc.sqlite.DatabaseHelper
 
 import com.example.tfc.clasesAuxiliares.Ejercicio
@@ -24,6 +25,9 @@ class ActivityBienvenida : AppCompatActivity() {
             //Si no existe el ejercicio,cargamos todos los ejercicios,asi evitamos cargarlos siempre al abrir la app
             if(db.getEjercicio(1)==null)
                 cargarTablaEjercicios(resources, categoriasEjercicios)
+            //Lo mismo con las dietas
+            if(db.getDieta(1)==null)
+                cargarDieta()
 
             //Realizamos una consulta para saber si existe el usuario
             //Si existe
@@ -44,6 +48,16 @@ class ActivityBienvenida : AppCompatActivity() {
         } catch (e: SQLiteException) {
             Toast.makeText(this, "Error inesperado", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    //Funcíon para insertar las tres dietas ejemplo
+    private fun cargarDieta() {
+        val dieta1= Dieta(getString(R.string.dieta_d_ficit),0,"dieta_deficit")
+        val dieta2= Dieta(getString(R.string.dieta_mantenimiento),1,"dieta_mantenimiento")
+        val dieta3= Dieta(getString(R.string.dieta_volum_n),2,"dieta_mantenimiento")
+        db.addDieta(dieta1)
+        db.addDieta(dieta2)
+        db.addDieta(dieta3)
     }
 
     // Función para cargar los ejercicios de una categoría

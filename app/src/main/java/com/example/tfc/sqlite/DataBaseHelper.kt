@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import com.example.tfc.clasesAuxiliares.Dieta
 import com.example.tfc.clasesAuxiliares.Usuario
 import com.example.tfc.clasesAuxiliares.Ejercicio
 import com.example.tfc.clasesAuxiliares.Rutina
@@ -52,11 +53,16 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         private const val CALORIAS_QUEMADAS= "calorias_quemadas"
 
         //Tabla usuario-rutina
-
         //"id_rutina_fk"
         private const val TABLA_USUARIOS_RUTINAS= "usuarios_rutinas"
         private const val ID_USUARIO_FK= "id_ejercicio"
 
+        //Tabla dietas
+        private const val TABLA_DIETAS="dietas"
+        private const val ID_DIETA="id_dietas"
+        private const val NOMBRE_DIETA="nombre_dieta"
+        private const val NIVEL_DIETA="nivel_dieta"
+        private const val IMAGEN_DIETA="imagen_dieta"
     }
 
     //Creamos las tablas
@@ -122,6 +128,16 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                 """.trimIndent()
             db?.execSQL(createUsuariosRutinasTable)
 
+            //Jugaremos con 0,1 y 2 en nivel_dieta para asisnar 3 niveles distintos
+            val createDietaTable="""
+                CREATE TABLE $TABLA_DIETAS (
+                $ID_DIETA INTEGER PRIMARY KEY AUTOINCREMENT,
+                $NOMBRE_DIETA TEXT,
+                $NIVEL_DIETA INTEGER, 
+                $IMAGEN_DIETA TEXT
+                )
+            """.trimIndent()
+            db?.execSQL(createDietaTable)
 
             //Dos trigger que mantendra SOLO un usuario seleccionado a la vez ya que SQLite no permite INSERT OR UPDATE
             val createTriggerInsertUser="""
@@ -381,7 +397,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                 put(DIA_PREFERENTE,rutina.diaPreferente)
             }
 
-            db.insertOrThrow(TABLA_RUTINAS, null, values)
+            db.insert(TABLA_RUTINAS, null, values)
         }catch (e:SQLiteException) {
             Log.e("SQLite", "Error al añadir ejercicios", e)
         }
@@ -390,8 +406,80 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
 
+    //**************MÉTODOS DIETA*********************
+    fun addDieta(dieta: Dieta) {
+        val db= this.writableDatabase
+        try{
+            val values=ContentValues().apply {
+                put(NOMBRE_DIETA,dieta.nombre)
+                put(NIVEL_DIETA,dieta.nivel)
+                put(IMAGEN_DIETA,dieta.imagen)
+            }
+            db.insert(TABLA_DIETAS, null, values)
+        }catch (e:SQLiteException) {
+            Log.e("SQLite","Error al añadir la dieta")
+        }
 
+    }
+
+    @SuppressLint("Range")
+    fun getDieta(id: Int): Dieta? {
+        val db=this.readableDatabase
+        var dieta: Dieta? = null
+
+        try {
+            //Obtenemos todas las columnas de la tabla
+            val cursor = db.query(
+                TABLA_DIETAS,
+                null,
+                "$ID_DIETA = ?",
+                arrayOf(id.toString()),//Esto incluye el id en la consulta
+                null,
+                null,
+                null
+            )
+
+            //Movemos el cursor al inicio y creamos un objeto usuario con todos sus datos
+            if (cursor.moveToFirst()) {
+                dieta = Dieta(
+                    cursor.getInt(cursor.getColumnIndex(ID_DIETA)),
+                    cursor.getString(cursor.getColumnIndex(NOMBRE_DIETA)),// ID del usuario
+                    cursor.getInt(cursor.getColumnIndex(NIVEL_DIETA)),
+                    cursor.getString(cursor.getColumnIndex(IMAGEN_DIETA))
+                )
+            }
+            cursor.close()
+        }catch (e:SQLiteException) {
+            Log.e("SQLite", "Error al obtener usuario", e)
+        }
+        return dieta
+    }
+
+    @SuppressLint("Range")
+    fun getDietas () : List<Dieta> {
+            val listaDietas = ArrayList<Dieta>()
+            val selectQuery = "SELECT * FROM $TABLA_DIETAS"
+
+            val db = this.readableDatabase
+            val cursor = db.rawQuery(selectQuery, null)
+
+            if (cursor.moveToFirst()) {
+                do {
+                    val dieta = Dieta(
+                        cursor.getInt(cursor.getColumnIndex(ID_DIETA)),
+                        cursor.getString(cursor.getColumnIndex(NOMBRE_DIETA)),
+                        cursor.getInt(cursor.getColumnIndex(NIVEL_DIETA)),
+                        cursor.getString(cursor.getColumnIndex(IMAGEN_DIETA))
+
+                    )
+                    listaDietas.add(dieta)
+                } while (cursor.moveToNext())
+            }
+            cursor.close()
+            return listaDietas
+    }
 }
+
 
 
 

@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.tfc.dieta.FragmentDieta
 import com.example.tfc.entrenamiento.FragmentEntrenamiento
 import com.example.tfc.infoUser.FragmentInfoUser
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -42,6 +43,10 @@ class ActivityPrincipal : AppCompatActivity() {
                     cargarFragmento(FragmentInfoUser())
                     guardarUltimoFragmento(R.id.menu_perfil)
                 }
+                R.id.menu_dieta -> {
+                    cargarFragmento(FragmentDieta())
+                    guardarUltimoFragmento(R.id.menu_dieta)
+                }
             }
             true
         }
@@ -53,23 +58,24 @@ class ActivityPrincipal : AppCompatActivity() {
             .replace(R.id.fragment_container, fragment)
             .commit()
     }
-    fun cargarUltimoFragmentoVisitado() {
+    private fun cargarUltimoFragmentoVisitado() {
         val sharedPreferences = getSharedPreferences("PreferenciasApp", Context.MODE_PRIVATE)
         //Recuperamos el menú de nuevo por que tenemos que actualizar tanto el fragment que se muesta en el contenedor como el botón ilumnado,simple estética
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.menuNavegacion)
         //Le asignamos el item seleccionada
         bottomNavigationView.selectedItemId = sharedPreferences.getInt("ultimoFragmento", R.id.menu_home)
 
-        when (sharedPreferences.getInt("ultimoFragmento", R.id.menu_home)) { // Valor por defecto es Home
+        when (sharedPreferences.getInt("ultimoFragmento", R.id.menu_home)) { //Home por defecto
             R.id.menu_home -> cargarFragmento(FragmentHome())
             R.id.menu_pesas -> cargarFragmento(FragmentEntrenamiento())
             R.id.menu_perfil -> cargarFragmento(FragmentInfoUser())
+            R.id.menu_dieta -> cargarFragmento(FragmentDieta())
             else -> cargarFragmento(FragmentHome()) //Cargamos el fragmentoHome por defecto
         }
     }
 
     //Funcion para no volver siempre a FragmentHome,simplemente guardamos con SharedPrefereces el Fragment que usemos
-    fun guardarUltimoFragmento(id: Int) {
+    private fun guardarUltimoFragmento(id: Int) {
         val sharedPreferences = getSharedPreferences("PreferenciasApp", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putInt("ultimoFragmento", id)

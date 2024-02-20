@@ -9,15 +9,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.tfc.R
 
-class AdapterCategoriasEjercicios(private val contexto: Context, private val listaCategorias:List<Pair<Int,String>>)
-    :ArrayAdapter<Pair<Int,String>>(contexto,0,listaCategorias) {
+class AdapterCategoriasEjercicios(private val context: Context, private val listaCategorias:List<Pair<Int,String>>)
+    :ArrayAdapter<Pair<Int,String>>(context,0,listaCategorias) {
 
     /*Con esta función optimizamos el codigo evitando crear una clase contenedor individual para las categorias lo que nos va a
     permitir trabajar con una consulta a la base de datos y darle una imagen para inflar la ListView                         */
 
     override fun getView(posicion: Int, convertView: View?, parent: ViewGroup): View {
         //ConvertView nos permite reciclar las vistas(aumenta el rendimiento)
-        val vista =convertView?:LayoutInflater.from(contexto).inflate(R.layout.layout_cat_ejercicios, parent, false)
+        val vista =convertView?:LayoutInflater.from(context).inflate(R.layout.layout_cat_ejercicios, parent, false)
 
         initComponentes(vista)
         initUI(posicion)
