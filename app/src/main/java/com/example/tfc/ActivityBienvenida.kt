@@ -54,13 +54,13 @@ class ActivityBienvenida : AppCompatActivity() {
     private fun cargarDieta() {
         val dieta1= Dieta(getString(R.string.dieta_d_ficit),0,"dieta_deficit")
         val dieta2= Dieta(getString(R.string.dieta_mantenimiento),1,"dieta_mantenimiento")
-        val dieta3= Dieta(getString(R.string.dieta_volum_n),2,"dieta_mantenimiento")
+        val dieta3= Dieta(getString(R.string.dieta_volum_n),2,"dieta_volumen")
         db.addDieta(dieta1)
         db.addDieta(dieta2)
         db.addDieta(dieta3)
     }
 
-    // Función para cargar los ejercicios de una categoría
+    //Función para cargar los ejercicios de una categoría
     private fun crearObjetosEjercico(
         categoria: String,
         ejercicios: Array<String>,

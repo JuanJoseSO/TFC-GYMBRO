@@ -1,8 +1,5 @@
 package com.example.tfc.dieta
 
-
-
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,13 +8,10 @@ import android.widget.ListView
 import androidx.fragment.app.Fragment
 import com.example.tfc.R
 import com.example.tfc.clasesAuxiliares.AdapterDieta
-import com.example.tfc.entrenamiento.FragmentCategorias
-import com.example.tfc.entrenamiento.FragmentEntrenamiento
 import com.example.tfc.sqlite.DatabaseHelper
 
 
 class FragmentDieta : Fragment() {
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_dieta, container, false)
@@ -28,34 +22,34 @@ class FragmentDieta : Fragment() {
 
         initComponentes(view)
         initUI()
-
-
     }
 
     private fun initUI() {
         //Recogemos el listado de dietas de la base de datos
         val dietas = db.getDietas()
-        //Los mostramos en la lista
-        val adapter = AdapterDieta(requireContext(), dietas.map{it.nombre})
+        //Los mostramos en la lista,el adaptador ya se encarga de recoger los nombres
+        val adapter = AdapterDieta(requireContext(), dietas)
         listaDieta.adapter= adapter
-
         //Listener para la dieta que seleccionemos desde la lista
         listaDieta.setOnItemClickListener { _, _, position, _->
-            val fragment: Fragment = FragmentImagenDieta()
+            val dieta=dietas[position]
+            val fragmentImagenDieta = FragmentImagenDieta().apply {
+                //Similar a un intent,pero así se configura la navegación entre fragments
+                arguments = Bundle().apply {
+                    putString("imagen", dieta.imagen)
+                }
+            }
+            //Navegamos al fragmento destino,fragmentImagenDieta
             childFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContenedorDieta, FragmentImagenDieta())
-                .addToBackStack(null)
+                .replace(R.id.fragmentContenedorDieta, fragmentImagenDieta)
                 .commit()
             }
         }
 
-
     override fun onDestroy() {
         super.onDestroy()
-        db.close() // Asumiendo que `db` es accesible a nivel de clase y su ciclo de vida está bien gestionado
+        db.close()
     }
-
-
 
     private fun initComponentes(view: View){
         listaDieta=view.findViewById(R.id.listaDieta)
