@@ -32,10 +32,7 @@ class FragmentEjercicios : Fragment() {
           la creacion de dos variables*/
         val ejercicios = ejerciciosDb.getEjerciciosPorCategoria(requireArguments().getString("categoria") ?: "")
 
-        //Recuperamos los nombres de los ejercicios
-        val nombresEjercicios = ejercicios.map{it.nombre}
-
-        val adapter = AdapterEjercicios(requireContext(), nombresEjercicios)
+        val adapter = AdapterEjercicios(requireContext(), ejercicios)
         lista.adapter = adapter
 
         //Listener para en el ejercicio que seleccionemos desde la lista

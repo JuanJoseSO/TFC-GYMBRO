@@ -8,17 +8,17 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.tfc.R
 
-class AdapterEjercicios(private val context: Context, listaEjercicios: List<String>)
-    : ArrayAdapter<String>(context,0, listaEjercicios){
+class AdapterEjercicios(private val context: Context, listaEjercicios: List<Ejercicio>)
+    : ArrayAdapter<Ejercicio>(context,0, listaEjercicios){
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         //ConvertView nos permite reciclar las vistas(aumenta el rendimiento)
         val view =convertView?:LayoutInflater.from(context).inflate(R.layout.layout_ejercicio, parent, false)
         //Optenemos el ejercicio por su posicion
-        val nombreEjercicio = getItem(position)
+        val ejercicio = getItem(position)
         //Relacionamos con el layout
         val textView = view.findViewById<TextView>(R.id.tvNombre)
-        textView.text = nombreEjercicio
+        textView.text = ejercicio?.nombre
 
         return view
     }

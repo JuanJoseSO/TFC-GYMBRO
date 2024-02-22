@@ -3,15 +3,23 @@ package com.example.tfc.entrenamiento
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.Button
+import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.tfc.R
+import com.example.tfc.clasesAuxiliares.AdapterRutina
+import com.example.tfc.clasesAuxiliares.Ejercicio
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.EjerciciosDb
+import com.example.tfc.sqlite.RutinaDb
+import com.example.tfc.sqlite.RutinaEjercicioDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ActivityInfoEjercicios : AppCompatActivity() {
@@ -60,6 +68,33 @@ class ActivityInfoEjercicios : AppCompatActivity() {
                 setPeso()
             }
             tvNumPeso.text=pesoInicial.toString()
+
+            btnAnadir.setOnClickListener{
+
+                if (rutinaDb.getRutinas().isEmpty()) {
+                    //Si no hay usuarios no nos permitirá crearlo
+                    Toast.makeText(this, "No hay rutinas creadas", Toast.LENGTH_LONG).show()
+                } else {
+                    //Si hay usuarios
+                    val listaRutinas = rutinaDb.getRutinas() //Obtienemos la lista de usuarios
+                    val adapter= AdapterRutina(this, listaRutinas)
+
+
+                    val layoutRutina= LayoutInflater.from(this).inflate(R.layout.fragment_rutina,null)
+                    val lvRutina = layoutRutina.findViewById<ListView>(R.id.listaRutinas)
+                    lvRutina.adapter=adapter
+                    lvRutina.setOnItemClickListener { _, _, position, _ ->
+                        val rutinaSeleccionada= listaRutinas[position]
+                        rutinaEjercicioDb.addEjercicioARutina(listaRutinas[position].id,ejercicio.id,repeticiones,series,pesoInicial,)
+                        Toast.makeText(this, "Ejercicio añadido", Toast.LENGTH_SHORT).show()
+                    }
+                    val builder = AlertDialog.Builder(this)
+                    builder.setView(layoutRutina)
+                    builder.setNegativeButton("Atrás",){dialog,_->dialog.dismiss()}
+                    val dialog=builder.create()
+                    dialog.show()
+                }
+            }
         }
 
     //Funciones para aumentar o reducir los campos seleccionados
@@ -86,7 +121,7 @@ class ActivityInfoEjercicios : AppCompatActivity() {
     }
     //Función que recoge el ejerccio seleccionado de FragmentEjercicios y muestra el nombre y el video relacionado
     private fun infoEjercicio(){
-        val ejercicio=ejerciciosDb.getEjercicio(intent.getIntExtra("ejercicio",-1))
+        ejercicio= ejerciciosDb.getEjercicio(this.intent.getIntExtra("ejercicio",-1))!!
         tvEjercicio.text = ejercicio?.nombre
         setVideo(ejercicio?.video)
     }
@@ -107,7 +142,7 @@ class ActivityInfoEjercicios : AppCompatActivity() {
     }
 
     override fun onDestroy(){
-        DatabaseHelper(this).close()
+        db.close()
         super.onDestroy()
     }
 
@@ -124,7 +159,10 @@ class ActivityInfoEjercicios : AppCompatActivity() {
         tvNumPeso = findViewById(R.id.tvNumPeso)
         vvReproductor = findViewById(R.id.vvReproductor)
         btnAnadir = findViewById(R.id.btnAnadirRutina)
-        ejerciciosDb = EjerciciosDb(DatabaseHelper(this))
+        db= DatabaseHelper(this)
+        ejerciciosDb = EjerciciosDb(db)
+        rutinaDb = RutinaDb(db)
+        rutinaEjercicioDb = RutinaEjercicioDb(db)
         tvNumPeso.text=pesoInicial.toString()
         tvNumRepeticiones.text=repeticiones.toString()
         tvNumPeso.text=pesoInicial.toString()
@@ -144,10 +182,15 @@ class ActivityInfoEjercicios : AppCompatActivity() {
     private lateinit var botonRestarPeso: FloatingActionButton
     private lateinit var vvReproductor: WebView
     private lateinit var btnAnadir: Button
+    private lateinit var ejercicio : Ejercicio
     private var repeticiones= 4
     private var series= 4
     private var pesoInicial= 20.0
+    private lateinit var db : DatabaseHelper
     private lateinit var ejerciciosDb : EjerciciosDb
+    private lateinit var rutinaDb : RutinaDb
+    private lateinit var rutinaEjercicioDb : RutinaEjercicioDb
 }
+
 
 
