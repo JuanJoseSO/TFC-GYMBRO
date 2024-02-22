@@ -11,7 +11,9 @@ import com.example.tfc.clasesAuxiliares.Dieta
 import com.example.tfc.sqlite.DatabaseHelper
 
 import com.example.tfc.clasesAuxiliares.Ejercicio
-import com.example.tfc.sqlite.UsuarioDb
+import com.example.tfc.sqlite.DietaDb
+import com.example.tfc.sqlite.EjerciciosDb
+import com.example.tfc.sqlite.UserDb
 
 
 class ActivityBienvenida : AppCompatActivity() {
@@ -24,15 +26,15 @@ class ActivityBienvenida : AppCompatActivity() {
 
         try {
             //Si no existe el ejercicio,cargamos todos los ejercicios,asi evitamos cargarlos siempre al abrir la app
-            if(db.getEjercicio(1)==null)
+            if(ejerciciosDb.getEjercicio(1)==null)
                 cargarTablaEjercicios(resources, categoriasEjercicios)
             //Lo mismo con las dietas
-            if(db.getDieta(1)==null)
+            if(dietaDb.getDieta(1)==null)
                 cargarDieta()
 
             //Realizamos una consulta para saber si existe el usuario
             //Si existe
-            if (usersDB.contarUsuarios() != 0) {
+            if (usersDb.contarUsuarios() != 0) {
                 //Redirigimos a la actividad de principal
                 btnAcceso.setOnClickListener {
                     val intent = Intent(this, ActivityPrincipal::class.java)
@@ -56,9 +58,9 @@ class ActivityBienvenida : AppCompatActivity() {
         val dieta1= Dieta(getString(R.string.dieta_d_ficit),0,"dieta_deficit")
         val dieta2= Dieta(getString(R.string.dieta_mantenimiento),1,"dieta_mantenimiento")
         val dieta3= Dieta(getString(R.string.dieta_volum_n),2,"dieta_volumen")
-        db.addDieta(dieta1)
-        db.addDieta(dieta2)
-        db.addDieta(dieta3)
+        dietaDb.addDieta(dieta1)
+        dietaDb.addDieta(dieta2)
+        dietaDb.addDieta(dieta3)
     }
 
     //Función para cargar los ejercicios de una categoría
@@ -70,7 +72,7 @@ class ActivityBienvenida : AppCompatActivity() {
         //Por cada ejercicio recoge el video por su mismo indice y lo añade a la base de datos
         ejercicios.forEachIndexed { indice, ejercicio ->
             val videoId = videos.getOrNull(indice) ?: ""
-            db.addEjercicio(Ejercicio(categoria = categoria, nombre = ejercicio, video = videoId))
+            ejerciciosDb.addEjercicio(Ejercicio(categoria = categoria, nombre = ejercicio, video = videoId))
         }
     }
 
@@ -113,12 +115,16 @@ class ActivityBienvenida : AppCompatActivity() {
     private fun iniciaComponentes() {
         btnAcceso = findViewById(R.id.btnAcceso)
         db = DatabaseHelper(this)
-        usersDB = UsuarioDb(DatabaseHelper(this))
+        usersDb = UserDb(db)
+        ejerciciosDb = EjerciciosDb(db)
+        dietaDb = DietaDb(db)
 
     }
     private lateinit var btnAcceso: Button
     private lateinit var db : DatabaseHelper
-    private lateinit var usersDB : UsuarioDb
+    private lateinit var usersDb : UserDb
+    private lateinit var ejerciciosDb : EjerciciosDb
+    private lateinit var dietaDb : DietaDb
 }
 
 

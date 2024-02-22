@@ -10,6 +10,7 @@ import android.widget.ListView
 import com.example.tfc.R
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.clasesAuxiliares.AdapterCategoriasEjercicios
+import com.example.tfc.sqlite.EjerciciosDb
 
 
 class FragmentCategorias : Fragment() {
@@ -24,6 +25,8 @@ class FragmentCategorias : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        ejerciciosDb =EjerciciosDb(DatabaseHelper(requireContext()))
         initUI(view)
     }
 
@@ -31,8 +34,7 @@ class FragmentCategorias : Fragment() {
         //Relacionamos con la ListView en el layout del fragment
         val lista = view.findViewById<ListView>(R.id.listaCategorias)
         //Obtenemos las categorias de la base de datos
-        db= DatabaseHelper(requireContext())
-        val listaSinImagenes = db.obtenerCategorias()
+        val listaSinImagenes = ejerciciosDb.obtenerCategorias()
 
         //Relacionamos cada categoria con un icono con la función iconoPorCategoria
         val listaConImagenes = listaSinImagenes.map { categoria->
@@ -92,10 +94,10 @@ class FragmentCategorias : Fragment() {
         }
     }
     override fun onDestroy() {
+        DatabaseHelper(requireContext()).close()
         super.onDestroy()
-        db.close() // Asumiendo que `db` es accesible a nivel de clase y su ciclo de vida está bien gestionado
     }
 
-    private lateinit var db : DatabaseHelper
+    private lateinit var ejerciciosDb : EjerciciosDb
 }
 

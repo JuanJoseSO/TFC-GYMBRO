@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.tfc.R
 import com.example.tfc.sqlite.DatabaseHelper
+import com.example.tfc.sqlite.EjerciciosDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ActivityInfoEjercicios : AppCompatActivity() {
@@ -85,7 +86,7 @@ class ActivityInfoEjercicios : AppCompatActivity() {
     }
     //Función que recoge el ejerccio seleccionado de FragmentEjercicios y muestra el nombre y el video relacionado
     private fun infoEjercicio(){
-        val ejercicio=db.getEjercicio(intent.getIntExtra("ejercicio",-1))
+        val ejercicio=ejerciciosDb.getEjercicio(intent.getIntExtra("ejercicio",-1))
         tvEjercicio.text = ejercicio?.nombre
         setVideo(ejercicio?.video)
     }
@@ -105,6 +106,11 @@ class ActivityInfoEjercicios : AppCompatActivity() {
         vvReproductor.webChromeClient= WebChromeClient()
     }
 
+    override fun onDestroy(){
+        DatabaseHelper(this).close()
+        super.onDestroy()
+    }
+
     private fun initComponentes() {
         tvEjercicio =findViewById(R.id.tvEjercicio)
         botonSumarRepeticiones =findViewById(R.id.btnSumarRepeticiones)
@@ -118,6 +124,7 @@ class ActivityInfoEjercicios : AppCompatActivity() {
         tvNumPeso = findViewById(R.id.tvNumPeso)
         vvReproductor = findViewById(R.id.vvReproductor)
         btnAnadir = findViewById(R.id.btnAnadirRutina)
+        ejerciciosDb = EjerciciosDb(DatabaseHelper(this))
         tvNumPeso.text=pesoInicial.toString()
         tvNumRepeticiones.text=repeticiones.toString()
         tvNumPeso.text=pesoInicial.toString()
@@ -140,7 +147,7 @@ class ActivityInfoEjercicios : AppCompatActivity() {
     private var repeticiones= 4
     private var series= 4
     private var pesoInicial= 20.0
-    private val db = DatabaseHelper(this)
+    private lateinit var ejerciciosDb : EjerciciosDb
 }
 
 

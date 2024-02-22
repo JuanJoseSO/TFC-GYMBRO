@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.tfc.R
 import com.example.tfc.sqlite.DatabaseHelper
-import com.example.tfc.sqlite.UsuarioDb
+import com.example.tfc.sqlite.UserDb
 
 class FragmentInfoUser : Fragment() {
 
@@ -42,7 +42,7 @@ class FragmentInfoUser : Fragment() {
     }
 
     private fun iniciaComponentes(view:View) {
-        userDb = UsuarioDb(DatabaseHelper(requireContext()))
+        userDb = UserDb(DatabaseHelper(requireContext()))
         tvNombre=view.findViewById(R.id.tvNombre)
         tvAltura=view.findViewById(R.id.tvAltura)
         tvPeso=view.findViewById(R.id.tvPeso)
@@ -55,5 +55,5 @@ class FragmentInfoUser : Fragment() {
     private lateinit var tvPeso: TextView
     private lateinit var tvIMC: TextView
     private lateinit var tvEdad: TextView
-    private lateinit var userDb: UsuarioDb
+    private lateinit var userDb: UserDb
 }

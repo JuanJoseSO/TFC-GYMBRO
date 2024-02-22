@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.tfc.R
 import com.example.tfc.clasesAuxiliares.AdapterDieta
 import com.example.tfc.sqlite.DatabaseHelper
+import com.example.tfc.sqlite.DietaDb
 
 
 class FragmentDieta : Fragment() {
@@ -26,7 +27,7 @@ class FragmentDieta : Fragment() {
 
     private fun initUI() {
         //Recogemos el listado de dietas de la base de datos
-        val dietas = db.getDietas()
+        val dietas = dietaDb.getDietas()
         //Los mostramos en la lista,el adaptador ya se encarga de recoger los nombres
         val adapter = AdapterDieta(requireContext(), dietas)
         listaDieta.adapter= adapter
@@ -47,15 +48,15 @@ class FragmentDieta : Fragment() {
         }
 
     override fun onDestroy() {
+        DatabaseHelper(requireContext()).close()
         super.onDestroy()
-        db.close()
     }
 
     private fun initComponentes(view: View){
         listaDieta=view.findViewById(R.id.listaDieta)
-        db= DatabaseHelper(requireContext())
+        dietaDb= DietaDb(DatabaseHelper(requireContext()))
     }
 
     private lateinit var listaDieta:ListView
-    private lateinit var db: DatabaseHelper
+    private lateinit var dietaDb: DietaDb
 }

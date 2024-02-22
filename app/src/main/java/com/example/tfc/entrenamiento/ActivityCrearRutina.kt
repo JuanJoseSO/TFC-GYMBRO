@@ -11,6 +11,7 @@ import com.example.tfc.ActivityPrincipal
 import com.example.tfc.R
 import com.example.tfc.clasesAuxiliares.Rutina
 import com.example.tfc.sqlite.DatabaseHelper
+import com.example.tfc.sqlite.RutinaDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ActivityCrearRutina : AppCompatActivity() {
@@ -73,7 +74,7 @@ class ActivityCrearRutina : AppCompatActivity() {
                     tvResultadoDia.text.toString()
                 )
                 try{
-                    db.addRutina(rutina)
+                    rutinaDb.addRutina(rutina)
                     Toast.makeText(this, "Rutina creada correctamente", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this,ActivityPrincipal::class.java)
                     startActivity(intent)
@@ -108,6 +109,7 @@ class ActivityCrearRutina : AppCompatActivity() {
         tvResultadoDia=findViewById(R.id.tvResultadoDia)
         btnRestarDia=findViewById(R.id.btnRestarDia)
         btnCrearRutina=findViewById(R.id.btnCrearRutina)
+        rutinaDb =  RutinaDb(DatabaseHelper(this))
         tvResultadoTiempo.text=tiempoInicial.toString()
         tvResultadoIntensidad.text=niveles[nivel]
         tvResultadoDia.text=dias[dia]
@@ -124,7 +126,7 @@ class ActivityCrearRutina : AppCompatActivity() {
     private lateinit var tvResultadoDia : TextView
     private lateinit var btnRestarDia : FloatingActionButton
     private lateinit var btnCrearRutina : AppCompatButton
-    private val db = DatabaseHelper(this)
+    private lateinit var rutinaDb : RutinaDb
     private var tiempoInicial=60
     private val niveles : Array<String> = arrayOf("Baja","Media","Alta")
     private var nivel : Int= 1

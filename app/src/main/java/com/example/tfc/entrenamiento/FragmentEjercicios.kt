@@ -10,6 +10,7 @@ import android.widget.ListView
 import com.example.tfc.R
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.clasesAuxiliares.AdapterEjercicios
+import com.example.tfc.sqlite.EjerciciosDb
 
 class FragmentEjercicios : Fragment() {
 
@@ -20,7 +21,7 @@ class FragmentEjercicios : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        db = DatabaseHelper(requireContext())
+        ejerciciosDb = EjerciciosDb(DatabaseHelper(requireContext()))
         initUI(view)
     }
 
@@ -29,7 +30,7 @@ class FragmentEjercicios : Fragment() {
 
         /*Creamos una variable ejercicio de tipo lista(SmartCast) y hacemos la consulta con el string de intent,ahorrando
           la creacion de dos variables*/
-        val ejercicios = db.getEjerciciosPorCategoria(requireArguments().getString("categoria") ?: "")
+        val ejercicios = ejerciciosDb.getEjerciciosPorCategoria(requireArguments().getString("categoria") ?: "")
 
         //Recuperamos los nombres de los ejercicios
         val nombresEjercicios = ejercicios.map{it.nombre}
@@ -48,9 +49,8 @@ class FragmentEjercicios : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        db.close() // Asumiendo que `db` es accesible a nivel de clase y su ciclo de vida está bien gestionado
+        DatabaseHelper(requireContext()).close() // Asumiendo que `db` es accesible a nivel de clase y su ciclo de vida está bien gestionado
     }
 
-    private lateinit var db: DatabaseHelper
-
+    private lateinit var ejerciciosDb: EjerciciosDb
 }

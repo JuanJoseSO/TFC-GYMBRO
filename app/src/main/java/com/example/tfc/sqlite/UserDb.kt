@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteException
 import android.util.Log
 import com.example.tfc.clasesAuxiliares.Usuario
 
-class UsuarioDb(private val dbHelper:DatabaseHelper) {
+class UserDb(private val dbHelper:DatabaseHelper){
 
     //******MÉTODOS TABLA USUARIO
     //Añadimos usuarios

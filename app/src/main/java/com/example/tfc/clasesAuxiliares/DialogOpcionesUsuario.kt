@@ -12,7 +12,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.tfc.ActivityLogin
 import com.example.tfc.R
 import com.example.tfc.sqlite.DatabaseHelper
-import com.example.tfc.sqlite.UsuarioDb
+import com.example.tfc.sqlite.UserDb
 
 
 class DialogOpcionesUsuario : DialogFragment() {
@@ -105,12 +105,12 @@ class DialogOpcionesUsuario : DialogFragment() {
     private fun initComponentes(vista: View){
         btnCambiarUser=vista.findViewById(R.id.btnCambiarUser)
         btnCrearUser=vista.findViewById(R.id.btnCrearUser)
-        usersDb=UsuarioDb(DatabaseHelper(vista.context))
+        usersDb=UserDb(DatabaseHelper(vista.context))
     }
 
     private lateinit var btnCrearUser: Button
     private lateinit var btnCambiarUser: Button
-    private lateinit var usersDb : UsuarioDb
+    private lateinit var usersDb : UserDb
 
 }
 

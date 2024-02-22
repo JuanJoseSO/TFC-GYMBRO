@@ -12,7 +12,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.clasesAuxiliares.Usuario
-import com.example.tfc.sqlite.UsuarioDb
+import com.example.tfc.sqlite.UserDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.slider.RangeSlider
 import java.text.DecimalFormat
@@ -186,6 +186,6 @@ class ActivityLogin : AppCompatActivity() {
     private lateinit var tvEdad: TextView
     private lateinit var btnCrearUser: AppCompatButton
     private lateinit var nombre: EditText
-    private val usersDb = UsuarioDb(DatabaseHelper(this))
+    private val usersDb = UserDb(DatabaseHelper(this))
 
 }
