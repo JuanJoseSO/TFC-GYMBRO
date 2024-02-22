@@ -7,6 +7,7 @@
     android:background="@drawable/background"
     tools:context=".entrenamiento.ActivityCrearRutina">
 
+
     <ImageView
         android:id="@+id/logo"
         android:layout_width="90dp"
@@ -25,7 +26,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-
     <TextView
         android:id="@+id/tvEjercicio"
         android:layout_width="0dp"
@@ -41,24 +41,22 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/logo"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.064" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <EditText
         android:id="@+id/etNombreRutina"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginEnd="14dp"
         android:hint="@string/nombre_de_la_rutina"
-        android:importantForAutofill="no"
         android:inputType="text"
-        android:minHeight="48dp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.005"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEjercicio"
-        tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -72,7 +70,7 @@
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEjercicio">
+        app:layout_constraintTop_toBottomOf="@+id/etNombreRutina">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -298,7 +296,10 @@
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+
         android:contentDescription="@string/logo_pesa_coraz_n"
+
+        app:layout_constraintHeight_max="250dp"
         android:src="@drawable/ic_fitness"
         app:layout_constraintBottom_toTopOf="@+id/btnCrearRutina"
         app:layout_constraintEnd_toEndOf="parent"
@@ -316,11 +317,13 @@
         android:text="@string/crear_rutina"
         android:textColor="@color/white"
         android:textSize="20sp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:ignore="VisualLintButtonSize" />
+        tools:ignore="VisualLintButtonSize"
+        android:layout_marginBottom="16dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

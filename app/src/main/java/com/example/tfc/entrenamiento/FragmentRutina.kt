@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.ListView
 import androidx.appcompat.widget.AppCompatButton
 import com.example.tfc.R
+import com.example.tfc.clasesAuxiliares.AdapterRutina
+import com.example.tfc.sqlite.DatabaseHelper
 
 
 class FragmentRutina : Fragment() {
@@ -26,7 +28,18 @@ class FragmentRutina : Fragment() {
 
         initComponentes(view)
         initListeners()
+        initUI()
 
+    }
+    private fun initUI(){
+        val listaRutina = db.getRutinas()
+        listaRutinas.adapter= AdapterRutina(requireContext(),listaRutina)
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        db.close() // Asumiendo que `db` es accesible a nivel de clase y su ciclo de vida está bien gestionado
     }
 
     private fun initListeners() {
@@ -41,9 +54,10 @@ class FragmentRutina : Fragment() {
         btnModificar=view.findViewById(R.id.btnModificarRutina)
         btnEliminar=view.findViewById(R.id.btnEliminarRutina)
         listaRutinas=view.findViewById(R.id.listaRutinas)
-
+        db= DatabaseHelper(requireContext())
     }
 
+    private lateinit var db : DatabaseHelper
     private lateinit var listaRutinas : ListView
     private lateinit var btnCrear : AppCompatButton
     private lateinit var btnModificar : AppCompatButton

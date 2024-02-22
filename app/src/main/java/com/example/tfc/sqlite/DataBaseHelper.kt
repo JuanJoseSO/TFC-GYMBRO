@@ -19,15 +19,15 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         private const val DATABASE_NAME = "GYMBROUsers"
 
         //Tabla Usuarios
-        private const val TABLA_USERS = "usuarios"
-        private const val ID_USUARIO = "id_usuario"
-        private const val NOMBRE_USUARIO = "nombre_usuario"
-        private const val EDAD = "edad"
-        private const val PESO = "peso"
-        private const val ALTURA = "altura"
-        private const val IMC = "IMC_usuario"
-        private const val GENERO = "genero"
-        private const val SELECCION = "isSelected"
+        const val TABLA_USERS = "usuarios"
+        const val ID_USUARIO = "id_usuario"
+        const val NOMBRE_USUARIO = "nombre_usuario"
+        const val EDAD = "edad"
+        const val PESO = "peso"
+        const val ALTURA = "altura"
+        const val IMC = "IMC_usuario"
+        const val GENERO = "genero"
+        const val SELECCION = "isSelected"
 
         //Tabla ejercicios
         private const val TABLA_EJERCICIOS = "ejercicios"
@@ -401,10 +401,31 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         }catch (e:SQLiteException) {
             Log.e("SQLite", "Error al añadir ejercicios", e)
         }
-
-
     }
+    @SuppressLint("Range")
+    fun getRutinas():List<Rutina>{
+            val listaRutina = ArrayList<Rutina>()
+            val selectQuery = "SELECT * FROM $TABLA_RUTINAS"
 
+            val db = this.readableDatabase
+            val cursor = db.rawQuery(selectQuery, null)
+
+            if (cursor.moveToFirst()) {
+                do {
+                    val rutina = Rutina(
+                        cursor.getInt(cursor.getColumnIndex(ID_RUTINA)), // ID del usuario
+                        cursor.getString(cursor.getColumnIndex(NOMBRE_RUTINA)), // Nombre de Usuario
+                        cursor.getInt(cursor.getColumnIndex(TIEMPO_OBJETIVO)), // Edad
+                        cursor.getString(cursor.getColumnIndex(INTENSIDAD)), // Peso
+                        cursor.getString(cursor.getColumnIndex(DIA_PREFERENTE)) // Altura
+
+                    )
+                    listaRutina.add(rutina)
+                } while (cursor.moveToNext())
+            }
+            cursor.close()
+            return listaRutina
+        }
 
     //**************MÉTODOS DIETA*********************
     fun addDieta(dieta: Dieta) {

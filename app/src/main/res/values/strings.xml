@@ -34,7 +34,7 @@
     <string name="resumen_diario">Resumen diario:</string>
 
     <!--FragmentInfoUser-->
-    <string name="informaci_n_personal">Perfil</string>
+    <string name="informaci_n_personal">Información Personal</string>
     <string name="usuario">Usuario:</string>
     <string name="altura_">Altura:</string>
     <string name="peso_">Peso:</string>
