@@ -2,26 +2,16 @@ package com.example.tfc.sqlite
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
-import android.content.Context
-import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.util.Log
 import com.example.tfc.clasesAuxiliares.Usuario
 
-private const val TABLA_USERS = "usuarios"
-private const val ID_USUARIO = "id_usuario"
-private const val NOMBRE_USUARIO = "nombre_usuario"
-private const val EDAD = "edad"
-private const val PESO = "peso"
-private const val ALTURA = "altura"
-private const val IMC = "IMC_usuario"
-private const val GENERO = "genero"
-private const val SELECCION = "isSelected"
+class UsuarioDb(private val dbHelper:DatabaseHelper) {
 
-class UsuariosDbHelper (private val dbHelper:DatabaseHelper){
+    //******MÉTODOS TABLA USUARIO
     //Añadimos usuarios
     fun addUsuario(usuario: Usuario) {
-        var db = dbHelper.writableDatabase
+        val db = dbHelper.writableDatabase
         try {
             //Guardamos el objeto usuario repartiendo la información en las distinta columnas
             val values = ContentValues()
@@ -44,9 +34,10 @@ class UsuariosDbHelper (private val dbHelper:DatabaseHelper){
 
     //Contamos el número de usuarios y lo aplicaremos a la lógica de la aplicacion
     fun contarUsuarios(): Int {
+        val db = dbHelper.readableDatabase
         var suma = 0
         try {
-            val cursor = dbHelper.readableDatabase.rawQuery("SELECT * FROM ${DatabaseHelper.TABLA_USERS}", null)
+            val cursor = db.rawQuery("SELECT * FROM ${DatabaseHelper.TABLA_USERS}", null)
             suma = cursor.count
             cursor.close()
         } catch (e: SQLiteException) {
@@ -61,7 +52,8 @@ class UsuariosDbHelper (private val dbHelper:DatabaseHelper){
         val listaUsuarios = ArrayList<Usuario>()
         val selectQuery = "SELECT * FROM ${DatabaseHelper.TABLA_USERS}"
 
-        val cursor = dbHelper.readableDatabase.rawQuery(selectQuery, null)
+        val db = dbHelper.readableDatabase
+        val cursor = db.rawQuery(selectQuery, null)
 
         if (cursor.moveToFirst()) {
             do {
@@ -123,4 +115,7 @@ class UsuariosDbHelper (private val dbHelper:DatabaseHelper){
         cursor.close()
         return usuario
     }
+
+
+
 }

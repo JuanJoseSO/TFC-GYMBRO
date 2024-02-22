@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.clasesAuxiliares.Usuario
+import com.example.tfc.sqlite.UsuarioDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.slider.RangeSlider
 import java.text.DecimalFormat
@@ -87,7 +88,7 @@ class ActivityLogin : AppCompatActivity() {
                     isMaleSelected
                 )
                 try{
-                    db.addUsuario(usuario)
+                    usersDb.addUsuario(usuario)
                     Toast.makeText(this, "Usuario creado correctamente", Toast.LENGTH_SHORT).show()
                     navegarActivityPrincipal()
                 }catch (e: Exception) {
@@ -148,9 +149,10 @@ class ActivityLogin : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+        DatabaseHelper(this).close()
         super.onDestroy()
-        db.close()
     }
+
 
     private fun iniciaComponentes() {
         viewHombre = findViewById(R.id.viewHombre) // Recupera la vista masculina por su ID
@@ -184,6 +186,6 @@ class ActivityLogin : AppCompatActivity() {
     private lateinit var tvEdad: TextView
     private lateinit var btnCrearUser: AppCompatButton
     private lateinit var nombre: EditText
-    private val db = DatabaseHelper(this)
+    private val usersDb = UsuarioDb(DatabaseHelper(this))
 
 }
