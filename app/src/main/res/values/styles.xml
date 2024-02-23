@@ -2,5 +2,6 @@
     <style name="Widget.Theme.TFC.ButtonBar.Fullscreen" parent="">
         <item name="android:background">@color/black_overlay</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="android:screenOrientation">portrait</item>
     </style>
 </resources>

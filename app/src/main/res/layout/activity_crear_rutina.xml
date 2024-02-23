@@ -50,13 +50,15 @@
         android:layout_marginStart="14dp"
         android:layout_marginEnd="14dp"
         android:hint="@string/nombre_de_la_rutina"
+        android:importantForAutofill="no"
         android:inputType="text"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.005"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -296,9 +298,8 @@
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-
         android:contentDescription="@string/logo_pesa_coraz_n"
-
+        android:layout_margin="20dp"
         app:layout_constraintHeight_max="250dp"
         android:src="@drawable/ic_fitness"
         app:layout_constraintBottom_toTopOf="@+id/btnCrearRutina"

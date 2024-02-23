@@ -15,7 +15,7 @@ import com.example.tfc.sqlite.EjerciciosDb
 class FragmentEjercicios : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_ejercicios, container, false)
+        return inflater.inflate(R.layout.fragment_listas, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ class FragmentEjercicios : Fragment() {
     }
 
     private fun initUI(view : View) {
-        val lista = view.findViewById<ListView>(R.id.listaEjercicios)
+        val lista = view.findViewById<ListView>(R.id.listas)
 
         /*Creamos una variable ejercicio de tipo lista(SmartCast) y hacemos la consulta con el string de intent,ahorrando
           la creacion de dos variables*/
@@ -45,8 +45,8 @@ class FragmentEjercicios : Fragment() {
     }
 
     override fun onDestroy() {
+        DatabaseHelper(requireContext()).close()
         super.onDestroy()
-        DatabaseHelper(requireContext()).close() // Asumiendo que `db` es accesible a nivel de clase y su ciclo de vida está bien gestionado
     }
 
     private lateinit var ejerciciosDb: EjerciciosDb

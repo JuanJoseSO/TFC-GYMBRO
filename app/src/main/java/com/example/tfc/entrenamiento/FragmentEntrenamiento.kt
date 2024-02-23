@@ -57,7 +57,6 @@ class FragmentEntrenamiento : Fragment() {
         switchRutina=view.findViewById(R.id.switch_rutina)
     }
 
-    private lateinit var contenedor : Fragment
     private lateinit var switchEjercicio : RadioButton
     private lateinit var switchRutina : RadioButton
 

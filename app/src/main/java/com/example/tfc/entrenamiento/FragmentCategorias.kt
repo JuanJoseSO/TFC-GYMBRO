@@ -20,7 +20,7 @@ class FragmentCategorias : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_categorias, container, false)
+        return inflater.inflate(R.layout.fragment_listas, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,7 +32,8 @@ class FragmentCategorias : Fragment() {
 
     private fun initUI(view:View){
         //Relacionamos con la ListView en el layout del fragment
-        val lista = view.findViewById<ListView>(R.id.listaCategorias)
+        val lista = view.findViewById<ListView>(R.id.listas)
+
         //Obtenemos las categorias de la base de datos
         val listaSinImagenes = ejerciciosDb.obtenerCategorias()
 

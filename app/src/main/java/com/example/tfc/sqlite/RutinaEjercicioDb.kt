@@ -8,7 +8,7 @@ class RutinaEjercicioDb (private val dbHelper:DatabaseHelper) {
 
     fun addEjercicioARutina(idRutina:Int,idEjercicio:Int,repeticiones:Int,series:Int,peso:Double) {
         val db = dbHelper.writableDatabase
-        //try {
+        try {
             val values = ContentValues().apply {
                 put(DatabaseHelper.ID_RUTINA, idRutina)
                 put(DatabaseHelper.ID_EJERCICIO, idEjercicio)
@@ -17,8 +17,13 @@ class RutinaEjercicioDb (private val dbHelper:DatabaseHelper) {
                 put(DatabaseHelper.PESO, peso)
             }
             db.insert(DatabaseHelper.TABLA_RUTINA_EJERCICIOS, null, values)
-       /* } catch (e: SQLiteException) {
+        } catch (e: SQLiteException) {
             Log.e("SQLite", "Error al añadir  el ejercicio", e)
-        }*/
+        }
     }
+
+   /* fun getEjerciciosPorRutina(idRutina:Int) : List<Ejercicio>{
+        val lista = List<Ejercicio>()
+        return lista
+    }*/
 }

@@ -15,7 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:dividerHeight="4dp"/>
+        android:divider="@color/transparent"
+        android:dividerHeight="8dp"/>
 
 
     <androidx.appcompat.widget.AppCompatButton

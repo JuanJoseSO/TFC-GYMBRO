@@ -1,10 +1,10 @@
 package com.example.tfc.entrenamiento
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -13,6 +13,8 @@ import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import com.example.tfc.ActivityPrincipal
 import com.example.tfc.R
 import com.example.tfc.clasesAuxiliares.AdapterRutina
 import com.example.tfc.clasesAuxiliares.Ejercicio
@@ -70,27 +72,38 @@ class ActivityInfoEjercicios : AppCompatActivity() {
             tvNumPeso.text=pesoInicial.toString()
 
             btnAnadir.setOnClickListener{
-
+                /*Lo que hacemos en este Listener es abrir un AlertDialog que estamos inflando con el mismo adapter que la lista de
+                  rutinas lo que hace que en lugar de ser una lista gris sin estilo sea una lista con un fondo y un formato individual
+                  para cada ejercicio,quedando mucho mas atractiva visualmente*/
                 if (rutinaDb.getRutinas().isEmpty()) {
-                    //Si no hay usuarios no nos permitirá crearlo
+                    //Si no hay rutinas no nos permitirá crearlo
                     Toast.makeText(this, "No hay rutinas creadas", Toast.LENGTH_LONG).show()
                 } else {
-                    //Si hay usuarios
-                    val listaRutinas = rutinaDb.getRutinas() //Obtienemos la lista de usuarios
-                    val adapter= AdapterRutina(this, listaRutinas)
-
-
-                    val layoutRutina= LayoutInflater.from(this).inflate(R.layout.fragment_rutina,null)
-                    val lvRutina = layoutRutina.findViewById<ListView>(R.id.listaRutinas)
-                    lvRutina.adapter=adapter
+                    //Si hay rutinas
+                    val listaRutinas = rutinaDb.getRutinas() //Obtienemos la lista de rutinas
+                    val adapter= AdapterRutina(this, listaRutinas) //Creamos el adapter
+                    val layoutRutina= LayoutInflater.from(this).inflate(R.layout.fragment_listas,null)//inflamos la rutina
+                    layoutRutina.background= ContextCompat.getDrawable(this,R.drawable.background)//Le cambiamos el fondo
+                    val lvRutina = layoutRutina.findViewById<ListView>(R.id.listas)//Rlacionamos con nuestro layout
+                    lvRutina.adapter=adapter //Relacionamos con el adapter
                     lvRutina.setOnItemClickListener { _, _, position, _ ->
-                        val rutinaSeleccionada= listaRutinas[position]
-                        rutinaEjercicioDb.addEjercicioARutina(listaRutinas[position].id,ejercicio.id,repeticiones,series,pesoInicial,)
+                        //Añadimos a la base de datos el item seleccionado
+                        rutinaEjercicioDb.addEjercicioARutina(
+                            listaRutinas[position].id,
+                            ejercicio.id,
+                            repeticiones,
+                            series,
+                            pesoInicial,
+                        )
                         Toast.makeText(this, "Ejercicio añadido", Toast.LENGTH_SHORT).show()
+                        //Volvemos a la activityPrincipal
+                        val intent = Intent(this, ActivityPrincipal::class.java)
+                        startActivity(intent)
                     }
+                    //Creamos el Alerdialog y le damos el estilo y un boton atrás
                     val builder = AlertDialog.Builder(this)
                     builder.setView(layoutRutina)
-                    builder.setNegativeButton("Atrás",){dialog,_->dialog.dismiss()}
+                    builder.setNegativeButton("Atrás"){ dialog, _->dialog.dismiss()}
                     val dialog=builder.create()
                     dialog.show()
                 }
@@ -122,8 +135,8 @@ class ActivityInfoEjercicios : AppCompatActivity() {
     //Función que recoge el ejerccio seleccionado de FragmentEjercicios y muestra el nombre y el video relacionado
     private fun infoEjercicio(){
         ejercicio= ejerciciosDb.getEjercicio(this.intent.getIntExtra("ejercicio",-1))!!
-        tvEjercicio.text = ejercicio?.nombre
-        setVideo(ejercicio?.video)
+        tvEjercicio.text = ejercicio.nombre
+        setVideo(ejercicio.video)
     }
 
     //Función que recoge la ruta del video del ejercicio seleccionado y le da formato

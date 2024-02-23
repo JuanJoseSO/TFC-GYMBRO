@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.tfc.R
@@ -19,6 +20,7 @@ class AdapterDieta(private val context: Context,private val listaDieta: List<Die
         val view =convertView?: LayoutInflater.from(context).inflate(R.layout.layout_dietas, parent, false)
         //Optenemos el ejercicio por su posicion
         val dieta = listaDieta[position]
+        val borde = view.findViewById<LinearLayout>(R.id.celda_dieta)
         //Relacionamos con el layout
         val tvNombreDieta = view.findViewById<TextView>(R.id.tvNivelDieta)
         tvNombreDieta.text = dieta.nombre
@@ -35,7 +37,7 @@ class AdapterDieta(private val context: Context,private val listaDieta: List<Die
                 else->ContextCompat.getColor(context, R.color.red)
             }
             it?.setStroke(15,colorBackground)
-            view.background = celdasDieta
+            borde.background = celdasDieta
         }
 
         return view

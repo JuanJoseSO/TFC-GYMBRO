@@ -15,7 +15,7 @@ import com.example.tfc.sqlite.DietaDb
 class FragmentDieta : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_dieta, container, false)
+        return inflater.inflate(R.layout.fragment_listas, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,6 +26,8 @@ class FragmentDieta : Fragment() {
     }
 
     private fun initUI() {
+        //Eliminamos el divider,gusto personal
+        listaDieta.divider=null
         //Recogemos el listado de dietas de la base de datos
         val dietas = dietaDb.getDietas()
         //Los mostramos en la lista,el adaptador ya se encarga de recoger los nombres
@@ -42,7 +44,7 @@ class FragmentDieta : Fragment() {
             }
             //Navegamos al fragmento destino,fragmentImagenDieta
             childFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContenedorDieta, fragmentImagenDieta)
+                .replace(R.id.contenedor_listas, fragmentImagenDieta)
                 .commit()
             }
         }
@@ -53,7 +55,7 @@ class FragmentDieta : Fragment() {
     }
 
     private fun initComponentes(view: View){
-        listaDieta=view.findViewById(R.id.listaDieta)
+        listaDieta=view.findViewById(R.id.listas)
         dietaDb= DietaDb(DatabaseHelper(requireContext()))
     }
 
