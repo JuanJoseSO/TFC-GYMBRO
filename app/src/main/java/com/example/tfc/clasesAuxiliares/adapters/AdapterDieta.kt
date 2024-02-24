@@ -1,4 +1,4 @@
-package com.example.tfc.clasesAuxiliares
+package com.example.tfc.clasesAuxiliares.adapters
 
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
@@ -10,6 +10,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.tfc.R
+import com.example.tfc.clasesAuxiliares.clasesBase.Dieta
+
 
 
 class AdapterDieta(private val context: Context,private val listaDieta: List<Dieta>)
@@ -30,16 +32,15 @@ class AdapterDieta(private val context: Context,private val listaDieta: List<Die
         obtenemos el drawable que queremos y le damos forma con el método setStrole()*/
         val celdasDieta= ContextCompat.getDrawable(context, R.drawable.celdas_dieta)?.mutate() as? GradientDrawable
         celdasDieta.let {
-            val colorBackground =when(dieta.nivel){
-                0->ContextCompat.getColor(context, R.color.green)
-                1->ContextCompat.getColor(context, R.color.orange)
-                2->ContextCompat.getColor(context, R.color.red)
-                else->ContextCompat.getColor(context, R.color.red)
+            val colorBackground = when (dieta.nivel) {
+                0 -> ContextCompat.getColor(context, R.color.green)
+                1 -> ContextCompat.getColor(context, R.color.orange)
+                2 -> ContextCompat.getColor(context, R.color.red)
+                else -> ContextCompat.getColor(context, R.color.red)
             }
-            it?.setStroke(15,colorBackground)
+            it?.setStroke(15, colorBackground)
             borde.background = celdasDieta
         }
-
         return view
     }
 }

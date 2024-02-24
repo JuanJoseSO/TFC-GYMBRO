@@ -51,7 +51,7 @@
         android:layout_marginEnd="14dp"
         app:cardBackgroundColor="@color/background_component"
         app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@id/vvReproductor"
+        app:layout_constraintBottom_toTopOf="@id/wvReproductor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEjercicio"
@@ -111,12 +111,12 @@
                     android:textSize="25sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/botonRestarRepeticiones"
+                    app:layout_constraintEnd_toStartOf="@+id/btnRestarRepeticiones"
                     app:layout_constraintStart_toEndOf="@+id/btnSumarRepeticiones"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/botonRestarRepeticiones"
+                    android:id="@+id/btnRestarRepeticiones"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/resta"
@@ -157,13 +157,13 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/botonSumarSeries"
+                    app:layout_constraintEnd_toStartOf="@+id/btnSumarSeries"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="TextSizeCheck" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/botonSumarSeries"
+                    android:id="@+id/btnSumarSeries"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/suma"
@@ -185,12 +185,12 @@
                     android:textSize="25sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/botonRestarSeries"
-                    app:layout_constraintStart_toEndOf="@+id/botonSumarSeries"
+                    app:layout_constraintEnd_toStartOf="@+id/btnRestarSeries"
+                    app:layout_constraintStart_toEndOf="@+id/btnSumarSeries"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/botonRestarSeries"
+                    android:id="@+id/btnRestarSeries"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/resta"
@@ -230,12 +230,12 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/botonSumarPeso"
+                    app:layout_constraintEnd_toStartOf="@+id/btnSumarPeso"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/botonSumarPeso"
+                    android:id="@+id/btnSumarPeso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/suma"
@@ -257,12 +257,12 @@
                     android:textSize="25sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/botonRestarPeso"
-                    app:layout_constraintStart_toEndOf="@+id/botonSumarPeso"
+                    app:layout_constraintEnd_toStartOf="@+id/btnRestarPeso"
+                    app:layout_constraintStart_toEndOf="@+id/btnSumarPeso"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/botonRestarPeso"
+                    android:id="@+id/btnRestarPeso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/resta"
@@ -284,7 +284,7 @@
 
 
     <WebView
-        android:id="@+id/vvReproductor"
+        android:id="@+id/wvReproductor"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center"

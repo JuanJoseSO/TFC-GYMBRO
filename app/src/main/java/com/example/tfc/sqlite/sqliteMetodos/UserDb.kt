@@ -1,12 +1,13 @@
-package com.example.tfc.sqlite
+package com.example.tfc.sqlite.sqliteMetodos
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.database.sqlite.SQLiteException
 import android.util.Log
-import com.example.tfc.clasesAuxiliares.Usuario
+import com.example.tfc.clasesAuxiliares.clasesBase.Usuario
+import com.example.tfc.sqlite.DatabaseHelper
 
-class UserDb(private val dbHelper:DatabaseHelper){
+class UserDb(private val dbHelper: DatabaseHelper){
 
     //******MÉTODOS TABLA USUARIO
     //Añadimos usuarios
@@ -50,10 +51,10 @@ class UserDb(private val dbHelper:DatabaseHelper){
     @SuppressLint("Range")
     fun getUsuarios(): List<Usuario> {
         val listaUsuarios = ArrayList<Usuario>()
-        val selectQuery = "SELECT * FROM ${DatabaseHelper.TABLA_USERS}"
+        val select = "SELECT * FROM ${DatabaseHelper.TABLA_USERS}"
 
         val db = dbHelper.readableDatabase
-        val cursor = db.rawQuery(selectQuery, null)
+        val cursor = db.rawQuery(select, null)
 
         if (cursor.moveToFirst()) {
             do {

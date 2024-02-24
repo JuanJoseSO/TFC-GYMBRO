@@ -1,4 +1,4 @@
-package com.example.tfc.clasesAuxiliares
+package com.example.tfc.clasesAuxiliares.clasesBase
 //Dataclass con un constructor sin id,lo autoasigna la base de datos
 data class Ejercicio(
     val id:Int=0,

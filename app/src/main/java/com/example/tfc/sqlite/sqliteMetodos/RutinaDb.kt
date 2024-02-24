@@ -1,36 +1,38 @@
-package com.example.tfc.sqlite
+package com.example.tfc.sqlite.sqliteMetodos
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.database.sqlite.SQLiteException
 import android.util.Log
-import com.example.tfc.clasesAuxiliares.Rutina
+import com.example.tfc.clasesAuxiliares.clasesBase.Rutina
+import com.example.tfc.sqlite.DatabaseHelper
 
-class RutinaDb (private val dbHelper:DatabaseHelper){
+class RutinaDb(private val dbHelper: DatabaseHelper) {
 
     //**************** MÉTODOS RUTINA ********************
-    fun addRutina(rutina : Rutina){
+    fun addRutina(rutina: Rutina) {
         val db = dbHelper.writableDatabase
-        try {
-            val values = ContentValues().apply {
-                put(DatabaseHelper.NOMBRE_RUTINA, rutina.nombre)
-                put(DatabaseHelper.TIEMPO_OBJETIVO, rutina.tiempoObjetivo)
-                put(DatabaseHelper.INTENSIDAD, rutina.intensidad)
-                put(DatabaseHelper.DIA_PREFERENTE,rutina.diaPreferente)
-            }
 
-            db.insert(DatabaseHelper.TABLA_RUTINAS, null, values)
-        }catch (e: SQLiteException) {
+        val insert = ContentValues().apply {
+            put(DatabaseHelper.NOMBRE_RUTINA, rutina.nombre)
+            put(DatabaseHelper.TIEMPO_OBJETIVO, rutina.tiempoObjetivo)
+            put(DatabaseHelper.INTENSIDAD, rutina.intensidad)
+            put(DatabaseHelper.DIA_PREFERENTE, rutina.diaPreferente)
+        }
+        try {
+            db.insert(DatabaseHelper.TABLA_RUTINAS, null, insert)
+        } catch (e: SQLiteException) {
             Log.e("SQLite", "Error al añadir ejercicios", e)
         }
     }
+
     @SuppressLint("Range")
-    fun getRutinas():List<Rutina>{
+    fun getRutinas(): List<Rutina> {
         val listaRutina = ArrayList<Rutina>()
-        val selectQuery = "SELECT * FROM ${DatabaseHelper.TABLA_RUTINAS}"
+        val select = "SELECT * FROM ${DatabaseHelper.TABLA_RUTINAS}"
 
         val db = dbHelper.readableDatabase
-        val cursor = db.rawQuery(selectQuery, null)
+        val cursor = db.rawQuery(select, null)
 
         if (cursor.moveToFirst()) {
             do {

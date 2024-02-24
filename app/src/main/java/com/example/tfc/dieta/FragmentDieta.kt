@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import com.example.tfc.R
-import com.example.tfc.clasesAuxiliares.AdapterDieta
+import com.example.tfc.clasesAuxiliares.adapters.AdapterDieta
 import com.example.tfc.sqlite.DatabaseHelper
-import com.example.tfc.sqlite.DietaDb
+import com.example.tfc.sqlite.sqliteMetodos.DietaDb
 
 
 class FragmentDieta : Fragment() {
@@ -35,11 +35,10 @@ class FragmentDieta : Fragment() {
         listaDieta.adapter= adapter
         //Listener para la dieta que seleccionemos desde la lista
         listaDieta.setOnItemClickListener { _, _, position, _->
-            val dieta=dietas[position]
             val fragmentImagenDieta = FragmentImagenDieta().apply {
                 //Similar a un intent,pero así se configura la navegación entre fragments
                 arguments = Bundle().apply {
-                    putString("imagen", dieta.imagen)
+                    putString("imagen", dietas[position].imagen)
                 }
             }
             //Navegamos al fragmento destino,fragmentImagenDieta

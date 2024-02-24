@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.ListView
 import com.example.tfc.R
 import com.example.tfc.sqlite.DatabaseHelper
-import com.example.tfc.clasesAuxiliares.AdapterEjercicios
-import com.example.tfc.sqlite.EjerciciosDb
+import com.example.tfc.clasesAuxiliares.adapters.AdapterEjercicios
+import com.example.tfc.sqlite.sqliteMetodos.EjerciciosDb
 
 class FragmentEjercicios : Fragment() {
 

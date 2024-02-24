@@ -12,7 +12,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.tfc.ActivityLogin
 import com.example.tfc.R
 import com.example.tfc.sqlite.DatabaseHelper
-import com.example.tfc.sqlite.UserDb
+import com.example.tfc.sqlite.sqliteMetodos.UserDb
 
 
 class DialogOpcionesUsuario : DialogFragment() {
@@ -22,7 +22,7 @@ class DialogOpcionesUsuario : DialogFragment() {
             val builder = AlertDialog.Builder(it)
             //"Infla" el layout personalizado con solo dos botones
             val inflater = requireActivity().layoutInflater
-            val view = inflater.inflate(R.layout.activity_opciones_usuario, null)
+            val view = inflater.inflate(R.layout.dialog_opciones_usuario, null)
 
 
             initComponentes(view)
@@ -105,7 +105,7 @@ class DialogOpcionesUsuario : DialogFragment() {
     private fun initComponentes(vista: View){
         btnCambiarUser=vista.findViewById(R.id.btnCambiarUser)
         btnCrearUser=vista.findViewById(R.id.btnCrearUser)
-        usersDb=UserDb(DatabaseHelper(vista.context))
+        usersDb= UserDb(DatabaseHelper(vista.context))
     }
 
     private lateinit var btnCrearUser: Button

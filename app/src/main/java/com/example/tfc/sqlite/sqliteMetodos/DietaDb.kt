@@ -1,22 +1,23 @@
-package com.example.tfc.sqlite
+package com.example.tfc.sqlite.sqliteMetodos
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.database.sqlite.SQLiteException
 import android.util.Log
-import com.example.tfc.clasesAuxiliares.Dieta
+import com.example.tfc.clasesAuxiliares.clasesBase.Dieta
+import com.example.tfc.sqlite.DatabaseHelper
 
-class DietaDb(private val dbHelper:DatabaseHelper){
+class DietaDb(private val dbHelper: DatabaseHelper){
 
     fun addDieta(dieta: Dieta) {
         val db= dbHelper.writableDatabase
         try{
-            val values= ContentValues().apply {
+            val insert= ContentValues().apply {
                 put(DatabaseHelper.NOMBRE_DIETA,dieta.nombre)
                 put(DatabaseHelper.NIVEL_DIETA,dieta.nivel)
                 put(DatabaseHelper.IMAGEN_DIETA,dieta.imagen)
             }
-            db.insert(DatabaseHelper.TABLA_DIETAS, null, values)
+            db.insert(DatabaseHelper.TABLA_DIETAS, null, insert)
         }catch (e: SQLiteException) {
             Log.e("SQLite","Error al añadir la dieta")
         }
@@ -59,10 +60,10 @@ class DietaDb(private val dbHelper:DatabaseHelper){
     @SuppressLint("Range")
     fun getDietas () : List<Dieta> {
         val listaDietas = ArrayList<Dieta>()
-        val selectQuery = "SELECT * FROM ${DatabaseHelper.TABLA_DIETAS}"
+        val select = "SELECT * FROM ${DatabaseHelper.TABLA_DIETAS}"
 
         val db = dbHelper.readableDatabase
-        val cursor = db.rawQuery(selectQuery, null)
+        val cursor = db.rawQuery(select, null)
 
         if (cursor.moveToFirst()) {
             do {

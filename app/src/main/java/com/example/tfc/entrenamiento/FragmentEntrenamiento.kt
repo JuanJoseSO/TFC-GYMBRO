@@ -24,7 +24,7 @@ class FragmentEntrenamiento : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initComponentes(view)
+        initComponentes()
         initListeners()
         //Mostramos el fragmento de categorías
         if (savedInstanceState == null) { //Evitamor cargar el fragmento si ya está presente
@@ -42,6 +42,7 @@ class FragmentEntrenamiento : Fragment() {
     }
 
     private fun initListeners() {
+        //Mostramos distintos fragmentos dependiendo de la posición del Swicht que en realidad son dos radiobuttons
         switchEjercicio.setOnClickListener{
             mostrarFragment(FragmentCategorias())
         }
@@ -52,9 +53,9 @@ class FragmentEntrenamiento : Fragment() {
 
     }
 
-    private fun initComponentes(view:View){
-        switchEjercicio=view.findViewById(R.id.switch_ejercicio)
-        switchRutina=view.findViewById(R.id.switch_rutina)
+    private fun initComponentes(){
+        switchEjercicio=requireView().findViewById(R.id.switch_ejercicio)
+        switchRutina=requireView().findViewById(R.id.switch_rutina)
     }
 
     private lateinit var switchEjercicio : RadioButton

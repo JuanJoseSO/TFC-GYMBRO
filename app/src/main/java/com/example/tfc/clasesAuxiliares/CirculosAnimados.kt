@@ -27,7 +27,7 @@ class CirculosAnimados(context: Context, attrs: AttributeSet) : View(context, at
     fun rellenarCirculo() {
         val animator = ValueAnimator.ofFloat(0f, 360f)
         animator.duration = 60000 //Duración de la animación en ms. ******CAMBIARLO A ENTRENAMIENTO DIARO
-        animator.interpolator = LinearInterpolator() //Progresión uniforme
+        animator.interpolator = LinearInterpolator() //Con esto conseguimos un movimiento uniforme
 
         animator.addUpdateListener { animation ->
             sweepAngle = animation.animatedValue as Float

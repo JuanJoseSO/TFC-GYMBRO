@@ -1,4 +1,4 @@
-package com.example.tfc.clasesAuxiliares
+package com.example.tfc.clasesAuxiliares.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.tfc.R
+import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
 
 class AdapterEjercicios(private val context: Context, listaEjercicios: List<Ejercicio>)
     : ArrayAdapter<Ejercicio>(context,0, listaEjercicios){

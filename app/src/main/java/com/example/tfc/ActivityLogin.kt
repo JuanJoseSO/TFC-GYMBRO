@@ -11,8 +11,8 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.example.tfc.sqlite.DatabaseHelper
-import com.example.tfc.clasesAuxiliares.Usuario
-import com.example.tfc.sqlite.UserDb
+import com.example.tfc.clasesAuxiliares.clasesBase.Usuario
+import com.example.tfc.sqlite.sqliteMetodos.UserDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.slider.RangeSlider
 import java.text.DecimalFormat
@@ -27,6 +27,7 @@ class ActivityLogin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
         iniciaComponentes()
         iniciaListeners()
         initUI()
@@ -36,16 +37,16 @@ class ActivityLogin : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun iniciaListeners() {
         //Listener para seleccionar u aumentar/reducir según el componenete y guardar el usuario en la base de datos
-        viewHombre.setOnClickListener {
+        cvMasculino.setOnClickListener {
             //Selecciona masculino y cambia el color (selección por defecto)
-            isMaleSelected = true
-            isFemaleSelected = false
+            btnGeneroM = true
+            btnGeneroF = false
             setColorGenero()
         }
-        viewMujer.setOnClickListener {
+        cvMujer.setOnClickListener {
             //Selecciona femenino y cambia el color
-            isMaleSelected = false
-            isFemaleSelected = true
+            btnGeneroM = false
+            btnGeneroF = true
             setColorGenero()
         }
 
@@ -56,20 +57,20 @@ class ActivityLogin : AppCompatActivity() {
             tvAltura.text = "$alturaActual cm"
         }
 
-        botonSumarPeso.setOnClickListener{
+        btnSumarPeso.setOnClickListener{
             pesoActual++
             setPeso()
 
         }
-        botonRestarPeso.setOnClickListener{
+        btnRestarPeso.setOnClickListener{
             pesoActual--
             setPeso()
         }
-        botonSumarEdad.setOnClickListener{
+        btnSumarEdad.setOnClickListener{
             edadActual++
             setEdad()
         }
-        botonRestarEdad.setOnClickListener{
+        btnRestarEdad.setOnClickListener{
             edadActual--
             setEdad()
         }
@@ -85,7 +86,7 @@ class ActivityLogin : AppCompatActivity() {
                     pesoActual,
                     alturaActual,
                     calcularIMC(),
-                    isMaleSelected
+                    btnGeneroM
                 )
                 try{
                     usersDb.addUsuario(usuario)
@@ -130,8 +131,8 @@ class ActivityLogin : AppCompatActivity() {
     }
 
     private fun setColorGenero() {
-        viewHombre.setCardBackgroundColor(getColorFondo(isMaleSelected)) // Configura el color de fondo del componente masculino
-        viewMujer.setCardBackgroundColor(getColorFondo(isFemaleSelected)) // Configura el color de fondo del componente femenino
+        cvMasculino.setCardBackgroundColor(getColorFondo(btnGeneroM)) // Configura el color de fondo del componente masculino
+        cvMujer.setCardBackgroundColor(getColorFondo(btnGeneroF)) // Configura el color de fondo del componente femenino
     }
 
     private fun getColorFondo(componenteSeleccionado: Boolean): Int {
@@ -155,33 +156,33 @@ class ActivityLogin : AppCompatActivity() {
 
 
     private fun iniciaComponentes() {
-        viewHombre = findViewById(R.id.viewHombre) // Recupera la vista masculina por su ID
-        viewMujer = findViewById(R.id.viewMujer) // Recupera la vista femenina por su ID
-        tvAltura = findViewById(R.id.tvAltura) // Recupera el campo de texto de altura por su ID
-        rsAltura = findViewById(R.id.rsAltura) // Recupera el control deslizante de altura por su ID
-        botonSumarEdad=findViewById(R.id.botonSumarEdad)
-        botonRestarEdad=findViewById(R.id.botonRestarEdad)
-        botonRestarPeso=findViewById(R.id.btnRestarPeso)
-        botonSumarPeso=findViewById(R.id.btnSumarPeso)
+        cvMasculino = findViewById(R.id.viewHombre)
+        cvMujer = findViewById(R.id.viewMujer)
+        tvAltura = findViewById(R.id.tvAltura)
+        rsAltura = findViewById(R.id.rsAltura)
+        btnSumarEdad=findViewById(R.id.btnSumarEdad)
+        btnRestarEdad=findViewById(R.id.btnRestarEdad)
+        btnRestarPeso=findViewById(R.id.btnRestarPeso)
+        btnSumarPeso=findViewById(R.id.btnSumarPeso)
         tvPeso=findViewById(R.id.tvPeso)
         tvEdad=findViewById(R.id.tvEdad)
         btnCrearUser=findViewById(R.id.btnCrearUser)
         nombre=findViewById(R.id.etNombreUsuario)
     }
 
-    private lateinit var viewHombre: CardView
-    private lateinit var viewMujer: CardView
+    private lateinit var cvMasculino: CardView
+    private lateinit var cvMujer: CardView
     private var pesoActual:Int=70//Weight peso
     private var edadActual:Int=20
     private var alturaActual=120
-    private var isMaleSelected: Boolean = true //El género masculino está seleccionado
-    private var isFemaleSelected: Boolean = false //El género femenino no está seleccionado
+    private var btnGeneroM: Boolean = true //El género masculino está seleccionado
+    private var btnGeneroF: Boolean = false //El género femenino no está seleccionado
     private lateinit var tvAltura: TextView
     private lateinit var rsAltura: RangeSlider
-    private lateinit var botonSumarEdad: FloatingActionButton
-    private lateinit var botonRestarEdad: FloatingActionButton
-    private lateinit var botonRestarPeso: FloatingActionButton
-    private lateinit var botonSumarPeso: FloatingActionButton
+    private lateinit var btnSumarEdad: FloatingActionButton
+    private lateinit var btnRestarEdad: FloatingActionButton
+    private lateinit var btnRestarPeso: FloatingActionButton
+    private lateinit var btnSumarPeso: FloatingActionButton
     private lateinit var tvPeso: TextView
     private lateinit var tvEdad: TextView
     private lateinit var btnCrearUser: AppCompatButton

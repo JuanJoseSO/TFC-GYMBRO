@@ -16,12 +16,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.example.tfc.ActivityPrincipal
 import com.example.tfc.R
-import com.example.tfc.clasesAuxiliares.AdapterRutina
-import com.example.tfc.clasesAuxiliares.Ejercicio
+import com.example.tfc.clasesAuxiliares.adapters.AdapterRutina
+import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
 import com.example.tfc.sqlite.DatabaseHelper
-import com.example.tfc.sqlite.EjerciciosDb
-import com.example.tfc.sqlite.RutinaDb
-import com.example.tfc.sqlite.RutinaEjercicioDb
+import com.example.tfc.sqlite.sqliteMetodos.EjerciciosDb
+import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
+import com.example.tfc.sqlite.sqliteMetodos.RutinaEjercicioDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ActivityInfoEjercicios : AppCompatActivity() {
@@ -37,35 +37,35 @@ class ActivityInfoEjercicios : AppCompatActivity() {
 
         private fun initListeners() {
             //Listeners para sumar o restar según el parámetro (por parejas)
-            botonSumarRepeticiones.setOnClickListener{
+            btnSumarRepeticiones.setOnClickListener{
                 repeticiones++
                 setRepeticiones()
 
             }
-            botonRestarRepeticiones.setOnClickListener{
+            btnRestarRepeticiones.setOnClickListener{
                 repeticiones--
                 setRepeticiones()
 
             }
 
 
-            botonSumarSeries.setOnClickListener{
+            btnSumarSeries.setOnClickListener{
                 series++
                 setSeries()
 
             }
-            botonRestarSeries.setOnClickListener{
+            btnRestarSeries.setOnClickListener{
                 series--
                 setSeries()
 
             }
 
-            botonSumarPeso.setOnClickListener{
+            btnSumarPeso.setOnClickListener{
                 pesoInicial+=2.5
                 setPeso()
 
             }
-            botonRestarPeso.setOnClickListener{
+            btnRestarPeso.setOnClickListener{
                 pesoInicial-=2.5
                 setPeso()
             }
@@ -144,14 +144,14 @@ class ActivityInfoEjercicios : AppCompatActivity() {
     private fun setVideo(ruta:String?){
         //String que consigura el video con su enlace
         val video="<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/$ruta\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
-        vvReproductor.loadData(video,"text/html","utf-8")
-        vvReproductor.settings.javaScriptEnabled=true //Habilita javaScript para reproducir el video
-        vvReproductor.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW//Mejora el rendimietno del reproductor
+        wvReproductor.loadData(video,"text/html","utf-8")
+        wvReproductor.settings.javaScriptEnabled=true //Habilita javaScript para reproducir el video
+        wvReproductor.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW//Mejora el rendimietno del reproductor
         //Fortalecemos la seguridad de la aplicación capando el acceso a ella desde internet
-        vvReproductor.settings.domStorageEnabled = false //Evita el DOM y cookies de las paginas cargadas en el reproductor
-        vvReproductor.settings.databaseEnabled = false //Evita el acceso a la base de datos de las paginas cargadas en el reproductor
-        vvReproductor.settings.allowFileAccess = false //Evita el acceso a los archivos del dispositivo de las paginas cargadas en el reproductor
-        vvReproductor.webChromeClient= WebChromeClient()
+        wvReproductor.settings.domStorageEnabled = false //Evita el DOM y cookies de las paginas cargadas en el reproductor
+        wvReproductor.settings.databaseEnabled = false //Evita el acceso a la base de datos de las paginas cargadas en el reproductor
+        wvReproductor.settings.allowFileAccess = false //Evita el acceso a los archivos del dispositivo de las paginas cargadas en el reproductor
+        wvReproductor.webChromeClient= WebChromeClient()
     }
 
     override fun onDestroy(){
@@ -161,16 +161,16 @@ class ActivityInfoEjercicios : AppCompatActivity() {
 
     private fun initComponentes() {
         tvEjercicio =findViewById(R.id.tvEjercicio)
-        botonSumarRepeticiones =findViewById(R.id.btnSumarRepeticiones)
+        btnSumarRepeticiones =findViewById(R.id.btnSumarRepeticiones)
         tvNumRepeticiones = findViewById(R.id.tvNumRepeticiones)
-        botonRestarRepeticiones = findViewById(R.id.botonRestarRepeticiones)
-        botonSumarSeries = findViewById(R.id.botonSumarSeries)
-        botonRestarSeries = findViewById(R.id.botonRestarSeries)
+        btnRestarRepeticiones = findViewById(R.id.btnRestarRepeticiones)
+        btnSumarSeries = findViewById(R.id.btnSumarSeries)
+        btnRestarSeries = findViewById(R.id.btnRestarSeries)
         tvNumSeries = findViewById(R.id.tvNumSeries)
-        botonSumarPeso = findViewById(R.id.botonSumarPeso)
-        botonRestarPeso = findViewById(R.id.botonRestarPeso)
+        btnSumarPeso = findViewById(R.id.btnSumarPeso)
+        btnRestarPeso = findViewById(R.id.btnRestarPeso)
         tvNumPeso = findViewById(R.id.tvNumPeso)
-        vvReproductor = findViewById(R.id.vvReproductor)
+        wvReproductor = findViewById(R.id.wvReproductor)
         btnAnadir = findViewById(R.id.btnAnadirRutina)
         db= DatabaseHelper(this)
         ejerciciosDb = EjerciciosDb(db)
@@ -184,16 +184,16 @@ class ActivityInfoEjercicios : AppCompatActivity() {
     }
 
     private lateinit var tvEjercicio: TextView
-    private lateinit var botonSumarRepeticiones: FloatingActionButton
+    private lateinit var btnSumarRepeticiones: FloatingActionButton
     private lateinit var tvNumRepeticiones: TextView
-    private lateinit var botonRestarRepeticiones: FloatingActionButton
-    private lateinit var botonSumarSeries: FloatingActionButton
+    private lateinit var btnRestarRepeticiones: FloatingActionButton
+    private lateinit var btnSumarSeries: FloatingActionButton
     private lateinit var tvNumSeries: TextView
-    private lateinit var botonRestarSeries: FloatingActionButton
-    private lateinit var botonSumarPeso: FloatingActionButton
+    private lateinit var btnRestarSeries: FloatingActionButton
+    private lateinit var btnSumarPeso: FloatingActionButton
     private lateinit var tvNumPeso: TextView
-    private lateinit var botonRestarPeso: FloatingActionButton
-    private lateinit var vvReproductor: WebView
+    private lateinit var btnRestarPeso: FloatingActionButton
+    private lateinit var wvReproductor: WebView
     private lateinit var btnAnadir: Button
     private lateinit var ejercicio : Ejercicio
     private var repeticiones= 4

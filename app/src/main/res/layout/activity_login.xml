@@ -295,7 +295,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/botonRestarEdad"
+                    android:id="@+id/btnRestarEdad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -305,7 +305,7 @@
                     app:tint="@color/white" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/botonSumarEdad"
+                    android:id="@+id/btnSumarEdad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 

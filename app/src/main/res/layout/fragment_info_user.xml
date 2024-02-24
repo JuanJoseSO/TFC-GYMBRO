@@ -55,7 +55,7 @@
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:paddingTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/menuNavegacion"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -207,16 +207,4 @@
                 android:textSize="24sp" />
         </TableRow>
     </TableLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/menuNavegacion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/background_component"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu"
-        tools:ignore="VisualLintBottomNav" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

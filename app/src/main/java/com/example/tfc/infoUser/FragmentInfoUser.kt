@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.tfc.R
 import com.example.tfc.sqlite.DatabaseHelper
-import com.example.tfc.sqlite.UserDb
+import com.example.tfc.sqlite.sqliteMetodos.UserDb
 
 class FragmentInfoUser : Fragment() {
 

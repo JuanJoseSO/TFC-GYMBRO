@@ -1,11 +1,13 @@
 package com.example.tfc
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import com.example.tfc.clasesAuxiliares.DialogOpcionesUsuario
@@ -27,7 +29,7 @@ class FragmentHome : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initComponentes(view)
+        initComponentes()
         circulosAnimados.rellenarCirculo()
         initCalendario()
         initListeners()
@@ -38,6 +40,11 @@ class FragmentHome : Fragment() {
             // Muestra DialogOpcionesUsuario
             val ventanaEmergente = DialogOpcionesUsuario()
             ventanaEmergente.show(parentFragmentManager , "ventanaEmergente")
+        }
+        btnEntrenar.setOnClickListener{
+            val intent= Intent(requireContext(),ActivityEntrenamiento::class.java)
+            startActivity(intent)
+
         }
     }
 
@@ -55,13 +62,15 @@ class FragmentHome : Fragment() {
         tvFecha.text = fechaFormateada
     }
 
-    private fun initComponentes(view: View){
-        circulosAnimados=view.findViewById(R.id.circulosAnimados)
-        btnUsuarios=view.findViewById(R.id.btnUsuarios)
-        tvFecha=view.findViewById(R.id.tvFecha)
+    private fun initComponentes(){
+        circulosAnimados=requireView().findViewById(R.id.circulosAnimados)
+        btnUsuarios=requireView().findViewById(R.id.btnUsuarios)
+        tvFecha=requireView().findViewById(R.id.tvFecha)
+        btnEntrenar=requireView().findViewById(R.id.btnEntrenar)
     }
 
     private lateinit var circulosAnimados: CirculosAnimados
     private lateinit var btnUsuarios: AppCompatImageButton
     private lateinit var tvFecha: TextView
+    private lateinit var btnEntrenar : AppCompatButton
 }

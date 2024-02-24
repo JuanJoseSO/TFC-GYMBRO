@@ -9,8 +9,8 @@ import android.widget.AdapterView
 import android.widget.ListView
 import com.example.tfc.R
 import com.example.tfc.sqlite.DatabaseHelper
-import com.example.tfc.clasesAuxiliares.AdapterCategoriasEjercicios
-import com.example.tfc.sqlite.EjerciciosDb
+import com.example.tfc.clasesAuxiliares.adapters.AdapterCategoriasEjercicios
+import com.example.tfc.sqlite.sqliteMetodos.EjerciciosDb
 
 
 class FragmentCategorias : Fragment() {
@@ -26,13 +26,13 @@ class FragmentCategorias : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        ejerciciosDb =EjerciciosDb(DatabaseHelper(requireContext()))
-        initUI(view)
+        ejerciciosDb = EjerciciosDb(DatabaseHelper(requireContext()))
+        initUI()
     }
 
-    private fun initUI(view:View){
+    private fun initUI(){
         //Relacionamos con la ListView en el layout del fragment
-        val lista = view.findViewById<ListView>(R.id.listas)
+        val lista = requireView().findViewById<ListView>(R.id.listas)
 
         //Obtenemos las categorias de la base de datos
         val listaSinImagenes = ejerciciosDb.obtenerCategorias()

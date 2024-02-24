@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".entrenamiento.FragmentCategorias"
     >
-
     <ListView
         android:id="@+id/listas"
         android:layout_width="match_parent"
@@ -14,7 +13,4 @@
         android:divider="@color/grey"
         android:dividerHeight="2dp"
         />
-
-
-
 </FrameLayout>

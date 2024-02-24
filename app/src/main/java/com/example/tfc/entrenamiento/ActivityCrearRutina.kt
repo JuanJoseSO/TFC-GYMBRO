@@ -9,9 +9,9 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import com.example.tfc.ActivityPrincipal
 import com.example.tfc.R
-import com.example.tfc.clasesAuxiliares.Rutina
+import com.example.tfc.clasesAuxiliares.clasesBase.Rutina
 import com.example.tfc.sqlite.DatabaseHelper
-import com.example.tfc.sqlite.RutinaDb
+import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ActivityCrearRutina : AppCompatActivity() {
@@ -64,9 +64,11 @@ class ActivityCrearRutina : AppCompatActivity() {
 
 
         btnCrearRutina.setOnClickListener{
+            //Si el nombre está vacio
             if(etNombreRutina.text.toString().isEmpty()){
                 Toast.makeText(this, "Por favor, ingrese un nombre válido", Toast.LENGTH_SHORT).show()
             }else{
+                //Si no creamos el objeto rutina y lo añadimos a la base de datos
                 val rutina = Rutina(
                     etNombreRutina.text.toString(),
                     tiempoInicial,
@@ -85,6 +87,7 @@ class ActivityCrearRutina : AppCompatActivity() {
         }
     }
 
+    //Funciones para simplificar los listeners anteriores
     private fun setDia() {
         tvResultadoDia.text=dias[dia]
     }

@@ -7,13 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
-import com.example.tfc.clasesAuxiliares.Dieta
+import com.example.tfc.clasesAuxiliares.clasesBase.Dieta
 import com.example.tfc.sqlite.DatabaseHelper
 
-import com.example.tfc.clasesAuxiliares.Ejercicio
-import com.example.tfc.sqlite.DietaDb
-import com.example.tfc.sqlite.EjerciciosDb
-import com.example.tfc.sqlite.UserDb
+import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
+import com.example.tfc.sqlite.sqliteMetodos.DietaDb
+import com.example.tfc.sqlite.sqliteMetodos.EjerciciosDb
+import com.example.tfc.sqlite.sqliteMetodos.UserDb
 
 
 class ActivityBienvenida : AppCompatActivity() {
@@ -42,11 +42,11 @@ class ActivityBienvenida : AppCompatActivity() {
                 }
 
             } else {
+                //Si no vamos a la activity para crearlo
                 btnAcceso.setOnClickListener {
                     val intent = Intent(this, ActivityLogin::class.java)
                     startActivity(intent)
                 }
-
             }
         } catch (e: SQLiteException) {
             Toast.makeText(this, "Error inesperado", Toast.LENGTH_SHORT).show()

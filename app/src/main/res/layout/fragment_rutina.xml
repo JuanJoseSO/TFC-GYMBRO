@@ -6,17 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".entrenamiento.FragmentRutina">
 
-    <ListView
-        android:id="@+id/listaRutinas"
+    <FrameLayout
+        android:id="@+id/contenedor_rutina"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/btnCrearRutina"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:divider="@color/transparent"
-        android:dividerHeight="8dp"/>
+        android:paddingTop="16dp"
+        android:divider="@color/transparent">
+        <include layout="@layout/fragment_listas"/>
+    </FrameLayout>
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -32,7 +33,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnModificarRutina"
         app:layout_constraintEnd_toStartOf="@id/btnEliminarRutina"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/listaRutinas"
+        app:layout_constraintTop_toBottomOf="@id/contenedor_rutina"
         tools:ignore="VisualLintButtonSize" />
 
 
@@ -49,7 +50,7 @@
         app:layout_constraintBottom_toTopOf="@id/btnModificarRutina"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btnCrearRutina"
-        app:layout_constraintTop_toBottomOf="@id/listaRutinas"
+        app:layout_constraintTop_toBottomOf="@id/contenedor_rutina"
         tools:ignore="VisualLintButtonSize" />
 
 

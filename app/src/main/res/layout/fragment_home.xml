@@ -68,6 +68,21 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.2" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnEntrenar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_btns"
+        android:padding="16dp"
+        android:text="@string/vamos_a_darle_ca_a"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.928"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circulosAnimados"
+        app:layout_constraintVertical_bias="0.938" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
