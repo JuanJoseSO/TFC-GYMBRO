@@ -32,6 +32,7 @@
 
     <!--FragmentHome-->
     <string name="resumen_diario">Resumen diario:</string>
+    <string name="vamos_a_darle_ca_a">¡Vamos a darle caña!</string>
 
     <!--FragmentInfoUser-->
     <string name="informaci_n_personal">Información Personal</string>
@@ -60,9 +61,10 @@
     <string name="dieta_d_ficit">Dieta déficit</string>
     <string name="dieta_mantenimiento">Dieta mantenimiento</string>
     <string name="dieta_volum_n">Dieta volumen</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="vamos_a_darle_ca_a">¡Vamos a darle caña!</string>
+    <string name="serie_n_mero">SERIE NÚMERO:</string>
+    <string name="repetici_n_n">REPETICIÓN Nº:</string>
+    <string name="peso_ninicial">PESO\nINICIAL:</string>
+    <string name="siguiente">SIGUIENTE</string>
 
 
 </resources>
