@@ -15,6 +15,7 @@
         android:autoSizeMaxTextSize="30sp"
         android:autoSizeMinTextSize="8sp"
         android:autoSizeTextType="uniform"
+        android:text="patata"
         android:gravity="center"
         android:padding="2dp"
         android:textColor="@color/white"
@@ -115,7 +116,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/divider1"
-                app:layout_constraintEnd_toStartOf="@id/tvEjercicio"
+                app:layout_constraintEnd_toStartOf="@id/tvSerieIniciada"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:autoSizeTextType="uniform"
@@ -123,9 +124,12 @@
                 android:autoSizeMaxTextSize="21sp"/>
 
             <TextView
-                android:id="@+id/tvEjercicio"
+                android:id="@+id/tvSerieIniciada"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:autoSizeMaxTextSize="24sp"
+                android:autoSizeMinTextSize="8sp"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -133,11 +137,7 @@
                 app:layout_constraintBottom_toTopOf="@id/divider1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tvEjercicioInfo"
-                app:layout_constraintTop_toTopOf="parent"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="8sp"
-                android:autoSizeMaxTextSize="24sp"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <View
                 android:id="@+id/divider1"
@@ -147,18 +147,18 @@
                 app:layout_constraintBottom_toTopOf="@id/tvRepeticionesInfo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvEjercicio"
+                app:layout_constraintTop_toBottomOf="@id/tvSerieIniciada"
                 />
 
             <TextView
                 android:id="@+id/tvRepeticionesInfo"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:autoSizeMaxTextSize="24sp"
+                android:autoSizeMaxTextSize="21sp"
                 android:autoSizeMinTextSize="8sp"
                 android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:text="@string/repetici_n_n"
+                android:text="@string/repeticiones_num"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"

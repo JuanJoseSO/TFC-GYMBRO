@@ -160,7 +160,7 @@ class ActivityInfoEjercicios : AppCompatActivity() {
     }
 
     private fun initComponentes() {
-        tvEjercicio =findViewById(R.id.tvEjercicio)
+        tvEjercicio =findViewById(R.id.tvNombres)
         btnSumarRepeticiones =findViewById(R.id.btnSumarRepeticiones)
         tvNumRepeticiones = findViewById(R.id.tvNumRepeticiones)
         btnRestarRepeticiones = findViewById(R.id.btnRestarRepeticiones)

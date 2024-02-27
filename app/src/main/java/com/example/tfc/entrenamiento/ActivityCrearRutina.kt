@@ -61,6 +61,16 @@ class ActivityCrearRutina : AppCompatActivity() {
                 setDia()
             }
         }
+        btnSumarDescanso.setOnClickListener{
+            descansoInicial++
+            setDescanso()
+        }
+        btnRestarDescanso.setOnClickListener{
+            if(descansoInicial>0){
+                descansoInicial--
+                setDescanso()
+            }
+        }
 
 
         btnCrearRutina.setOnClickListener{
@@ -73,6 +83,7 @@ class ActivityCrearRutina : AppCompatActivity() {
                     etNombreRutina.text.toString(),
                     tiempoInicial,
                     tvResultadoIntensidad.text.toString(),
+                    descansoInicial,
                     tvResultadoDia.text.toString()
                 )
                 try{
@@ -99,6 +110,9 @@ class ActivityCrearRutina : AppCompatActivity() {
     private fun setTiempo() {
         tvResultadoTiempo.text=tiempoInicial.toString()
     }
+    private fun setDescanso(){
+        tvResultadoDescanso.text=descansoInicial.toString()
+    }
 
     private fun initComponentes(){
         etNombreRutina=findViewById(R.id.etNombreRutina)
@@ -112,10 +126,16 @@ class ActivityCrearRutina : AppCompatActivity() {
         tvResultadoDia=findViewById(R.id.tvResultadoDia)
         btnRestarDia=findViewById(R.id.btnRestarDia)
         btnCrearRutina=findViewById(R.id.btnCrearRutina)
+        tvResultadoDescanso=findViewById(R.id.tvResultadoDescanso)
+        btnSumarDescanso=findViewById(R.id.btnSumarDescanso)
+        btnRestarDescanso=findViewById(R.id.btnRestarDescanso)
         rutinaDb =  RutinaDb(DatabaseHelper(this))
         tvResultadoTiempo.text=tiempoInicial.toString()
         tvResultadoIntensidad.text=niveles[nivel]
+        tvResultadoDescanso.text=descansoInicial.toString()
         tvResultadoDia.text=dias[dia]
+
+
     }
 
     private lateinit var etNombreRutina : EditText
@@ -128,8 +148,12 @@ class ActivityCrearRutina : AppCompatActivity() {
     private lateinit var btnSumarDia : FloatingActionButton
     private lateinit var tvResultadoDia : TextView
     private lateinit var btnRestarDia : FloatingActionButton
+    private lateinit var tvResultadoDescanso : TextView
+    private lateinit var btnRestarDescanso : FloatingActionButton
+    private lateinit var btnSumarDescanso : FloatingActionButton
     private lateinit var btnCrearRutina : AppCompatButton
     private lateinit var rutinaDb : RutinaDb
+    private var descansoInicial = 30
     private var tiempoInicial=60
     private val niveles : Array<String> = arrayOf("Baja","Media","Alta")
     private var nivel : Int= 1

@@ -81,8 +81,9 @@ class UserDb(private val dbHelper: DatabaseHelper){
             db.beginTransaction()
             //Selecciona al usuario
             val seleccionar = ContentValues().apply { put(DatabaseHelper.SELECCION, 1) }
-            val seleccionarUsuario = db.update(DatabaseHelper.TABLA_USERS, seleccionar, "${DatabaseHelper.ID_USUARIO} = ?", arrayOf(usuarioId.toString()))
-
+            val seleccionarUsuario = db.update(DatabaseHelper.TABLA_USERS,
+                seleccionar, "${DatabaseHelper.ID_USUARIO} = ?",
+                arrayOf(usuarioId.toString()))
             if (seleccionarUsuario > 0) exito = true
 
             db.setTransactionSuccessful()

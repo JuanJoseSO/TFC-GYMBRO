@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteException
 import android.util.Log
 import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
 import com.example.tfc.sqlite.DatabaseHelper
+import java.util.Objects
 
 class RutinaEjercicioDb (private val dbHelper: DatabaseHelper) {
 
@@ -23,6 +24,25 @@ class RutinaEjercicioDb (private val dbHelper: DatabaseHelper) {
         } catch (e: SQLiteException) {
             Log.e("SQLite", "Error al añadir  el ejercicio", e)
         }
+    }
+
+    @SuppressLint("Range")
+    fun getInfoRutina(idRutina:Int,idEjercicio: Int) : ArrayList<Double>{
+        val lista = ArrayList<Double>()
+        val db = dbHelper.readableDatabase
+
+        val cursor = db.rawQuery("SELECT * FROM ${DatabaseHelper.TABLA_RUTINA_EJERCICIOS} WHERE ${DatabaseHelper.ID_RUTINA_FK}=? AND ${DatabaseHelper.ID_EJERCICIO_FK}=?",
+        arrayOf(idRutina.toString(),idEjercicio.toString())
+        )
+        if(cursor.moveToFirst()){
+            val series=cursor.getInt(cursor.getColumnIndex(DatabaseHelper.SERIES))
+            val repeticiones=cursor.getInt(cursor.getColumnIndex(DatabaseHelper.REPETICIONES))
+            val peso_serie=cursor.getDouble(cursor.getColumnIndex(DatabaseHelper.PESO_SERIE))
+            lista.add(series.toDouble())
+            lista.add(repeticiones.toDouble())
+            lista.add(peso_serie)
+        }
+        return lista
     }
 
     @SuppressLint("Range")

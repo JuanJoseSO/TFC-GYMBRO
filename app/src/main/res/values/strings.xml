@@ -53,7 +53,7 @@
     <string name="crear_rutina">Crear Rutina</string>
     <string name="nombre_de_la_rutina">Nombre de la rutina</string>
     <string name="intensidad">INTENSIDAD</string>
-    <string name="tiempo_objetivo">TIEMPO OBJETIVO</string>
+    <string name="tiempo_objetivo">TIEMPO OBJETIVO (Minutos)</string>
     <string name="logo_pesa_coraz_n">Logo Pesa-Corazón</string>
     <string name="d_a_de_la_semana">DÍA DE LA SEMANA</string>
 
@@ -61,8 +61,10 @@
     <string name="dieta_d_ficit">Dieta déficit</string>
     <string name="dieta_mantenimiento">Dieta mantenimiento</string>
     <string name="dieta_volum_n">Dieta volumen</string>
+
+    <!--ActivityEntrenamiento-->
     <string name="serie_n_mero">SERIE NÚMERO:</string>
-    <string name="repetici_n_n">REPETICIÓN Nº:</string>
+    <string name="repeticiones_num">REPETICIONES:</string>
     <string name="peso_ninicial">PESO\nINICIAL:</string>
     <string name="siguiente">SIGUIENTE</string>
 

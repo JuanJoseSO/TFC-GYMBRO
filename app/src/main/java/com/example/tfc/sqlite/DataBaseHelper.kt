@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 
-//No hay mucho que comentar,gestión de la base de datos y creación de tablas
+//No hay mucho que comentar,gestión de la base de datos,creación de tablas
 class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
         private const val DATABASE_VERSION = 1
@@ -36,6 +36,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         const val NOMBRE_RUTINA= "nombre_rutina"
         const val TIEMPO_OBJETIVO= "tiempo_objetivo"
         const val INTENSIDAD= "intensidad"
+        const val DESCANSO="descanso"
         const val DIA_PREFERENTE= "dia_preferente"
 
         //Tabla rutina_ejercicios,resultado de la relación N:M de estas
@@ -45,6 +46,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         const val SERIES = "series"
         const val REPETICIONES = "repeticiones"
         const val PESO_SERIE="peso"
+
 
 
         //Tabla usuario-rutina
@@ -96,6 +98,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                     $NOMBRE_RUTINA TEXT,
                     $TIEMPO_OBJETIVO INTEGER,
                     $INTENSIDAD TEXT,
+                    $DESCANSO INTEGER,
                     $DIA_PREFERENTE TEXT
                 )                
             """.trimIndent()
@@ -105,9 +108,9 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                    CREATE TABLE $TABLA_RUTINA_EJERCICIOS( 
                    $ID_RUTINA_FK INTEGER,
                    $ID_EJERCICIO_FK INTEGER,
+                   $SERIES INTEGER,
                    $REPETICIONES INTEGER,
-                    $SERIES INTEGER,
-                   $PESO_SERIE REAL,                                                                                
+                   $PESO_SERIE REAL,
                    PRIMARY KEY ($ID_RUTINA_FK,$ID_EJERCICIO_FK),
                    FOREIGN KEY ($ID_RUTINA_FK) REFERENCES $TABLA_RUTINAS($ID_RUTINA),
                    FOREIGN KEY ($ID_EJERCICIO_FK) REFERENCES $TABLA_EJERCICIOS($ID_EJERCICIO)

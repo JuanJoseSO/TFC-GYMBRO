@@ -96,8 +96,9 @@ class Cronometro{
 
     //Métodos para iniciar la cuenta atras
     //Le pasamos el textview para gestionar aqui su visibilidad
-    fun initCuentaAtras(cuentaInicial:Long, tvCuentaAtras:TextView) {
-        this.cuentaAtrasRestante=cuentaInicial
+    fun initCuentaAtras(cuentaInicial:Int, tvCuentaAtras:TextView) {
+        //Multiplicamos por mil y pasamos a long para obtener los milisegundos seleccionados de descanso
+        this.cuentaAtrasRestante= (cuentaInicial*1000).toLong()
         cuentaAtrasFinal = System.currentTimeMillis() + cuentaAtrasRestante
         cicloCuentaAtras(tvCuentaAtras)
     }
