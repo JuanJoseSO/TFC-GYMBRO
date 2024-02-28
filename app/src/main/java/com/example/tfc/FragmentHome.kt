@@ -7,11 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import com.example.tfc.clasesAuxiliares.DialogOpcionesUsuario
 import com.example.tfc.clasesAuxiliares.CirculosAnimados
+import com.example.tfc.sqlite.DatabaseHelper
+import com.example.tfc.sqlite.sqliteMetodos.UserDb
+import com.example.tfc.sqlite.sqliteMetodos.UsuarioRutinaDb
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -42,9 +46,13 @@ class FragmentHome : Fragment() {
             ventanaEmergente.show(parentFragmentManager , "ventanaEmergente")
         }
         btnEntrenar.setOnClickListener{
+            if(usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()!!.id).isNotEmpty()){
             val intent= Intent(requireContext(),ActivityEntrenamiento::class.java)
             startActivity(intent)
-
+            }
+            else{
+                Toast.makeText(requireContext(), "Necesitas crear una rutina", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -67,8 +75,13 @@ class FragmentHome : Fragment() {
         btnUsuarios=requireView().findViewById(R.id.btnUsuarios)
         tvFecha=requireView().findViewById(R.id.tvFecha)
         btnEntrenar=requireView().findViewById(R.id.btnEntrenar)
+        db=DatabaseHelper(requireContext())
+        userDb=UserDb(db)
+        usuarioRutinaDb=UsuarioRutinaDb(db)
     }
-
+    private lateinit var  db: DatabaseHelper
+    private lateinit var  userDb: UserDb
+    private lateinit var usuarioRutinaDb: UsuarioRutinaDb
     private lateinit var circulosAnimados: CirculosAnimados
     private lateinit var btnUsuarios: AppCompatImageButton
     private lateinit var tvFecha: TextView

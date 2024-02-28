@@ -178,6 +178,7 @@ class ActivityInfoEjercicios : AppCompatActivity() {
         ejerciciosDb = EjerciciosDb(db)
         rutinaDb = RutinaDb(db)
         usuarioRutinaDb = UsuarioRutinaDb(db)
+        rutinaEjercicioDb = RutinaEjercicioDb(db)
         userDb = UserDb(db)
         tvNumPeso.text=pesoInicial.toString()
         tvNumRepeticiones.text=repeticiones.toString()

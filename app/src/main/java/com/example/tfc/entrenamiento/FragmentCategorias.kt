@@ -1,5 +1,6 @@
 package com.example.tfc.entrenamiento
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.ListView
 import com.example.tfc.R
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.clasesAuxiliares.adapters.AdapterCategoriasEjercicios
+import com.example.tfc.clasesAuxiliares.adapters.AdapterEjercicios
 import com.example.tfc.sqlite.sqliteMetodos.EjerciciosDb
 
 
@@ -27,10 +29,10 @@ class FragmentCategorias : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         ejerciciosDb = EjerciciosDb(DatabaseHelper(requireContext()))
-        initUI()
+        initUICategorias()
     }
 
-    private fun initUI(){
+    private fun initUICategorias(){
         //Relacionamos con la ListView en el layout del fragment
         val lista = requireView().findViewById<ListView>(R.id.listas)
 
@@ -46,7 +48,6 @@ class FragmentCategorias : Fragment() {
         val adapter = AdapterCategoriasEjercicios(requireContext(), listaConImagenes) //Con requireContext() obtenemos el contexto del fragment
         //Une el adaptador a la lista
         lista.adapter=adapter
-
         initListeners(lista)
     }
 
@@ -57,23 +58,7 @@ class FragmentCategorias : Fragment() {
             val nombreCategoria = categoria.second
 
             //Lanzamos el nuevo fragment
-            mostrarEjerciciosCategoria(nombreCategoria)
-        }
-    }
-
-    private fun mostrarEjerciciosCategoria(categoria: Any?) {
-        //Enviamos la categoria seleccionada al fragmet siguiente
-        val fragmentEjerciciosCategoria = FragmentEjercicios().apply {
-            arguments = Bundle().apply {
-                putString("categoria", categoria.toString())
-            }
-        }
-
-        //Cambiamos el fragment,pasamos de la lista de categorias a la lista de ejercicios
-        activity?.supportFragmentManager?.beginTransaction()?.apply {
-            replace(R.id.fragmentContenedorEntrenamiento, fragmentEjerciciosCategoria)
-            addToBackStack(null) //El boton atrás vuelve al fragment anterior
-            commit()
+            initUIEjercicios(nombreCategoria)
         }
     }
 
@@ -97,6 +82,24 @@ class FragmentCategorias : Fragment() {
     override fun onDestroy() {
         DatabaseHelper(requireContext()).close()
         super.onDestroy()
+    }
+    private fun initUIEjercicios(categoria: Any?) {
+        val lista = requireView().findViewById<ListView>(R.id.listas)
+
+        /*Creamos una variable ejercicio de tipo lista(SmartCast) y hacemos la consulta con el string de intent,ahorrando
+          la creacion de dos variables*/
+        val ejercicios = ejerciciosDb.getEjerciciosPorCategoria(categoria.toString())
+
+        val adapter = AdapterEjercicios(requireContext(), ejercicios)
+        lista.adapter = adapter
+
+        //Listener para en el ejercicio que seleccionemos desde la lista
+        lista.setOnItemClickListener { _, _, position, _->
+            val ejercicioSeleccionado = ejercicios[position] //Guardamos el ejercicio seleccionado en una variable
+            val intent = Intent(requireContext(), ActivityInfoEjercicios::class.java)
+            intent.putExtra("ejercicio", ejercicioSeleccionado.id) //Enviamos SOLO el ID ejericio seleccionado
+            startActivity(intent)
+        }
     }
 
     private lateinit var ejerciciosDb : EjerciciosDb

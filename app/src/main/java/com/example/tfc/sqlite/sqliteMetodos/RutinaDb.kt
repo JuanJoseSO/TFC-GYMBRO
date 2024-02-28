@@ -9,7 +9,6 @@ import com.example.tfc.sqlite.DatabaseHelper
 
 class RutinaDb(private val dbHelper: DatabaseHelper) {
 
-    //**************** MÉTODOS RUTINA ********************
     //Crear rutina devuelve un long con su id para añadirlo a la tabla usuarios_rutina
     fun addRutina (rutina: Rutina) : Int {
         val db = dbHelper.writableDatabase

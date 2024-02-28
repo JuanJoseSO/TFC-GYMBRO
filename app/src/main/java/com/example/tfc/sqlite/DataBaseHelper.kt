@@ -53,9 +53,6 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         //"id_rutina_fk"
         const val TABLA_USUARIOS_RUTINAS= "usuarios_rutinas"
         const val ID_USUARIO_FK= "id_usuario"
-        const val HORA_INICIO= "hora_inicio"
-        const val TIEMPO_ENTRENAMIENTO= "tiempo_entrenamiento"
-        const val CALORIAS_QUEMADAS= "calorias_quemadas"
 
         //Tabla dietas
         const val TABLA_DIETAS="dietas"
@@ -63,6 +60,17 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         const val NOMBRE_DIETA="nombre_dieta"
         const val NIVEL_DIETA="nivel_dieta"
         const val IMAGEN_DIETA="imagen_dieta"
+
+        //Tabla historial
+        const val TABLA_HISTORIAL="historial"
+        const val ID_HISTORIAL="id_historial"
+        //id_usuario_fk
+        //id_rutina_fk
+        //nombre_rutina
+        const val DIA_ENTRENAMIENTO="dia_entrenamiento"
+        const val HORA_INICIO= "hora_inicio"
+        const val TIEMPO_TOTAL="tiempo_de_entrenamiento"
+        const val CALORIAS_QUEMADAS= "calorias_quemadas"
     }
 
     //Creamos las tablas
@@ -128,21 +136,10 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                 )
                 """.trimIndent()
             db?.execSQL(createUsuariosRutinasTable)
-
             /*val createUsuariosRutinasTable = """
-                   CREATE TABLE $TABLA_USUARIOS_RUTINAS(
-                   $ID_USUARIO_FK INTEGER,
-                   $ID_RUTINA_FK INTEGER,
-                   $HORA_INICIO TIME,
-                   $TIEMPO_ENTRENAMIENTO INTEGER,
-                   $CALORIAS_QUEMADAS INTEGER,
-                   PRIMARY KEY ($ID_USUARIO_FK,$ID_RUTINA_FK),
-                   FOREIGN KEY ($ID_USUARIO_FK) REFERENCES $TABLA_USERS($ID_USUARIO),
-                   FOREIGN KEY ($ID_RUTINA_FK) REFERENCES $TABLA_RUTINAS($ID_RUTINA)
-                )
+
                 """.trimIndent()
             db?.execSQL(createUsuariosRutinasTable)*/
-
             //Jugaremos con 0,1 y 2 en nivel_dieta para asisnar 3 niveles distintos
             val createDietaTable="""
                 CREATE TABLE $TABLA_DIETAS (
@@ -154,6 +151,21 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
             """.trimIndent()
             db?.execSQL(createDietaTable)
 
+            val createTableHistorial="""
+                 CREATE TABLE $TABLA_HISTORIAL(
+                   $ID_HISTORIAL INTEGER PRIMARY KEY AUTOINCREMENT,
+                   $ID_USUARIO_FK INTEGER,
+                   $ID_RUTINA_FK INTEGER,
+                   $NOMBRE_RUTINA TEXT,
+                   $DIA_ENTRENAMIENTO TEXT,
+                   $HORA_INICIO TEXT,
+                   $TIEMPO_TOTAL TEXT,
+                   $CALORIAS_QUEMADAS INTEGER,
+                   FOREIGN KEY ($ID_USUARIO_FK) REFERENCES $TABLA_USERS($ID_USUARIO),
+                   FOREIGN KEY ($ID_RUTINA_FK) REFERENCES $TABLA_RUTINAS($ID_RUTINA)
+                )                
+            """.trimIndent()
+            db?.execSQL(createTableHistorial)
             //Dos trigger que mantendra SOLO un usuario seleccionado a la vez ya que SQLite no permite INSERT OR UPDATE
             val createTriggerInsertUser="""
                 CREATE TRIGGER insert_usuario_seleccionado
