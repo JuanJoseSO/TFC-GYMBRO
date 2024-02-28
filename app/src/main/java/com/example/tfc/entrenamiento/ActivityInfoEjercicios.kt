@@ -22,6 +22,8 @@ import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.EjerciciosDb
 import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
 import com.example.tfc.sqlite.sqliteMetodos.RutinaEjercicioDb
+import com.example.tfc.sqlite.sqliteMetodos.UserDb
+import com.example.tfc.sqlite.sqliteMetodos.UsuarioRutinaDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ActivityInfoEjercicios : AppCompatActivity() {
@@ -75,12 +77,12 @@ class ActivityInfoEjercicios : AppCompatActivity() {
                 /*Lo que hacemos en este Listener es abrir un AlertDialog que estamos inflando con el mismo adapter que la lista de
                   rutinas lo que hace que en lugar de ser una lista gris sin estilo sea una lista con un fondo y un formato individual
                   para cada ejercicio,quedando mucho mas atractiva visualmente*/
-                if (rutinaDb.getRutinas().isEmpty()) {
+                if (usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!).isEmpty()) {
                     //Si no hay rutinas no nos permitirá crearlo
                     Toast.makeText(this, "No hay rutinas creadas", Toast.LENGTH_LONG).show()
                 } else {
                     //Si hay rutinas
-                    val listaRutinas = rutinaDb.getRutinas() //Obtienemos la lista de rutinas
+                    val listaRutinas = usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!)//Obtienemos la lista de rutinas
                     val adapter= AdapterRutina(this, listaRutinas) //Creamos el adapter
                     val layoutRutina= LayoutInflater.from(this).inflate(R.layout.fragment_listas,null)//inflamos la rutina
                     layoutRutina.background= ContextCompat.getDrawable(this,R.drawable.background)//Le cambiamos el fondo
@@ -175,7 +177,8 @@ class ActivityInfoEjercicios : AppCompatActivity() {
         db= DatabaseHelper(this)
         ejerciciosDb = EjerciciosDb(db)
         rutinaDb = RutinaDb(db)
-        rutinaEjercicioDb = RutinaEjercicioDb(db)
+        usuarioRutinaDb = UsuarioRutinaDb(db)
+        userDb = UserDb(db)
         tvNumPeso.text=pesoInicial.toString()
         tvNumRepeticiones.text=repeticiones.toString()
         tvNumPeso.text=pesoInicial.toString()
@@ -201,8 +204,10 @@ class ActivityInfoEjercicios : AppCompatActivity() {
     private var pesoInicial= 20.0
     private lateinit var db : DatabaseHelper
     private lateinit var ejerciciosDb : EjerciciosDb
-    private lateinit var rutinaDb : RutinaDb
     private lateinit var rutinaEjercicioDb : RutinaEjercicioDb
+    private lateinit var rutinaDb : RutinaDb
+    private lateinit var usuarioRutinaDb : UsuarioRutinaDb
+    private lateinit var userDb : UserDb
 }
 
 

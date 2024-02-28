@@ -24,49 +24,18 @@
         android:id="@+id/btnCrearRutina"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/layout_btns"
-        android:text="@string/crear"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnModificarRutina"
-        app:layout_constraintEnd_toStartOf="@id/btnEliminarRutina"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/contenedor_rutina"
-        tools:ignore="VisualLintButtonSize" />
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnEliminarRutina"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/layout_btns"
-        android:text="@string/eliminar"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/btnModificarRutina"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnCrearRutina"
-        app:layout_constraintTop_toBottomOf="@id/contenedor_rutina"
-        tools:ignore="VisualLintButtonSize" />
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnModificarRutina"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/layout_btns"
-        android:text="@string/modificar_rutina"
+        android:text="@string/crear_rutina"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnCrearRutina"
+        app:layout_constraintTop_toBottomOf="@id/contenedor_rutina"
         tools:ignore="VisualLintButtonSize" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

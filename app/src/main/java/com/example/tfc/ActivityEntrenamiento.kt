@@ -1,14 +1,22 @@
 package com.example.tfc
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
+import android.webkit.WebChromeClient
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import com.example.tfc.clasesAuxiliares.Cronometro
+import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
 import com.example.tfc.clasesAuxiliares.clasesBase.Rutina
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
@@ -28,20 +36,77 @@ class ActivityEntrenamiento : AppCompatActivity() { override fun onCreate(savedI
     /*Aqui empieza lo más complicado de la aplicacion donde manejamos toda la logica de como realizamos nuestra rutina de entrenamiento
       con varias consultas a las distintas tablas,guardando datos en tambien de historial y permitiendo al usuario cambiar entre una lista
       de ejercicios con sus pesos,repeticiones y series,con un cronometro y un contador de descanso*/
-    private fun infoEjercicios(){
-        val listaEjercicio= rutina?.id?.let { rutinaEjericicoDb.getEjerciciosPorRutina(it) }
-        if (listaEjercicio != null) {
-            for(i in listaEjercicio.indices){
-                tvNombreEjercicio.text=listaEjercicio[i].nombre
-                val infoEjercicio=rutina?.let { rutinaEjericicoDb.getInfoRutina(it.id,listaEjercicio[i].id)}
-                tvSeries.text= infoEjercicio?.get(0)?.toInt().toString()
-                tvRepeticiones.text= infoEjercicio?.get(1)?.toInt().toString()
-                peso= infoEjercicio?.get(2)!!
-                setPeso()
-
-            }
+    private fun initEjercicios(){
+        posicionEjercicioActual=0
+        serieActual=0
+        listaEjercicio= rutina?.id?.let { rutinaEjericicoDb.getEjerciciosPorRutina(it) }!!
+        if(listaEjercicio.isNotEmpty()){
+            cargarEjercicio(posicionEjercicioActual)
         }
     }
+
+    private fun cargarEjercicio(idEjercicio: Int) {
+        val ejercicio = listaEjercicio[idEjercicio]
+        //Asignamos el nombre y el video
+        ejercicio.nombre.also { tvNombreEjercicio.text = it }
+        setVideo(ejercicio.video)
+        /*Expresion lambda bastate compleja,estamos recuperando la informacion de cada ejercicio en una variable pasandole el id de la rutina y el id del ejercicio
+          al método getInfoRutina que se escuentra en la clase RutinaEjericicoDb,aunque compleja,la formatea el propio IDE a partir de una expresión más larga */
+        val infoEjercicio=rutina?.let { ejercicio.let { it1 ->rutinaEjericicoDb.getInfoRutina(it.id,it1.id)} }
+        tvRepeticiones.text= infoEjercicio?.get(1)?.toInt().toString()
+        peso= (infoEjercicio?.get(2)!!)
+        setPeso()
+        // Restablece la serie actual al cargar un nuevo ejercicio
+        serieActual = 1
+        tvSeries.text = serieActual.toString()
+    }
+    private fun siguienteSecuencia() {
+        //Cargamos tanto la cuenta de descanso por ejercicio
+        tvCuentaAtras.visibility=View.VISIBLE
+        initCuentaAtras()
+        //De nuevo una expresion lambda similar a la anterior,que formatea el propio IDE
+        val totalSeries = listaEjercicio[posicionEjercicioActual].let{
+            rutina?.id?.let{it1 -> it.let { it2 ->
+                rutinaEjericicoDb.getInfoRutina(it1, it2.id)[0].toInt()}}
+        }
+
+        if(serieActual==totalSeries!!-1){
+            lyUltimo.visibility=View.VISIBLE
+            //Creamos de nuevo un handler para que el mensaje solo se muestre x segundos,tres en este caso
+            Handler(Looper.getMainLooper()).postDelayed({
+                lyUltimo.visibility=View.GONE
+            },2000)
+        }
+        if(serieActual< totalSeries){
+            serieActual++
+            tvSeries.text = serieActual.toString()
+        }
+        else if (posicionEjercicioActual< listaEjercicio.size -1){
+            posicionEjercicioActual++
+            btnSiguiente.text=resources.getText(R.string.siguiente_ejercicio)
+            cargarEjercicio(posicionEjercicioActual)
+        }
+        else{
+            val intent=Intent(this,ActivityPrincipal::class.java)
+            startActivity(intent)
+        }
+    }
+
+    //Función que recoge la ruta del video del ejercicio seleccionado y le da formato
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun setVideo(ruta:String?){
+        //String que consigura el video con su enlace
+        val video="<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/$ruta\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
+        wvReproductor.loadData(video,"text/html","utf-8")
+        wvReproductor.settings.javaScriptEnabled=true //Habilita javaScript para reproducir el video
+        wvReproductor.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW//Mejora el rendimietno del reproductor
+        //Fortalecemos la seguridad de la aplicación capando el acceso a ella desde internet
+        wvReproductor.settings.domStorageEnabled = false //Evita el DOM y cookies de las paginas cargadas en el reproductor
+        wvReproductor.settings.databaseEnabled = false //Evita el acceso a la base de datos de las paginas cargadas en el reproductor
+        wvReproductor.settings.allowFileAccess = false //Evita el acceso a los archivos del dispositivo de las paginas cargadas en el reproductor
+        wvReproductor.webChromeClient= WebChromeClient()
+    }
+
 
     //Obtenemos la rutina de la lista anteriror seleccionada
     private fun initCronometro(){
@@ -85,8 +150,8 @@ class ActivityEntrenamiento : AppCompatActivity() { override fun onCreate(savedI
 
         //Boton que gestiona la lista de ejercicios mostrando el tiempo de descanso entre ellos y pasando a la siguiente repeticion/ejercicio
         btnSiguiente.setOnClickListener {
-            tvCuentaAtras.visibility=View.VISIBLE
-            initCuentaAtras()
+
+            siguienteSecuencia()
         }
 
         btnStart.setOnClickListener {
@@ -113,7 +178,6 @@ class ActivityEntrenamiento : AppCompatActivity() { override fun onCreate(savedI
             setPeso()
         }
     }
-
     private fun initComponentes() {
         tvCronometro = findViewById(R.id.tvCronometro)
         tvNombreEjercicio = findViewById(R.id.tvNombreEjercicio)
@@ -127,11 +191,12 @@ class ActivityEntrenamiento : AppCompatActivity() { override fun onCreate(savedI
         btnStart = findViewById(R.id.btnStart)
         btnSiguiente = findViewById(R.id.btnSiguiente)
         tvCuentaAtras = findViewById(R.id.tvCuentaAtras)
+        lyUltimo = findViewById(R.id.lyUltimo)
         db= DatabaseHelper(this)
         rutinaEjericicoDb= RutinaEjercicioDb(db)
         rutinaDb= RutinaDb(db)
         rutina= rutinaDb.getRutina(1 )
-        infoEjercicios()
+        initEjercicios()
     }
 
     private lateinit var tvCronometro: TextView
@@ -148,11 +213,14 @@ class ActivityEntrenamiento : AppCompatActivity() { override fun onCreate(savedI
     private lateinit var tvCuentaAtras: TextView
     private lateinit var cronometro: Cronometro
     private lateinit var cuentaAtras: Cronometro
+    private lateinit var lyUltimo: LinearLayout
     private lateinit var db: DatabaseHelper
     private lateinit var rutinaEjericicoDb : RutinaEjercicioDb
     private lateinit var rutinaDb:RutinaDb
+    private var serieActual=0
+    private var posicionEjercicioActual=0
+    private lateinit var listaEjercicio : List<Ejercicio>
     private var rutina:Rutina?=null
     private var peso= 0.0
-    private var serieNum=0
 }
 

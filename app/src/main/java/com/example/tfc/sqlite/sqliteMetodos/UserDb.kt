@@ -117,7 +117,4 @@ class UserDb(private val dbHelper: DatabaseHelper){
         cursor.close()
         return usuario
     }
-
-
-
 }

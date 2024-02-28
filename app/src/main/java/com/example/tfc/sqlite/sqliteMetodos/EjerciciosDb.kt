@@ -31,7 +31,6 @@ class EjerciciosDb(private val dbHelper: DatabaseHelper) {
     fun getEjercicio(id: Int): Ejercicio? {
         val db = dbHelper.readableDatabase
         var ejercicio: Ejercicio? = null
-
         try {
             //Obtenemos todas las columnas de la tabla
             val cursor = db.query(

@@ -13,8 +13,9 @@ import com.example.tfc.R
 import com.example.tfc.clasesAuxiliares.adapters.AdapterEjercicios
 import com.example.tfc.clasesAuxiliares.adapters.AdapterRutina
 import com.example.tfc.sqlite.DatabaseHelper
-import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
 import com.example.tfc.sqlite.sqliteMetodos.RutinaEjercicioDb
+import com.example.tfc.sqlite.sqliteMetodos.UserDb
+import com.example.tfc.sqlite.sqliteMetodos.UsuarioRutinaDb
 
 
 class FragmentRutina : Fragment() {
@@ -38,7 +39,7 @@ class FragmentRutina : Fragment() {
 
     //Recogemos la lista de rutinas de la base de datos y la mostramos
     private fun mostrartLista() {
-        val listaRutina = rutinaDb.getRutinas()
+        val listaRutina = usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!)
         lvRutina.adapter = AdapterRutina(requireContext(), listaRutina)
 
         //Al seleccionar una rutina nos muestra sus ejercicios
@@ -73,21 +74,19 @@ class FragmentRutina : Fragment() {
     private fun initComponentes() {
         btnCrear = requireView().findViewById(R.id.btnCrearRutina)
         lvRutina= requireView().findViewById(R.id.listas)
-        btnModificar = requireView().findViewById(R.id.btnModificarRutina)
-        btnEliminar = requireView().findViewById(R.id.btnEliminarRutina)
         contenedor = requireView().findViewById(R.id.contenedor_rutina)
         db = DatabaseHelper(requireContext())
-        rutinaDb = RutinaDb(db)
+        usuarioRutinaDb = UsuarioRutinaDb(db)
         rutinaEjercicioDb = RutinaEjercicioDb(db)
+        userDb = UserDb(db)
     }
 
     private lateinit var lvRutina : ListView
     private lateinit var contenedor: FrameLayout
     private lateinit var btnCrear: AppCompatButton
-    private lateinit var btnModificar: AppCompatButton
-    private lateinit var btnEliminar: AppCompatButton
     private lateinit var db: DatabaseHelper
-    private lateinit var rutinaDb: RutinaDb
+    private lateinit var userDb : UserDb
+    private lateinit var usuarioRutinaDb: UsuarioRutinaDb
     private lateinit var rutinaEjercicioDb: RutinaEjercicioDb
 
 }

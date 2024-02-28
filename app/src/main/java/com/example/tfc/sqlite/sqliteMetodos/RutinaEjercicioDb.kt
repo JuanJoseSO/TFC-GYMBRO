@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteException
 import android.util.Log
 import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
 import com.example.tfc.sqlite.DatabaseHelper
-import java.util.Objects
+
 
 class RutinaEjercicioDb (private val dbHelper: DatabaseHelper) {
 
@@ -27,27 +27,32 @@ class RutinaEjercicioDb (private val dbHelper: DatabaseHelper) {
     }
 
     @SuppressLint("Range")
-    fun getInfoRutina(idRutina:Int,idEjercicio: Int) : ArrayList<Double>{
+    fun getInfoRutina(idRutina:Int,idEjercicio: Int) : ArrayList<Double> {
         val lista = ArrayList<Double>()
         val db = dbHelper.readableDatabase
 
-        val cursor = db.rawQuery("SELECT * FROM ${DatabaseHelper.TABLA_RUTINA_EJERCICIOS} WHERE ${DatabaseHelper.ID_RUTINA_FK}=? AND ${DatabaseHelper.ID_EJERCICIO_FK}=?",
-        arrayOf(idRutina.toString(),idEjercicio.toString())
+        val cursor = db.rawQuery(
+            "SELECT * FROM ${DatabaseHelper.TABLA_RUTINA_EJERCICIOS} WHERE ${DatabaseHelper.ID_RUTINA_FK}=? AND ${DatabaseHelper.ID_EJERCICIO_FK}=?",
+            arrayOf(idRutina.toString(), idEjercicio.toString())
         )
-        if(cursor.moveToFirst()){
-            val series=cursor.getInt(cursor.getColumnIndex(DatabaseHelper.SERIES))
-            val repeticiones=cursor.getInt(cursor.getColumnIndex(DatabaseHelper.REPETICIONES))
-            val peso_serie=cursor.getDouble(cursor.getColumnIndex(DatabaseHelper.PESO_SERIE))
-            lista.add(series.toDouble())
-            lista.add(repeticiones.toDouble())
-            lista.add(peso_serie)
+        if (cursor.moveToFirst()) {
+            do {
+                val series = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.SERIES))
+                val repeticiones = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.REPETICIONES))
+                val pesoSerie = cursor.getDouble(cursor.getColumnIndex(DatabaseHelper.PESO_SERIE))
+                lista.add(series.toDouble())
+                lista.add(repeticiones.toDouble())
+                lista.add(pesoSerie)
+            } while (cursor.moveToNext())
+            cursor.close()
+
         }
         return lista
     }
 
     @SuppressLint("Range")
     fun getEjerciciosPorRutina(idRutina:Int) : List<Ejercicio>{
-        val lista = ArrayList<Ejercicio>()
+        val lista = mutableListOf<Ejercicio>()
         val db = dbHelper.readableDatabase
         val select="SELECT * FROM ${DatabaseHelper.TABLA_EJERCICIOS} " +
                 "JOIN ${DatabaseHelper.TABLA_RUTINA_EJERCICIOS} ON ${DatabaseHelper.TABLA_EJERCICIOS}.${DatabaseHelper.ID_EJERCICIO}=" +

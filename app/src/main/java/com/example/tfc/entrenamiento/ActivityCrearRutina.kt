@@ -12,6 +12,8 @@ import com.example.tfc.R
 import com.example.tfc.clasesAuxiliares.clasesBase.Rutina
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
+import com.example.tfc.sqlite.sqliteMetodos.UserDb
+import com.example.tfc.sqlite.sqliteMetodos.UsuarioRutinaDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ActivityCrearRutina : AppCompatActivity() {
@@ -87,7 +89,8 @@ class ActivityCrearRutina : AppCompatActivity() {
                     tvResultadoDia.text.toString()
                 )
                 try{
-                    rutinaDb.addRutina(rutina)
+                    //Como se explica en rutinaDB añadir rutina devuelve un Long con el id,para añadirlo a la tabla usuario_rutina
+                    usuarioRutinaDb.addRutinaAUsuario(rutinaDb.addRutina(rutina),userDb.getUsuarioSeleccionado()?.id!!)
                     Toast.makeText(this, "Rutina creada correctamente", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this,ActivityPrincipal::class.java)
                     startActivity(intent)
@@ -129,7 +132,10 @@ class ActivityCrearRutina : AppCompatActivity() {
         tvResultadoDescanso=findViewById(R.id.tvResultadoDescanso)
         btnSumarDescanso=findViewById(R.id.btnSumarDescanso)
         btnRestarDescanso=findViewById(R.id.btnRestarDescanso)
-        rutinaDb =  RutinaDb(DatabaseHelper(this))
+        db=DatabaseHelper(this)
+        rutinaDb =  RutinaDb(db)
+        usuarioRutinaDb= UsuarioRutinaDb(db)
+        userDb =  UserDb(db)
         tvResultadoTiempo.text=tiempoInicial.toString()
         tvResultadoIntensidad.text=niveles[nivel]
         tvResultadoDescanso.text=descansoInicial.toString()
@@ -153,6 +159,9 @@ class ActivityCrearRutina : AppCompatActivity() {
     private lateinit var btnSumarDescanso : FloatingActionButton
     private lateinit var btnCrearRutina : AppCompatButton
     private lateinit var rutinaDb : RutinaDb
+    private lateinit var usuarioRutinaDb: UsuarioRutinaDb
+    private lateinit var db : DatabaseHelper
+    private lateinit var userDb : UserDb
     private var descansoInicial = 30
     private var tiempoInicial=60
     private val niveles : Array<String> = arrayOf("Baja","Media","Alta")

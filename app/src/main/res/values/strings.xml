@@ -67,6 +67,8 @@
     <string name="repeticiones_num">REPETICIONES:</string>
     <string name="peso_ninicial">PESO\nINICIAL:</string>
     <string name="siguiente">SIGUIENTE</string>
+    <string name="siguiente_ejercicio">SIGUIENTE EJERCICIO</string>
+    <string name="ltima_serie">¡ÚLTIMA SERIE!</string>
 
 
 </resources>

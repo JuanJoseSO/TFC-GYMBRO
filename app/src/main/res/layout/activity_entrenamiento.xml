@@ -15,7 +15,6 @@
         android:autoSizeMaxTextSize="30sp"
         android:autoSizeMinTextSize="8sp"
         android:autoSizeTextType="uniform"
-        android:text="patata"
         android:gravity="center"
         android:padding="2dp"
         android:textColor="@color/white"
@@ -251,7 +250,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tvPeso"
                 app:layout_constraintTop_toBottomOf="@id/divider2"
-                app:tint="@color/white" />
+                app:tint="@color/white"
+                tools:ignore="ImageContrastCheck" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -276,19 +276,42 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="16dp"
+        android:autoSizeMaxTextSize="24sp"
+        android:autoSizeMinTextSize="8sp"
+        android:autoSizeTextType="uniform"
         android:background="@drawable/layout_btns"
         android:text="@string/siguiente"
         android:textColor="@color/white"
-        app:layout_constraintWidth_percent="0.5"
-        app:layout_constraintHeight_percent="0.06"
         app:layout_constraintBottom_toTopOf="@id/tvCuentaAtras"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.06"
         app:layout_constraintStart_toEndOf="@+id/btnStart"
         app:layout_constraintTop_toBottomOf="@+id/cvInfo"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="8sp"
-        android:autoSizeMaxTextSize="24sp"
-        tools:ignore="VisualLintButtonSize" />
+        app:layout_constraintWidth_percent="0.5"
+        tools:ignore="VisualLintButtonSize,TouchTargetSizeCheck" />
+
+    <LinearLayout
+        android:id="@+id/lyUltimo"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_mensaje"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.208">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ltima_serie"
+            android:textColor="@color/red"
+            android:textSize="40sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
     <TextView
         android:visibility="gone"
