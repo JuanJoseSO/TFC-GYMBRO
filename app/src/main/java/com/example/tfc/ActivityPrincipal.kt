@@ -55,7 +55,7 @@ class ActivityPrincipal : AppCompatActivity() {
     //Funcion para cargar fragmentos
     private fun cargarFragmento(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
+            .replace(R.id.contenedor_fragments, fragment)
             .commit()
     }
     private fun cargarUltimoFragmentoVisitado() {

@@ -21,7 +21,7 @@ class FragmentDieta : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initComponentes(view)
+        initComponentes()
         initUI()
     }
 
@@ -53,8 +53,8 @@ class FragmentDieta : Fragment() {
         super.onDestroy()
     }
 
-    private fun initComponentes(view: View){
-        listaDieta=view.findViewById(R.id.listas)
+    private fun initComponentes(){
+        listaDieta=requireView().findViewById(R.id.listas)
         dietaDb= DietaDb(DatabaseHelper(requireContext()))
     }
 

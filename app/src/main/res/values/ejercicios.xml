@@ -16,7 +16,7 @@
 
     <!-- Ejercicios de Pecho -->
     <string-array name="ejercicios_pecho">
-        <item>Cruces en máquina</item>
+        <item>Aperturas en máquina</item>
         <item>Cruces en polea alta</item>
         <item>Cruces en polea baja</item>
         <item>Flexiones</item>
@@ -26,13 +26,13 @@
         <item>Fondos en banco</item>
         <item>Hex Press</item>
         <item>Press de banca con barra</item>
-        <item>Press con mancuernas</item>
+        <item>Press de banca con mancuernas</item>
         <item>Press de banca con agarre cerrado</item>
         <item>Press de banca inclinado</item>
-        <item>Press inclinado con mancuerdas</item>
+        <item>Press de banca inclinado con mancuerdas</item>
         <item>Press de banca inclinado con agarre cerrado</item>
         <item>Press de banca declinado</item>
-        <item>Press declinado con mancuernas</item>
+        <item>Press de banca declinado con mancuernas</item>
         <item>Press de banca declinado con agarre cerrado</item>
     </string-array>
     <string-array name="yt_pecho">

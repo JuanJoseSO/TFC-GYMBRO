@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.clasesAuxiliares.clasesBase.Usuario
 import com.example.tfc.sqlite.sqliteMetodos.UserDb
+import com.example.tfc.sqlite.sqliteMetodos.UsuarioRutinaDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.slider.RangeSlider
 import java.text.DecimalFormat
@@ -89,7 +90,8 @@ class ActivityLogin : AppCompatActivity() {
                     btnGeneroM
                 )
                 try{
-                    usersDb.addUsuario(usuario)
+                    val idUser=userDb.addUsuario(usuario)
+                    setRutinasPredefinidas(idUser)
                     Toast.makeText(this, "Usuario creado correctamente", Toast.LENGTH_SHORT).show()
                     navegarActivityPrincipal()
                 }catch (e: Exception) {
@@ -97,6 +99,12 @@ class ActivityLogin : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun setRutinasPredefinidas(id: Int) {
+        usuarioRutinaDb.addRutinaAUsuario(1,id)
+        usuarioRutinaDb.addRutinaAUsuario(2,id)
+        usuarioRutinaDb.addRutinaAUsuario(3,id)
     }
 
     private fun navegarActivityPrincipal(){
@@ -168,6 +176,9 @@ class ActivityLogin : AppCompatActivity() {
         tvEdad=findViewById(R.id.tvEdad)
         btnCrearUser=findViewById(R.id.btnCrearUser)
         nombre=findViewById(R.id.etNombreUsuario)
+        db=DatabaseHelper(this)
+        userDb=UserDb(db)
+        usuarioRutinaDb=UsuarioRutinaDb(db)
     }
 
     private lateinit var cvMasculino: CardView
@@ -187,6 +198,8 @@ class ActivityLogin : AppCompatActivity() {
     private lateinit var tvEdad: TextView
     private lateinit var btnCrearUser: AppCompatButton
     private lateinit var nombre: EditText
-    private val usersDb = UserDb(DatabaseHelper(this))
+    private lateinit var db:DatabaseHelper
+    private lateinit var usuarioRutinaDb : UsuarioRutinaDb
+    private lateinit var userDb : UserDb
 
 }

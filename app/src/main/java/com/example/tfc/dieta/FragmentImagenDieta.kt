@@ -15,14 +15,11 @@ class FragmentImagenDieta : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
         return inflater.inflate(R.layout.fragment_imagen_dieta, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        initComponentes(view)
         setImagen()
     }
 
@@ -30,14 +27,9 @@ class FragmentImagenDieta : Fragment() {
     @SuppressLint("DiscouragedApi")
     private fun setImagen(){
         if(arguments?.getString("imagen")!=null){
-            val resourceId= resources.getIdentifier(arguments?.getString("imagen"),"drawable",context?.packageName)
-            pvImagen.setImageResource(resourceId)
+            val imagenRecibida= resources.getIdentifier(arguments?.getString("imagen"),"drawable",context?.packageName)
+            val pvImagen=requireView().findViewById<PhotoView>(R.id.pvImagen)
+            pvImagen.setImageResource(imagenRecibida)
         }
     }
-
-    private fun initComponentes(view: View){
-        pvImagen=view.findViewById(R.id.pvImagen)
-    }
-
-    private lateinit var pvImagen : PhotoView
 }

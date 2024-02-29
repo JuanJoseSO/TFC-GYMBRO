@@ -79,6 +79,7 @@ class FragmentHome : Fragment() {
         userDb=UserDb(db)
         usuarioRutinaDb=UsuarioRutinaDb(db)
     }
+
     private lateinit var  db: DatabaseHelper
     private lateinit var  userDb: UserDb
     private lateinit var usuarioRutinaDb: UsuarioRutinaDb

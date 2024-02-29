@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat
 import com.example.tfc.clasesAuxiliares.Cronometro
 import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
 import com.example.tfc.clasesAuxiliares.clasesBase.Rutina
+import com.example.tfc.clasesAuxiliares.clasesBase.Sesion
 import com.example.tfc.clasesAuxiliares.clasesBase.Usuario
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.HistorialDb
@@ -198,14 +199,11 @@ class ActivityEntrenamiento : AppCompatActivity() {
     }
 
     private fun guardarHistorial(){
-        rutina.id
-        user.id
-        rutina.nombre
         val fechaActual= LocalDate.now().toString()
-        horaInicio
         val tiempoEntrenamiento=tvCronometro.text.toString()
-        val calorias =(tiempoEntrenamiento.split(":")[0].toInt()* 37.45).toInt()
-        historialDb.addSesion(rutina.id, user.id, rutina.nombre, fechaActual,horaInicio,tiempoEntrenamiento,calorias)
+        val calorias =(tiempoEntrenamiento.split(":")[0].toInt()* 7.4).toInt()
+
+        historialDb.addSesion(Sesion(rutina.id, user.id, fechaActual,horaInicio,tiempoEntrenamiento,calorias))
 
     }
     private fun initComponentes() {

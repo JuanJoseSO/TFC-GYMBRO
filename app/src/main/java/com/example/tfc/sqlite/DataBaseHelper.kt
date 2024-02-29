@@ -66,7 +66,6 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         const val ID_HISTORIAL="id_historial"
         //id_usuario_fk
         //id_rutina_fk
-        //nombre_rutina
         const val DIA_ENTRENAMIENTO="dia_entrenamiento"
         const val HORA_INICIO= "hora_inicio"
         const val TIEMPO_TOTAL="tiempo_de_entrenamiento"
@@ -136,10 +135,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                 )
                 """.trimIndent()
             db?.execSQL(createUsuariosRutinasTable)
-            /*val createUsuariosRutinasTable = """
 
-                """.trimIndent()
-            db?.execSQL(createUsuariosRutinasTable)*/
             //Jugaremos con 0,1 y 2 en nivel_dieta para asisnar 3 niveles distintos
             val createDietaTable="""
                 CREATE TABLE $TABLA_DIETAS (
@@ -156,7 +152,6 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                    $ID_HISTORIAL INTEGER PRIMARY KEY AUTOINCREMENT,
                    $ID_USUARIO_FK INTEGER,
                    $ID_RUTINA_FK INTEGER,
-                   $NOMBRE_RUTINA TEXT,
                    $DIA_ENTRENAMIENTO TEXT,
                    $HORA_INICIO TEXT,
                    $TIEMPO_TOTAL TEXT,

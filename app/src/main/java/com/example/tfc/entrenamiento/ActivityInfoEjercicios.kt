@@ -74,43 +74,51 @@ class ActivityInfoEjercicios : AppCompatActivity() {
             tvNumPeso.text=pesoInicial.toString()
 
             btnAnadir.setOnClickListener{
-                /*Lo que hacemos en este Listener es abrir un AlertDialog que estamos inflando con el mismo adapter que la lista de
-                  rutinas lo que hace que en lugar de ser una lista gris sin estilo sea una lista con un fondo y un formato individual
-                  para cada ejercicio,quedando mucho mas atractiva visualmente*/
-                if (usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!).isEmpty()) {
-                    //Si no hay rutinas no nos permitirá crearlo
-                    Toast.makeText(this, "No hay rutinas creadas", Toast.LENGTH_LONG).show()
-                } else {
-                    //Si hay rutinas
-                    val listaRutinas = usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!)//Obtienemos la lista de rutinas
-                    val adapter= AdapterRutina(this, listaRutinas) //Creamos el adapter
-                    val layoutRutina= LayoutInflater.from(this).inflate(R.layout.fragment_listas,null)//inflamos la rutina
-                    layoutRutina.background= ContextCompat.getDrawable(this,R.drawable.background)//Le cambiamos el fondo
-                    val lvRutina = layoutRutina.findViewById<ListView>(R.id.listas)//Rlacionamos con nuestro layout
-                    lvRutina.adapter=adapter //Relacionamos con el adapter
-                    lvRutina.setOnItemClickListener { _, _, position, _ ->
-                        //Añadimos a la base de datos el item seleccionado
-                        rutinaEjercicioDb.addEjercicioARutina(
-                            listaRutinas[position].id,
-                            ejercicio.id,
-                            repeticiones,
-                            series,
-                            pesoInicial,
-                        )
-                        Toast.makeText(this, "Ejercicio añadido", Toast.LENGTH_SHORT).show()
-                        //Volvemos a la activityPrincipal
-                        val intent = Intent(this, ActivityPrincipal::class.java)
-                        startActivity(intent)
-                    }
-                    //Creamos el Alerdialog y le damos el estilo y un boton atrás
-                    val builder = AlertDialog.Builder(this)
-                    builder.setView(layoutRutina)
-                    builder.setNegativeButton("Atrás"){ dialog, _->dialog.dismiss()}
-                    val dialog=builder.create()
-                    dialog.show()
-                }
+               cargarRutinas()
             }
         }
+
+    private fun cargarRutinas() {
+        /*Lo que hacemos en esta funcion es abrir un AlertDialog que estamos inflando con el mismo adapter que la lista de
+          rutinas lo que hace que en lugar de ser una lista gris sin estilo sea una lista con un fondo y un formato individual
+          para cada ejercicio,quedando mucho mas atractiva visualmente*/
+        if (usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!).isEmpty()) {
+            //Si no hay rutinas no nos permitirá crearlo
+            Toast.makeText(this, "No hay rutinas creadas", Toast.LENGTH_LONG).show()
+        } else {
+            //Si hay rutinas
+            val listaRutinas =
+                usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!)//Obtienemos la lista de rutinas
+            val adapter = AdapterRutina(this, listaRutinas) //Creamos el adapter
+            val layoutRutina = LayoutInflater.from(this)
+                .inflate(R.layout.fragment_listas, null)//inflamos la rutina
+            layoutRutina.background =
+                ContextCompat.getDrawable(this, R.drawable.background)//Le cambiamos el fondo
+            val lvRutina =
+                layoutRutina.findViewById<ListView>(R.id.listas)//Rlacionamos con nuestro layout
+            lvRutina.adapter = adapter //Relacionamos con el adapter
+            lvRutina.setOnItemClickListener { _, _, position, _ ->
+                //Añadimos a la base de datos el item seleccionado
+                rutinaEjercicioDb.addEjercicioARutina(
+                    listaRutinas[position].id,
+                    ejercicio.id,
+                    repeticiones,
+                    series,
+                    pesoInicial,
+                )
+                Toast.makeText(this, "Ejercicio añadido", Toast.LENGTH_SHORT).show()
+                //Volvemos a la activityPrincipal
+                val intent = Intent(this, ActivityPrincipal::class.java)
+                startActivity(intent)
+            }
+            //Creamos el Alerdialog y le damos el estilo y un boton atrás
+            val builder = AlertDialog.Builder(this)
+            builder.setView(layoutRutina)
+            builder.setNegativeButton("Atrás") { dialog, _ -> dialog.dismiss() }
+            val dialog = builder.create()
+            dialog.show()
+        }
+    }
 
     //Funciones para aumentar o reducir los campos seleccionados
      private fun setPeso(){

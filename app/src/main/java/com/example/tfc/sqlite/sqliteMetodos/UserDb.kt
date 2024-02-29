@@ -10,9 +10,10 @@ import com.example.tfc.sqlite.DatabaseHelper
 class UserDb(private val dbHelper: DatabaseHelper){
 
     //******MÉTODOS TABLA USUARIO
-    //Añadimos usuarios
-    fun addUsuario(usuario: Usuario) {
+    //Añadimos usuarios,devolvemos el id para autoasignar las tres rutinas base cada vez que se crea un usuario
+    fun addUsuario(usuario: Usuario) : Int {
         val db = dbHelper.writableDatabase
+        var userId=0
         try {
             //Guardamos el objeto usuario repartiendo la información en las distinta columnas
             val values = ContentValues()
@@ -27,10 +28,11 @@ class UserDb(private val dbHelper: DatabaseHelper){
             ) //El genero será un 1 o un 0 dependiendo de la opcion elegida
             values.put(DatabaseHelper.SELECCION, 1) //Siempre selecciona el último usuario creado
 
-            db.insert(DatabaseHelper.TABLA_USERS, null, values)
+            userId= db.insert(DatabaseHelper.TABLA_USERS, null, values).toInt()
         } catch (e: SQLiteException) {
             Log.e("SQLite", "Error al añadir usuario", e)
         }
+        return userId
     }
 
     //Contamos el número de usuarios y lo aplicaremos a la lógica de la aplicacion
@@ -59,13 +61,13 @@ class UserDb(private val dbHelper: DatabaseHelper){
         if (cursor.moveToFirst()) {
             do {
                 val usuario = Usuario(
-                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ID_USUARIO)), // ID del usuario
-                    cursor.getString(cursor.getColumnIndex(DatabaseHelper.NOMBRE_USUARIO)), // Nombre de Usuario
-                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.EDAD)), // Edad
-                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.PESO)), // Peso
-                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ALTURA)), // Altura
-                    cursor.getDouble(cursor.getColumnIndex(DatabaseHelper.IMC)), // IMC
-                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.GENERO)) != 0 // Género
+                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ID_USUARIO)),
+                    cursor.getString(cursor.getColumnIndex(DatabaseHelper.NOMBRE_USUARIO)),
+                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.EDAD)),
+                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.PESO)),
+                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ALTURA)),
+                    cursor.getDouble(cursor.getColumnIndex(DatabaseHelper.IMC)),
+                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.GENERO)) != 0
                 )
                 listaUsuarios.add(usuario)
             } while (cursor.moveToNext())
@@ -106,12 +108,12 @@ class UserDb(private val dbHelper: DatabaseHelper){
         if (cursor.moveToFirst()) {
             usuario = Usuario(
                 cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ID_USUARIO)),
-                cursor.getString(cursor.getColumnIndex(DatabaseHelper.NOMBRE_USUARIO)), // Obtener el nombre de usuario
-                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.EDAD)), // Obtener la edad
-                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.PESO)), // Obtener el peso
-                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ALTURA)), // Obtener la altura
-                cursor.getDouble(cursor.getColumnIndex(DatabaseHelper.IMC)), // Obtener el IMC
-                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.GENERO)) != 0 // Obtener el género (convertido de entero a booleano)
+                cursor.getString(cursor.getColumnIndex(DatabaseHelper.NOMBRE_USUARIO)),
+                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.EDAD)),
+                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.PESO)),
+                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ALTURA)),
+                cursor.getDouble(cursor.getColumnIndex(DatabaseHelper.IMC)),
+                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.GENERO)) != 0
             )
         }
         cursor.close()

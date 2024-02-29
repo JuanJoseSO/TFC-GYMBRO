@@ -11,8 +11,11 @@ import com.example.tfc.clasesAuxiliares.clasesBase.Dieta
 import com.example.tfc.sqlite.DatabaseHelper
 
 import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
+import com.example.tfc.clasesAuxiliares.clasesBase.Rutina
 import com.example.tfc.sqlite.sqliteMetodos.DietaDb
 import com.example.tfc.sqlite.sqliteMetodos.EjerciciosDb
+import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
+import com.example.tfc.sqlite.sqliteMetodos.RutinaEjercicioDb
 import com.example.tfc.sqlite.sqliteMetodos.UserDb
 
 
@@ -30,7 +33,9 @@ class ActivityBienvenida : AppCompatActivity() {
                 cargarTablaEjercicios(resources, categoriasEjercicios)
             //Lo mismo con las dietas
             if(dietaDb.getDieta(1)==null)
-                cargarDieta()
+                cargarDietas()
+            if(rutinaDb.getRutina(1)==null)
+                cargarRutinas()
 
             //Realizamos una consulta para saber si existe el usuario
             //Si existe
@@ -53,8 +58,42 @@ class ActivityBienvenida : AppCompatActivity() {
         }
     }
 
+    private fun cargarRutinas() {
+        rutinaDb.addRutina(Rutina("Pecho",90,"Media",40,"Lunes"))
+        rutinaDb.addRutina(Rutina("Espalda",90,"Media",40,"Miércoles"))
+        rutinaDb.addRutina(Rutina("Pierna",90,"Media",40,"Viernes"))
+
+        rutinaEjercicioDb.addEjercicioARutina(1,10,4,12,75.0)
+        rutinaEjercicioDb.addEjercicioARutina(1,14,4,12,22.5)
+        rutinaEjercicioDb.addEjercicioARutina(1,2,4,12,12.5)
+        rutinaEjercicioDb.addEjercicioARutina(1,1,4,12,20.0)
+        rutinaEjercicioDb.addEjercicioARutina(1,47,4,12,7.5)
+        rutinaEjercicioDb.addEjercicioARutina(1,52,4,12,0.0)
+        rutinaEjercicioDb.addEjercicioARutina(1,48,4,12,20.0)
+
+        rutinaEjercicioDb.addEjercicioARutina(2,20,4,12,0.0)
+        rutinaEjercicioDb.addEjercicioARutina(2,22,4,12,80.0)
+        rutinaEjercicioDb.addEjercicioARutina(2,19,4,12,60.0)
+        rutinaEjercicioDb.addEjercicioARutina(2,28,4,12,50.0)
+        rutinaEjercicioDb.addEjercicioARutina(2,43,4,12,15.0)
+        rutinaEjercicioDb.addEjercicioARutina(2,39,4,12,15.0)
+        rutinaEjercicioDb.addEjercicioARutina(2,38,4,12,25.0)
+
+
+        rutinaEjercicioDb.addEjercicioARutina(3,116,4,12,80.0)
+        rutinaEjercicioDb.addEjercicioARutina(3,114,4,12,40.0)
+        rutinaEjercicioDb.addEjercicioARutina(3,120,4,30,20.0)
+        rutinaEjercicioDb.addEjercicioARutina(3,123,4,12,180.0)
+        rutinaEjercicioDb.addEjercicioARutina(3,125,4,12,40.0)
+        rutinaEjercicioDb.addEjercicioARutina(3,122,4,12,90.0)
+
+
+
+
+    }
+
     //Funcíon para insertar las tres dietas ejemplo
-    private fun cargarDieta() {
+    private fun cargarDietas() {
         val dieta1= Dieta(getString(R.string.dieta_d_ficit),0,"dieta_deficit")
         val dieta2= Dieta(getString(R.string.dieta_mantenimiento),1,"dieta_mantenimiento")
         val dieta3= Dieta(getString(R.string.dieta_volum_n),2,"dieta_volumen")
@@ -117,11 +156,14 @@ class ActivityBienvenida : AppCompatActivity() {
         db = DatabaseHelper(this)
         usersDb = UserDb(db)
         ejerciciosDb = EjerciciosDb(db)
+        rutinaDb = RutinaDb(db)
         dietaDb = DietaDb(db)
-
+        rutinaEjercicioDb = RutinaEjercicioDb(db)
     }
+    private lateinit var rutinaDb: RutinaDb
     private lateinit var btnAcceso: Button
     private lateinit var db : DatabaseHelper
+    private lateinit var rutinaEjercicioDb: RutinaEjercicioDb
     private lateinit var usersDb : UserDb
     private lateinit var ejerciciosDb : EjerciciosDb
     private lateinit var dietaDb : DietaDb
