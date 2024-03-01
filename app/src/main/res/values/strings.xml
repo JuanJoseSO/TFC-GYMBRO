@@ -20,7 +20,7 @@
     <string name="hombre">Hombre</string>
     <string name="altura">Altura</string>
     <string name="peso">Peso</string>
-    <string name="edad">Edad</string>
+    <string name="objetivo">Objetivo Diario</string>
     <string name="crear_usuario">Crear usuario</string>
     <string name="alturaDefecto">120 cm</string>
 
@@ -69,7 +69,6 @@
     <string name="siguiente">SIGUIENTE</string>
     <string name="siguiente_ejercicio">SIGUIENTE EJERCICIO</string>
     <string name="ltima_serie">¡ÚLTIMA SERIE!</string>
-
-
+    <string name="eliminar_historial">Eliminar historial</string>
 
 </resources>

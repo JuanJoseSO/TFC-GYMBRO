@@ -2,8 +2,8 @@ package com.example.tfc
 
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.tfc.dieta.FragmentDieta
 import com.example.tfc.entrenamiento.FragmentEntrenamiento
@@ -43,6 +43,7 @@ class ActivityPrincipal : AppCompatActivity() {
                     cargarFragmento(FragmentInfoUser())
                     guardarUltimoFragmento(R.id.menu_perfil)
                 }
+
                 R.id.menu_dieta -> {
                     cargarFragmento(FragmentDieta())
                     guardarUltimoFragmento(R.id.menu_dieta)
@@ -54,16 +55,17 @@ class ActivityPrincipal : AppCompatActivity() {
 
     //Funcion para cargar fragmentos
     private fun cargarFragmento(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.contenedor_fragments, fragment)
+        supportFragmentManager.beginTransaction().replace(R.id.contenedor_fragments, fragment)
             .commit()
     }
+
     private fun cargarUltimoFragmentoVisitado() {
         val sharedPreferences = getSharedPreferences("PreferenciasApp", Context.MODE_PRIVATE)
         //Recuperamos el menú de nuevo por que tenemos que actualizar tanto el fragment que se muesta en el contenedor como el botón ilumnado,simple estética
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.menuNavegacion)
         //Le asignamos el item seleccionada
-        bottomNavigationView.selectedItemId = sharedPreferences.getInt("ultimoFragmento", R.id.menu_home)
+        bottomNavigationView.selectedItemId =
+            sharedPreferences.getInt("ultimoFragmento", R.id.menu_home)
 
         when (sharedPreferences.getInt("ultimoFragmento", R.id.menu_home)) { //Home por defecto
             R.id.menu_home -> cargarFragmento(FragmentHome())

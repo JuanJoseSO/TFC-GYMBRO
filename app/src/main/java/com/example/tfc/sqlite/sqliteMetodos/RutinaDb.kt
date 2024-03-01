@@ -10,7 +10,7 @@ import com.example.tfc.sqlite.DatabaseHelper
 class RutinaDb(private val dbHelper: DatabaseHelper) {
 
     //Crear rutina devuelve un long con su id para añadirlo a la tabla usuarios_rutina
-    fun addRutina (rutina: Rutina) : Int {
+    fun addRutina(rutina: Rutina): Int {
         val db = dbHelper.writableDatabase
 
         val insert = ContentValues().apply {
@@ -27,13 +27,14 @@ class RutinaDb(private val dbHelper: DatabaseHelper) {
         }
         return -1
     }
+
     @SuppressLint("Range")
-    fun getRutina(id:Int):Rutina? {
-        val db=dbHelper.readableDatabase
-        var rutina:Rutina?=null
-        try{
+    fun getRutina(id: Int): Rutina? {
+        val db = dbHelper.readableDatabase
+        var rutina: Rutina? = null
+        try {
             //Obtenemos una rutina por su id
-            val cursor=db.query(
+            val cursor = db.query(
                 DatabaseHelper.TABLA_RUTINAS,
                 null,
                 "${DatabaseHelper.ID_RUTINA} = ?",
@@ -42,7 +43,7 @@ class RutinaDb(private val dbHelper: DatabaseHelper) {
                 null,
                 null
             )
-            if(cursor.moveToFirst()){
+            if (cursor.moveToFirst()) {
                 rutina = Rutina(
                     cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ID_RUTINA)),
                     cursor.getString(cursor.getColumnIndex(DatabaseHelper.NOMBRE_RUTINA)),
@@ -53,7 +54,7 @@ class RutinaDb(private val dbHelper: DatabaseHelper) {
                 )
             }
             cursor.close()
-        }catch (e: SQLiteException) {
+        } catch (e: SQLiteException) {
             Log.e("SQLite", "Error al obtener la rutina", e)
         }
         return rutina

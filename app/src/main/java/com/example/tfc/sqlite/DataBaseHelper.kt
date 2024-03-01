@@ -7,7 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 
 //No hay mucho que comentar,gestión de la base de datos,creación de tablas
-class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class DatabaseHelper(context: Context) :
+    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
         private const val DATABASE_VERSION = 1
         private const val DATABASE_NAME = "GYMBROUsers"
@@ -16,7 +17,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         const val TABLA_USERS = "usuarios"
         const val ID_USUARIO = "id_usuario"
         const val NOMBRE_USUARIO = "nombre_usuario"
-        const val EDAD = "edad"
+        const val OBJETIVO_DIARIO = "objetivoDiario"
         const val PESO = "peso"
         const val ALTURA = "altura"
         const val IMC = "IMC_usuario"
@@ -31,45 +32,45 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         const val YT_VIDEO = "yt_video"
 
         //Tabla rutina
-        const val TABLA_RUTINAS= "rutinas"
-        const val ID_RUTINA= "id_rutina"
-        const val NOMBRE_RUTINA= "nombre_rutina"
-        const val TIEMPO_OBJETIVO= "tiempo_objetivo"
-        const val INTENSIDAD= "intensidad"
-        const val DESCANSO="descanso"
-        const val DIA_PREFERENTE= "dia_preferente"
+        const val TABLA_RUTINAS = "rutinas"
+        const val ID_RUTINA = "id_rutina"
+        const val NOMBRE_RUTINA = "nombre_rutina"
+        const val TIEMPO_OBJETIVO = "tiempo_objetivo"
+        const val INTENSIDAD = "intensidad"
+        const val DESCANSO = "descanso"
+        const val DIA_PREFERENTE = "dia_preferente"
 
         //Tabla rutina_ejercicios,resultado de la relación N:M de estas
-        const val TABLA_RUTINA_EJERCICIOS= "rutina_ejercicios"
-        const val ID_RUTINA_FK= "id_rutina"
-        const val ID_EJERCICIO_FK= "id_ejercicio"
+        const val TABLA_RUTINA_EJERCICIOS = "rutina_ejercicios"
+        const val ID_RUTINA_FK = "id_rutina"
+        const val ID_EJERCICIO_FK = "id_ejercicio"
         const val SERIES = "series"
         const val REPETICIONES = "repeticiones"
-        const val PESO_SERIE="peso"
-
+        const val PESO_SERIE = "peso"
 
 
         //Tabla usuario-rutina
         //"id_rutina_fk"
-        const val TABLA_USUARIOS_RUTINAS= "usuarios_rutinas"
-        const val ID_USUARIO_FK= "id_usuario"
+        const val TABLA_USUARIOS_RUTINAS = "usuarios_rutinas"
+        const val ID_USUARIO_FK = "id_usuario"
 
         //Tabla dietas
-        const val TABLA_DIETAS="dietas"
-        const val ID_DIETA="id_dietas"
-        const val NOMBRE_DIETA="nombre_dieta"
-        const val NIVEL_DIETA="nivel_dieta"
-        const val IMAGEN_DIETA="imagen_dieta"
+        const val TABLA_DIETAS = "dietas"
+        const val ID_DIETA = "id_dietas"
+        const val NOMBRE_DIETA = "nombre_dieta"
+        const val NIVEL_DIETA = "nivel_dieta"
+        const val IMAGEN_DIETA = "imagen_dieta"
 
         //Tabla historial
-        const val TABLA_HISTORIAL="historial"
-        const val ID_HISTORIAL="id_historial"
+        const val TABLA_HISTORIAL = "historial"
+        const val ID_HISTORIAL = "id_historial"
+
         //id_usuario_fk
         //id_rutina_fk
-        const val DIA_ENTRENAMIENTO="dia_entrenamiento"
-        const val HORA_INICIO= "hora_inicio"
-        const val TIEMPO_TOTAL="tiempo_de_entrenamiento"
-        const val CALORIAS_QUEMADAS= "calorias_quemadas"
+        const val DIA_ENTRENAMIENTO = "dia_entrenamiento"
+        const val HORA_INICIO = "hora_inicio"
+        const val TIEMPO_TOTAL = "tiempo_de_entrenamiento"
+        const val CALORIAS_QUEMADAS = "calorias_quemadas"
     }
 
     //Creamos las tablas
@@ -79,7 +80,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                     CREATE TABLE $TABLA_USERS (
                         $ID_USUARIO INTEGER PRIMARY KEY AUTOINCREMENT,
                         $NOMBRE_USUARIO TEXT,
-                        $EDAD INTEGER,
+                        $OBJETIVO_DIARIO INTEGER,
                         $PESO INTEGER,
                         $ALTURA INTEGER,
                         $IMC REAL,
@@ -137,7 +138,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
             db?.execSQL(createUsuariosRutinasTable)
 
             //Jugaremos con 0,1 y 2 en nivel_dieta para asisnar 3 niveles distintos
-            val createDietaTable="""
+            val createDietaTable = """
                 CREATE TABLE $TABLA_DIETAS (
                 $ID_DIETA INTEGER PRIMARY KEY AUTOINCREMENT,
                 $NOMBRE_DIETA TEXT,
@@ -147,7 +148,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
             """.trimIndent()
             db?.execSQL(createDietaTable)
 
-            val createTableHistorial="""
+            val createTableHistorial = """
                  CREATE TABLE $TABLA_HISTORIAL(
                    $ID_HISTORIAL INTEGER PRIMARY KEY AUTOINCREMENT,
                    $ID_USUARIO_FK INTEGER,
@@ -162,7 +163,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
             """.trimIndent()
             db?.execSQL(createTableHistorial)
             //Dos trigger que mantendra SOLO un usuario seleccionado a la vez ya que SQLite no permite INSERT OR UPDATE
-            val createTriggerInsertUser="""
+            val createTriggerInsertUser = """
                 CREATE TRIGGER insert_usuario_seleccionado
                 AFTER INSERT ON $TABLA_USERS
                 FOR EACH ROW
@@ -175,7 +176,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
             """.trimIndent()
             db?.execSQL(createTriggerInsertUser)
 
-            val createTriggerUpdateUser="""
+            val createTriggerUpdateUser = """
                 CREATE TRIGGER update_usuario_seleccionado
                 AFTER UPDATE ON $TABLA_USERS
                 FOR EACH ROW
@@ -192,7 +193,6 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
             Log.e("SQLite", "Error al crear las tablas", e)
         }
     }
-
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL("DROP TABLE IF EXISTS $TABLA_USERS")

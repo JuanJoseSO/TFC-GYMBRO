@@ -13,8 +13,9 @@ import com.example.tfc.sqlite.sqliteMetodos.DietaDb
 
 
 class FragmentDieta : Fragment() {
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_listas, container, false)
     }
 
@@ -27,14 +28,14 @@ class FragmentDieta : Fragment() {
 
     private fun initUI() {
         //Eliminamos el divider,gusto personal
-        listaDieta.divider=null
+        listaDieta.divider = null
         //Recogemos el listado de dietas de la base de datos
         val dietas = dietaDb.getDietas()
         //Los mostramos en la lista,el adaptador ya se encarga de recoger los nombres
         val adapter = AdapterDieta(requireContext(), dietas)
-        listaDieta.adapter= adapter
+        listaDieta.adapter = adapter
         //Listener para la dieta que seleccionemos desde la lista
-        listaDieta.setOnItemClickListener { _, _, position, _->
+        listaDieta.setOnItemClickListener { _, _, position, _ ->
             val fragmentImagenDieta = FragmentImagenDieta().apply {
                 //Similar a un intent,pero así se configura la navegación entre fragments
                 arguments = Bundle().apply {
@@ -43,21 +44,20 @@ class FragmentDieta : Fragment() {
             }
             //Navegamos al fragmento destino,fragmentImagenDieta
             childFragmentManager.beginTransaction()
-                .replace(R.id.contenedor_listas, fragmentImagenDieta)
-                .commit()
-            }
+                .replace(R.id.contenedor_listas, fragmentImagenDieta).commit()
         }
+    }
 
     override fun onDestroy() {
         DatabaseHelper(requireContext()).close()
         super.onDestroy()
     }
 
-    private fun initComponentes(){
-        listaDieta=requireView().findViewById(R.id.listas)
-        dietaDb= DietaDb(DatabaseHelper(requireContext()))
+    private fun initComponentes() {
+        listaDieta = requireView().findViewById(R.id.listas)
+        dietaDb = DietaDb(DatabaseHelper(requireContext()))
     }
 
-    private lateinit var listaDieta:ListView
+    private lateinit var listaDieta: ListView
     private lateinit var dietaDb: DietaDb
 }

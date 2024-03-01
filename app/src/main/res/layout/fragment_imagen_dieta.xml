@@ -3,14 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dieta.FragmentImagenDieta"
-    android:background="@drawable/background">
-
+    android:background="@drawable/background"
+    tools:context=".dieta.FragmentImagenDieta">
 
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/pvImagen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/dieta_deficit"/>
-
+        android:src="@drawable/dieta_deficit" />
 </FrameLayout>

@@ -10,6 +10,8 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.LinearInterpolator
+import com.example.tfc.sqlite.DatabaseHelper
+import com.example.tfc.sqlite.sqliteMetodos.UserDb
 import kotlin.math.min
 
 class CirculosAnimados(context: Context, attrs: AttributeSet) : View(context, attrs) {
@@ -24,9 +26,16 @@ class CirculosAnimados(context: Context, attrs: AttributeSet) : View(context, at
         paint.strokeCap = Paint.Cap.ROUND //Redondea la linea
     }
 
-    fun rellenarCirculo() {
-        val animator = ValueAnimator.ofFloat(0f, 360f)
-        animator.duration = 60000 //Duración de la animación en ms. ******CAMBIARLO A ENTRENAMIENTO DIARO
+    fun rellenarCirculo(tiempoEntrenado: Int) {
+        //Calculo simplificado para dividir el tiempo entrenado en milisegundos entre 30 minutos
+        val userDb = UserDb(DatabaseHelper(context))
+        val objetivoDiario = userDb.getUsuarioSeleccionado()?.objetivoDiario
+        val rellendoTotal = tiempoEntrenado.toFloat() / (objetivoDiario?.toFloat() ?: 1f)
+
+        val animator = ValueAnimator.ofFloat(0f, 360f * rellendoTotal)
+
+        animator.duration =
+            1000 //Duración de la animación en ms. ******CAMBIARLO A ENTRENAMIENTO DIARO
         animator.interpolator = LinearInterpolator() //Con esto conseguimos un movimiento uniforme
 
         animator.addUpdateListener { animation ->
@@ -36,6 +45,7 @@ class CirculosAnimados(context: Context, attrs: AttributeSet) : View(context, at
 
         animator.start() //Inicia la animación
     }
+
     //Función que dibuja la linea con sus atributos
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {

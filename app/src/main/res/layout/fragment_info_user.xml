@@ -85,7 +85,6 @@
                 android:paddingBottom="8dp"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
-
         </TableRow>
 
         <View
@@ -119,7 +118,6 @@
                 android:paddingBottom="8dp"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
-
         </TableRow>
 
         <View
@@ -205,7 +203,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
                 android:paddingBottom="8dp"
-                android:text="@string/edad_"
+                android:text="@string/objetivo"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
@@ -272,5 +270,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnEliminarUsuario"
         tools:ignore="VisualLintButtonSize" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,7 +16,6 @@ import com.example.tfc.sqlite.sqliteMetodos.UserDb
 
 
 class DialogOpcionesUsuario : DialogFragment() {
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
@@ -34,7 +33,7 @@ class DialogOpcionesUsuario : DialogFragment() {
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
-    private fun initListeners(){
+    private fun initListeners() {
         btnCrearUser.setOnClickListener {
             val totalUsuarios = usersDb.contarUsuarios()
             //Si el número de usuarios maximo se alcanzó no nos permitirá crear nuevos usuarios
@@ -56,7 +55,8 @@ class DialogOpcionesUsuario : DialogFragment() {
             val totalUsuarios = usersDb.contarUsuarios()
             if (totalUsuarios == 0) {
                 //Si no hay usuarios no nos permitirá crearlo
-                Toast.makeText(requireContext(), "No hay usuarios creados", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "No hay usuarios creados", Toast.LENGTH_LONG)
+                    .show()
             } else {
                 //Si hay usuarios
                 val listaUsuarios = usersDb.getUsuarios() //Obtienemos la lista de usuarios
@@ -71,14 +71,20 @@ class DialogOpcionesUsuario : DialogFragment() {
                 builder.setItems(nombresUsuario) { _, which ->
                     val idUsuarioSeleccionado = idsUsuarios[which]
                     //Seleccionamos el usuarios con una función que devuelve directamente un boolean
-                    val seleccion= usersDb.seleccionUsuario(idUsuarioSeleccionado)
+                    val seleccion = usersDb.seleccionUsuario(idUsuarioSeleccionado)
 
                     if (seleccion) {
-                        Toast.makeText(requireContext(), "Usuario seleccionado: ${nombresUsuario[which]}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Usuario seleccionado: ${nombresUsuario[which]}",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         //Este dismiss cierra la lista de usuarios Y las opciones de usuarios
                         cerrarDialog()
                     } else {
-                        Toast.makeText(requireContext(), "Error al seleccionar usuario", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(), "Error al seleccionar usuario", Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
@@ -98,20 +104,19 @@ class DialogOpcionesUsuario : DialogFragment() {
     }
 
     //Necesitamos esta función para cerrar las opciones al seleccionar usuarios
-    private fun cerrarDialog(){
+    private fun cerrarDialog() {
         dismiss()
     }
 
-    private fun initComponentes(vista: View){
-        btnCambiarUser=vista.findViewById(R.id.btnCambiarUser)
-        btnCrearUser=vista.findViewById(R.id.btnCrearUser)
-        usersDb= UserDb(DatabaseHelper(vista.context))
+    private fun initComponentes(vista: View) {
+        btnCambiarUser = vista.findViewById(R.id.btnCambiarUser)
+        btnCrearUser = vista.findViewById(R.id.btnCrearUser)
+        usersDb = UserDb(DatabaseHelper(vista.context))
     }
 
     private lateinit var btnCrearUser: Button
     private lateinit var btnCambiarUser: Button
-    private lateinit var usersDb : UserDb
-
+    private lateinit var usersDb: UserDb
 }
 
 

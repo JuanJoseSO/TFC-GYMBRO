@@ -7,26 +7,26 @@ import android.util.Log
 import com.example.tfc.clasesAuxiliares.clasesBase.Dieta
 import com.example.tfc.sqlite.DatabaseHelper
 
-class DietaDb(private val dbHelper: DatabaseHelper){
+class DietaDb(private val dbHelper: DatabaseHelper) {
 
     fun addDieta(dieta: Dieta) {
-        val db= dbHelper.writableDatabase
-        try{
-            val insert= ContentValues().apply {
-                put(DatabaseHelper.NOMBRE_DIETA,dieta.nombre)
-                put(DatabaseHelper.NIVEL_DIETA,dieta.nivel)
-                put(DatabaseHelper.IMAGEN_DIETA,dieta.imagen)
+        val db = dbHelper.writableDatabase
+        try {
+            val insert = ContentValues().apply {
+                put(DatabaseHelper.NOMBRE_DIETA, dieta.nombre)
+                put(DatabaseHelper.NIVEL_DIETA, dieta.nivel)
+                put(DatabaseHelper.IMAGEN_DIETA, dieta.imagen)
             }
             db.insert(DatabaseHelper.TABLA_DIETAS, null, insert)
-        }catch (e: SQLiteException) {
-            Log.e("SQLite","Error al añadir la dieta")
+        } catch (e: SQLiteException) {
+            Log.e("SQLite", "Error al añadir la dieta")
         }
 
     }
 
     @SuppressLint("Range")
     fun getDieta(id: Int): Dieta? {
-        val db=dbHelper.readableDatabase
+        val db = dbHelper.readableDatabase
         var dieta: Dieta? = null
 
         try {
@@ -51,14 +51,14 @@ class DietaDb(private val dbHelper: DatabaseHelper){
                 )
             }
             cursor.close()
-        }catch (e: SQLiteException) {
+        } catch (e: SQLiteException) {
             Log.e("SQLite", "Error al obtener usuario", e)
         }
         return dieta
     }
 
     @SuppressLint("Range")
-    fun getDietas () : List<Dieta> {
+    fun getDietas(): List<Dieta> {
         val listaDietas = ArrayList<Dieta>()
         val select = "SELECT * FROM ${DatabaseHelper.TABLA_DIETAS}"
 

@@ -2,16 +2,17 @@ package com.example.tfc
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
-import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.clasesAuxiliares.clasesBase.Usuario
+import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.UserDb
 import com.example.tfc.sqlite.sqliteMetodos.UsuarioRutinaDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -21,8 +22,6 @@ import java.text.DecimalFormatSymbols
 import java.util.Locale
 
 class ActivityLogin : AppCompatActivity() {
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,20 +57,20 @@ class ActivityLogin : AppCompatActivity() {
             tvAltura.text = "$alturaActual cm"
         }
 
-        btnSumarPeso.setOnClickListener{
+        btnSumarPeso.setOnClickListener {
             pesoActual++
             setPeso()
 
         }
-        btnRestarPeso.setOnClickListener{
+        btnRestarPeso.setOnClickListener {
             pesoActual--
             setPeso()
         }
-        btnSumarEdad.setOnClickListener{
+        btnSumarEdad.setOnClickListener {
             edadActual++
             setEdad()
         }
-        btnRestarEdad.setOnClickListener{
+        btnRestarEdad.setOnClickListener {
             edadActual--
             setEdad()
         }
@@ -89,51 +88,51 @@ class ActivityLogin : AppCompatActivity() {
                     calcularIMC(),
                     btnGeneroM
                 )
-                try{
-                    val idUser=userDb.addUsuario(usuario)
+                try {
+                    val idUser = userDb.addUsuario(usuario)
                     setRutinasPredefinidas(idUser)
-                    Toast.makeText(this, "Usuario creado correctamente", Toast.LENGTH_SHORT).show()
                     navegarActivityPrincipal()
-                }catch (e: Exception) {
-                    Toast.makeText(this, "Error al crear el usuario", Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    Log.e("Error", "Error al crear el usuario")
                 }
             }
         }
     }
 
     private fun setRutinasPredefinidas(id: Int) {
-        usuarioRutinaDb.addRutinaAUsuario(1,id)
-        usuarioRutinaDb.addRutinaAUsuario(2,id)
-        usuarioRutinaDb.addRutinaAUsuario(3,id)
+        usuarioRutinaDb.addRutinaAUsuario(1, id)
+        usuarioRutinaDb.addRutinaAUsuario(2, id)
+        usuarioRutinaDb.addRutinaAUsuario(3, id)
     }
 
-    private fun navegarActivityPrincipal(){
-        val intent= Intent(this,ActivityPrincipal::class.java)
+    private fun navegarActivityPrincipal() {
+        val intent = Intent(this, ActivityPrincipal::class.java)
         startActivity(intent)
     }
 
     //Funciones SETTER/GETTER con seguridad de parametros
-    private fun calcularIMC():Double{
+    private fun calcularIMC(): Double {
         //Hay que realizar esto por que rompia la aplicación,asi que nos aseguramos de darle un formato y lo cambiamos luego
 
-        val df= DecimalFormat("#.##", DecimalFormatSymbols(Locale.ENGLISH))
-        val imc=pesoActual/(alturaActual.toDouble()/100*alturaActual.toDouble()/100)
-        val imcFormateado = df.format(imc).replace(",",".")
+        val df = DecimalFormat("#.##", DecimalFormatSymbols(Locale.ENGLISH))
+        val imc = pesoActual / (alturaActual.toDouble() / 100 * alturaActual.toDouble() / 100)
+        val imcFormateado = df.format(imc).replace(",", ".")
 
         return imcFormateado.toDouble()
     }
 
-    private fun setEdad(){
-        if(edadActual>0) {
+    private fun setEdad() {
+        if (edadActual > 0) {
             tvEdad.text = edadActual.toString()
-        }else{
+        } else {
             Toast.makeText(this, "La edad no puede ser menor que 0", Toast.LENGTH_SHORT).show()
         }
     }
-    private fun setPeso(){
-        if(pesoActual>0) {
-            tvPeso.text=pesoActual.toString()
-        }else{
+
+    private fun setPeso() {
+        if (pesoActual > 0) {
+            tvPeso.text = pesoActual.toString()
+        } else {
             Toast.makeText(this, "La edad no puede ser menor que 0", Toast.LENGTH_SHORT).show()
         }
     }
@@ -145,9 +144,13 @@ class ActivityLogin : AppCompatActivity() {
 
     private fun getColorFondo(componenteSeleccionado: Boolean): Int {
         return if (componenteSeleccionado) {
-            ContextCompat.getColor(this, R.color.background_component_selected) // Obtiene el color de fondo seleccionado
+            ContextCompat.getColor(
+                this, R.color.background_component_selected
+            ) // Obtiene el color de fondo seleccionado
         } else {
-            ContextCompat.getColor(this, R.color.background_component) // Obtiene el color de fondo no seleccionado
+            ContextCompat.getColor(
+                this, R.color.background_component
+            ) // Obtiene el color de fondo no seleccionado
         }
     }
 
@@ -168,24 +171,24 @@ class ActivityLogin : AppCompatActivity() {
         cvMujer = findViewById(R.id.viewMujer)
         tvAltura = findViewById(R.id.tvAltura)
         rsAltura = findViewById(R.id.rsAltura)
-        btnSumarEdad=findViewById(R.id.btnSumarEdad)
-        btnRestarEdad=findViewById(R.id.btnRestarEdad)
-        btnRestarPeso=findViewById(R.id.btnRestarPeso)
-        btnSumarPeso=findViewById(R.id.btnSumarPeso)
-        tvPeso=findViewById(R.id.tvPeso)
-        tvEdad=findViewById(R.id.tvEdad)
-        btnCrearUser=findViewById(R.id.btnCrearUser)
-        nombre=findViewById(R.id.etNombreUsuario)
-        db=DatabaseHelper(this)
-        userDb=UserDb(db)
-        usuarioRutinaDb=UsuarioRutinaDb(db)
+        btnSumarEdad = findViewById(R.id.btnSumarEdad)
+        btnRestarEdad = findViewById(R.id.btnRestarEdad)
+        btnRestarPeso = findViewById(R.id.btnRestarPeso)
+        btnSumarPeso = findViewById(R.id.btnSumarPeso)
+        tvPeso = findViewById(R.id.tvPeso)
+        tvEdad = findViewById(R.id.tvEdad)
+        btnCrearUser = findViewById(R.id.btnCrearUser)
+        nombre = findViewById(R.id.etNombreUsuario)
+        db = DatabaseHelper(this)
+        userDb = UserDb(db)
+        usuarioRutinaDb = UsuarioRutinaDb(db)
     }
 
     private lateinit var cvMasculino: CardView
     private lateinit var cvMujer: CardView
-    private var pesoActual:Int=70//Weight peso
-    private var edadActual:Int=20
-    private var alturaActual=120
+    private var pesoActual: Int = 70//Weight peso
+    private var edadActual: Int = 20
+    private var alturaActual = 120
     private var btnGeneroM: Boolean = true //El género masculino está seleccionado
     private var btnGeneroF: Boolean = false //El género femenino no está seleccionado
     private lateinit var tvAltura: TextView
@@ -198,8 +201,7 @@ class ActivityLogin : AppCompatActivity() {
     private lateinit var tvEdad: TextView
     private lateinit var btnCrearUser: AppCompatButton
     private lateinit var nombre: EditText
-    private lateinit var db:DatabaseHelper
-    private lateinit var usuarioRutinaDb : UsuarioRutinaDb
-    private lateinit var userDb : UserDb
-
+    private lateinit var db: DatabaseHelper
+    private lateinit var usuarioRutinaDb: UsuarioRutinaDb
+    private lateinit var userDb: UserDb
 }

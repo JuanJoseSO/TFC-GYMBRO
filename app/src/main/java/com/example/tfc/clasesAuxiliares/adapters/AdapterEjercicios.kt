@@ -9,12 +9,13 @@ import android.widget.TextView
 import com.example.tfc.R
 import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
 
-class AdapterEjercicios(private val context: Context, listaEjercicios: List<Ejercicio>)
-    : ArrayAdapter<Ejercicio>(context,0, listaEjercicios){
+class AdapterEjercicios(private val context: Context, listaEjercicios: List<Ejercicio>) :
+    ArrayAdapter<Ejercicio>(context, 0, listaEjercicios) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         //ConvertView nos permite reciclar las vistas(aumenta el rendimiento)
-        val view =convertView?:LayoutInflater.from(context).inflate(R.layout.layout_ejercicio, parent, false)
+        val view = convertView ?: LayoutInflater.from(context)
+            .inflate(R.layout.layout_ejercicio, parent, false)
         //Optenemos el ejercicio por su posicion
         val ejercicio = getItem(position)
         //Relacionamos con el layout

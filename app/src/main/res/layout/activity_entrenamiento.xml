@@ -27,14 +27,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
+        android:id="@+id/view2"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="@color/white"
-        app:layout_constraintVertical_bias="0"
         app:layout_constraintBottom_toTopOf="@+id/tvCronometro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNombreEjercicio" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNombreEjercicio"
+        app:layout_constraintVertical_bias="0" />
 
     <TextView
         android:id="@+id/tvCronometro"
@@ -74,25 +75,25 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toTopOf="@id/cvInfo"
-        app:layout_constraintHeight_percent="0.23"
         app:layout_constraintDimensionRatio="16:9"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.23"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCronometro" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvInfo"
-        android:layout_marginTop="25dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintHeight_percent="0.28"
         app:cardBackgroundColor="@color/background_component"
-        app:layout_constraintHeight_max="300dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@id/btnStart"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_max="300dp"
+        app:layout_constraintHeight_percent="0.28"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/wvReproductor">
 
@@ -109,6 +110,9 @@
                 android:id="@+id/tvEjercicioInfo"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:autoSizeMaxTextSize="21sp"
+                android:autoSizeMinTextSize="8sp"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
                 android:text="@string/serie_n_mero"
                 android:textColor="@color/white"
@@ -117,10 +121,7 @@
                 app:layout_constraintBottom_toTopOf="@id/divider1"
                 app:layout_constraintEnd_toStartOf="@id/tvSerieIniciada"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="8sp"
-                android:autoSizeMaxTextSize="21sp"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvSerieIniciada"
@@ -146,8 +147,7 @@
                 app:layout_constraintBottom_toTopOf="@id/tvRepeticionesInfo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSerieIniciada"
-                />
+                app:layout_constraintTop_toBottomOf="@id/tvSerieIniciada" />
 
             <TextView
                 android:id="@+id/tvRepeticionesInfo"
@@ -170,6 +170,9 @@
                 android:id="@+id/tvRepeticiones"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:autoSizeMaxTextSize="21sp"
+                android:autoSizeMinTextSize="8sp"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -177,10 +180,7 @@
                 app:layout_constraintBottom_toTopOf="@id/divider2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tvRepeticionesInfo"
-                app:layout_constraintTop_toBottomOf="@id/divider1"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="8sp"
-                android:autoSizeMaxTextSize="21sp"/>
+                app:layout_constraintTop_toBottomOf="@id/divider1" />
 
             <View
                 android:id="@+id/divider2"
@@ -195,14 +195,14 @@
                 android:id="@+id/tvPesoInfo"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:autoSizeMaxTextSize="21sp"
+                android:autoSizeMinTextSize="8sp"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
                 android:text="@string/peso_ninicial"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="8sp"
-                android:autoSizeMaxTextSize="21sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnRestarPeso"
                 app:layout_constraintStart_toStartOf="parent"
@@ -212,6 +212,9 @@
                 android:id="@+id/tvPeso"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:autoSizeMaxTextSize="21sp"
+                android:autoSizeMinTextSize="8sp"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -219,11 +222,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnSumarPeso"
                 app:layout_constraintStart_toEndOf="@id/btnRestarPeso"
-                app:layout_constraintTop_toBottomOf="@id/divider2"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="8sp"
-                android:autoSizeMaxTextSize="21sp"
-                />
+                app:layout_constraintTop_toBottomOf="@id/divider2" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnRestarPeso"
@@ -292,11 +291,11 @@
 
     <LinearLayout
         android:id="@+id/lyUltimo"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_mensaje"
         android:padding="20dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
@@ -310,11 +309,10 @@
             android:text="@string/ltima_serie"
             android:textColor="@color/red"
             android:textSize="40sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/tvCuentaAtras"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -322,10 +320,9 @@
         android:gravity="center"
         android:textColor="@color/red"
         android:textSize="60sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.10"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

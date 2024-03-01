@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.TextView
 import java.util.Locale
 
-class Cronometro{
+class Cronometro {
     //Variables cronometro
     private var tiempoInicial: Long = 0
     private var tiempoAcumulado: Long = 0
@@ -15,8 +15,10 @@ class Cronometro{
     //Bolean que nos ayudará a gestionar la logica de los relojes
     private var iniciado: Boolean = false
     private var pausado: Boolean = false
+
     //permite ejecutar codigo en el hilo principal
-    private  var handler = Handler(Looper.getMainLooper())
+    private var handler = Handler(Looper.getMainLooper())
+
     //Variable funcional para actualizar el cronometro
     private var onUpdate: ((String) -> Unit)? = null
 
@@ -25,35 +27,36 @@ class Cronometro{
         this.onUpdate = onUpdate
     }
 
-
     fun iniciar() {
-        if(!iniciado) {
+        if (!iniciado) {
             //Asignamos tiempo inicial para recuperarlo en tiempo de entrenamiento más tarde
             tiempoInicial = System.currentTimeMillis()
         }
         //Cambiamos el bolleando a true
         iniciado = true
-        pausado= false
+        pausado = false
         this.cicloCronometro()
     }
-    fun pausar(){
-        if(iniciado && !pausado){
+
+    fun pausar() {
+        if (iniciado && !pausado) {
             //Dejamos de sumar el tiempo durante la pausa
-            tiempoAcumulado+=System.currentTimeMillis()-tiempoInicial
-            iniciado=false
-            pausado=true
+            tiempoAcumulado += System.currentTimeMillis() - tiempoInicial
+            iniciado = false
+            pausado = true
         }
     }
 
-    fun reanudar(){
-        if(!iniciado && pausado){
+    fun reanudar() {
+        if (!iniciado && pausado) {
             //Reanudamos el tiempo
-            tiempoAcumulado=System.currentTimeMillis()
-            iniciado=true
-            pausado=false
+            tiempoAcumulado = System.currentTimeMillis()
+            iniciado = true
+            pausado = false
             this.cicloCronometro()
         }
     }
+
     private fun cicloCronometro() {
         handler.postDelayed(object : Runnable {
             override fun run() {
@@ -66,7 +69,11 @@ class Cronometro{
                     val segundos = (tiempoTotal / 1000) % 60
                     val minutos = (tiempoTotal / (1000 * 60)) % 60
                     //Mandamos el timepo ya formateado al hilo principal
-                    onUpdate?.invoke(String.format(Locale.getDefault(), "%02d:%02d:%02d", minutos, segundos, milisegundos))
+                    onUpdate?.invoke(
+                        String.format(
+                            Locale.getDefault(), "%02d:%02d:%02d", minutos, segundos, milisegundos
+                        )
+                    )
 
                     // Reprogramar la ejecución de este bloque para que se ejecute nuevamente después de 10 milisegundos
                     handler.postDelayed(this, 10)
@@ -75,12 +82,12 @@ class Cronometro{
         }, 0)
     }
 
-    fun estaPausado() : Boolean {
-       return pausado
+    fun estaPausado(): Boolean {
+        return pausado
     }
 
     fun estaIniciado(): Boolean {
-    return iniciado
+        return iniciado
     }
 
     private var onUpdateCuentaAtras: ((String) -> Unit)? = null
@@ -90,21 +97,21 @@ class Cronometro{
     private var cuentaAtrasRestante: Long = 0 // 30 segundos
 
 
-    fun setOnUpdateCuentaAtras(onUpdateCuentaAtras:((String)->Unit)){
-        this.onUpdateCuentaAtras=onUpdateCuentaAtras
+    fun setOnUpdateCuentaAtras(onUpdateCuentaAtras: ((String) -> Unit)) {
+        this.onUpdateCuentaAtras = onUpdateCuentaAtras
     }
 
     //Métodos para iniciar la cuenta atras
     //Le pasamos el textview para gestionar aqui su visibilidad
-    fun initCuentaAtras(cuentaInicial:Int, tvCuentaAtras:TextView) {
+    fun initCuentaAtras(cuentaInicial: Int, tvCuentaAtras: TextView) {
         //Multiplicamos por mil y pasamos a long para obtener los milisegundos seleccionados de descanso
-        this.cuentaAtrasRestante= (cuentaInicial*1000).toLong()
+        this.cuentaAtrasRestante = (cuentaInicial * 1000).toLong()
         cuentaAtrasFinal = System.currentTimeMillis() + cuentaAtrasRestante
         cicloCuentaAtras(tvCuentaAtras)
     }
 
     // Ciclo del contador regresivo,similar al anterior,pero restando tiempo y cambiando la visibilidad de la cuenta atras
-    private fun cicloCuentaAtras(tvCuentaAtras:TextView) {
+    private fun cicloCuentaAtras(tvCuentaAtras: TextView) {
         handler.postDelayed(object : Runnable {
             override fun run() {
                 val tiempoActual = System.currentTimeMillis()
@@ -113,11 +120,15 @@ class Cronometro{
                 if (cuentaAtrasRestante > 0) {
                     val segundos = (cuentaAtrasRestante / 1000) % 60
                     val milisegundos = (cuentaAtrasRestante % 1000) / 10
-                    onUpdateCuentaAtras?.invoke(String.format(Locale.getDefault(),"%02d:%02d",segundos,milisegundos))
+                    onUpdateCuentaAtras?.invoke(
+                        String.format(
+                            Locale.getDefault(), "%02d:%02d", segundos, milisegundos
+                        )
+                    )
                     handler.postDelayed(this, 10)
                 } else {
                     onUpdateCuentaAtras?.invoke("0")
-                    tvCuentaAtras.visibility= View.GONE
+                    tvCuentaAtras.visibility = View.GONE
                 }
             }
         }, 10)

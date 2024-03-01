@@ -8,7 +8,7 @@ import com.example.tfc.clasesAuxiliares.clasesBase.Sesion
 import com.example.tfc.sqlite.DatabaseHelper
 
 
-class HistorialDb(private val dbHelper: DatabaseHelper)  {
+class HistorialDb(private val dbHelper: DatabaseHelper) {
     //Metodos historial
     fun addSesion(sesion: Sesion) {
         val db = dbHelper.writableDatabase
@@ -21,6 +21,7 @@ class HistorialDb(private val dbHelper: DatabaseHelper)  {
             put(DatabaseHelper.TIEMPO_TOTAL, sesion.tiempoTotal)
             put(DatabaseHelper.CALORIAS_QUEMADAS, sesion.caloriasQuemadas)
         }
+
         try {
             db.insert(DatabaseHelper.TABLA_HISTORIAL, null, insert)
         } catch (e: SQLiteException) {
@@ -28,12 +29,12 @@ class HistorialDb(private val dbHelper: DatabaseHelper)  {
         }
     }
     //Solo recojo los datos que quiero para crear la lista
-
     @SuppressLint("Range")
-    fun getSesiones(idUsuario:Int):List<Sesion>{
+    fun getSesiones(idUsuario: Int): List<Sesion> {
         val lista = mutableListOf<Sesion>()
         val db = dbHelper.readableDatabase
-        val select= "SELECT ${DatabaseHelper.ID_HISTORIAL}, ${DatabaseHelper.ID_RUTINA_FK}, ${DatabaseHelper.DIA_ENTRENAMIENTO} FROM  ${DatabaseHelper.TABLA_HISTORIAL} WHERE ${DatabaseHelper.ID_USUARIO_FK}=?"
+        val select =
+            "SELECT ${DatabaseHelper.ID_HISTORIAL}, ${DatabaseHelper.ID_RUTINA_FK}, " + "${DatabaseHelper.DIA_ENTRENAMIENTO} FROM  ${DatabaseHelper.TABLA_HISTORIAL} WHERE ${DatabaseHelper.ID_USUARIO_FK}=?"
         val cursor = db.rawQuery(select, arrayOf(idUsuario.toString()))
 
         if (cursor.moveToFirst()) {
@@ -51,11 +52,12 @@ class HistorialDb(private val dbHelper: DatabaseHelper)  {
     }
 
     @SuppressLint("Range")
-    fun getSesion(id:Int): Sesion? {
+    fun getSesion(idHistorial: Int): Sesion? {
         var sesion: Sesion? = null
         val db = dbHelper.readableDatabase
-        val select= "SELECT * FROM  ${DatabaseHelper.TABLA_HISTORIAL} WHERE ${DatabaseHelper.ID_HISTORIAL}=?"
-        val cursor = db.rawQuery(select,arrayOf(id.toString()))
+        val select =
+            "SELECT * FROM  ${DatabaseHelper.TABLA_HISTORIAL} WHERE ${DatabaseHelper.ID_HISTORIAL}=?"
+        val cursor = db.rawQuery(select, arrayOf(idHistorial.toString()))
 
         if (cursor.moveToFirst()) {
             do {
@@ -72,5 +74,31 @@ class HistorialDb(private val dbHelper: DatabaseHelper)  {
         }
         cursor.close()
         return sesion
+    }
+
+    @SuppressLint("Range")
+    fun eliminarSesion(id: Int) {
+        val db = dbHelper.readableDatabase
+        db.delete(
+            DatabaseHelper.TABLA_HISTORIAL,
+            "${DatabaseHelper.ID_HISTORIAL}=?",
+            arrayOf(id.toString())
+        )
+    }
+
+    @SuppressLint("Range")
+    fun getTiempoDiarioSesion(dia: String): Int {
+        var tiempoTotal = 0
+        val db = dbHelper.readableDatabase
+        val select =
+            "SELECT SUM(${DatabaseHelper.TIEMPO_TOTAL}) AS TiempoTotal FROM  ${DatabaseHelper.TABLA_HISTORIAL} WHERE ${DatabaseHelper.DIA_ENTRENAMIENTO}=?"
+        val cursor = db.rawQuery(select, arrayOf(dia))
+
+        if (cursor.moveToFirst()) {
+            //Este cursor es curioso ya que optiene el tiempo del indice 0,es decir,de TiempoTotal de la consulta
+            tiempoTotal = cursor.getInt(0)
+        }
+        cursor.close()
+        return tiempoTotal
     }
 }

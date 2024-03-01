@@ -11,12 +11,14 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
-import com.example.tfc.clasesAuxiliares.DialogOpcionesUsuario
 import com.example.tfc.clasesAuxiliares.CirculosAnimados
+import com.example.tfc.clasesAuxiliares.DialogOpcionesUsuario
 import com.example.tfc.sqlite.DatabaseHelper
+import com.example.tfc.sqlite.sqliteMetodos.HistorialDb
 import com.example.tfc.sqlite.sqliteMetodos.UserDb
 import com.example.tfc.sqlite.sqliteMetodos.UsuarioRutinaDb
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.Calendar
 import java.util.Locale
 
@@ -24,8 +26,7 @@ import java.util.Locale
 class FragmentHome : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -34,7 +35,12 @@ class FragmentHome : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initComponentes()
-        circulosAnimados.rellenarCirculo()
+        //Rellenamos el circulo segun la suma de lo que hayamos entrenado a lo largo del dia
+        circulosAnimados.rellenarCirculo(
+            historialDb.getTiempoDiarioSesion(
+                LocalDate.now().toString()
+            )
+        )
         initCalendario()
         initListeners()
     }
@@ -43,15 +49,17 @@ class FragmentHome : Fragment() {
         btnUsuarios.setOnClickListener {
             // Muestra DialogOpcionesUsuario
             val ventanaEmergente = DialogOpcionesUsuario()
-            ventanaEmergente.show(parentFragmentManager , "ventanaEmergente")
+            ventanaEmergente.show(parentFragmentManager, "ventanaEmergente")
         }
-        btnEntrenar.setOnClickListener{
-            if(usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()!!.id).isNotEmpty()){
-            val intent= Intent(requireContext(),ActivityEntrenamiento::class.java)
-            startActivity(intent)
-            }
-            else{
-                Toast.makeText(requireContext(), "Necesitas crear una rutina", Toast.LENGTH_SHORT).show()
+        btnEntrenar.setOnClickListener {
+            if (usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()!!.id)
+                    .isNotEmpty()
+            ) {
+                val intent = Intent(requireContext(), ActivityEntrenamiento::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(requireContext(), "Necesitas crear una rutina", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
@@ -70,21 +78,23 @@ class FragmentHome : Fragment() {
         tvFecha.text = fechaFormateada
     }
 
-    private fun initComponentes(){
-        circulosAnimados=requireView().findViewById(R.id.circulosAnimados)
-        btnUsuarios=requireView().findViewById(R.id.btnUsuarios)
-        tvFecha=requireView().findViewById(R.id.tvFecha)
-        btnEntrenar=requireView().findViewById(R.id.btnEntrenar)
-        db=DatabaseHelper(requireContext())
-        userDb=UserDb(db)
-        usuarioRutinaDb=UsuarioRutinaDb(db)
+    private fun initComponentes() {
+        circulosAnimados = requireView().findViewById(R.id.circulosAnimados)
+        btnUsuarios = requireView().findViewById(R.id.btnUsuarios)
+        tvFecha = requireView().findViewById(R.id.tvFecha)
+        btnEntrenar = requireView().findViewById(R.id.btnEntrenar)
+        db = DatabaseHelper(requireContext())
+        userDb = UserDb(db)
+        historialDb = HistorialDb(db)
+        usuarioRutinaDb = UsuarioRutinaDb(db)
     }
 
-    private lateinit var  db: DatabaseHelper
-    private lateinit var  userDb: UserDb
+    private lateinit var db: DatabaseHelper
+    private lateinit var userDb: UserDb
+    private lateinit var historialDb: HistorialDb
     private lateinit var usuarioRutinaDb: UsuarioRutinaDb
     private lateinit var circulosAnimados: CirculosAnimados
     private lateinit var btnUsuarios: AppCompatImageButton
     private lateinit var tvFecha: TextView
-    private lateinit var btnEntrenar : AppCompatButton
+    private lateinit var btnEntrenar: AppCompatButton
 }

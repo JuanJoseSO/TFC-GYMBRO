@@ -7,9 +7,9 @@ import android.util.Log
 import com.example.tfc.clasesAuxiliares.clasesBase.Rutina
 import com.example.tfc.sqlite.DatabaseHelper
 
-class UsuarioRutinaDb (private val dbHelper: DatabaseHelper){
+class UsuarioRutinaDb(private val dbHelper: DatabaseHelper) {
 
-    fun addRutinaAUsuario(idRutina: Int, idUsuario:Int) {
+    fun addRutinaAUsuario(idRutina: Int, idUsuario: Int) {
         val db = dbHelper.writableDatabase
         val insert = ContentValues().apply {
             put(DatabaseHelper.ID_RUTINA_FK, idRutina)
@@ -23,12 +23,11 @@ class UsuarioRutinaDb (private val dbHelper: DatabaseHelper){
     }
 
     @SuppressLint("Range")
-    fun getRutinaPorUsuario (idUsuario:Int) : List<Rutina> {
+    fun getRutinaPorUsuario(idUsuario: Int): List<Rutina> {
         val listaRutina = mutableListOf<Rutina>()
-        val db= dbHelper.readableDatabase
-        val select="SELECT * FROM ${DatabaseHelper.TABLA_RUTINAS} " +
-                "JOIN ${DatabaseHelper.TABLA_USUARIOS_RUTINAS} ON ${DatabaseHelper.TABLA_RUTINAS}.${DatabaseHelper.ID_RUTINA}=" +
-                "${DatabaseHelper.TABLA_USUARIOS_RUTINAS}.${DatabaseHelper.ID_RUTINA_FK} WHERE ${DatabaseHelper.ID_USUARIO_FK}= ?"
+        val db = dbHelper.readableDatabase
+        val select =
+            "SELECT * FROM ${DatabaseHelper.TABLA_RUTINAS} " + "JOIN ${DatabaseHelper.TABLA_USUARIOS_RUTINAS} ON ${DatabaseHelper.TABLA_RUTINAS}.${DatabaseHelper.ID_RUTINA}=" + "${DatabaseHelper.TABLA_USUARIOS_RUTINAS}.${DatabaseHelper.ID_RUTINA_FK} WHERE ${DatabaseHelper.ID_USUARIO_FK}= ?"
         val cursor = db.rawQuery(select, arrayOf(idUsuario.toString()))
 
         if (cursor.moveToFirst()) {

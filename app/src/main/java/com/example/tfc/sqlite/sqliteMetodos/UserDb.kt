@@ -7,28 +7,27 @@ import android.util.Log
 import com.example.tfc.clasesAuxiliares.clasesBase.Usuario
 import com.example.tfc.sqlite.DatabaseHelper
 
-class UserDb(private val dbHelper: DatabaseHelper){
+class UserDb(private val dbHelper: DatabaseHelper) {
 
     //******MÉTODOS TABLA USUARIO
     //Añadimos usuarios,devolvemos el id para autoasignar las tres rutinas base cada vez que se crea un usuario
-    fun addUsuario(usuario: Usuario) : Int {
+    fun addUsuario(usuario: Usuario): Int {
         val db = dbHelper.writableDatabase
-        var userId=0
+        var userId = 0
         try {
             //Guardamos el objeto usuario repartiendo la información en las distinta columnas
             val values = ContentValues()
             values.put(DatabaseHelper.NOMBRE_USUARIO, usuario.nombreUsuario)
-            values.put(DatabaseHelper.EDAD, usuario.edad)
+            values.put(DatabaseHelper.OBJETIVO_DIARIO, usuario.objetivoDiario)
             values.put(DatabaseHelper.PESO, usuario.peso)
             values.put(DatabaseHelper.ALTURA, usuario.altura)
             values.put(DatabaseHelper.IMC, usuario.imc)
             values.put(
-                DatabaseHelper.GENERO,
-                if (usuario.genero) 1 else 0
+                DatabaseHelper.GENERO, if (usuario.genero) 1 else 0
             ) //El genero será un 1 o un 0 dependiendo de la opcion elegida
             values.put(DatabaseHelper.SELECCION, 1) //Siempre selecciona el último usuario creado
 
-            userId= db.insert(DatabaseHelper.TABLA_USERS, null, values).toInt()
+            userId = db.insert(DatabaseHelper.TABLA_USERS, null, values).toInt()
         } catch (e: SQLiteException) {
             Log.e("SQLite", "Error al añadir usuario", e)
         }
@@ -63,7 +62,7 @@ class UserDb(private val dbHelper: DatabaseHelper){
                 val usuario = Usuario(
                     cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ID_USUARIO)),
                     cursor.getString(cursor.getColumnIndex(DatabaseHelper.NOMBRE_USUARIO)),
-                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.EDAD)),
+                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.OBJETIVO_DIARIO)),
                     cursor.getInt(cursor.getColumnIndex(DatabaseHelper.PESO)),
                     cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ALTURA)),
                     cursor.getDouble(cursor.getColumnIndex(DatabaseHelper.IMC)),
@@ -83,9 +82,12 @@ class UserDb(private val dbHelper: DatabaseHelper){
             db.beginTransaction()
             //Selecciona al usuario
             val seleccionar = ContentValues().apply { put(DatabaseHelper.SELECCION, 1) }
-            val seleccionarUsuario = db.update(DatabaseHelper.TABLA_USERS,
-                seleccionar, "${DatabaseHelper.ID_USUARIO} = ?",
-                arrayOf(usuarioId.toString()))
+            val seleccionarUsuario = db.update(
+                DatabaseHelper.TABLA_USERS,
+                seleccionar,
+                "${DatabaseHelper.ID_USUARIO} = ?",
+                arrayOf(usuarioId.toString())
+            )
             if (seleccionarUsuario > 0) exito = true
 
             db.setTransactionSuccessful()
@@ -101,7 +103,15 @@ class UserDb(private val dbHelper: DatabaseHelper){
     fun getUsuarioSeleccionado(): Usuario? {
         val db = dbHelper.readableDatabase
         //Cursor para recoger solo los usuarios seleccionados
-        val cursor = db.query(DatabaseHelper.TABLA_USERS, null, "${DatabaseHelper.SELECCION}=1", null, null, null, null)
+        val cursor = db.query(
+            DatabaseHelper.TABLA_USERS,
+            null,
+            "${DatabaseHelper.SELECCION}=1",
+            null,
+            null,
+            null,
+            null
+        )
 
         var usuario: Usuario? = null
 
@@ -109,7 +119,7 @@ class UserDb(private val dbHelper: DatabaseHelper){
             usuario = Usuario(
                 cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ID_USUARIO)),
                 cursor.getString(cursor.getColumnIndex(DatabaseHelper.NOMBRE_USUARIO)),
-                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.EDAD)),
+                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.OBJETIVO_DIARIO)),
                 cursor.getInt(cursor.getColumnIndex(DatabaseHelper.PESO)),
                 cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ALTURA)),
                 cursor.getDouble(cursor.getColumnIndex(DatabaseHelper.IMC)),

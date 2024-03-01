@@ -3,15 +3,14 @@ package com.example.tfc
 import android.content.Intent
 import android.content.res.Resources
 import android.database.sqlite.SQLiteException
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.tfc.clasesAuxiliares.clasesBase.Dieta
-import com.example.tfc.sqlite.DatabaseHelper
-
 import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
 import com.example.tfc.clasesAuxiliares.clasesBase.Rutina
+import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.DietaDb
 import com.example.tfc.sqlite.sqliteMetodos.EjerciciosDb
 import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
@@ -29,13 +28,12 @@ class ActivityBienvenida : AppCompatActivity() {
 
         try {
             //Si no existe el ejercicio,cargamos todos los ejercicios,asi evitamos cargarlos siempre al abrir la app
-            if(ejerciciosDb.getEjercicio(1)==null)
-                cargarTablaEjercicios(resources, categoriasEjercicios)
+            if (ejerciciosDb.getEjercicio(1) == null) cargarTablaEjercicios(
+                resources, categoriasEjercicios
+            )
             //Lo mismo con las dietas
-            if(dietaDb.getDieta(1)==null)
-                cargarDietas()
-            if(rutinaDb.getRutina(1)==null)
-                cargarRutinas()
+            if (dietaDb.getDieta(1) == null) cargarDietas()
+            if (rutinaDb.getRutina(1) == null) cargarRutinas()
 
             //Realizamos una consulta para saber si existe el usuario
             //Si existe
@@ -59,44 +57,42 @@ class ActivityBienvenida : AppCompatActivity() {
     }
 
     private fun cargarRutinas() {
-        rutinaDb.addRutina(Rutina("Pecho",90,"Media",40,"Lunes"))
-        rutinaDb.addRutina(Rutina("Espalda",90,"Media",40,"Miércoles"))
-        rutinaDb.addRutina(Rutina("Pierna",90,"Media",40,"Viernes"))
+        rutinaDb.addRutina(Rutina("Pecho", 90, "Media", 40, "Lunes"))
+        rutinaDb.addRutina(Rutina("Espalda", 90, "Media", 40, "Miércoles"))
+        rutinaDb.addRutina(Rutina("Pierna", 90, "Media", 40, "Viernes"))
 
-        rutinaEjercicioDb.addEjercicioARutina(1,10,4,12,75.0)
-        rutinaEjercicioDb.addEjercicioARutina(1,14,4,12,22.5)
-        rutinaEjercicioDb.addEjercicioARutina(1,2,4,12,12.5)
-        rutinaEjercicioDb.addEjercicioARutina(1,1,4,12,20.0)
-        rutinaEjercicioDb.addEjercicioARutina(1,47,4,12,7.5)
-        rutinaEjercicioDb.addEjercicioARutina(1,52,4,12,0.0)
-        rutinaEjercicioDb.addEjercicioARutina(1,48,4,12,20.0)
+        rutinaEjercicioDb.addEjercicioARutina(1, 10, 12, 4, 75.0)
+        rutinaEjercicioDb.addEjercicioARutina(1, 14, 12, 4, 22.5)
+        rutinaEjercicioDb.addEjercicioARutina(1, 2, 12, 4, 12.5)
+        rutinaEjercicioDb.addEjercicioARutina(1, 1, 12, 4, 20.0)
+        rutinaEjercicioDb.addEjercicioARutina(1, 47, 12, 4, 7.5)
+        rutinaEjercicioDb.addEjercicioARutina(1, 52, 12, 4, 0.0)
+        rutinaEjercicioDb.addEjercicioARutina(1, 48, 12, 4, 20.0)
 
-        rutinaEjercicioDb.addEjercicioARutina(2,20,4,12,0.0)
-        rutinaEjercicioDb.addEjercicioARutina(2,22,4,12,80.0)
-        rutinaEjercicioDb.addEjercicioARutina(2,19,4,12,60.0)
-        rutinaEjercicioDb.addEjercicioARutina(2,28,4,12,50.0)
-        rutinaEjercicioDb.addEjercicioARutina(2,43,4,12,15.0)
-        rutinaEjercicioDb.addEjercicioARutina(2,39,4,12,15.0)
-        rutinaEjercicioDb.addEjercicioARutina(2,38,4,12,25.0)
-
-
-        rutinaEjercicioDb.addEjercicioARutina(3,116,4,12,80.0)
-        rutinaEjercicioDb.addEjercicioARutina(3,114,4,12,40.0)
-        rutinaEjercicioDb.addEjercicioARutina(3,120,4,30,20.0)
-        rutinaEjercicioDb.addEjercicioARutina(3,123,4,12,180.0)
-        rutinaEjercicioDb.addEjercicioARutina(3,125,4,12,40.0)
-        rutinaEjercicioDb.addEjercicioARutina(3,122,4,12,90.0)
+        rutinaEjercicioDb.addEjercicioARutina(2, 20, 12, 4, 0.0)
+        rutinaEjercicioDb.addEjercicioARutina(2, 22, 12, 4, 80.0)
+        rutinaEjercicioDb.addEjercicioARutina(2, 19, 12, 4, 60.0)
+        rutinaEjercicioDb.addEjercicioARutina(2, 28, 12, 4, 50.0)
+        rutinaEjercicioDb.addEjercicioARutina(2, 43, 12, 4, 15.0)
+        rutinaEjercicioDb.addEjercicioARutina(2, 39, 12, 4, 15.0)
+        rutinaEjercicioDb.addEjercicioARutina(2, 38, 12, 4, 25.0)
 
 
+        rutinaEjercicioDb.addEjercicioARutina(3, 116, 12, 4, 80.0)
+        rutinaEjercicioDb.addEjercicioARutina(3, 114, 12, 4, 40.0)
+        rutinaEjercicioDb.addEjercicioARutina(3, 120, 30, 4, 20.0)
+        rutinaEjercicioDb.addEjercicioARutina(3, 123, 12, 4, 180.0)
+        rutinaEjercicioDb.addEjercicioARutina(3, 125, 12, 4, 40.0)
+        rutinaEjercicioDb.addEjercicioARutina(3, 122, 12, 4, 90.0)
 
 
     }
 
     //Funcíon para insertar las tres dietas ejemplo
     private fun cargarDietas() {
-        val dieta1= Dieta(getString(R.string.dieta_d_ficit),0,"dieta_deficit")
-        val dieta2= Dieta(getString(R.string.dieta_mantenimiento),1,"dieta_mantenimiento")
-        val dieta3= Dieta(getString(R.string.dieta_volum_n),2,"dieta_volumen")
+        val dieta1 = Dieta(getString(R.string.dieta_d_ficit), 0, "dieta_deficit")
+        val dieta2 = Dieta(getString(R.string.dieta_mantenimiento), 1, "dieta_mantenimiento")
+        val dieta3 = Dieta(getString(R.string.dieta_volum_n), 2, "dieta_volumen")
         dietaDb.addDieta(dieta1)
         dietaDb.addDieta(dieta2)
         dietaDb.addDieta(dieta3)
@@ -104,22 +100,22 @@ class ActivityBienvenida : AppCompatActivity() {
 
     //Función para cargar los ejercicios de una categoría
     private fun crearObjetosEjercico(
-        categoria: String,
-        ejercicios: Array<String>,
-        videos: Array<String>
+        categoria: String, ejercicios: Array<String>, videos: Array<String>
     ) {
         //Por cada ejercicio recoge el video por su mismo indice y lo añade a la base de datos
         ejercicios.forEachIndexed { indice, ejercicio ->
             val videoId = videos.getOrNull(indice) ?: ""
-            ejerciciosDb.addEjercicio(Ejercicio(categoria = categoria, nombre = ejercicio, video = videoId))
+            ejerciciosDb.addEjercicio(
+                Ejercicio(
+                    categoria = categoria, nombre = ejercicio, video = videoId
+                )
+            )
         }
     }
 
     private fun cargarTablaEjercicios(
-        resources: Resources,
-        categoriasEjercicios: Map<Int, Pair<Int, Int>>
-    ) {
-        /*Crea la tabla a través de las posiciones de los ejercicios en el mapeo,es decir,recoge mismo indice para el nombre del
+        resources: Resources, categoriasEjercicios: Map<Int, Pair<Int, Int>>
+    ) {/*Crea la tabla a través de las posiciones de los ejercicios en el mapeo,es decir,recoge mismo indice para el nombre del
           ejercicio y del video para poder crear los objetos Ejercicio*/
         categoriasEjercicios.forEach { (categoria, recursos) ->
             val categoriaPosition = resources.getString(categoria)
@@ -160,13 +156,12 @@ class ActivityBienvenida : AppCompatActivity() {
         dietaDb = DietaDb(db)
         rutinaEjercicioDb = RutinaEjercicioDb(db)
     }
+
     private lateinit var rutinaDb: RutinaDb
     private lateinit var btnAcceso: Button
-    private lateinit var db : DatabaseHelper
+    private lateinit var db: DatabaseHelper
     private lateinit var rutinaEjercicioDb: RutinaEjercicioDb
-    private lateinit var usersDb : UserDb
-    private lateinit var ejerciciosDb : EjerciciosDb
-    private lateinit var dietaDb : DietaDb
+    private lateinit var usersDb: UserDb
+    private lateinit var ejerciciosDb: EjerciciosDb
+    private lateinit var dietaDb: DietaDb
 }
-
-

@@ -26,7 +26,6 @@ class EjerciciosDb(private val dbHelper: DatabaseHelper) {
 
     }
 
-
     @SuppressLint("Range")
     fun getEjercicio(id: Int): Ejercicio? {
         val db = dbHelper.readableDatabase
@@ -58,7 +57,6 @@ class EjerciciosDb(private val dbHelper: DatabaseHelper) {
         }
         return ejercicio
     }
-
 
     fun obtenerCategorias(): List<String> {
         val lista = mutableListOf<String>()
@@ -111,6 +109,4 @@ class EjerciciosDb(private val dbHelper: DatabaseHelper) {
         }
         return lista
     }
-
-
 }

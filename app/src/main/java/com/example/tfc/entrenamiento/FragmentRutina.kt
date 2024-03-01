@@ -21,9 +21,7 @@ import com.example.tfc.sqlite.sqliteMetodos.UsuarioRutinaDb
 class FragmentRutina : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_rutina, container, false)
     }
@@ -34,7 +32,6 @@ class FragmentRutina : Fragment() {
         initComponentes()
         initListeners()
         mostrartLista()
-
     }
 
     //Recogemos la lista de rutinas de la base de datos y la mostramos
@@ -46,7 +43,6 @@ class FragmentRutina : Fragment() {
         lvRutina.setOnItemClickListener { _, _, position, _ ->
             mostrarEjerciciosPorRutina(listaRutina[position].id)
         }
-
     }
 
     //Mostramos los ejercicios que PERTENECEN a una rutina con la tabla rutina_ejercicios
@@ -54,9 +50,7 @@ class FragmentRutina : Fragment() {
         val listaEjerciciosPorRutina = rutinaEjercicioDb.getEjerciciosPorRutina(id)
         //Aprovechamos el adapter y el mismo contenedor para mostrar la lista e ejercicios
         lvRutina.adapter = AdapterEjercicios(requireContext(), listaEjerciciosPorRutina)
-
     }
-
 
     override fun onDestroy() {
         DatabaseHelper(requireContext()).close()
@@ -64,7 +58,6 @@ class FragmentRutina : Fragment() {
     }
 
     private fun initListeners() {
-
         btnCrear.setOnClickListener {
             val intent = Intent(requireContext(), ActivityCrearRutina()::class.java)
             startActivity(intent)
@@ -73,7 +66,7 @@ class FragmentRutina : Fragment() {
 
     private fun initComponentes() {
         btnCrear = requireView().findViewById(R.id.btnCrearRutina)
-        lvRutina= requireView().findViewById(R.id.listas)
+        lvRutina = requireView().findViewById(R.id.listas)
         contenedor = requireView().findViewById(R.id.contenedor_rutina)
         db = DatabaseHelper(requireContext())
         usuarioRutinaDb = UsuarioRutinaDb(db)
@@ -81,12 +74,11 @@ class FragmentRutina : Fragment() {
         userDb = UserDb(db)
     }
 
-    private lateinit var lvRutina : ListView
+    private lateinit var lvRutina: ListView
     private lateinit var contenedor: FrameLayout
     private lateinit var btnCrear: AppCompatButton
     private lateinit var db: DatabaseHelper
-    private lateinit var userDb : UserDb
+    private lateinit var userDb: UserDb
     private lateinit var usuarioRutinaDb: UsuarioRutinaDb
     private lateinit var rutinaEjercicioDb: RutinaEjercicioDb
-
 }

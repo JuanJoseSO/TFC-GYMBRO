@@ -10,22 +10,22 @@
         android:id="@+id/contenedor_rutina"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:divider="@color/transparent"
+        android:paddingTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/btnCrearRutina"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:paddingTop="16dp"
-        android:divider="@color/transparent">
-        <include layout="@layout/fragment_listas"/>
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="parent">
 
+        <include layout="@layout/fragment_listas" />
+    </FrameLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCrearRutina"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
         android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/layout_btns"
         android:text="@string/crear_rutina"
@@ -36,6 +36,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/contenedor_rutina"
         tools:ignore="VisualLintButtonSize" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

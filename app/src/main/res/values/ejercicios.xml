@@ -12,8 +12,6 @@
     <string name="cuadriceps">Cuádriceps</string>
     <string name="gemelo">Gemelo</string>
 
-
-
     <!-- Ejercicios de Pecho -->
     <string-array name="ejercicios_pecho">
         <item>Aperturas en máquina</item>
