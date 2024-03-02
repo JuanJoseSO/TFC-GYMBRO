@@ -9,8 +9,11 @@ import android.widget.FrameLayout
 import android.widget.ListView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.tfc.R
 import com.example.tfc.clasesAuxiliares.adapters.AdapterEjercicios
+import com.example.tfc.clasesAuxiliares.adapters.AdapterRVEjercicios
 import com.example.tfc.clasesAuxiliares.adapters.AdapterRutina
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.RutinaEjercicioDb
@@ -38,7 +41,8 @@ class FragmentRutina : Fragment() {
     private fun mostrartLista() {
         val listaRutina = usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!)
         lvRutina.adapter = AdapterRutina(requireContext(), listaRutina)
-
+        rvEjercicios.visibility=View.GONE
+        lvRutina.visibility=View.VISIBLE
         //Al seleccionar una rutina nos muestra sus ejercicios
         lvRutina.setOnItemClickListener { _, _, position, _ ->
             mostrarEjerciciosPorRutina(listaRutina[position].id)
@@ -48,13 +52,16 @@ class FragmentRutina : Fragment() {
     //Mostramos los ejercicios que PERTENECEN a una rutina con la tabla rutina_ejercicios
     private fun mostrarEjerciciosPorRutina(id: Int) {
         val listaEjerciciosPorRutina = rutinaEjercicioDb.getEjerciciosPorRutina(id)
-        val lista = requireView().findViewById<ListView>(R.id.lvListas)
-        lista.visibility = View.VISIBLE
-       /*Creamos una variable ejercicio de tipo lista(SmartCast) y hacemos la consulta con el string de intent,ahorrando
-      la creacion de dos variables*/
-        lista.adapter = AdapterEjercicios(requireContext(), listaEjerciciosPorRutina)
-    }
+        val listaInfoEjercicios = listaEjerciciosPorRutina.map { ejercicio ->
+            rutinaEjercicioDb.getInfoRutina(id, ejercicio.id)
+        }
+        //Aprovechamos el adapter y el mismo contenedor para mostrar la lista e ejercicios
+        rvEjercicios.adapter = AdapterRVEjercicios(requireContext(),listaEjerciciosPorRutina, listaInfoEjercicios)
+        rvEjercicios.layoutManager = LinearLayoutManager(requireContext())
+        rvEjercicios.visibility=View.VISIBLE
+        lvRutina.visibility=View.GONE
 
+    }
 
     override fun onDestroy() {
         DatabaseHelper(requireContext()).close()
@@ -71,6 +78,7 @@ class FragmentRutina : Fragment() {
     private fun initComponentes() {
         btnCrear = requireView().findViewById(R.id.btnCrearRutina)
         lvRutina = requireView().findViewById(R.id.lvListas)
+        rvEjercicios = requireView().findViewById(R.id.rvListas)
         contenedor = requireView().findViewById(R.id.contenedor_rutina)
         db = DatabaseHelper(requireContext())
         usuarioRutinaDb = UsuarioRutinaDb(db)
@@ -79,6 +87,7 @@ class FragmentRutina : Fragment() {
     }
 
     private lateinit var lvRutina: ListView
+    private lateinit var rvEjercicios: RecyclerView
     private lateinit var contenedor: FrameLayout
     private lateinit var btnCrear: AppCompatButton
     private lateinit var db: DatabaseHelper

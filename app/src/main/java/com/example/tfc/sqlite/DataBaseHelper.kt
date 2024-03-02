@@ -47,6 +47,7 @@ class DatabaseHelper(context: Context) :
         const val SERIES = "series"
         const val REPETICIONES = "repeticiones"
         const val PESO_SERIE = "peso"
+        const val ORDEN ="orden"
 
 
         //Tabla usuario-rutina

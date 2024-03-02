@@ -62,7 +62,10 @@ class RutinaEjercicioDb(private val dbHelper: DatabaseHelper) {
         val lista = mutableListOf<Ejercicio>()
         val db = dbHelper.readableDatabase
         val select =
-            "SELECT * FROM ${DatabaseHelper.TABLA_EJERCICIOS} " + "JOIN ${DatabaseHelper.TABLA_RUTINA_EJERCICIOS} ON ${DatabaseHelper.TABLA_EJERCICIOS}.${DatabaseHelper.ID_EJERCICIO}=" + "${DatabaseHelper.TABLA_RUTINA_EJERCICIOS}.${DatabaseHelper.ID_EJERCICIO_FK} WHERE ${DatabaseHelper.ID_RUTINA_FK}= ?"
+            "SELECT * FROM ${DatabaseHelper.TABLA_EJERCICIOS} JOIN ${DatabaseHelper.TABLA_RUTINA_EJERCICIOS} ON " +
+                    "${DatabaseHelper.TABLA_EJERCICIOS}.${DatabaseHelper.ID_EJERCICIO}=" +
+                    "${DatabaseHelper.TABLA_RUTINA_EJERCICIOS}.${DatabaseHelper.ID_EJERCICIO_FK} " +
+                    "WHERE ${DatabaseHelper.ID_RUTINA_FK}= ? ORDER BY ${DatabaseHelper.TABLA_RUTINA_EJERCICIOS}.rowid ASC"
         val cursor = db.rawQuery(select, arrayOf(idRutina.toString()))
         if (cursor.moveToFirst()) {
             try {

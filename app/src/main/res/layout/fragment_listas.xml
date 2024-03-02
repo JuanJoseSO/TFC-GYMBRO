@@ -12,4 +12,13 @@
         android:layout_height="match_parent"
         android:divider="@color/grey"
         android:dividerHeight="2dp" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
+        android:id="@+id/rvListas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/grey"
+        android:dividerHeight="2dp" />
 </FrameLayout>

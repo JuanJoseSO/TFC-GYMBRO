@@ -6,11 +6,11 @@
     <!--ActivityInfoEjercicios-->
     <string name="logo">logo</string>
     <string name="ejercicios">Ejercicios</string>
-    <string name="repeticiones">REPETICIONES</string>
+    <string name="repeticiones">REPETICIONES:</string>
     <string name="suma">suma</string>
     <string name="resta">resta</string>
-    <string name="series">SERIES</string>
-    <string name="peso_inicial">PESO INICIAL</string>
+    <string name="series">SERIES:</string>
+    <string name="peso_inicial">PESO INICIAL:</string>
     <string name="a_adir_a_rutina">añadir a rutina</string>
 
     <!--ActivityLogin-->
