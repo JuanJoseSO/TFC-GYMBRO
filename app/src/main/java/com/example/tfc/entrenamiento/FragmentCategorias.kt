@@ -9,8 +9,8 @@ import android.widget.AdapterView
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import com.example.tfc.R
-import com.example.tfc.clasesAuxiliares.adapters.AdapterCategoriasEjercicios
-import com.example.tfc.clasesAuxiliares.adapters.AdapterEjercicios
+import com.example.tfc.clasesAuxiliares.clasesListas.AdapterCategoriasEjercicios
+import com.example.tfc.clasesAuxiliares.clasesListas.AdapterEjercicios
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.EjerciciosDb
 

@@ -15,7 +15,7 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.tfc.clasesAuxiliares.CirculosAnimados
-import com.example.tfc.clasesAuxiliares.adapters.AdapterRutina
+import com.example.tfc.clasesAuxiliares.clasesListas.AdapterRutina
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.HistorialDb
 import com.example.tfc.sqlite.sqliteMetodos.RutinaEjercicioDb

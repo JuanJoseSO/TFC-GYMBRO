@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.tfc.ActivityPrincipal
 import com.example.tfc.R
-import com.example.tfc.clasesAuxiliares.adapters.AdapterRutina
+import com.example.tfc.clasesAuxiliares.clasesListas.AdapterRutina
 import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.EjerciciosDb

@@ -1,4 +1,4 @@
-package com.example.tfc.clasesAuxiliares.adapters
+package com.example.tfc.clasesAuxiliares.clasesListas
 
 import android.content.Context
 import android.graphics.drawable.GradientDrawable

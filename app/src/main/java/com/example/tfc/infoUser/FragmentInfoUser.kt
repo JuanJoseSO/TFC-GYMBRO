@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.tfc.ActivityLogin
 import com.example.tfc.R
-import com.example.tfc.clasesAuxiliares.adapters.AdapterHistorial
+import com.example.tfc.clasesAuxiliares.clasesListas.AdapterHistorial
 import com.example.tfc.clasesAuxiliares.clasesBase.Sesion
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.HistorialDb

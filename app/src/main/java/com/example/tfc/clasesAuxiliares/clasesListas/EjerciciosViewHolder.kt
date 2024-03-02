@@ -1,4 +1,4 @@
-package com.example.tfc.clasesAuxiliares.adapters
+package com.example.tfc.clasesAuxiliares.clasesListas
 
 import android.view.View
 import android.widget.TextView

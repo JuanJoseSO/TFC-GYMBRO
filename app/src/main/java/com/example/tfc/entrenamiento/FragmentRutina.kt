@@ -9,12 +9,13 @@ import android.widget.FrameLayout
 import android.widget.ListView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tfc.R
-import com.example.tfc.clasesAuxiliares.adapters.AdapterEjercicios
-import com.example.tfc.clasesAuxiliares.adapters.AdapterRVEjercicios
-import com.example.tfc.clasesAuxiliares.adapters.AdapterRutina
+import com.example.tfc.clasesAuxiliares.clasesListas.AdapterRVEjercicios
+import com.example.tfc.clasesAuxiliares.clasesListas.AdapterRutina
+import com.example.tfc.clasesAuxiliares.clasesListas.EventosListas
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.RutinaEjercicioDb
 import com.example.tfc.sqlite.sqliteMetodos.UserDb
@@ -55,12 +56,19 @@ class FragmentRutina : Fragment() {
         val listaInfoEjercicios = listaEjerciciosPorRutina.map { ejercicio ->
             rutinaEjercicioDb.getInfoRutina(id, ejercicio.id)
         }
-        /*Usamos el adapter del recicler view,ocultamos el listview para evitar tener conflictor entre ellos y mostramos
+        /*Usamos el adapter del recycler view,ocultamos el listview para evitar tener conflictor entre ellos y mostramos
           el recicler view*/
-        rvEjercicios.adapter = AdapterRVEjercicios(requireContext(),listaEjerciciosPorRutina, listaInfoEjercicios)
-        rvEjercicios.layoutManager = LinearLayoutManager(requireContext())
         rvEjercicios.visibility=View.VISIBLE
         lvRutina.visibility=View.GONE
+        val adapterEjercicios= AdapterRVEjercicios(requireContext(),listaEjerciciosPorRutina, listaInfoEjercicios)
+        rvEjercicios.adapter = adapterEjercicios
+        rvEjercicios.layoutManager = LinearLayoutManager(requireContext())
+        //Usanmos los envento de EventosListas
+        val evento= EventosListas(adapterEjercicios)
+        //Lo asignamos al recycler view
+        val itemTouchHelper=ItemTouchHelper(evento)
+        itemTouchHelper.attachToRecyclerView(rvEjercicios)
+
     }
 
     override fun onDestroy() {

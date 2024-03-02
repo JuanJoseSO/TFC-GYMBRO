@@ -58,14 +58,11 @@ class RutinaEjercicioDb(private val dbHelper: DatabaseHelper) {
     }
 
     @SuppressLint("Range")
-    fun getEjerciciosPorRutina(idRutina: Int): List<Ejercicio> {
+    fun getEjerciciosPorRutina(idRutina: Int): MutableList<Ejercicio> {
         val lista = mutableListOf<Ejercicio>()
         val db = dbHelper.readableDatabase
         val select =
-            "SELECT * FROM ${DatabaseHelper.TABLA_EJERCICIOS} JOIN ${DatabaseHelper.TABLA_RUTINA_EJERCICIOS} ON " +
-                    "${DatabaseHelper.TABLA_EJERCICIOS}.${DatabaseHelper.ID_EJERCICIO}=" +
-                    "${DatabaseHelper.TABLA_RUTINA_EJERCICIOS}.${DatabaseHelper.ID_EJERCICIO_FK} " +
-                    "WHERE ${DatabaseHelper.ID_RUTINA_FK}= ? ORDER BY ${DatabaseHelper.TABLA_RUTINA_EJERCICIOS}.rowid ASC"
+            "SELECT * FROM ${DatabaseHelper.TABLA_EJERCICIOS} JOIN ${DatabaseHelper.TABLA_RUTINA_EJERCICIOS} ON " + "${DatabaseHelper.TABLA_EJERCICIOS}.${DatabaseHelper.ID_EJERCICIO}=" + "${DatabaseHelper.TABLA_RUTINA_EJERCICIOS}.${DatabaseHelper.ID_EJERCICIO_FK} " + "WHERE ${DatabaseHelper.ID_RUTINA_FK}= ? ORDER BY ${DatabaseHelper.ORDEN} ASC"
         val cursor = db.rawQuery(select, arrayOf(idRutina.toString()))
         if (cursor.moveToFirst()) {
             try {
@@ -105,6 +102,46 @@ class RutinaEjercicioDb(private val dbHelper: DatabaseHelper) {
             )
         } catch (e: SQLiteException) {
             Log.e("SQLite", "Error al añadir  el ejercicio", e)
+        }
+    }
+
+    fun updateOrden(listaEjercicios: List<Ejercicio>) {
+        val db = dbHelper.writableDatabase
+        db.beginTransaction()
+        try {
+            listaEjercicios.forEachIndexed { nuevoOrden, ejercicio ->
+                val values = ContentValues().apply {
+                    put(DatabaseHelper.ORDEN, nuevoOrden)
+                }
+                db.update(
+                    DatabaseHelper.TABLA_RUTINA_EJERCICIOS,
+                    values,
+                    "${DatabaseHelper.ID_EJERCICIO_FK}=?",
+                    arrayOf(ejercicio.id.toString())
+                )
+            }
+            db.setTransactionSuccessful()
+        } catch (e: SQLiteException) {
+            Log.e("SQLite", "Error al cambiar la posicion del ejercicio", e)
+        } finally {
+            db.endTransaction()
+            db.close()
+        }
+    }
+
+    fun eliminarEjercicio(idEjercicio: Int) {
+        val db = dbHelper.writableDatabase
+        try {
+            // Ejecuta la operación DELETE en la base de datos
+            db.delete(
+                DatabaseHelper.TABLA_RUTINA_EJERCICIOS,
+                "${DatabaseHelper.ID_EJERCICIO_FK}=?",
+                arrayOf(idEjercicio.toString())
+            )
+        }catch (e: SQLiteException) {
+            Log.e("SQLite", "Error al cambiar la posicion del ejercicio", e)
+        } finally {
+            db.close()
         }
     }
 }

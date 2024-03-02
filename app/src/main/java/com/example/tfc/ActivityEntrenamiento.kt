@@ -15,7 +15,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
-import com.example.tfc.clasesAuxiliares.Cronometro
+import com.example.tfc.clasesAuxiliares.clasesBase.Cronometro
 import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
 import com.example.tfc.clasesAuxiliares.clasesBase.Rutina
 import com.example.tfc.clasesAuxiliares.clasesBase.Sesion

@@ -1,4 +1,4 @@
-package com.example.tfc.clasesAuxiliares
+package com.example.tfc.clasesAuxiliares.clasesBase
 
 import android.os.Handler
 import android.os.Looper
