@@ -47,8 +47,7 @@ class ActivityBienvenida : AppCompatActivity() {
             } else {
                 //Si no vamos a la activity para crearlo
                 btnAcceso.setOnClickListener {
-                    val intent = Intent(this, ActivityLogin::class.java)
-                    startActivity(intent)
+                    navegarActivityPrincipal()
                 }
             }
         } catch (e: SQLiteException) {
@@ -56,10 +55,16 @@ class ActivityBienvenida : AppCompatActivity() {
         }
     }
 
+    private fun navegarActivityPrincipal() {
+        val intent = Intent(this, ActivityLogin::class.java)
+        startActivity(intent)
+        finish() //Cierra la activity para evitar volver a ella
+    }
+
     private fun cargarRutinas() {
-        rutinaDb.addRutina(Rutina("Pecho", 90, "Media", 40, "Lunes"))
-        rutinaDb.addRutina(Rutina("Espalda", 90, "Media", 40, "Miércoles"))
-        rutinaDb.addRutina(Rutina("Pierna", 90, "Media", 40, "Viernes"))
+        rutinaDb.addRutina(Rutina("Pecho", 90, 1, 40, "Lunes"))
+        rutinaDb.addRutina(Rutina("Espalda", 90, 1, 40, "Miércoles"))
+        rutinaDb.addRutina(Rutina("Pierna", 90, 1, 40, "Viernes"))
 
         rutinaEjercicioDb.addEjercicioARutina(1, 10, 12, 4, 75.0)
         rutinaEjercicioDb.addEjercicioARutina(1, 14, 12, 4, 22.5)

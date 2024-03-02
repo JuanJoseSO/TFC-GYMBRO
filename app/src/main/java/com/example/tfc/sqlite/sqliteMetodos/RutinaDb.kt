@@ -48,7 +48,7 @@ class RutinaDb(private val dbHelper: DatabaseHelper) {
                     cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ID_RUTINA)),
                     cursor.getString(cursor.getColumnIndex(DatabaseHelper.NOMBRE_RUTINA)),
                     cursor.getInt(cursor.getColumnIndex(DatabaseHelper.TIEMPO_OBJETIVO)),
-                    cursor.getString(cursor.getColumnIndex(DatabaseHelper.INTENSIDAD)),
+                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.INTENSIDAD)),
                     cursor.getInt(cursor.getColumnIndex(DatabaseHelper.DESCANSO)),
                     cursor.getString(cursor.getColumnIndex(DatabaseHelper.DIA_PREFERENTE))
                 )

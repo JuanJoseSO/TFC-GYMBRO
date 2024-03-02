@@ -138,6 +138,7 @@ class ActivityLogin : AppCompatActivity() {
     private fun navegarActivityPrincipal() {
         val intent = Intent(this, ActivityPrincipal::class.java)
         startActivity(intent)
+        finish() //Cierra la activity para evitar volver a ella
     }
 
     //Funciones SETTER/GETTER con seguridad de parametros

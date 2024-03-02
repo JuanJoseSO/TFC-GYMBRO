@@ -77,8 +77,7 @@ class ActivityInfoEjercicios : AppCompatActivity() {
         }
     }
 
-    private fun cargarRutinas() {
-        /*Lo que hacemos en esta funcion es abrir un AlertDialog que estamos inflando con el mismo adapter que la lista de
+    private fun cargarRutinas() {/*Lo que hacemos en esta funcion es abrir un AlertDialog que estamos inflando con el mismo adapter que la lista de
           rutinas lo que hace que en lugar de ser una lista gris sin estilo sea una lista con un fondo y un formato individual
           para cada ejercicio,quedando mucho mas atractiva visualmente*/
         if (usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!).isEmpty()) {
@@ -106,9 +105,7 @@ class ActivityInfoEjercicios : AppCompatActivity() {
                     pesoInicial,
                 )
                 Toast.makeText(this, "Ejercicio añadido", Toast.LENGTH_SHORT).show()
-                //Volvemos a la activityPrincipal
-                val intent = Intent(this, ActivityPrincipal::class.java)
-                startActivity(intent)
+                navegarActivityPrincipal()
             }
             //Creamos el Alerdialog y le damos el estilo y un boton atrás
             val builder = AlertDialog.Builder(this)
@@ -118,6 +115,13 @@ class ActivityInfoEjercicios : AppCompatActivity() {
             dialog.show()
         }
     }
+
+    private fun navegarActivityPrincipal() {
+        val intent = Intent(this, ActivityPrincipal::class.java)
+        startActivity(intent)
+        finish() //Cierra la activity para evitar volver a ella
+    }
+
 
     //Funciones para aumentar o reducir los campos seleccionados
     private fun setPeso() {

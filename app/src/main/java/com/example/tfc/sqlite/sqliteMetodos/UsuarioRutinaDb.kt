@@ -27,7 +27,10 @@ class UsuarioRutinaDb(private val dbHelper: DatabaseHelper) {
         val listaRutina = mutableListOf<Rutina>()
         val db = dbHelper.readableDatabase
         val select =
-            "SELECT * FROM ${DatabaseHelper.TABLA_RUTINAS} " + "JOIN ${DatabaseHelper.TABLA_USUARIOS_RUTINAS} ON ${DatabaseHelper.TABLA_RUTINAS}.${DatabaseHelper.ID_RUTINA}=" + "${DatabaseHelper.TABLA_USUARIOS_RUTINAS}.${DatabaseHelper.ID_RUTINA_FK} WHERE ${DatabaseHelper.ID_USUARIO_FK}= ?"
+            "SELECT * FROM ${DatabaseHelper.TABLA_RUTINAS} " + "JOIN ${DatabaseHelper.TABLA_USUARIOS_RUTINAS} ON " +
+                    "${DatabaseHelper.TABLA_RUTINAS}.${DatabaseHelper.ID_RUTINA}=" +
+                    "${DatabaseHelper.TABLA_USUARIOS_RUTINAS}.${DatabaseHelper.ID_RUTINA_FK} WHERE ${DatabaseHelper.ID_USUARIO_FK}= ? " +
+                    "ORDER BY ${DatabaseHelper.INTENSIDAD}"
         val cursor = db.rawQuery(select, arrayOf(idUsuario.toString()))
 
         if (cursor.moveToFirst()) {
@@ -36,7 +39,7 @@ class UsuarioRutinaDb(private val dbHelper: DatabaseHelper) {
                     cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ID_RUTINA)),
                     cursor.getString(cursor.getColumnIndex(DatabaseHelper.NOMBRE_RUTINA)),
                     cursor.getInt(cursor.getColumnIndex(DatabaseHelper.TIEMPO_OBJETIVO)),
-                    cursor.getString(cursor.getColumnIndex(DatabaseHelper.INTENSIDAD)),
+                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.INTENSIDAD)),
                     cursor.getInt(cursor.getColumnIndex(DatabaseHelper.DESCANSO)),
                     cursor.getString(cursor.getColumnIndex(DatabaseHelper.DIA_PREFERENTE))
                 )

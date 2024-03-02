@@ -55,12 +55,12 @@ class FragmentRutina : Fragment() {
         val listaInfoEjercicios = listaEjerciciosPorRutina.map { ejercicio ->
             rutinaEjercicioDb.getInfoRutina(id, ejercicio.id)
         }
-        //Aprovechamos el adapter y el mismo contenedor para mostrar la lista e ejercicios
+        /*Usamos el adapter del recicler view,ocultamos el listview para evitar tener conflictor entre ellos y mostramos
+          el recicler view*/
         rvEjercicios.adapter = AdapterRVEjercicios(requireContext(),listaEjerciciosPorRutina, listaInfoEjercicios)
         rvEjercicios.layoutManager = LinearLayoutManager(requireContext())
         rvEjercicios.visibility=View.VISIBLE
         lvRutina.visibility=View.GONE
-
     }
 
     override fun onDestroy() {

@@ -36,9 +36,9 @@ class AdapterRutina(private val context: Context, private val listaRutina: List<
             ?.mutate() as? GradientDrawable
         bordeCeldas.let {
             val colorBackground = when (rutina.intensidad) {
-                "Baja" -> ContextCompat.getColor(context, R.color.green)
-                "Media" -> ContextCompat.getColor(context, R.color.orange)
-                "Alta" -> ContextCompat.getColor(context, R.color.red)
+                0 -> ContextCompat.getColor(context, R.color.green)
+                1 -> ContextCompat.getColor(context, R.color.orange)
+                2 -> ContextCompat.getColor(context, R.color.red)
                 else -> ContextCompat.getColor(context, R.color.red)
             }
             it?.setStroke(15, colorBackground)

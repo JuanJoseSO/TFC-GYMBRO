@@ -16,15 +16,14 @@ class ActivityPrincipal : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_principal)
 
-        configurarBottomNavigationView()
-        cargarUltimoFragmentoVisitado() //Cargamos HomeFragment por defecto
+        configurarMenuNavegacion()
+        cargarUltimoFragment()
     }
 
     //Funcion para configurar la barra de navegación de la aplicacion
-    private fun configurarBottomNavigationView() {
+    private fun configurarMenuNavegacion() {
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.menuNavegacion)
-
 
         bottomNavigationView.setOnItemSelectedListener { item ->
             //Los distintos fragmentos a los que podemos navegar
@@ -57,10 +56,11 @@ class ActivityPrincipal : AppCompatActivity() {
     private fun cargarFragmento(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.contenedor_fragments, fragment)
             .commit()
+
     }
 
-    private fun cargarUltimoFragmentoVisitado() {
-        val sharedPreferences = getSharedPreferences("PreferenciasApp", Context.MODE_PRIVATE)
+    private fun cargarUltimoFragment() {
+        val sharedPreferences = getSharedPreferences("Preferencias", Context.MODE_PRIVATE)
         //Recuperamos el menú de nuevo por que tenemos que actualizar tanto el fragment que se muesta en el contenedor como el botón ilumnado,simple estética
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.menuNavegacion)
         //Le asignamos el item seleccionada

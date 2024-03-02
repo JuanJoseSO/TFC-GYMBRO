@@ -81,14 +81,9 @@ class ActivityCrearRutina : AppCompatActivity() {
                 Toast.makeText(this, "Por favor, ingrese un nombre válido", Toast.LENGTH_SHORT)
                     .show()
             } else {
-                //Si no creamos el objeto rutina y lo añadimos a la base de datos
-                val rutina = Rutina(
-                    etNombreRutina.text.toString(),
-                    tiempoInicial,
-                    tvResultadoIntensidad.text.toString(),
-                    descansoInicial,
-                    tvResultadoDia.text.toString()
-                )
+
+                val rutina = crearRutina()
+
                 try {
                     //Como se explica en rutinaDB añadir rutina devuelve un Long con el id,para añadirlo a la tabla usuario_rutina
                     usuarioRutinaDb.addRutinaAUsuario(
@@ -102,6 +97,24 @@ class ActivityCrearRutina : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun crearRutina(): Rutina {
+        val intensidad = when (tvResultadoIntensidad.text.toString()) {
+            "Baja" -> 0
+            "Media" -> 1
+            "Alta" -> 2
+            else -> 3
+        }
+        //Si no creamos el objeto rutina y lo añadimos a la base de datos
+        val rutina = Rutina(
+            etNombreRutina.text.toString(),
+            tiempoInicial,
+            intensidad,
+            descansoInicial,
+            tvResultadoDia.text.toString()
+        )
+        return rutina
     }
 
     //Funciones para simplificar los listeners anteriores

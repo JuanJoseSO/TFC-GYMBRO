@@ -110,6 +110,7 @@ class ActivityEntrenamiento : AppCompatActivity() {
             guardarHistorial()
             val intent = Intent(this, ActivityPrincipal::class.java)
             startActivity(intent)
+            finish() //Cierra la activity para evitar volver a ella
         }
     }
 

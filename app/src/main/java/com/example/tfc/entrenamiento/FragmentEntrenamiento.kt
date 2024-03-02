@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.example.tfc.R
 
@@ -24,19 +25,14 @@ class FragmentEntrenamiento : Fragment() {
         initComponentes()
         initListeners()
         //Mostramos el fragmento de categorías
-        if (savedInstanceState == null) { //Evitamor cargar el fragmento si ya está presente
-            mostrarFragment(FragmentCategorias())
-        }
+        mostrarFragment(FragmentCategorias())
     }
 
     //Funcion para cambiar el Fragment al que le pasamos el NUEVO fragment a mostrar por parametro
     private fun mostrarFragment(fragment: Fragment) {
-
         parentFragmentManager.beginTransaction().apply {
             //Cambiamos el fragment indicando el contenedor requerido para la tarea definido en el layout
-            replace(R.id.fragmentContenedorEntrenamiento, fragment)
-            commit()
-            addToBackStack(null)
+            replace(R.id.fragmentContenedorEntrenamiento, fragment).commit()
         }
     }
 
@@ -54,6 +50,7 @@ class FragmentEntrenamiento : Fragment() {
     private fun initComponentes() {
         switchEjercicio = requireView().findViewById(R.id.switch_ejercicio)
         switchRutina = requireView().findViewById(R.id.switch_rutina)
+
     }
 
     private lateinit var switchEjercicio: RadioButton

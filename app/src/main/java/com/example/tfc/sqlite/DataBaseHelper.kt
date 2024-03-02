@@ -106,7 +106,7 @@ class DatabaseHelper(context: Context) :
                     $ID_RUTINA INTEGER PRIMARY KEY AUTOINCREMENT,
                     $NOMBRE_RUTINA TEXT,
                     $TIEMPO_OBJETIVO INTEGER,
-                    $INTENSIDAD TEXT,
+                    $INTENSIDAD INTEGER,
                     $DESCANSO INTEGER,
                     $DIA_PREFERENTE TEXT
                 )                

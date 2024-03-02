@@ -5,14 +5,14 @@ data class Rutina(
     val id: Int = 0,
     val nombre: String,
     val tiempoObjetivo: Int,
-    val intensidad: String,
+    val intensidad: Int,
     val descanso: Int,
     val diaPreferente: String
 ) {
     constructor(
         nombre: String,
         tiempoObjetivo: Int,
-        intensidad: String,
+        intensidad: Int,
         descanso: Int,
         diaPreferente: String
     ) : this(0, nombre, tiempoObjetivo, intensidad, descanso, diaPreferente)
