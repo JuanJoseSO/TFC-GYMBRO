@@ -120,6 +120,7 @@ class DatabaseHelper(context: Context) :
                    $SERIES INTEGER,
                    $REPETICIONES INTEGER,
                    $PESO_SERIE REAL,
+                   $ORDEN INTEGER,
                    PRIMARY KEY ($ID_RUTINA_FK,$ID_EJERCICIO_FK),
                    FOREIGN KEY ($ID_RUTINA_FK) REFERENCES $TABLA_RUTINAS($ID_RUTINA),
                    FOREIGN KEY ($ID_EJERCICIO_FK) REFERENCES $TABLA_EJERCICIOS($ID_EJERCICIO)
