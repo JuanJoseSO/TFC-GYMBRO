@@ -40,7 +40,7 @@ class AdapterHistorial(private val context: Context, private val listaHistorial:
         /*Esta parte es complicada por que tenemos que darle forma a un drawable que define el estilo que le estamos dando a lis items
         de la lista en layout_rutina.xml,basicamente lo que hacemos es recoger el color dependiendo de la intensidad asignada a cada rutina,
         obtenemos el drawable que queremos y le damos forma con el método setStrole()*/
-        val bordeCeldas = ContextCompat.getDrawable(context, R.drawable.celdas_dieta)
+        val bordeCeldas = ContextCompat.getDrawable(context, R.drawable.layout_celdas)
             ?.mutate() as? GradientDrawable
         bordeCeldas.let {
             val colorBackground = when (rutina?.intensidad) {

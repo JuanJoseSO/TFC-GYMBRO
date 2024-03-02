@@ -23,7 +23,7 @@
         android:id="@+id/btnCrearUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_redondo"
+        android:background="@drawable/layout_btn_redondo"
         android:padding="10dp"
         android:scaleType="fitXY"
         android:src="@drawable/ic_opciones"

@@ -18,7 +18,7 @@
         android:id="@+id/celda_rutina"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/celdas_dieta"
+        android:background="@drawable/layout_celdas"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/view"

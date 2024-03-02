@@ -30,7 +30,7 @@ class AdapterDieta(private val context: Context, private val listaDieta: List<Di
         /*Esta parte es complicada por que tenemos que darle forma a un drawable que define el estilo que le estamos dando a lis items
         de la lista en layout_dietas.xml,basicamente lo que hacemos es recoger el color dependiendo del nivel asignado a cada dieta,
         obtenemos el drawable que queremos y le damos forma con el método setStrole()*/
-        val celdasDieta = ContextCompat.getDrawable(context, R.drawable.celdas_dieta)
+        val celdasDieta = ContextCompat.getDrawable(context, R.drawable.layout_celdas)
             ?.mutate() as? GradientDrawable
         celdasDieta.let {
             val colorBackground = when (dieta.nivel) {

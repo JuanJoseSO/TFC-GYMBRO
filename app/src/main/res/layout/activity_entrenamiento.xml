@@ -293,7 +293,7 @@
         android:id="@+id/lyUltimo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/layout_mensaje"
+        android:background="@drawable/layout_celdas"
         android:padding="20dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
