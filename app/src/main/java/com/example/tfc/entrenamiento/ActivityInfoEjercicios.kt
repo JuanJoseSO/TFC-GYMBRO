@@ -77,7 +77,8 @@ class ActivityInfoEjercicios : AppCompatActivity() {
         }
     }
 
-    private fun cargarRutinas() {/*Lo que hacemos en esta funcion es abrir un AlertDialog que estamos inflando con el mismo adapter que la lista de
+    private fun cargarRutinas() {
+        /*Lo que hacemos en esta funcion es abrir un AlertDialog que estamos inflando con el mismo adapter que la lista de
           rutinas lo que hace que en lugar de ser una lista gris sin estilo sea una lista con un fondo y un formato individual
           para cada ejercicio,quedando mucho mas atractiva visualmente*/
         if (usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!).isEmpty()) {
@@ -93,7 +94,7 @@ class ActivityInfoEjercicios : AppCompatActivity() {
             layoutRutina.background =
                 ContextCompat.getDrawable(this, R.drawable.background)//Le cambiamos el fondo
             val lvRutina =
-                layoutRutina.findViewById<ListView>(R.id.listas)//Rlacionamos con nuestro layout
+                layoutRutina.findViewById<ListView>(R.id.lvListas)//Rlacionamos con nuestro layout
             lvRutina.adapter = adapter //Relacionamos con el adapter
             lvRutina.setOnItemClickListener { _, _, position, _ ->
                 //Añadimos a la base de datos el item seleccionado

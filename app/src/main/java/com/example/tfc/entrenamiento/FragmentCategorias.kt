@@ -32,7 +32,7 @@ class FragmentCategorias : Fragment() {
 
     private fun initUICategorias() {
         //Relacionamos con la ListView en el layout del fragment
-        val lista = requireView().findViewById<ListView>(R.id.listas)
+        val lista = requireView().findViewById<ListView>(R.id.lvListas)
 
         //Obtenemos las categorias de la base de datos
         val listaSinImagenes = ejerciciosDb.obtenerCategorias()
@@ -85,7 +85,7 @@ class FragmentCategorias : Fragment() {
     }
 
     private fun initUIEjercicios(categoria: Any?) {
-        val lista = requireView().findViewById<ListView>(R.id.listas)
+        val lista = requireView().findViewById<ListView>(R.id.lvListas)
 
         /*Creamos una variable ejercicio de tipo lista(SmartCast) y hacemos la consulta con el string de intent,ahorrando
           la creacion de dos variables*/

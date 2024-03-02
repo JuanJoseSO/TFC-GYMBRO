@@ -36,6 +36,7 @@ class FragmentEntrenamiento : Fragment() {
             //Cambiamos el fragment indicando el contenedor requerido para la tarea definido en el layout
             replace(R.id.fragmentContenedorEntrenamiento, fragment)
             commit()
+            addToBackStack(null)
         }
     }
 

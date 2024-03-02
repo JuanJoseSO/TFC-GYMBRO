@@ -208,7 +208,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/tvEdad"
+                android:id="@+id/tvObjetivoDiario"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -227,15 +227,28 @@
         android:layout_margin="14dp"
         android:background="@drawable/layout_btns"
         android:padding="4dp"
-        android:text="Modificar Usuario"
+        android:text="Modificar"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnCambiarUsuario"
+        app:layout_constraintBottom_toBottomOf="@id/btnCambiarUsuario"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toEndOf="@id/btnCambiarUsuario"
+        tools:ignore="VisualLintButtonSize" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCambiarUsuario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/layout_btns"
+        android:padding="4dp"
+        android:text="Cambiar"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnEliminarUsuario"
+        app:layout_constraintEnd_toStartOf="@+id/btnModificarUsuario"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.871"
         tools:ignore="VisualLintButtonSize" />
 
     <androidx.appcompat.widget.AppCompatButton

@@ -129,4 +129,40 @@ class UserDb(private val dbHelper: DatabaseHelper) {
         cursor.close()
         return usuario
     }
+
+    fun eliminarUsuario() {
+        val db = dbHelper.writableDatabase
+        //Eliminamos el usuario seleccionado
+        db.delete(
+            DatabaseHelper.TABLA_USERS,
+            "${DatabaseHelper.SELECCION}=?",
+            arrayOf("1")
+        )
+    }
+
+    fun updateUsuario(idUsuario: Int,usuario: Usuario) {
+        val db = dbHelper.writableDatabase
+        try {
+            //Guardamos el objeto usuario repartiendo la información en las distinta columnas
+            val values = ContentValues()
+            values.put(DatabaseHelper.NOMBRE_USUARIO, usuario.nombreUsuario)
+            values.put(DatabaseHelper.OBJETIVO_DIARIO, usuario.objetivoDiario)
+            values.put(DatabaseHelper.PESO, usuario.peso)
+            values.put(DatabaseHelper.ALTURA, usuario.altura)
+            values.put(DatabaseHelper.IMC, usuario.imc)
+            values.put(
+                DatabaseHelper.GENERO, if (usuario.genero) 1 else 0
+            ) //El genero será un 1 o un 0 dependiendo de la opcion elegida
+            values.put(DatabaseHelper.SELECCION, 1) //Siempre selecciona el último usuario creado
+
+            db.update(
+                DatabaseHelper.TABLA_USERS,
+                values,
+                "${DatabaseHelper.ID_USUARIO} = ?",
+                arrayOf(idUsuario.toString())
+            )
+        } catch (e: SQLiteException) {
+            Log.e("SQLite", "Error al añadir usuario", e)
+        }
+    }
 }

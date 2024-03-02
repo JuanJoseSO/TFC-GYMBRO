@@ -87,12 +87,12 @@ class HistorialDb(private val dbHelper: DatabaseHelper) {
     }
 
     @SuppressLint("Range")
-    fun getTiempoDiarioSesion(dia: String): Int {
+    fun getTiempoDiarioSesion(dia: String, idUsuario: Int?): Int {
         var tiempoTotal = 0
         val db = dbHelper.readableDatabase
         val select =
-            "SELECT SUM(${DatabaseHelper.TIEMPO_TOTAL}) AS TiempoTotal FROM  ${DatabaseHelper.TABLA_HISTORIAL} WHERE ${DatabaseHelper.DIA_ENTRENAMIENTO}=?"
-        val cursor = db.rawQuery(select, arrayOf(dia))
+            "SELECT SUM(${DatabaseHelper.TIEMPO_TOTAL}) AS TiempoTotal FROM  ${DatabaseHelper.TABLA_HISTORIAL} WHERE ${DatabaseHelper.DIA_ENTRENAMIENTO}=? AND ${DatabaseHelper.ID_USUARIO_FK}=?"
+        val cursor = db.rawQuery(select, arrayOf(dia,idUsuario.toString()))
 
         if (cursor.moveToFirst()) {
             //Este cursor es curioso ya que optiene el tiempo del indice 0,es decir,de TiempoTotal de la consulta

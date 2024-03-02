@@ -105,6 +105,7 @@ class ActivityEntrenamiento : AppCompatActivity() {
             cargarEjercicio(posicionEjercicioActual)
         }
         //Si no,vamos al resumen de la rutina
+        //****************************MOSTRAR RESUMEN********************************
         else {
             guardarHistorial()
             val intent = Intent(this, ActivityPrincipal::class.java)
@@ -239,7 +240,7 @@ class ActivityEntrenamiento : AppCompatActivity() {
         userDb = UserDb(db)
         historialDb = HistorialDb(db)
         user = userDb.getUsuarioSeleccionado()!!
-        rutina = rutinaDb.getRutina(1)!!
+        rutina = rutinaDb.getRutina(intent.getIntExtra("idRutina",-1))!!
         initEjercicios()
     }
 

@@ -14,13 +14,13 @@
         android:textColor="@color/grey"
         android:textSize="17sp"
         app:flow_horizontalBias="0.1"
-        app:layout_constraintBottom_toTopOf="@id/btnUsuarios"
+        app:layout_constraintBottom_toTopOf="@id/btnCrearUsuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/btnUsuarios"
+        android:id="@+id/btnCrearUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_redondo"
@@ -41,16 +41,15 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
         android:text="@string/resumen_diario"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/circulosAnimados"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.10"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFecha"
         app:layout_constraintVertical_bias="0.15" />
 
     <com.example.tfc.clasesAuxiliares.CirculosAnimados
@@ -60,11 +59,42 @@
         android:layout_gravity="center"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvMensaje"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.2" />
+
+
+    <TextView
+        android:id="@+id/tvMensaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/objetivo_no_cumplido"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/ivFlecha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circulosAnimados"
+        app:layout_constraintVertical_bias="0.163" />
+
+    <ImageView
+        android:id="@+id/ivFlecha"
+        android:layout_width="74dp"
+        android:layout_height="99dp"
+        android:layout_margin="10dp"
+        android:scaleType="fitXY"
+        android:scaleX="-1"
+        android:src="@drawable/ic_flecha"
+        app:layout_constraintBottom_toTopOf="@+id/btnEntrenar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.563"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMensaje"
+        app:layout_constraintVertical_bias="0.472" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnEntrenar"
@@ -78,9 +108,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.928"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circulosAnimados"
+        app:layout_constraintTop_toBottomOf="@+id/ivFlecha"
         app:layout_constraintVertical_bias="0.938" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-

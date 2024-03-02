@@ -10,8 +10,6 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.LinearInterpolator
-import com.example.tfc.sqlite.DatabaseHelper
-import com.example.tfc.sqlite.sqliteMetodos.UserDb
 import kotlin.math.min
 
 class CirculosAnimados(context: Context, attrs: AttributeSet) : View(context, attrs) {
@@ -26,11 +24,9 @@ class CirculosAnimados(context: Context, attrs: AttributeSet) : View(context, at
         paint.strokeCap = Paint.Cap.ROUND //Redondea la linea
     }
 
-    fun rellenarCirculo(tiempoEntrenado: Int) {
-        //Calculo simplificado para dividir el tiempo entrenado en milisegundos entre 30 minutos
-        val userDb = UserDb(DatabaseHelper(context))
-        val objetivoDiario = userDb.getUsuarioSeleccionado()?.objetivoDiario
-        val rellendoTotal = tiempoEntrenado.toFloat() / (objetivoDiario?.toFloat() ?: 1f)
+    fun rellenarCirculo(tiempoEntrenado: Int,objetivoDiario:Int) {
+        //Calculo del porcentaje de relleno segundo el tiempoEntreando entre el objetivo
+        val rellendoTotal = tiempoEntrenado.toFloat() / objetivoDiario.toFloat()
 
         val animator = ValueAnimator.ofFloat(0f, 360f * rellendoTotal)
 
@@ -42,8 +38,8 @@ class CirculosAnimados(context: Context, attrs: AttributeSet) : View(context, at
             sweepAngle = animation.animatedValue as Float
             invalidate() //Redibuja la vista con un nuevo valor de sweepAngle
         }
-
         animator.start() //Inicia la animación
+
     }
 
     //Función que dibuja la linea con sus atributos

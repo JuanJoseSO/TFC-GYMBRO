@@ -54,7 +54,7 @@ class FragmentDieta : Fragment() {
     }
 
     private fun initComponentes() {
-        listaDieta = requireView().findViewById(R.id.listas)
+        listaDieta = requireView().findViewById(R.id.lvListas)
         dietaDb = DietaDb(DatabaseHelper(requireContext()))
     }
 

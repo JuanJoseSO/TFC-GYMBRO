@@ -20,7 +20,7 @@
     <string name="hombre">Hombre</string>
     <string name="altura">Altura</string>
     <string name="peso">Peso</string>
-    <string name="objetivo">Objetivo Diario</string>
+    <string name="objetivo">Objetivo Diario:</string>
     <string name="crear_usuario">Crear usuario</string>
     <string name="alturaDefecto">120 cm</string>
 
@@ -33,6 +33,8 @@
     <!--FragmentHome-->
     <string name="resumen_diario">Resumen diario:</string>
     <string name="vamos_a_darle_ca_a">¡Vamos a darle caña!</string>
+    <string name="aun_te_queda_mucho_npor_hacer_hoy">¡AÚN TE QUEDA MUCHO \nPOR HACER HOY!</string>
+
 
     <!--FragmentInfoUser-->
     <string name="informaci_n_personal">Información Personal</string>
@@ -70,5 +72,6 @@
     <string name="siguiente_ejercicio">SIGUIENTE EJERCICIO</string>
     <string name="ltima_serie">¡ÚLTIMA SERIE!</string>
     <string name="eliminar_historial">Eliminar historial</string>
-
+    <string name="objetivo_cumplido">OBJETIVO DIARIO CUMPLIDO\n¡FELICIDADES!</string>
+    <string name="objetivo_no_cumplido">AÚN TE QUEDA MUCHO\nPOR HACER HOY</string>
 </resources>

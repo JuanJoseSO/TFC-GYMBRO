@@ -48,9 +48,13 @@ class FragmentRutina : Fragment() {
     //Mostramos los ejercicios que PERTENECEN a una rutina con la tabla rutina_ejercicios
     private fun mostrarEjerciciosPorRutina(id: Int) {
         val listaEjerciciosPorRutina = rutinaEjercicioDb.getEjerciciosPorRutina(id)
-        //Aprovechamos el adapter y el mismo contenedor para mostrar la lista e ejercicios
-        lvRutina.adapter = AdapterEjercicios(requireContext(), listaEjerciciosPorRutina)
+        val lista = requireView().findViewById<ListView>(R.id.lvListas)
+        lista.visibility = View.VISIBLE
+       /*Creamos una variable ejercicio de tipo lista(SmartCast) y hacemos la consulta con el string de intent,ahorrando
+      la creacion de dos variables*/
+        lista.adapter = AdapterEjercicios(requireContext(), listaEjerciciosPorRutina)
     }
+
 
     override fun onDestroy() {
         DatabaseHelper(requireContext()).close()
@@ -66,7 +70,7 @@ class FragmentRutina : Fragment() {
 
     private fun initComponentes() {
         btnCrear = requireView().findViewById(R.id.btnCrearRutina)
-        lvRutina = requireView().findViewById(R.id.listas)
+        lvRutina = requireView().findViewById(R.id.lvListas)
         contenedor = requireView().findViewById(R.id.contenedor_rutina)
         db = DatabaseHelper(requireContext())
         usuarioRutinaDb = UsuarioRutinaDb(db)
