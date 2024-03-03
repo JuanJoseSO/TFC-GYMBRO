@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.tfc.dieta.FragmentDieta
 import com.example.tfc.entrenamiento.FragmentEntrenamiento
+import com.example.tfc.infoUser.FragmentHistorial
 import com.example.tfc.infoUser.FragmentInfoUser
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -18,6 +19,9 @@ class ActivityPrincipal : AppCompatActivity() {
 
         configurarMenuNavegacion()
         cargarUltimoFragment()
+        if (intent.getBooleanExtra("cargarHistorial", false)) {
+            cargarHistorial()
+        }
     }
 
     //Funcion para configurar la barra de navegación de la aplicacion
@@ -50,6 +54,21 @@ class ActivityPrincipal : AppCompatActivity() {
             }
             true
         }
+    }
+
+    //Si recibimos un historial del entrenamiento,lo cargamos
+    private fun cargarHistorial() {
+        val idHistorial = intent.getIntExtra("idHistorial", -1)
+        val fragmentHistorial = FragmentHistorial().apply {
+            //Similar a un intent,pero así se configura la navegación entre fragments
+            arguments = Bundle().apply {
+                putInt("id", idHistorial)
+            }
+        }
+        //Navegamos al fragmento destino,fragmentHistorial
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.contenedor_fragments, fragmentHistorial).addToBackStack(null).commit()
+
     }
 
     //Funcion para cargar fragmentos

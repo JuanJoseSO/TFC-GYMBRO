@@ -1,4 +1,4 @@
-package com.example.tfc.clasesAuxiliares
+package com.example.tfc.clasesAuxiliares.clasesBase
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
@@ -24,14 +24,14 @@ class CirculosAnimados(context: Context, attrs: AttributeSet) : View(context, at
         paint.strokeCap = Paint.Cap.ROUND //Redondea la linea
     }
 
-    fun rellenarCirculo(tiempoEntrenado: Int,objetivoDiario:Int) {
+    fun rellenarCirculo(tiempoEntrenado: Int, objetivoDiario: Int) {
         //Calculo del porcentaje de relleno segundo el tiempoEntreando entre el objetivo
         val rellendoTotal = tiempoEntrenado.toFloat() / objetivoDiario.toFloat()
 
         val animator = ValueAnimator.ofFloat(0f, 360f * rellendoTotal)
 
         animator.duration =
-            1000 //Duración de la animación en ms. ******CAMBIARLO A ENTRENAMIENTO DIARO
+            1000
         animator.interpolator = LinearInterpolator() //Con esto conseguimos un movimiento uniforme
 
         animator.addUpdateListener { animation ->

@@ -23,14 +23,11 @@ class UsuarioRutinaDb(private val dbHelper: DatabaseHelper) {
     }
 
     @SuppressLint("Range")
-    fun getRutinaPorUsuario(idUsuario: Int): List<Rutina> {
+    fun getRutinaPorUsuario(idUsuario: Int): MutableList<Rutina> {
         val listaRutina = mutableListOf<Rutina>()
         val db = dbHelper.readableDatabase
         val select =
-            "SELECT * FROM ${DatabaseHelper.TABLA_RUTINAS} " + "JOIN ${DatabaseHelper.TABLA_USUARIOS_RUTINAS} ON " +
-                    "${DatabaseHelper.TABLA_RUTINAS}.${DatabaseHelper.ID_RUTINA}=" +
-                    "${DatabaseHelper.TABLA_USUARIOS_RUTINAS}.${DatabaseHelper.ID_RUTINA_FK} WHERE ${DatabaseHelper.ID_USUARIO_FK}= ? " +
-                    "ORDER BY ${DatabaseHelper.INTENSIDAD}"
+            "SELECT * FROM ${DatabaseHelper.TABLA_RUTINAS} " + "JOIN ${DatabaseHelper.TABLA_USUARIOS_RUTINAS} ON " + "${DatabaseHelper.TABLA_RUTINAS}.${DatabaseHelper.ID_RUTINA}=" + "${DatabaseHelper.TABLA_USUARIOS_RUTINAS}.${DatabaseHelper.ID_RUTINA_FK} WHERE ${DatabaseHelper.ID_USUARIO_FK}= ? " + "ORDER BY ${DatabaseHelper.INTENSIDAD}"
         val cursor = db.rawQuery(select, arrayOf(idUsuario.toString()))
 
         if (cursor.moveToFirst()) {

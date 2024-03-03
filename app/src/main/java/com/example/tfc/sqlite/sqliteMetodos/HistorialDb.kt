@@ -10,9 +10,9 @@ import com.example.tfc.sqlite.DatabaseHelper
 
 class HistorialDb(private val dbHelper: DatabaseHelper) {
     //Metodos historial
-    fun addSesion(sesion: Sesion) {
+    fun addSesion(sesion: Sesion): Int {
         val db = dbHelper.writableDatabase
-
+        var sessionId = 0
         val insert = ContentValues().apply {
             put(DatabaseHelper.ID_RUTINA_FK, sesion.idRutina)
             put(DatabaseHelper.ID_USUARIO_FK, sesion.idUsuario)
@@ -23,11 +23,14 @@ class HistorialDb(private val dbHelper: DatabaseHelper) {
         }
 
         try {
-            db.insert(DatabaseHelper.TABLA_HISTORIAL, null, insert)
+            sessionId = db.insert(DatabaseHelper.TABLA_HISTORIAL, null, insert).toInt()
         } catch (e: SQLiteException) {
             Log.e("SQLite", "Error al añadir ejercicios", e)
         }
+
+        return sessionId
     }
+
     //Solo recojo los datos que quiero para crear la lista
     @SuppressLint("Range")
     fun getSesiones(idUsuario: Int): List<Sesion> {
@@ -92,7 +95,7 @@ class HistorialDb(private val dbHelper: DatabaseHelper) {
         val db = dbHelper.readableDatabase
         val select =
             "SELECT SUM(${DatabaseHelper.TIEMPO_TOTAL}) AS TiempoTotal FROM  ${DatabaseHelper.TABLA_HISTORIAL} WHERE ${DatabaseHelper.DIA_ENTRENAMIENTO}=? AND ${DatabaseHelper.ID_USUARIO_FK}=?"
-        val cursor = db.rawQuery(select, arrayOf(dia,idUsuario.toString()))
+        val cursor = db.rawQuery(select, arrayOf(dia, idUsuario.toString()))
 
         if (cursor.moveToFirst()) {
             //Este cursor es curioso ya que optiene el tiempo del indice 0,es decir,de TiempoTotal de la consulta

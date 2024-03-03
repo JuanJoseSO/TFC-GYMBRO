@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
@@ -14,8 +15,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.tfc.ActivityLogin
 import com.example.tfc.R
-import com.example.tfc.clasesAuxiliares.clasesListas.AdapterHistorial
 import com.example.tfc.clasesAuxiliares.clasesBase.Sesion
+import com.example.tfc.clasesAuxiliares.clasesListas.AdapterHistorial
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.HistorialDb
 import com.example.tfc.sqlite.sqliteMetodos.UserDb
@@ -39,38 +40,42 @@ class FragmentInfoUser : Fragment() {
 
     private fun initListeners() {
         btnHistorial.setOnClickListener {
-           cargarHistorial()
+            cargarHistorial()
         }
-        btnCambiarUsuario.setOnClickListener{
+        btnCambiarUsuario.setOnClickListener {
             mostrarListaUsurios()
         }
-        btnModificarUsuario.setOnClickListener{
+        btnModificarUsuario.setOnClickListener {
             modificarUsuario()
         }
-        btnEliminarUsuario.setOnClickListener{
+        btnEliminarUsuario.setOnClickListener {
             eliminarUsuario()
         }
     }
 
     private fun modificarUsuario() {
-        val intent= Intent(requireContext(),ActivityLogin::class.java)
-        intent.putExtra("Modificar",true)
+        val intent = Intent(requireContext(), ActivityLogin::class.java)
+        intent.putExtra("Modificar", true)
         startActivity(intent)
 
     }
 
     private fun eliminarUsuario() {
-        //Eliminarmos la lista de usuarios
-        userDb.eliminarUsuario()
-        //Si no hay usuarios,vamos al login
-        if(userDb.contarUsuarios()<=0){
-            val intent= Intent(requireContext(),ActivityLogin::class.java)
-            startActivity(intent)
-        }else{
-            //Si hay,seleccionamos
-            mostrarListaUsurios()
-        }
-
+        AlertDialog.Builder(requireContext())
+            .setTitle(resources.getString(R.string.eliminar_perfil))
+            .setMessage("¿Estas seguro?\nNo se puede deshacer esta decisión.")
+            .setPositiveButton("Si") { _, _ ->
+                //Eliminarmos la lista de usuarios
+                userDb.eliminarUsuario()
+                //Si no hay usuarios,vamos al login
+                if (userDb.contarUsuarios() <= 0) {
+                    val intent = Intent(requireContext(), ActivityLogin::class.java)
+                    startActivity(intent)
+                } else {
+                    //Si hay,seleccionamos
+                    mostrarListaUsurios()
+                }
+            }.setNegativeButton("No", null).show()
     }
 
     private fun cargarHistorial() {/*Lo que hacemos en esta funcion es abrir un AlertDialog que estamos inflando con el mismo adapter que la lista de
@@ -113,7 +118,7 @@ class FragmentInfoUser : Fragment() {
     //Funcion para mostrar una lista de usuarios en un alertDialog al pulsar el botón de cambiar
     private fun mostrarListaUsurios() {
         val totalUsuarios = userDb.contarUsuarios()
-        if (totalUsuarios != 0){
+        if (totalUsuarios != 0) {
             //Si hay usuarios
             val listaUsuarios = userDb.getUsuarios() //Obtienemos la lista de usuarios
 
@@ -121,32 +126,27 @@ class FragmentInfoUser : Fragment() {
             val nombresUsuario = listaUsuarios.map { it.nombreUsuario }.toTypedArray()
             val idsUsuarios = listaUsuarios.map { it.id }.toTypedArray()
             //Creamos la ventana de dialogo a través de AlertDialog
-            val builder = android.app.AlertDialog.Builder(requireContext())
+            val builder = AlertDialog.Builder(requireContext())
             builder.setTitle("Selecciona un usuario")
 
-            builder.setItems(nombresUsuario) { _, which ->
+            val listView = ListView(requireContext())
+            listView.adapter =
+                ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, nombresUsuario)
+            builder.setView(listView)
+
+            val dialog = builder.create()
+            dialog.setCancelable(false)//IMPORTANTE: no permite que se cierre le ventana hasta que el usuario seleccione un perfil
+
+            listView.setOnItemClickListener { _, _, which, _ ->
                 val idUsuarioSeleccionado = idsUsuarios[which]
                 //Seleccionamos el usuarios con una función que devuelve directamente un boolean
                 val seleccion = userDb.seleccionUsuario(idUsuarioSeleccionado)
 
                 if (seleccion) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Usuario seleccionado: ${nombresUsuario[which]}",
-                        Toast.LENGTH_SHORT
-                    ).show()
                     datosUsuario()
-                } else {
-                    Toast.makeText(
-                        requireContext(), "Error al seleccionar usuario", Toast.LENGTH_SHORT
-                    ).show()
+                    dialog.dismiss()
                 }
             }
-
-            builder.setNegativeButton("Atrás") { _, _ ->
-
-            }
-            val dialog = builder.create()
             dialog.show()
         }
     }

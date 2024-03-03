@@ -44,9 +44,7 @@ class FragmentDieta : Fragment() {
             }
             //Navegamos al fragmento destino,fragmentImagenDieta
             childFragmentManager.beginTransaction()
-                .replace(R.id.contenedor_listas, fragmentImagenDieta)
-                .addToBackStack(null)
-                .commit()
+                .replace(R.id.contenedor_listas, fragmentImagenDieta).addToBackStack(null).commit()
         }
     }
 

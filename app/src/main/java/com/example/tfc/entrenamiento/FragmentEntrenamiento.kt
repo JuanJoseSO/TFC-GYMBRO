@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.example.tfc.R
 

@@ -27,10 +27,10 @@ class FragmentCategorias : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         ejerciciosDb = EjerciciosDb(DatabaseHelper(requireContext()))
-        initUICategorias()
+        mostrarListaCategorias()
     }
 
-    private fun initUICategorias() {
+    private fun mostrarListaCategorias() {
         //Relacionamos con la ListView en el layout del fragment
         val lista = requireView().findViewById<ListView>(R.id.lvListas)
 
@@ -58,9 +58,10 @@ class FragmentCategorias : Fragment() {
             val nombreCategoria = categoria.second
 
             //Lanzamos el nuevo fragment
-            initUIEjercicios(nombreCategoria)
+            mostrarListaEjercicios(nombreCategoria)
         }
     }
+
     //Función para relacionar cada categoría con un icono
     private fun iconoPorCategoria(categoria: String): Int {
         return when (categoria) {
@@ -84,7 +85,7 @@ class FragmentCategorias : Fragment() {
         super.onDestroy()
     }
 
-    private fun initUIEjercicios(categoria: Any?) {
+    private fun mostrarListaEjercicios(categoria: Any?) {
         val lista = requireView().findViewById<ListView>(R.id.lvListas)
 
         /*Creamos una variable ejercicio de tipo lista(SmartCast) y hacemos la consulta con el string de intent,ahorrando

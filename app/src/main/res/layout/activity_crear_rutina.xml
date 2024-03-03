@@ -7,7 +7,6 @@
     android:background="@drawable/background"
     tools:context=".entrenamiento.ActivityCrearRutina">
 
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="90dp"
@@ -75,6 +74,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="@drawable/layout_btns"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -233,7 +233,7 @@
                     android:layout_width="0dp"
                     android:layout_height="31dp"
                     android:gravity="center"
-                    android:text="@string/d_a_de_la_semana"
+                    android:text="@string/descanso"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="21sp"
@@ -363,8 +363,6 @@
                     app:tint="@color/white"
                     tools:ignore="ImageContrastCheck" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

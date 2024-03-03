@@ -3,17 +3,17 @@
     <item
         android:id="@+id/menu_home"
         android:icon="@drawable/ic_home"
-        android:title="Home" />
+        android:title="@string/home" />
     <item
         android:id="@+id/menu_pesas"
         android:icon="@drawable/ic_pesas"
-        android:title="Ejercicios" />
+        android:title="@string/ejercicios" />
     <item
         android:id="@+id/menu_dieta"
         android:icon="@drawable/ic_dieta"
-        android:title="Dieta" />
+        android:title="@string/dieta" />
     <item
         android:id="@+id/menu_perfil"
         android:icon="@drawable/ic_user"
-        android:title="Perfil" />
+        android:title="@string/perfil" />
 </menu>

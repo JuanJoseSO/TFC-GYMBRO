@@ -16,8 +16,7 @@ class AdapterRVEjercicios(
     private val context: Context,
     private val listaEjercicios: MutableList<Ejercicio>,
     private val listaInfoEjercicios: List<ArrayList<Double>>
-) :
-    RecyclerView.Adapter<EjerciciosViewHolder>() {
+) : RecyclerView.Adapter<EjerciciosViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EjerciciosViewHolder {
         return EjerciciosViewHolder(
@@ -30,18 +29,15 @@ class AdapterRVEjercicios(
         val infoEjercicio = listaInfoEjercicios[position]
 
         holder.tvNombre.text = ejercicio.nombre
-        //Simplemente asignamos texto y lo mostramos por cada ejercicio
+        //Simplemente asignamos texto y msotramos el contenedor
+        holder.clInfoEjercicio.visibility = View.VISIBLE
         holder.tvRecSeries.text = infoEjercicio[0].toInt().toString()
-        holder.tvRecSeries.visibility = View.VISIBLE
         holder.tvRecRepeticiones.text = infoEjercicio[1].toInt().toString()
-        holder.tvRecRepeticiones.visibility = View.VISIBLE
-        holder.tv1.visibility = View.VISIBLE
-        holder.tv2.visibility = View.VISIBLE
-        holder.v1.visibility = View.VISIBLE
+
     }
 
     override fun getItemCount(): Int = listaEjercicios.size
-    fun mover(posicionInicial: Int, posicionFinal: Int) {
+    fun moverEjercicio(posicionInicial: Int, posicionFinal: Int) {
         //Si la posicion inicial es menor que la final
         if (posicionInicial < posicionFinal) {
             for (i in posicionInicial until posicionFinal) {
@@ -61,7 +57,7 @@ class AdapterRVEjercicios(
         rutinaEjercicioDb.updateOrden(listaEjercicios)
     }
 
-    fun eliminar(position: Int) {
+    fun eliminarEjercicio(position: Int) {
         //Elimina el item de la posicion que le pasemos
         val idEjercicio = listaEjercicios[position].id
         listaEjercicios.removeAt(position)
@@ -75,4 +71,3 @@ class AdapterRVEjercicios(
         rutinaEjercicioDb.eliminarEjercicio(idEjercicio)
     }
 }
-

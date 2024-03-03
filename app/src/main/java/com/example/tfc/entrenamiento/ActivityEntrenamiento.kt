@@ -1,4 +1,6 @@
-package com.example.tfc
+@file:Suppress("DEPRECATION")
+
+package com.example.tfc.entrenamiento
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,9 +14,14 @@ import android.webkit.WebView
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import com.example.tfc.ActivityPrincipal
+import com.example.tfc.R
 import com.example.tfc.clasesAuxiliares.clasesBase.Cronometro
 import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
 import com.example.tfc.clasesAuxiliares.clasesBase.Rutina
@@ -71,7 +78,7 @@ class ActivityEntrenamiento : AppCompatActivity() {
 
     private fun secuenciaUI() {
         //Cargamos tanto la cuenta de descanso por ejercicio
-        tvCuentaAtras.visibility = View.VISIBLE
+        clDescanso.visibility = View.VISIBLE
         initCuentaAtras()
         //De nuevo una expresion lambda similar a la anterior,que formatea el propio IDE
         val totalSeries = listaEjercicio[posicionEjercicioActual].let {
@@ -105,10 +112,11 @@ class ActivityEntrenamiento : AppCompatActivity() {
             cargarEjercicio(posicionEjercicioActual)
         }
         //Si no,vamos al resumen de la rutina
-        //****************************MOSTRAR RESUMEN********************************
         else {
-            guardarHistorial()
+            val idSession = guardarHistorial()
             val intent = Intent(this, ActivityPrincipal::class.java)
+            intent.putExtra("cargarHistorial", true)
+            intent.putExtra("idHistorial", idSession)
             startActivity(intent)
             finish() //Cierra la activity para evitar volver a ella
         }
@@ -168,6 +176,21 @@ class ActivityEntrenamiento : AppCompatActivity() {
         tvPeso.text = peso.toString()
     }
 
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        //Creamos un dialog y evitamos que se cierre hasta que el usuario tome una opción
+        val builder=AlertDialog.Builder(this)
+        val dialog=builder.create()
+        dialog.setCancelable(false)
+        //Nuevo alerdialog para evitar que el usuario salga sin querrer
+        builder.setTitle("¿Estas seguro?")
+            .setMessage("Si no terminas la rutina no se guardará el progreso.")
+            .setPositiveButton("Sí") { _, _ ->
+                super.onBackPressed()
+            }.setNegativeButton("No", null).show()
+    }
+
+
     private fun initListeners() {
         //Boton para ocultar/mostrar el video y dejar la interfaz mas limpia
         btnOcultar.setOnClickListener {
@@ -177,7 +200,6 @@ class ActivityEntrenamiento : AppCompatActivity() {
 
         //Boton que gestiona la lista de ejercicios mostrando el tiempo de descanso entre ellos y pasando a la siguiente repeticion/ejercicio
         btnSiguiente.setOnClickListener {
-
             secuenciaUI()
         }
 
@@ -206,17 +228,16 @@ class ActivityEntrenamiento : AppCompatActivity() {
         }
     }
 
-    private fun guardarHistorial() {
+    private fun guardarHistorial(): Int {
         val fechaActual = LocalDate.now().toString()
         val tiempoEntrenamiento = tvCronometro.text.toString()
         val calorias = (tiempoEntrenamiento.split(":")[0].toInt() * 7.4).toInt()
 
-        historialDb.addSesion(
+        return historialDb.addSesion(
             Sesion(
                 rutina.id, user.id, fechaActual, horaInicio, tiempoEntrenamiento, calorias
             )
         )
-
     }
 
     private fun initComponentes() {
@@ -233,6 +254,7 @@ class ActivityEntrenamiento : AppCompatActivity() {
         btnSiguiente = findViewById(R.id.btnSiguiente)
         tvCuentaAtras = findViewById(R.id.tvCuentaAtras)
         lyUltimo = findViewById(R.id.lyUltimo)
+        clDescanso = findViewById(R.id.clDescanso)
         //Inicio aquí la hora para tenerla desde el principio de la aplicación
         horaInicio = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
         db = DatabaseHelper(this)
@@ -241,10 +263,11 @@ class ActivityEntrenamiento : AppCompatActivity() {
         userDb = UserDb(db)
         historialDb = HistorialDb(db)
         user = userDb.getUsuarioSeleccionado()!!
-        rutina = rutinaDb.getRutina(intent.getIntExtra("idRutina",-1))!!
+        rutina = rutinaDb.getRutina(intent.getIntExtra("idRutina", -1))!!
         initEjercicios()
     }
 
+    private lateinit var clDescanso: ConstraintLayout
     private lateinit var tvCronometro: TextView
     private lateinit var tvNombreEjercicio: TextView
     private lateinit var btnOcultar: ImageButton
@@ -254,7 +277,7 @@ class ActivityEntrenamiento : AppCompatActivity() {
     private lateinit var tvPeso: TextView
     private lateinit var btnRestarPeso: FloatingActionButton
     private lateinit var btnSumarPeso: FloatingActionButton
-    private lateinit var btnStart: FloatingActionButton
+    private lateinit var btnStart: AppCompatImageButton
     private lateinit var btnSiguiente: AppCompatButton
     private lateinit var tvCuentaAtras: TextView
     private lateinit var cronometro: Cronometro

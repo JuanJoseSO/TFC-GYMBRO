@@ -16,13 +16,14 @@
     <!--ActivityLogin-->
     <string name="mujer">MUJER</string>
     <string name="registro_gymbro">Registro GYMBRO</string>
-    <string name="nombre_de_usuario">Nombre de usuario</string>
+    <string name="nombre_de_usuario">Nombre del perfil</string>
     <string name="hombre">Hombre</string>
     <string name="altura">Altura</string>
     <string name="peso">Peso</string>
     <string name="objetivo">Objetivo Diario:</string>
     <string name="crear_usuario">Crear usuario</string>
     <string name="alturaDefecto">120 cm</string>
+    <string name="informacion">Información</string>
 
     <!--ActvityOpcionesUsuario-->
     <string name="cambiar_usuario">Cambiar Usuario</string>
@@ -37,12 +38,24 @@
 
 
     <!--FragmentInfoUser-->
-    <string name="informaci_n_personal">Información Personal</string>
-    <string name="usuario">Usuario:</string>
+    <string name="informaci_n_personal">Resumén del perfil</string>
+    <string name="nombre">Nombre:</string>
     <string name="altura_">Altura:</string>
     <string name="peso_">Peso:</string>
     <string name="imc">IMC:</string>
     <string name="edad_">Edad:</string>
+    <string name="cambiar">cambiar</string>
+    <string name="historial">historial</string>
+    <string name="eliminarUser">Eliminar perfil</string>
+    <string name="modificar">Modificar</string>
+
+    <!--FragmentHistorial-->
+    <string name="resumen_entrenamiento">RESUMEN DEL ENTRENAMIENTO</string>
+    <string name="rutina">Rutina:</string>
+    <string name="dia">Día:</string>
+    <string name="hora_inicio">Hora inicio:</string>
+    <string name="tiempo_total">Tiempo total:</string>
+    <string name="calorias_quemadas">Calorias quemadas:</string>
 
     <!--layout_cat_ejercicio.xml-->
     <string name="logo_ejercicio">Logo ejercicio</string>
@@ -53,11 +66,14 @@
     <string name="modificar_rutina">Modificar Rutina</string>
     <string name="creaci_n_rutina">CREACIÓN RUTINA</string>
     <string name="crear_rutina">Crear Rutina</string>
+
+    <!--ActivityCrearRutina-->
     <string name="nombre_de_la_rutina">Nombre de la rutina</string>
     <string name="intensidad">INTENSIDAD</string>
     <string name="tiempo_objetivo">TIEMPO OBJETIVO (Minutos)</string>
     <string name="logo_pesa_coraz_n">Logo Pesa-Corazón</string>
     <string name="d_a_de_la_semana">DÍA DE LA SEMANA</string>
+    <string name="descanso">DESCANSO (Segundos)</string>
 
     <!--FragmentDietas-->
     <string name="dieta_d_ficit">Dieta déficit</string>
@@ -72,6 +88,14 @@
     <string name="siguiente_ejercicio">SIGUIENTE EJERCICIO</string>
     <string name="ltima_serie">¡ÚLTIMA SERIE!</string>
     <string name="eliminar_historial">Eliminar historial</string>
+    <string name="eliminar_perfil">Eliminar perfil</string>
     <string name="objetivo_cumplido">OBJETIVO DIARIO CUMPLIDO\n¡FELICIDADES!</string>
     <string name="objetivo_no_cumplido">AÚN TE QUEDA MUCHO\nPOR HACER HOY</string>
+
+    <!--Menú-->
+    <string name="home">Home</string>
+
+    <string name="dieta">Dieta</string>
+    <string name="perfil">Perfil</string>
+    <string name="descanso_">DESCANSO\n</string>
 </resources>

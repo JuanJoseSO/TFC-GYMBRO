@@ -134,13 +134,11 @@ class UserDb(private val dbHelper: DatabaseHelper) {
         val db = dbHelper.writableDatabase
         //Eliminamos el usuario seleccionado
         db.delete(
-            DatabaseHelper.TABLA_USERS,
-            "${DatabaseHelper.SELECCION}=?",
-            arrayOf("1")
+            DatabaseHelper.TABLA_USERS, "${DatabaseHelper.SELECCION}=?", arrayOf("1")
         )
     }
 
-    fun updateUsuario(idUsuario: Int,usuario: Usuario) {
+    fun updateUsuario(idUsuario: Int, usuario: Usuario) {
         val db = dbHelper.writableDatabase
         try {
             //Guardamos el objeto usuario repartiendo la información en las distinta columnas

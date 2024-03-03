@@ -90,9 +90,8 @@ class Cronometro {
         return iniciado
     }
 
+    //VAriables cuenta atras
     private var onUpdateCuentaAtras: ((String) -> Unit)? = null
-
-    // Variables para el cronómetro regresivo
     private var cuentaAtrasFinal: Long = 0
     private var cuentaAtrasRestante: Long = 0 // 30 segundos
 

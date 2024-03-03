@@ -15,7 +15,7 @@
         android:theme="@style/Theme.TFC"
         tools:targetApi="34">
         <activity
-            android:name=".ActivityEntrenamiento"
+            android:name=".entrenamiento.ActivityEntrenamiento"
             android:exported="false" />
         <activity
             android:name=".entrenamiento.ActivityCrearRutina"

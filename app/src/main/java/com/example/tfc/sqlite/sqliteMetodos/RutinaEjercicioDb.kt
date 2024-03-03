@@ -105,7 +105,7 @@ class RutinaEjercicioDb(private val dbHelper: DatabaseHelper) {
         }
     }
 
-    fun updateOrden(listaEjercicios: List<Ejercicio>) {
+    fun updateOrden(listaEjercicios: MutableList<Ejercicio>) {
         val db = dbHelper.writableDatabase
         db.beginTransaction()
         try {
@@ -132,13 +132,12 @@ class RutinaEjercicioDb(private val dbHelper: DatabaseHelper) {
     fun eliminarEjercicio(idEjercicio: Int) {
         val db = dbHelper.writableDatabase
         try {
-            // Ejecuta la operación DELETE en la base de datos
             db.delete(
                 DatabaseHelper.TABLA_RUTINA_EJERCICIOS,
                 "${DatabaseHelper.ID_EJERCICIO_FK}=?",
                 arrayOf(idEjercicio.toString())
             )
-        }catch (e: SQLiteException) {
+        } catch (e: SQLiteException) {
             Log.e("SQLite", "Error al cambiar la posicion del ejercicio", e)
         } finally {
             db.close()

@@ -30,31 +30,32 @@ class ActivityLogin : AppCompatActivity() {
 
 
         iniciaComponentes()
-        modificarUsuario(intent.getBooleanExtra("Modificar",false))
+        modificarUsuario(intent.getBooleanExtra("Modificar", false))
         iniciaListeners()
         initUI()
     }
-    private fun modificarUsuario(modificar: Boolean){
-        if(modificar){
-            val usuario= userDb.getUsuarioSeleccionado()!!
-            alturaActual= usuario.altura
+
+    private fun modificarUsuario(modificar: Boolean) {
+        if (modificar) {
+            val usuario = userDb.getUsuarioSeleccionado()!!
+            alturaActual = usuario.altura
             setAltura()
-            pesoActual= usuario.peso
+            pesoActual = usuario.peso
             setPeso()
-            objetivo= usuario.objetivoDiario
+            objetivo = usuario.objetivoDiario
             setObjetivo()
-            val genero=usuario.genero
-            if(genero){
+            val genero = usuario.genero
+            if (genero) {
                 generoM = true
                 generoF = false
                 setColorGenero()
-            }else{
+            } else {
                 generoM = false
                 generoF = true
                 setColorGenero()
             }
 
-            nombre.text= Editable.Factory.getInstance().newEditable(usuario.nombreUsuario)
+            nombre.text = Editable.Factory.getInstance().newEditable(usuario.nombreUsuario)
         }
     }
 
@@ -64,12 +65,14 @@ class ActivityLogin : AppCompatActivity() {
         //Listener para seleccionar u aumentar/reducir según el componenete y guardar el usuario en la base de datos
         cvMasculino.setOnClickListener {
             generoM = true
-            generoF = false//Actualiza la selección de género al hacer clic en el componente masculino
+            generoF =
+                false//Actualiza la selección de género al hacer clic en el componente masculino
             setColorGenero() //Actualiza el color de fondo del componente
         }
         cvFemenino.setOnClickListener {
             generoM = false
-            generoF = true //Actualiza la selección de género al hacer clic en el componente femenino
+            generoF =
+                true //Actualiza la selección de género al hacer clic en el componente femenino
             setColorGenero() //Actualiza el color de fondo del componente
         }
 
@@ -89,20 +92,25 @@ class ActivityLogin : AppCompatActivity() {
             pesoActual--
             setPeso()
         }
-        btnSumarEdad.setOnClickListener {
+        btnSumarObjetivo.setOnClickListener {
             objetivo++
             setObjetivo()
         }
-        btnRestarEdad.setOnClickListener {
+        btnRestarObjetivo.setOnClickListener {
             objetivo--
             setObjetivo()
         }
 
         btnCrearUser.setOnClickListener {
-            //Creamos el usuario y lo guardamos en la base de datos al pulsar el botón
-            if (nombre.text.toString().isEmpty()) {
-                Toast.makeText(this, "Por favor, ingrese un nombre", Toast.LENGTH_SHORT).show()
-            }
+            crearUser()
+        }
+    }
+
+    private fun crearUser() {
+        //Creamos el usuario y lo guardamos en la base de datos al pulsar el botón
+        if (nombre.text.toString().isEmpty()) {
+            Toast.makeText(this, "Por favor, ingrese un nombre", Toast.LENGTH_SHORT).show()
+        }else {
             val usuario = Usuario(
                 nombre.text.toString(),
                 objetivo,
@@ -112,22 +120,20 @@ class ActivityLogin : AppCompatActivity() {
                 generoM
             )
 
-             try {
-                 if(intent.getBooleanExtra("Modificar",false)) {
-                     userDb.getUsuarioSeleccionado()
-                         ?.let { it1 -> userDb.updateUsuario(it1.id,usuario) }
-                 }else {
-                     val idUser = userDb.addUsuario(usuario)
-                     setRutinasPredefinidas(idUser)
-                 }
-                 navegarActivityPrincipal()
-             } catch (e: Exception) {
-                 Log.e("Error", "Error al crear el usuario")
-             }
+            try {
+                if (intent.getBooleanExtra("Modificar", false)) {
+                    userDb.getUsuarioSeleccionado()
+                        ?.let { it1 -> userDb.updateUsuario(it1.id, usuario) }
+                } else {
+                    val idUser = userDb.addUsuario(usuario)
+                    setRutinasPredefinidas(idUser)
+                }
+                navegarActivityPrincipal()
+            } catch (e: Exception) {
+                Log.e("Error", "Error al crear el usuario")
+            }
         }
     }
-
-
 
     private fun setRutinasPredefinidas(id: Int) {
         usuarioRutinaDb.addRutinaAUsuario(1, id)
@@ -153,16 +159,16 @@ class ActivityLogin : AppCompatActivity() {
     }
 
     private fun setObjetivo() {
-        if (objetivo > 0)
-            tvObjetivoDiaro.text = objetivo.toString()
+        if (objetivo > 0) tvObjetivoDiaro.text = objetivo.toString()
     }
+
+    @SuppressLint("SetTextI18n")
     private fun setAltura() {
         tvAltura.text = "$alturaActual cm"
     }
 
     private fun setPeso() {
-        if (pesoActual > 0)
-            tvPeso.text = pesoActual.toString()
+        if (pesoActual > 0) tvPeso.text = pesoActual.toString()
     }
 
     private fun setColorGenero() {
@@ -199,8 +205,8 @@ class ActivityLogin : AppCompatActivity() {
         cvFemenino = findViewById(R.id.viewMujer)
         tvAltura = findViewById(R.id.tvAltura)
         rsAltura = findViewById(R.id.rsAltura)
-        btnSumarEdad = findViewById(R.id.btnSumarEdad)
-        btnRestarEdad = findViewById(R.id.btnRestarEdad)
+        btnSumarObjetivo = findViewById(R.id.btnSumarObjetivo)
+        btnRestarObjetivo = findViewById(R.id.btnRestarObjetivo)
         btnRestarPeso = findViewById(R.id.btnRestarPeso)
         btnSumarPeso = findViewById(R.id.btnSumarPeso)
         tvPeso = findViewById(R.id.tvPeso)
@@ -215,14 +221,14 @@ class ActivityLogin : AppCompatActivity() {
     private lateinit var cvMasculino: CardView
     private lateinit var cvFemenino: CardView
     private var pesoActual: Int = 70//Weight peso
-    private var objetivo: Int = 20
+    private var objetivo: Int = 30
     private var alturaActual = 120
     private var generoM: Boolean = true //El género masculino está seleccionado
     private var generoF: Boolean = false //El género femenino no está seleccionado
     private lateinit var tvAltura: TextView
     private lateinit var rsAltura: RangeSlider
-    private lateinit var btnSumarEdad: FloatingActionButton
-    private lateinit var btnRestarEdad: FloatingActionButton
+    private lateinit var btnSumarObjetivo: FloatingActionButton
+    private lateinit var btnRestarObjetivo: FloatingActionButton
     private lateinit var btnRestarPeso: FloatingActionButton
     private lateinit var btnSumarPeso: FloatingActionButton
     private lateinit var tvPeso: TextView

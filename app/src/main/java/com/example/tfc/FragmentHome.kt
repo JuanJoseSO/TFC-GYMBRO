@@ -14,8 +14,11 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.tfc.clasesAuxiliares.CirculosAnimados
-import com.example.tfc.clasesAuxiliares.clasesListas.AdapterRutina
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.tfc.clasesAuxiliares.clasesBase.CirculosAnimados
+import com.example.tfc.clasesAuxiliares.clasesListas.AdapterRVRutina
+import com.example.tfc.entrenamiento.ActivityEntrenamiento
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.HistorialDb
 import com.example.tfc.sqlite.sqliteMetodos.RutinaEjercicioDb
@@ -46,38 +49,43 @@ class FragmentHome : Fragment() {
 
     private fun initListeners() {
         btnCrearUsuario.setOnClickListener {
-           navegarALogin()
+            navegarALogin()
         }
         btnEntrenar.setOnClickListener {
             mostrarListaRutinas()
         }
     }
 
-    private fun mostrarListaRutinas() {
-        /*Lo que hacemos en esta funcion es abrir un AlertDialog que estamos inflando con el mismo adapter que la lista de
+    private fun mostrarListaRutinas() {/*Lo que hacemos en esta funcion es abrir un AlertDialog que estamos inflando un adapter con un recyclerview que contiene la lista de
          rutinas lo que hace que en lugar de ser una lista gris sin estilo sea una lista con un fondo y un formato individual
          para cada ejercicio,quedando mucho mas atractiva visualmente*/
         if (usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!).isEmpty()) {
             //Si no hay rutinas no nos permitirá crearlo
             Toast.makeText(requireContext(), "No hay rutinas creadas", Toast.LENGTH_LONG).show()
         } else {
-            //Si hay rutinas
-            val listaRutinas =
-                usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!)//Obtienemos la lista de rutinas
-            val adapter = AdapterRutina(requireContext(), listaRutinas) //Creamos el adapter
+            //Le damos formato y mostramos/ocultamos lo que necesitamos
             val layoutRutina = LayoutInflater.from(requireContext())
                 .inflate(R.layout.fragment_listas, null)//inflamos la rutina
-            layoutRutina.background =
-                ContextCompat.getDrawable(requireContext(), R.drawable.background)//Le cambiamos el fondo
-            val lvRutina =
-                layoutRutina.findViewById<ListView>(R.id.lvListas)//Rlacionamos con nuestro layout
-            lvRutina.adapter = adapter //Relacionamos con el adapter
-            lvRutina.setOnItemClickListener { _, _, position, _ ->
-                //Volvemos a la activityPrincipal
-                val intent = Intent(requireContext(), ActivityEntrenamiento::class.java)
-                intent.putExtra("idRutina",listaRutinas[position].id)
-                startActivity(intent)
+            layoutRutina.background = ContextCompat.getDrawable(
+                requireContext(), R.drawable.background
+            )//Le cambiamos el fondo
+            val rvRutina =
+                layoutRutina.findViewById<RecyclerView>(R.id.rvListas1)//Rlacionamos con nuestro layout
+            rvRutina.visibility = View.VISIBLE//Lo hacemos visible
+
+            //Obtenemos las listas
+            val listaRutinas =
+                usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!)//Obtienemos la lista de rutinas
+            val adapterRutina = AdapterRVRutina(requireContext(), listaRutinas).also {
+                it.onItemClick = { rutina -> navegarAEntrenamiento(rutina.id) }
             }
+
+            layoutRutina.findViewById<ListView>(R.id.lvListas).visibility =
+                View.GONE //Enviamos gone al listview principal
+
+            rvRutina.adapter = adapterRutina //Relacionamos con el adapter
+            rvRutina.layoutManager = LinearLayoutManager(requireContext())
+
             //Creamos el Alerdialog y le damos el estilo y un boton atrás
             val builder = AlertDialog.Builder(requireContext())
             builder.setView(layoutRutina)
@@ -87,11 +95,24 @@ class FragmentHome : Fragment() {
         }
     }
 
-    private fun navegarALogin() {
-        if(userDb.contarUsuarios()<9){
-            val intent=Intent(requireContext(),ActivityLogin::class.java)
+    private fun navegarAEntrenamiento(id: Int) {
+        if (rutinaEjercicioDb.getEjerciciosPorRutina(id).isEmpty()) Toast.makeText(
+            requireContext(), "La rutina está vacía", Toast.LENGTH_SHORT
+        ).show()
+        else {
+            //Volvemos a la activityPrincipal
+            val intent = Intent(requireContext(), ActivityEntrenamiento::class.java)
+            intent.putExtra("idRutina", id)
             startActivity(intent)
-        }else{
+        }
+    }
+
+
+    private fun navegarALogin() {
+        if (userDb.contarUsuarios() < 9) {
+            val intent = Intent(requireContext(), ActivityLogin::class.java)
+            startActivity(intent)
+        } else {
             Toast.makeText(requireContext(), "Usuarios máximos creados", Toast.LENGTH_SHORT).show()
         }
     }
@@ -109,11 +130,14 @@ class FragmentHome : Fragment() {
         //Mostramos la fecha
         tvFecha.text = fechaFormateada
     }
-    private fun initCirculoAnimado(){
+
+    private fun initCirculoAnimado() {
         userDb.getUsuarioSeleccionado()?.let {
-            circulosAnimados.rellenarCirculo(historialDb.getTiempoDiarioSesion(LocalDate.now().toString(),
-                userDb.getUsuarioSeleccionado()?.id
-            ), it.objetivoDiario)
+            circulosAnimados.rellenarCirculo(
+                historialDb.getTiempoDiarioSesion(
+                    LocalDate.now().toString(), userDb.getUsuarioSeleccionado()?.id
+                ), it.objetivoDiario
+            )
         }
     }
 

@@ -1,6 +1,7 @@
 package com.example.tfc.clasesAuxiliares.clasesListas
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
@@ -27,21 +28,25 @@ class AdapterDieta(private val context: Context, private val listaDieta: List<Di
         val tvNombreDieta = view.findViewById<TextView>(R.id.tvNivelDieta)
         tvNombreDieta.text = dieta.nombre
 
-        /*Esta parte es complicada por que tenemos que darle forma a un drawable que define el estilo que le estamos dando a lis items
-        de la lista en layout_dietas.xml,basicamente lo que hacemos es recoger el color dependiendo del nivel asignado a cada dieta,
-        obtenemos el drawable que queremos y le damos forma con el método setStrole()*/
-        val celdasDieta = ContextCompat.getDrawable(context, R.drawable.layout_celdas)
+        borde.background = setColorCeldas(dieta.nivel)
+
+        return view
+    }
+
+    private fun setColorCeldas(nivel: Int): Drawable? {/*Esta parte es complicada por que tenemos que darle forma a un drawable que define el estilo que le estamos dando a lis items
+               de la lista en layout_rutina.xml,basicamente lo que hacemos es recoger el color dependiendo de la intensidad asignada a cada rutina,
+               obtenemos el drawable que queremos y le damos forma con el método setStrole()*/
+        val bordeCeldas = ContextCompat.getDrawable(context, R.drawable.layout_celdas)
             ?.mutate() as? GradientDrawable
-        celdasDieta.let {
-            val colorBackground = when (dieta.nivel) {
+        bordeCeldas.let {
+            val colorBackground = when (nivel) {
                 0 -> ContextCompat.getColor(context, R.color.green)
                 1 -> ContextCompat.getColor(context, R.color.orange)
                 2 -> ContextCompat.getColor(context, R.color.red)
                 else -> ContextCompat.getColor(context, R.color.red)
             }
             it?.setStroke(15, colorBackground)
-            borde.background = celdasDieta
         }
-        return view
+        return bordeCeldas
     }
 }

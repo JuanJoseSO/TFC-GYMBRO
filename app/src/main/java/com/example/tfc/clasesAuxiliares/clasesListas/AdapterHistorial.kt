@@ -1,6 +1,7 @@
 package com.example.tfc.clasesAuxiliares.clasesListas
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
@@ -37,21 +38,25 @@ class AdapterHistorial(private val context: Context, private val listaHistorial:
         val tvDiaRutina = view.findViewById<TextView>(R.id.tvDiaRutina)
         tvDiaRutina.text = sesiones.dia
 
-        /*Esta parte es complicada por que tenemos que darle forma a un drawable que define el estilo que le estamos dando a lis items
-        de la lista en layout_rutina.xml,basicamente lo que hacemos es recoger el color dependiendo de la intensidad asignada a cada rutina,
-        obtenemos el drawable que queremos y le damos forma con el método setStrole()*/
+        borde.background = rutina?.intensidad?.let { setColorCeldas(it) }
+
+        return view
+    }
+
+    private fun setColorCeldas(intensidad: Int): Drawable? {/*Esta parte es complicada por que tenemos que darle forma a un drawable que define el estilo que le estamos dando a lis items
+               de la lista en layout_rutina.xml,basicamente lo que hacemos es recoger el color dependiendo de la intensidad asignada a cada rutina,
+               obtenemos el drawable que queremos y le damos forma con el método setStrole()*/
         val bordeCeldas = ContextCompat.getDrawable(context, R.drawable.layout_celdas)
             ?.mutate() as? GradientDrawable
         bordeCeldas.let {
-            val colorBackground = when (rutina?.intensidad) {
+            val colorBackground = when (intensidad) {
                 0 -> ContextCompat.getColor(context, R.color.green)
                 1 -> ContextCompat.getColor(context, R.color.orange)
                 2 -> ContextCompat.getColor(context, R.color.red)
                 else -> ContextCompat.getColor(context, R.color.red)
             }
             it?.setStroke(15, colorBackground)
-            borde.background = bordeCeldas
         }
-        return view
+        return bordeCeldas
     }
 }

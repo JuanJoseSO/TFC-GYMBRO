@@ -1,6 +1,10 @@
 <!-- res/drawable/btn_redondo.xml -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
-    <solid android:color="@color/background_component"/> <!-- Cambia el color según tus necesidades -->
-    <size android:width="60dp" android:height="60dp"/> <!-- Asegúrate de que el ancho y el alto sean iguales -->
+    <gradient
+        android:startColor="@color/black"
+        android:endColor="@color/background_component"
+        android:angle="45"/>
+    <size android:width="60dp" android:height="60dp"/>
 </shape>
+

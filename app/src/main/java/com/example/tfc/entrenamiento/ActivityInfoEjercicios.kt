@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -14,10 +15,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.tfc.ActivityPrincipal
 import com.example.tfc.R
-import com.example.tfc.clasesAuxiliares.clasesListas.AdapterRutina
 import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
+import com.example.tfc.clasesAuxiliares.clasesListas.AdapterRVRutina
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.EjerciciosDb
 import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
@@ -46,25 +49,19 @@ class ActivityInfoEjercicios : AppCompatActivity() {
         btnRestarRepeticiones.setOnClickListener {
             repeticiones--
             setRepeticiones()
-
         }
-
 
         btnSumarSeries.setOnClickListener {
             series++
             setSeries()
-
         }
         btnRestarSeries.setOnClickListener {
             series--
             setSeries()
-
         }
-
         btnSumarPeso.setOnClickListener {
             pesoInicial += 2.5
             setPeso()
-
         }
         btnRestarPeso.setOnClickListener {
             pesoInicial -= 2.5
@@ -83,30 +80,39 @@ class ActivityInfoEjercicios : AppCompatActivity() {
         if (usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!).isEmpty()) {
             //Si no hay rutinas no nos permitirá crearlo
             Toast.makeText(this, "No hay rutinas creadas", Toast.LENGTH_LONG).show()
-        } else {
-            //Si hay rutinas
-            val listaRutinas =
-                usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!)//Obtienemos la lista de rutinas
-            val adapter = AdapterRutina(this, listaRutinas) //Creamos el adapter
+        } else { //Le damos formato y mostramos/ocultamos lo que necesitamos
             val layoutRutina = LayoutInflater.from(this)
                 .inflate(R.layout.fragment_listas, null)//inflamos la rutina
-            layoutRutina.background =
-                ContextCompat.getDrawable(this, R.drawable.background)//Le cambiamos el fondo
-            val lvRutina =
-                layoutRutina.findViewById<ListView>(R.id.lvListas)//Rlacionamos con nuestro layout
-            lvRutina.adapter = adapter //Relacionamos con el adapter
-            lvRutina.setOnItemClickListener { _, _, position, _ ->
-                //Añadimos a la base de datos el item seleccionado
-                rutinaEjercicioDb.addEjercicioARutina(
-                    listaRutinas[position].id,
-                    ejercicio.id,
-                    repeticiones,
-                    series,
-                    pesoInicial,
-                )
-                Toast.makeText(this, "Ejercicio añadido", Toast.LENGTH_SHORT).show()
-                navegarActivityPrincipal()
+            layoutRutina.background = ContextCompat.getDrawable(
+                this, R.drawable.background
+            )//Le cambiamos el fondo
+            val rvRutina =
+                layoutRutina.findViewById<RecyclerView>(R.id.rvListas1)//Rlacionamos con nuestro layout
+            rvRutina.visibility = View.VISIBLE//Lo hacemos visible
+
+            //Obtenemos las listas
+            val listaRutinas =
+                usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!)//Obtienemos la lista de rutinas
+            val adapterRutina = AdapterRVRutina(this, listaRutinas).also {
+                it.onItemClick = { rutina ->
+                    //Añadimos a la base de datos el item seleccionado
+                    rutinaEjercicioDb.addEjercicioARutina(
+                        rutina.id,
+                        ejercicio.id,
+                        repeticiones,
+                        series,
+                        pesoInicial,
+                    )
+                    Toast.makeText(this, "Ejercicio añadido", Toast.LENGTH_SHORT).show()
+                    navegarActivityPrincipal()
+                }
             }
+            layoutRutina.findViewById<ListView>(R.id.lvListas).visibility =
+                View.GONE //Enviamos gone al listview principal
+
+            rvRutina.adapter = adapterRutina //Relacionamos con el adapter
+            rvRutina.layoutManager = LinearLayoutManager(this)
+
             //Creamos el Alerdialog y le damos el estilo y un boton atrás
             val builder = AlertDialog.Builder(this)
             builder.setView(layoutRutina)

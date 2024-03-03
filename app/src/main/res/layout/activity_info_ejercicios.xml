@@ -7,7 +7,6 @@
     android:background="@drawable/background"
     tools:context=".ActivityLogin">
 
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="0dp"
@@ -59,6 +58,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/layout_btns"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -97,7 +97,7 @@
                     app:layout_constraintStart_toEndOf="@+id/tvRepeticiones"
                     app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/white"
-                    tools:ignore="DuplicateSpeakableTextCheck" />
+                    tools:ignore="DuplicateSpeakableTextCheck,ImageContrastCheck" />
 
                 <TextView
                     android:id="@+id/tvNumRepeticiones"
@@ -171,7 +171,8 @@
                     app:layout_constraintEnd_toStartOf="@+id/tvNumSeries"
                     app:layout_constraintStart_toEndOf="@+id/tvSeries"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white" />
+                    app:tint="@color/white"
+                    tools:ignore="ImageContrastCheck" />
 
                 <TextView
                     android:id="@+id/tvNumSeries"
@@ -243,7 +244,8 @@
                     app:layout_constraintEnd_toStartOf="@+id/tvNumPeso"
                     app:layout_constraintStart_toEndOf="@+id/tvPeso"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white" />
+                    app:tint="@color/white"
+                    tools:ignore="ImageContrastCheck" />
 
                 <TextView
                     android:id="@+id/tvNumPeso"

@@ -47,7 +47,7 @@ class DatabaseHelper(context: Context) :
         const val SERIES = "series"
         const val REPETICIONES = "repeticiones"
         const val PESO_SERIE = "peso"
-        const val ORDEN ="orden"
+        const val ORDEN = "orden"
 
 
         //Tabla usuario-rutina
@@ -77,6 +77,9 @@ class DatabaseHelper(context: Context) :
     //Creamos las tablas
     override fun onCreate(db: SQLiteDatabase?) {
         try {
+            //Sentencia necesaria para borrar en cascada
+            db?.execSQL("PRAGMA foreign_keys=ON;")
+
             val createUserTable = """
                     CREATE TABLE $TABLA_USERS (
                         $ID_USUARIO INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -197,7 +200,5 @@ class DatabaseHelper(context: Context) :
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db?.execSQL("DROP TABLE IF EXISTS $TABLA_USERS")
-        onCreate(db)
     }
 }

@@ -34,14 +34,19 @@ class FragmentHistorial : Fragment() {
     private fun initListeners() {
         //Simplemente creamos un alertdialog para asegurarnos de que el usuario no borra sin querer el historial
         btnBorrarHistorial.setOnClickListener {
-            AlertDialog.Builder(requireContext())
-                .setTitle(resources.getString(R.string.eliminar_historial))
-                .setMessage("¿Estas seguro?\nNo se puede deshacer esta decisión.")
-                .setPositiveButton("Si") { _, _ ->
-                    historialDb.eliminarSesion(arguments?.getInt("id", -1) ?: -1)
-                    navegarActivityPrincipal()
-                }.setNegativeButton("No", null).show()
+            borrarHistorial()
         }
+
+    }
+
+    private fun borrarHistorial() {
+        AlertDialog.Builder(requireContext())
+            .setTitle(resources.getString(R.string.eliminar_historial))
+            .setMessage("¿Estas seguro?\nNo se puede deshacer esta decisión.")
+            .setPositiveButton("Si") { _, _ ->
+                historialDb.eliminarSesion(arguments?.getInt("id", -1) ?: -1)
+                navegarActivityPrincipal()
+            }.setNegativeButton("No", null).show()
     }
 
     private fun navegarActivityPrincipal() {
