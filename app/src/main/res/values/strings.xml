@@ -85,6 +85,7 @@
     <string name="repeticiones_num">REPETICIONES:</string>
     <string name="peso_ninicial">PESO\nINICIAL:</string>
     <string name="siguiente">SIGUIENTE</string>
+    <string name="serie_info">%1$d/%2$d</string>
     <string name="siguiente_ejercicio">SIGUIENTE EJERCICIO</string>
     <string name="ltima_serie">¡ÚLTIMA SERIE!</string>
     <string name="eliminar_historial">Eliminar historial</string>
@@ -97,5 +98,5 @@
 
     <string name="dieta">Dieta</string>
     <string name="perfil">Perfil</string>
-    <string name="descanso_">DESCANSO\n</string>
+    <string name="descanso_">DESCANSO</string>
 </resources>

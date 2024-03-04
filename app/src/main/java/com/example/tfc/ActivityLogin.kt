@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.example.tfc.clasesAuxiliares.clasesBase.Usuario
 import com.example.tfc.sqlite.DatabaseHelper
+import com.example.tfc.sqlite.sqliteMetodos.RutinaEjercicioDb
 import com.example.tfc.sqlite.sqliteMetodos.UserDb
 import com.example.tfc.sqlite.sqliteMetodos.UsuarioRutinaDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -136,9 +137,29 @@ class ActivityLogin : AppCompatActivity() {
     }
 
     private fun setRutinasPredefinidas(id: Int) {
-        usuarioRutinaDb.addRutinaAUsuario(1, id)
-        usuarioRutinaDb.addRutinaAUsuario(2, id)
-        usuarioRutinaDb.addRutinaAUsuario(3, id)
+        rutinaEjercicioDb.addEjercicioARutina(id,1, 10, 12, 4, 75.0)
+        rutinaEjercicioDb.addEjercicioARutina(id,1, 14, 12, 4, 22.5)
+        rutinaEjercicioDb.addEjercicioARutina(id,1, 2, 12, 4, 12.5)
+        rutinaEjercicioDb.addEjercicioARutina(id,1, 1, 12, 4, 20.0)
+        rutinaEjercicioDb.addEjercicioARutina(id,1, 47, 12, 4, 7.5)
+        rutinaEjercicioDb.addEjercicioARutina(id,1, 52, 12, 4, 0.0)
+        rutinaEjercicioDb.addEjercicioARutina(id,1, 48, 12, 4, 20.0)
+
+        rutinaEjercicioDb.addEjercicioARutina(id,2, 20, 12, 4, 0.0)
+        rutinaEjercicioDb.addEjercicioARutina(id,2, 22, 12, 4, 80.0)
+        rutinaEjercicioDb.addEjercicioARutina(id,2, 19, 12, 4, 60.0)
+        rutinaEjercicioDb.addEjercicioARutina(id,2, 28, 12, 4, 50.0)
+        rutinaEjercicioDb.addEjercicioARutina(id,2, 43, 12, 4, 15.0)
+        rutinaEjercicioDb.addEjercicioARutina(id,2, 39, 12, 4, 15.0)
+        rutinaEjercicioDb.addEjercicioARutina(id,2, 38, 12, 4, 25.0)
+
+
+        rutinaEjercicioDb.addEjercicioARutina(id,3, 116, 12, 4, 80.0)
+        rutinaEjercicioDb.addEjercicioARutina(id,3, 114, 12, 4, 40.0)
+        rutinaEjercicioDb.addEjercicioARutina(id,3, 120, 30, 4, 20.0)
+        rutinaEjercicioDb.addEjercicioARutina(id,3, 123, 12, 4, 180.0)
+        rutinaEjercicioDb.addEjercicioARutina(id,3, 125, 12, 4, 40.0)
+        rutinaEjercicioDb.addEjercicioARutina(id,3, 122, 12, 4, 90.0)
     }
 
     private fun navegarActivityPrincipal() {
@@ -205,8 +226,8 @@ class ActivityLogin : AppCompatActivity() {
         cvFemenino = findViewById(R.id.viewMujer)
         tvAltura = findViewById(R.id.tvAltura)
         rsAltura = findViewById(R.id.rsAltura)
-        btnSumarObjetivo = findViewById(R.id.btnSumarObjetivo)
         btnRestarObjetivo = findViewById(R.id.btnRestarObjetivo)
+        btnSumarObjetivo = findViewById(R.id.btnSumarObjetivo)
         btnRestarPeso = findViewById(R.id.btnRestarPeso)
         btnSumarPeso = findViewById(R.id.btnSumarPeso)
         tvPeso = findViewById(R.id.tvPeso)
@@ -215,7 +236,7 @@ class ActivityLogin : AppCompatActivity() {
         nombre = findViewById(R.id.etNombreUsuario)
         db = DatabaseHelper(this)
         userDb = UserDb(db)
-        usuarioRutinaDb = UsuarioRutinaDb(db)
+        rutinaEjercicioDb = RutinaEjercicioDb(db)
     }
 
     private lateinit var cvMasculino: CardView
@@ -236,6 +257,6 @@ class ActivityLogin : AppCompatActivity() {
     private lateinit var btnCrearUser: AppCompatButton
     private lateinit var nombre: EditText
     private lateinit var db: DatabaseHelper
-    private lateinit var usuarioRutinaDb: UsuarioRutinaDb
+    private lateinit var rutinaEjercicioDb: RutinaEjercicioDb
     private lateinit var userDb: UserDb
 }

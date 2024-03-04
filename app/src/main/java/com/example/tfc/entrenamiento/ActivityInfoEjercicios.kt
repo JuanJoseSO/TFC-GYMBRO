@@ -97,6 +97,7 @@ class ActivityInfoEjercicios : AppCompatActivity() {
                 it.onItemClick = { rutina ->
                     //Añadimos a la base de datos el item seleccionado
                     rutinaEjercicioDb.addEjercicioARutina(
+                        userDb.getUsuarioSeleccionado()!!.id,
                         rutina.id,
                         ejercicio.id,
                         repeticiones,
@@ -124,6 +125,7 @@ class ActivityInfoEjercicios : AppCompatActivity() {
 
     private fun navegarActivityPrincipal() {
         val intent = Intent(this, ActivityPrincipal::class.java)
+        intent.putExtra("cargarEjercicio",true)
         startActivity(intent)
         finish() //Cierra la activity para evitar volver a ella
     }

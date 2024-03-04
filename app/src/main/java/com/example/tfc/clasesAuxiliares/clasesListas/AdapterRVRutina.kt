@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tfc.R
 import com.example.tfc.clasesAuxiliares.clasesBase.Rutina
 import com.example.tfc.sqlite.DatabaseHelper
-import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
+import com.example.tfc.sqlite.sqliteMetodos.UserDb
+import com.example.tfc.sqlite.sqliteMetodos.UsuarioRutinaDb
 
 class AdapterRVRutina(
     private val context: Context, private val listaRutina: MutableList<Rutina>
@@ -25,7 +26,7 @@ class AdapterRVRutina(
     override fun onBindViewHolder(holder: RutinaViewHolder, position: Int) {
         val rutina = listaRutina[position]
         holder.tvNombreRutina.text = rutina.nombre
-        holder.tvDiaRutina.text = rutina.nombre
+        holder.tvDiaRutina.text = rutina.diaPreferente
         holder.borde.background = setColorCeldas(rutina.intensidad)
 
         holder.itemView.setOnClickListener {
@@ -62,8 +63,9 @@ class AdapterRVRutina(
         notifyItemRangeChanged(position, listaRutina.size - position)
 
         //Lo guardamos en la base de datos
-        val rutinaDb = RutinaDb(DatabaseHelper(context))
-        rutinaDb.eliminarRutina(idRutina)
+        val usuarioRutinaDb = UsuarioRutinaDb(DatabaseHelper(context))
+        val userDb = UserDb(DatabaseHelper(context))
+        usuarioRutinaDb.eliminarRutina(userDb.getUsuarioSeleccionado()!!.id)
     }
 
     //Variable para eventos de clic,es decir,gestionarlo desde codigo

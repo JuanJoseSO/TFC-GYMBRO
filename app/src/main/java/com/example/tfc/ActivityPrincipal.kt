@@ -22,6 +22,9 @@ class ActivityPrincipal : AppCompatActivity() {
         if (intent.getBooleanExtra("cargarHistorial", false)) {
             cargarHistorial()
         }
+        if (intent.getBooleanExtra("cargarEjercicio", false)) {
+            cargarFragmento(FragmentEntrenamiento())
+        }
     }
 
     //Funcion para configurar la barra de navegación de la aplicacion

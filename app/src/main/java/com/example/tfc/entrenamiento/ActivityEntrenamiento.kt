@@ -54,7 +54,7 @@ class ActivityEntrenamiento : AppCompatActivity() {
         //Iniciamos la lista ejercicios y variables necesarias
         posicionEjercicioActual = 0
         serieActual = 0
-        listaEjercicio = rutina.id.let { rutinaEjericicoDb.getEjerciciosPorRutina(it) }
+        listaEjercicio = rutina.id.let { rutinaEjericicoDb.getEjerciciosPorRutina(userDb.getUsuarioSeleccionado()!!.id,it) }
         if (listaEjercicio.isNotEmpty()) {
             cargarEjercicio(posicionEjercicioActual)
         }
@@ -67,13 +67,14 @@ class ActivityEntrenamiento : AppCompatActivity() {
         setVideo(ejercicio.video)/*Expresion lambda bastate compleja,estamos recuperando la informacion de cada ejercicio en una variable pasandole el id de la rutina y el id del ejercicio
           al método getInfoRutina que se escuentra en la clase RutinaEjericicoDb,aunque compleja,la formatea el propio IDE a partir de una expresión más larga */
         val infoEjercicio =
-            rutina.let { ejercicio.let { it1 -> rutinaEjericicoDb.getInfoRutina(it.id, it1.id) } }
+            rutina.let { ejercicio.let { it1 -> rutinaEjericicoDb.getInfoRutina(userDb.getUsuarioSeleccionado()!!.id,it.id, it1.id) } }
         tvRepeticiones.text = infoEjercicio[1].toInt().toString()
         peso = (infoEjercicio[2])
         setPeso()
+        val totalSeries = recogerSeriesTotales()
         // Restablece la serie actual al cargar un nuevo ejercicio
         serieActual = 1
-        tvSeries.text = serieActual.toString()
+        tvSeries.text = getString(R.string.serie_info, serieActual, totalSeries)
     }
 
     private fun secuenciaUI() {
@@ -81,13 +82,7 @@ class ActivityEntrenamiento : AppCompatActivity() {
         clDescanso.visibility = View.VISIBLE
         initCuentaAtras()
         //De nuevo una expresion lambda similar a la anterior,que formatea el propio IDE
-        val totalSeries = listaEjercicio[posicionEjercicioActual].let {
-            rutina.id.let { it1 ->
-                it.let { it2 ->
-                    rutinaEjericicoDb.getInfoRutina(it1, it2.id)[0].toInt()
-                }
-            }
-        }
+        val totalSeries = recogerSeriesTotales()
 
         //Si serie actual es la ultima,mostramos una View con un mensaje que dura dos segundos en pantalla
         if (serieActual == totalSeries - 1) {
@@ -101,8 +96,8 @@ class ActivityEntrenamiento : AppCompatActivity() {
         //Si la serie actual es menor que la serie total,aumentamos la serie
         if (serieActual < totalSeries) {
             serieActual++
-            tvSeries.text = serieActual.toString()
-            rutinaEjericicoDb.updatePeso(rutina.id, ejercicio.id, peso)
+            tvSeries.text = getString(R.string.serie_info, serieActual, totalSeries)
+            rutinaEjericicoDb.updatePeso(userDb.getUsuarioSeleccionado()!!.id,rutina.id, ejercicio.id, peso)
 
         }
         //Si no,es decir,llegamos al limite,pasamos al siguiente ejercicio
@@ -159,17 +154,22 @@ class ActivityEntrenamiento : AppCompatActivity() {
     }
 
     private fun initCuentaAtras() {
-        cuentaAtras = Cronometro()
-        //Similar a inicar cronometro pero usando los metodos de la cuentaAtras
-        cuentaAtras.setOnUpdateCuentaAtras { tiempo ->
-            runOnUiThread {
-                tvCuentaAtras.text = tiempo
+        //Si no hay contador,es null,permite iniciar la cuenta atras,para que no se reinicie cada vez que cambiamos de ejercicio
+        if (cuentaAtras == null) {
+            cuentaAtras = Cronometro().apply {
+                setOnUpdateCuentaAtras { tiempo ->
+                    runOnUiThread {
+                        tvCuentaAtras.text = tiempo
+                    }
+                }
+                terminarCuentaAtras {
+                    cuentaAtras=null
+                }
+                // Iniciar el cronómetro con el valor de descanso configurado
+                initCuentaAtras(rutina.descanso, clDescanso)
             }
         }
-        //Asignamos el descanso que hemos configurado al crear la rutina a la cuenta atras
-        rutina.descanso.let { cuentaAtras.initCuentaAtras(it, tvCuentaAtras) }
     }
-
 
     //Solo hago un Setter para el peso por que el resto de parametros se presuponen dinámicos
     private fun setPeso() {
@@ -204,18 +204,7 @@ class ActivityEntrenamiento : AppCompatActivity() {
         }
 
         btnStart.setOnClickListener {
-            /*setImageResource no funcionaba como debia por algún motivo,aqui simplemente llamamos a los métodos del cronometro y cambiamos la imagen pause/play
-            segun nos convenga*/
-            if (!cronometro.estaIniciado()) {
-                cronometro.iniciar()
-                btnStart.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_pause))
-            } else if (cronometro.estaPausado()) {
-                cronometro.reanudar()
-                btnStart.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_pause))
-            } else {
-                cronometro.pausar()
-                btnStart.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_play))
-            }
+           logicaCronometro()
         }
 
         btnSumarPeso.setOnClickListener {
@@ -225,6 +214,20 @@ class ActivityEntrenamiento : AppCompatActivity() {
         btnRestarPeso.setOnClickListener {
             if (peso > 0) peso -= 2.5
             setPeso()
+        }
+    }
+    private fun logicaCronometro(){
+        /*setImageResource no funcionaba como debia por algún motivo,aqui simplemente llamamos a los métodos del cronometro y cambiamos la imagen pause/play
+           segun nos convenga*/
+        if (!cronometro.estaIniciado()) {
+            cronometro.iniciar()
+            btnStart.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_pause))
+        } else if (cronometro.estaPausado()) {
+            cronometro.reanudar()
+            btnStart.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_pause))
+        } else {
+            cronometro.pausar()
+            btnStart.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_play))
         }
     }
 
@@ -238,6 +241,15 @@ class ActivityEntrenamiento : AppCompatActivity() {
                 rutina.id, user.id, fechaActual, horaInicio, tiempoEntrenamiento, calorias
             )
         )
+    }
+    private fun recogerSeriesTotales() : Int{
+        return listaEjercicio[posicionEjercicioActual].let {
+            rutina.id.let { it1 ->
+                it.let { it2 ->
+                    rutinaEjericicoDb.getInfoRutina(userDb.getUsuarioSeleccionado()!!.id,it1, it2.id)[0].toInt()
+                }
+            }
+        }
     }
 
     private fun initComponentes() {
@@ -264,6 +276,7 @@ class ActivityEntrenamiento : AppCompatActivity() {
         historialDb = HistorialDb(db)
         user = userDb.getUsuarioSeleccionado()!!
         rutina = rutinaDb.getRutina(intent.getIntExtra("idRutina", -1))!!
+        //De nuevo una expresion lambda similar a la anterior,que formatea el propio IDE
         initEjercicios()
     }
 
@@ -281,7 +294,6 @@ class ActivityEntrenamiento : AppCompatActivity() {
     private lateinit var btnSiguiente: AppCompatButton
     private lateinit var tvCuentaAtras: TextView
     private lateinit var cronometro: Cronometro
-    private lateinit var cuentaAtras: Cronometro
     private lateinit var lyUltimo: LinearLayout
     private lateinit var horaInicio: String
     private lateinit var db: DatabaseHelper
@@ -293,6 +305,7 @@ class ActivityEntrenamiento : AppCompatActivity() {
     private lateinit var rutina: Rutina
     private lateinit var ejercicio: Ejercicio
     private lateinit var user: Usuario
+    private var cuentaAtras: Cronometro?=null
     private var serieActual = 0
     private var posicionEjercicioActual = 0
     private var peso = 0.0

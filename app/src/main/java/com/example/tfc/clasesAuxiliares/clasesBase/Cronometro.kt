@@ -3,7 +3,7 @@ package com.example.tfc.clasesAuxiliares.clasesBase
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import java.util.Locale
 
 class Cronometro {
@@ -93,24 +93,25 @@ class Cronometro {
     //VAriables cuenta atras
     private var onUpdateCuentaAtras: ((String) -> Unit)? = null
     private var cuentaAtrasFinal: Long = 0
-    private var cuentaAtrasRestante: Long = 0 // 30 segundos
+    private var cuentaAtrasRestante: Long = 0
+    private var onFinish: (() -> Unit)? = null
 
-
+    //permite ejecutar codigo en el hilo principal
     fun setOnUpdateCuentaAtras(onUpdateCuentaAtras: ((String) -> Unit)) {
         this.onUpdateCuentaAtras = onUpdateCuentaAtras
     }
 
     //Métodos para iniciar la cuenta atras
     //Le pasamos el textview para gestionar aqui su visibilidad
-    fun initCuentaAtras(cuentaInicial: Int, tvCuentaAtras: TextView) {
-        //Multiplicamos por mil y pasamos a long para obtener los milisegundos seleccionados de descanso
-        this.cuentaAtrasRestante = (cuentaInicial * 1000).toLong()
-        cuentaAtrasFinal = System.currentTimeMillis() + cuentaAtrasRestante
-        cicloCuentaAtras(tvCuentaAtras)
+    fun initCuentaAtras(cuentaInicial: Int, clDesncaso: ConstraintLayout) {
+            //Multiplicamos por mil y pasamos a long para obtener los milisegundos seleccionados de descanso
+            this.cuentaAtrasRestante = (cuentaInicial * 1000).toLong()
+            cuentaAtrasFinal = System.currentTimeMillis() + cuentaAtrasRestante
+            cicloCuentaAtras(clDesncaso)
     }
 
     // Ciclo del contador regresivo,similar al anterior,pero restando tiempo y cambiando la visibilidad de la cuenta atras
-    private fun cicloCuentaAtras(tvCuentaAtras: TextView) {
+    private fun cicloCuentaAtras(clDesncaso: ConstraintLayout) {
         handler.postDelayed(object : Runnable {
             override fun run() {
                 val tiempoActual = System.currentTimeMillis()
@@ -127,9 +128,20 @@ class Cronometro {
                     handler.postDelayed(this, 10)
                 } else {
                     onUpdateCuentaAtras?.invoke("0")
-                    tvCuentaAtras.visibility = View.GONE
+                    clDesncaso.visibility = View.GONE
+                    comprobarCuentaAtras()
                 }
             }
         }, 10)
     }
+    fun comprobarCuentaAtras() {
+        if (cuentaAtrasRestante <= 0) {
+            onFinish?.invoke()
+        }
+    }
+
+    fun terminarCuentaAtras(onFinish: () -> Unit) {
+        this.onFinish = onFinish
+    }
+
 }

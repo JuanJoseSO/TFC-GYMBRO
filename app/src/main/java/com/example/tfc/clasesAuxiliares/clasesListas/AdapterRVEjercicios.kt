@@ -9,13 +9,16 @@ import com.example.tfc.R
 import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.RutinaEjercicioDb
+import com.example.tfc.sqlite.sqliteMetodos.UserDb
 import java.util.Collections
 
 
 class AdapterRVEjercicios(
     private val context: Context,
     private val listaEjercicios: MutableList<Ejercicio>,
-    private val listaInfoEjercicios: List<ArrayList<Double>>
+    private val listaInfoEjercicios: List<ArrayList<Double>>,
+    private val idUsuario:Int,
+    private val idRutina:Int
 ) : RecyclerView.Adapter<EjerciciosViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EjerciciosViewHolder {
@@ -68,6 +71,7 @@ class AdapterRVEjercicios(
 
         //Lo guardamos en la base de datos
         val rutinaEjercicioDb = RutinaEjercicioDb(DatabaseHelper(context))
-        rutinaEjercicioDb.eliminarEjercicio(idEjercicio)
+        val userDb = UserDb(DatabaseHelper(context))
+        rutinaEjercicioDb.eliminarEjercicio(idUsuario,idRutina,idEjercicio)
     }
 }

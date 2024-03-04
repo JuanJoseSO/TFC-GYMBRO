@@ -65,13 +65,21 @@ class DatabaseHelper(context: Context) :
         //Tabla historial
         const val TABLA_HISTORIAL = "historial"
         const val ID_HISTORIAL = "id_historial"
-
         //id_usuario_fk
         //id_rutina_fk
         const val DIA_ENTRENAMIENTO = "dia_entrenamiento"
         const val HORA_INICIO = "hora_inicio"
         const val TIEMPO_TOTAL = "tiempo_de_entrenamiento"
         const val CALORIAS_QUEMADAS = "calorias_quemadas"
+
+        //Tabla evolucion
+        const val TABLA_EVOLUCION="evolucion"
+        const val ID_EVOLUCION="id_evolucion"
+        //usuario_fk
+        //ejercicio_fk
+        const val PESO_ANTERIOR="peso_anterior"
+        const val PESO_ACTUAL="peso_actual"
+        const val FECHA="fecha"
     }
 
     //Creamos las tablas
@@ -120,11 +128,13 @@ class DatabaseHelper(context: Context) :
                    CREATE TABLE $TABLA_RUTINA_EJERCICIOS( 
                    $ID_RUTINA_FK INTEGER,
                    $ID_EJERCICIO_FK INTEGER,
+                   $ID_USUARIO_FK INTEGER,
                    $SERIES INTEGER,
                    $REPETICIONES INTEGER,
                    $PESO_SERIE REAL,
                    $ORDEN INTEGER,
-                   PRIMARY KEY ($ID_RUTINA_FK,$ID_EJERCICIO_FK),
+                   PRIMARY KEY ($ID_RUTINA_FK,$ID_EJERCICIO_FK,$ID_USUARIO_FK),
+                   FOREIGN KEY ($ID_USUARIO_FK) REFERENCES $TABLA_USERS($ID_USUARIO),
                    FOREIGN KEY ($ID_RUTINA_FK) REFERENCES $TABLA_RUTINAS($ID_RUTINA),
                    FOREIGN KEY ($ID_EJERCICIO_FK) REFERENCES $TABLA_EJERCICIOS($ID_EJERCICIO)
                 )
@@ -167,6 +177,32 @@ class DatabaseHelper(context: Context) :
                 )                
             """.trimIndent()
             db?.execSQL(createTableHistorial)
+
+            val createTableEvolucion = """
+                 CREATE TABLE $TABLA_EVOLUCION(
+                   $ID_EVOLUCION INTEGER PRIMARY KEY AUTOINCREMENT,
+                   $ID_RUTINA_FK INTEGER,
+                   $ID_EJERCICIO_FK INTEGER,
+                   $PESO_ANTERIOR INTEGER,
+                   $PESO_ACTUAL  INTEGER,
+                   $FECHA INTEGER,
+                   FOREIGN KEY ($ID_RUTINA_FK) REFERENCES $TABLA_RUTINAS($ID_RUTINA_FK),
+                   FOREIGN KEY ($ID_EJERCICIO_FK) REFERENCES $TABLA_EJERCICIOS($ID_EJERCICIO)
+                )                
+            """.trimIndent()
+            db?.execSQL(createTableEvolucion)
+            //Un trigger que rellenará de fomra automática la tabla evolución
+            val createTriggerUpdateEvolucion="""
+                CREATE TRIGGER update_peso
+                AFTER UPDATE ON $TABLA_RUTINA_EJERCICIOS
+                FOR EACH ROW
+                WHEN OLD.$PESO <> NEW.$PESO
+                BEGIN
+                    INSERT INTO $TABLA_EVOLUCION($ID_RUTINA_FK,$ID_EJERCICIO_FK,$PESO_ANTERIOR,$PESO_ACTUAL,$FECHA)
+                    VALUES (NEW.$ID_RUTINA_FK,NEW.$ID_EJERCICIO_FK,OLD.$PESO,NEW.$PESO,strftime('%s','now'));
+                END;
+            """.trimIndent()
+            db?.execSQL(createTriggerUpdateEvolucion)
             //Dos trigger que mantendra SOLO un usuario seleccionado a la vez ya que SQLite no permite INSERT OR UPDATE
             val createTriggerInsertUser = """
                 CREATE TRIGGER insert_usuario_seleccionado

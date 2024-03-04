@@ -7,65 +7,66 @@
     android:background="@drawable/background"
     tools:context=".entrenamiento.ActivityEntrenamiento">
 
+
     <TextView
         android:id="@+id/tvNombreEjercicio"
         android:layout_width="0dp"
         android:layout_height="90dp"
-        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeMaxTextSize="26sp"
         android:autoSizeMinTextSize="8sp"
         android:autoSizeTextType="uniform"
         android:gravity="center"
-        android:padding="2dp"
         android:textColor="@color/white"
-        android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tvCronometro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCronometro" />
 
     <View
         android:id="@+id/view2"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/tvCronometro"
+        app:layout_constraintBottom_toTopOf="@+id/tvNombreEjercicio"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNombreEjercicio"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCronometro"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tvCronometro"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/digital"
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="60sp"
-        app:layout_constraintBottom_toTopOf="@id/wvReproductor"
+        app:layout_constraintBottom_toTopOf="@+id/wvReproductor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.10"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvNombreEjercicio" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 
     <ImageButton
         android:id="@+id/btnOcultar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:background="@color/background_component"
         android:contentDescription="@string/suma"
         android:src="@drawable/ic_minimizar"
-        app:layout_constraintBottom_toTopOf="@id/cvInfo"
+        app:layout_constraintBottom_toTopOf="@+id/wvReproductor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/wvReproductor"
-        app:layout_constraintTop_toBottomOf="@id/tvCronometro"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/tvNombreEjercicio"
+        app:layout_constraintVertical_bias="0.408"
         tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
-
 
     <WebView
         android:id="@+id/wvReproductor"
@@ -74,14 +75,13 @@
         android:layout_gravity="center"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/clDescanso"
+        app:layout_constraintBottom_toTopOf="@id/cvInfo"
         app:layout_constraintDimensionRatio="16:9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.23"
-        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.307" />
+        app:layout_constraintTop_toBottomOf="@id/btnOcultar"
+        app:layout_constraintVertical_bias="0.063" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cvInfo"
@@ -93,10 +93,11 @@
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@id/btnStart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_max="300dp"
         app:layout_constraintHeight_percent="0.28"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/wvReproductor">
+        app:layout_constraintTop_toBottomOf="@id/wvReproductor"
+        app:layout_constraintVertical_bias="0.732">
 
         <TextView
             android:id="@+id/tvEjercicioInfo"
@@ -305,48 +306,46 @@
         android:id="@+id/clDescanso"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/tvDescanso"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/descanso_"
-            android:textStyle="italic|bold"
             android:textColor="@color/red"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@id/tvCuentaAtras"
+            android:textSize="22sp"
+            android:textStyle="italic|bold"
+            app:layout_constraintBottom_toTopOf="@+id/tvCuentaAtras"
+
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
+            android:id="@+id/divider"
             android:layout_width="0dp"
             android:layout_height="2dp"
             android:background="@color/red"
-            app:layout_constraintBottom_toBottomOf="@+id/tvDescanso"
+            app:layout_constraintBottom_toTopOf="@id/tvCuentaAtras"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDescanso" />
 
         <TextView
             android:id="@+id/tvCuentaAtras"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/digital"
             android:gravity="center"
             android:textColor="@color/red"
             android:textSize="60sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.854" />
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

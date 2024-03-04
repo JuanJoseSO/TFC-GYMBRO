@@ -59,19 +59,4 @@ class RutinaDb(private val dbHelper: DatabaseHelper) {
         }
         return rutina
     }
-
-    fun eliminarRutina(idRutina: Int) {
-        val db = dbHelper.writableDatabase
-        try {
-            db.delete(
-                DatabaseHelper.TABLA_RUTINAS,
-                "${DatabaseHelper.ID_RUTINA}=?",
-                arrayOf(idRutina.toString())
-            )
-        } catch (e: SQLiteException) {
-            Log.e("SQLite", "Error al cambiar la posicion del ejercicio", e)
-        } finally {
-            db.close()
-        }
-    }
 }

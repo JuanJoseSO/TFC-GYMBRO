@@ -96,7 +96,7 @@ class FragmentHome : Fragment() {
     }
 
     private fun navegarAEntrenamiento(id: Int) {
-        if (rutinaEjercicioDb.getEjerciciosPorRutina(id).isEmpty()) Toast.makeText(
+        if (rutinaEjercicioDb.getEjerciciosPorRutina(userDb.getUsuarioSeleccionado()!!.id,id).isEmpty()) Toast.makeText(
             requireContext(), "La rutina está vacía", Toast.LENGTH_SHORT
         ).show()
         else {
