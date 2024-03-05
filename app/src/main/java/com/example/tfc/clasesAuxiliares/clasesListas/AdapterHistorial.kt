@@ -23,7 +23,6 @@ class AdapterHistorial(private val context: Context, private val listaHistorial:
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         //ConvertView nos permite reciclar las vistas(aumenta el rendimiento)
-        //Voy a usar el mismo layout que para diertas pero cambiando nivel por intensidad
         val view = convertView ?: LayoutInflater.from(context)
             .inflate(R.layout.layout_rutinas, parent, false)
         //Optenemos el ejercicio por su posicion

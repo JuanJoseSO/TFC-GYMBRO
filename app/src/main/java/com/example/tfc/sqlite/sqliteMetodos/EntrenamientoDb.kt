@@ -5,10 +5,11 @@ import android.content.ContentValues
 import android.database.sqlite.SQLiteException
 import android.util.Log
 import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
+import com.example.tfc.clasesAuxiliares.clasesBase.Rutina
 import com.example.tfc.sqlite.DatabaseHelper
 
 
-class RutinaEjercicioDb(private val dbHelper: DatabaseHelper) {
+class EntrenamientoDb(private val dbHelper: DatabaseHelper) {
 
     fun addEjercicioARutina(
         idUsuario: Int,
@@ -20,7 +21,7 @@ class RutinaEjercicioDb(private val dbHelper: DatabaseHelper) {
     ) {
         val db = dbHelper.writableDatabase
         val insert = ContentValues().apply {
-            put(DatabaseHelper.ID_USUARIO_FK, idRutina)
+            put(DatabaseHelper.ID_USUARIO_FK, idUsuario)
             put(DatabaseHelper.ID_RUTINA_FK, idRutina)
             put(DatabaseHelper.ID_EJERCICIO_FK, idEjercicio)
             put(DatabaseHelper.REPETICIONES, repeticiones)
@@ -28,7 +29,7 @@ class RutinaEjercicioDb(private val dbHelper: DatabaseHelper) {
             put(DatabaseHelper.PESO, peso)
         }
         try {
-            db.insert(DatabaseHelper.TABLA_RUTINA_EJERCICIOS, null, insert)
+            db.insert(DatabaseHelper.TABLA_ENTRENAMIENTO, null, insert)
         } catch (e: SQLiteException) {
             Log.e("SQLite", "Error al añadir  el ejercicio", e)
         }
@@ -40,7 +41,7 @@ class RutinaEjercicioDb(private val dbHelper: DatabaseHelper) {
         val db = dbHelper.readableDatabase
 
         val cursor = db.rawQuery(
-            "SELECT * FROM ${DatabaseHelper.TABLA_RUTINA_EJERCICIOS} WHERE ${DatabaseHelper.ID_USUARIO_FK}=? AND ${DatabaseHelper.ID_RUTINA_FK}=? AND ${DatabaseHelper.ID_EJERCICIO_FK}=?",
+            "SELECT * FROM ${DatabaseHelper.TABLA_ENTRENAMIENTO} WHERE ${DatabaseHelper.ID_USUARIO_FK}=? AND ${DatabaseHelper.ID_RUTINA_FK}=? AND ${DatabaseHelper.ID_EJERCICIO_FK}=?",
             arrayOf(idUsuario.toString(), idRutina.toString(), idEjercicio.toString())
         )
         try {
@@ -68,7 +69,7 @@ class RutinaEjercicioDb(private val dbHelper: DatabaseHelper) {
         val lista = mutableListOf<Ejercicio>()
         val db = dbHelper.readableDatabase
         val select =
-            "SELECT * FROM ${DatabaseHelper.TABLA_EJERCICIOS} JOIN ${DatabaseHelper.TABLA_RUTINA_EJERCICIOS} ON ${DatabaseHelper.TABLA_EJERCICIOS}.${DatabaseHelper.ID_EJERCICIO}=${DatabaseHelper.TABLA_RUTINA_EJERCICIOS}.${DatabaseHelper.ID_EJERCICIO_FK} WHERE ${DatabaseHelper.ID_USUARIO_FK}= ? AND ${DatabaseHelper.ID_RUTINA_FK}= ?  ORDER BY ${DatabaseHelper.ORDEN} ASC"
+            "SELECT * FROM ${DatabaseHelper.TABLA_EJERCICIOS} JOIN ${DatabaseHelper.TABLA_ENTRENAMIENTO} ON ${DatabaseHelper.TABLA_EJERCICIOS}.${DatabaseHelper.ID_EJERCICIO}=${DatabaseHelper.TABLA_ENTRENAMIENTO}.${DatabaseHelper.ID_EJERCICIO_FK} WHERE ${DatabaseHelper.ID_USUARIO_FK}= ? AND ${DatabaseHelper.ID_RUTINA_FK}= ?  ORDER BY ${DatabaseHelper.ORDEN} ASC"
         val cursor = db.rawQuery(select, arrayOf(idUsuario.toString(),idRutina.toString()))
         if (cursor.moveToFirst()) {
             try {
@@ -99,9 +100,9 @@ class RutinaEjercicioDb(private val dbHelper: DatabaseHelper) {
         }
         try {
             db.update(
-                DatabaseHelper.TABLA_RUTINA_EJERCICIOS,
+                DatabaseHelper.TABLA_ENTRENAMIENTO,
                 values,
-                "${DatabaseHelper.ID_RUTINA_FK}=? AND ${DatabaseHelper.ID_EJERCICIO_FK}=?",
+                "${DatabaseHelper.ID_USUARIO_FK}=? AND ${DatabaseHelper.ID_RUTINA_FK}=? AND ${DatabaseHelper.ID_EJERCICIO_FK}=?",
                 arrayOf(
                     idUsuario.toString(),idRutina.toString(), idEjercicio.toString()
                 )
@@ -120,7 +121,7 @@ class RutinaEjercicioDb(private val dbHelper: DatabaseHelper) {
                     put(DatabaseHelper.ORDEN, nuevoOrden)
                 }
                 db.update(
-                    DatabaseHelper.TABLA_RUTINA_EJERCICIOS,
+                    DatabaseHelper.TABLA_ENTRENAMIENTO,
                     values,
                     "${DatabaseHelper.ID_EJERCICIO_FK}=?",
                     arrayOf(ejercicio.id.toString())
@@ -139,9 +140,9 @@ class RutinaEjercicioDb(private val dbHelper: DatabaseHelper) {
         val db = dbHelper.writableDatabase
         try {
             db.delete(
-                DatabaseHelper.TABLA_RUTINA_EJERCICIOS,
-                "${DatabaseHelper.ID_EJERCICIO_FK}=?",
-                arrayOf(idUsuario.toString(), idRutina.toString(), idEjercicio.toString())
+                DatabaseHelper.TABLA_ENTRENAMIENTO,
+                "${DatabaseHelper.ID_USUARIO_FK}=? AND ${DatabaseHelper.ID_RUTINA_FK}=? AND ${DatabaseHelper.ID_EJERCICIO_FK}=? ",
+                arrayOf(idUsuario.toString(),idRutina.toString(),idEjercicio.toString())
             )
         } catch (e: SQLiteException) {
             Log.e("SQLite", "Error al cambiar la posicion del ejercicio", e)
@@ -149,4 +150,57 @@ class RutinaEjercicioDb(private val dbHelper: DatabaseHelper) {
             db.close()
         }
     }
+
+    fun addRutinaAUsuario( idUsuario: Int,idRutina: Int) {
+        val db = dbHelper.writableDatabase
+        val insert = ContentValues().apply {
+            put(DatabaseHelper.ID_USUARIO_FK, idUsuario)
+            put(DatabaseHelper.ID_RUTINA_FK, idRutina)
+        }
+        try {
+            db.insert(DatabaseHelper.TABLA_ENTRENAMIENTO, null, insert)
+        } catch (e: SQLiteException) {
+            Log.e("SQLite", "Error al añadir  la rutina al usuario", e)
+        }
+    }
+
+    @SuppressLint("Range")
+    fun getRutinaPorUsuario(idUsuario: Int): MutableList<Rutina> {
+        val listaRutina = mutableListOf<Rutina>()
+        val db = dbHelper.readableDatabase
+        val select = "SELECT DISTINCT ${DatabaseHelper.TABLA_RUTINAS}.* FROM ${DatabaseHelper.TABLA_RUTINAS} JOIN ${DatabaseHelper.TABLA_ENTRENAMIENTO} ON ${DatabaseHelper.TABLA_RUTINAS}.${DatabaseHelper.ID_RUTINA} = ${DatabaseHelper.TABLA_ENTRENAMIENTO}.${DatabaseHelper.ID_RUTINA_FK} WHERE ${DatabaseHelper.ID_USUARIO_FK} = ? ORDER BY ${DatabaseHelper.INTENSIDAD}"
+        val cursor = db.rawQuery(select, arrayOf(idUsuario.toString()))
+
+        if (cursor.moveToFirst()) {
+            do {
+                val rutina = Rutina(
+                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ID_RUTINA)),
+                    cursor.getString(cursor.getColumnIndex(DatabaseHelper.NOMBRE_RUTINA)),
+                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.TIEMPO_OBJETIVO)),
+                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.INTENSIDAD)),
+                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.DESCANSO)),
+                    cursor.getString(cursor.getColumnIndex(DatabaseHelper.DIA_PREFERENTE))
+                )
+                listaRutina.add(rutina)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return listaRutina
+    }
+
+    fun eliminarRutina(idUsuario:Int,idRutina: Int) {
+        val db = dbHelper.writableDatabase
+        try {
+            db.delete(
+                DatabaseHelper.TABLA_ENTRENAMIENTO,
+                "${DatabaseHelper.ID_USUARIO_FK}=? AND ${DatabaseHelper.ID_RUTINA_FK}=?",
+                arrayOf(idUsuario.toString(),idRutina.toString())
+            )
+        } catch (e: SQLiteException) {
+            Log.e("SQLite", "Error al cambiar la posicion del ejercicio", e)
+        } finally {
+            db.close()
+        }
+    }
+
 }

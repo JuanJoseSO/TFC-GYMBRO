@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tfc.R
 import com.example.tfc.clasesAuxiliares.clasesBase.Ejercicio
 import com.example.tfc.sqlite.DatabaseHelper
-import com.example.tfc.sqlite.sqliteMetodos.RutinaEjercicioDb
-import com.example.tfc.sqlite.sqliteMetodos.UserDb
+import com.example.tfc.sqlite.sqliteMetodos.EntrenamientoDb
 import java.util.Collections
 
 
@@ -55,9 +54,9 @@ class AdapterRVEjercicios(
         }
         //notifica el cambio en la posicion del item
         notifyItemMoved(posicionInicial, posicionFinal)
-        val rutinaEjercicioDb = RutinaEjercicioDb(DatabaseHelper(context))
+        val entrenamientoDb = EntrenamientoDb(DatabaseHelper(context))
         //Actualizamos en la base de datos
-        rutinaEjercicioDb.updateOrden(listaEjercicios)
+        entrenamientoDb.updateOrden(listaEjercicios)
     }
 
     fun eliminarEjercicio(position: Int) {
@@ -70,8 +69,7 @@ class AdapterRVEjercicios(
         notifyItemRangeChanged(position, listaEjercicios.size - position)
 
         //Lo guardamos en la base de datos
-        val rutinaEjercicioDb = RutinaEjercicioDb(DatabaseHelper(context))
-        val userDb = UserDb(DatabaseHelper(context))
-        rutinaEjercicioDb.eliminarEjercicio(idUsuario,idRutina,idEjercicio)
+        val entrenamientoDb = EntrenamientoDb(DatabaseHelper(context))
+        entrenamientoDb.eliminarEjercicio(idUsuario,idRutina,idEjercicio)
     }
 }

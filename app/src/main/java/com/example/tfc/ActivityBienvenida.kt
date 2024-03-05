@@ -14,7 +14,7 @@ import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.DietaDb
 import com.example.tfc.sqlite.sqliteMetodos.EjerciciosDb
 import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
-import com.example.tfc.sqlite.sqliteMetodos.RutinaEjercicioDb
+import com.example.tfc.sqlite.sqliteMetodos.EntrenamientoDb
 import com.example.tfc.sqlite.sqliteMetodos.UserDb
 
 
@@ -62,13 +62,9 @@ class ActivityBienvenida : AppCompatActivity() {
     }
 
     private fun cargarRutinas() {
-        rutinaDb.addRutina(Rutina("Pecho", 90, 1, 40, "Lunes"))
-        rutinaDb.addRutina(Rutina("Espalda", 90, 1, 40, "Miércoles"))
+        rutinaDb.addRutina(Rutina("Empuje", 90, 1, 40, "Lunes"))
+        rutinaDb.addRutina(Rutina("Tracción", 90, 1, 40, "Miércoles"))
         rutinaDb.addRutina(Rutina("Pierna", 90, 1, 40, "Viernes"))
-
-
-
-
     }
 
     //Funcíon para insertar las tres dietas ejemplo
@@ -137,13 +133,13 @@ class ActivityBienvenida : AppCompatActivity() {
         ejerciciosDb = EjerciciosDb(db)
         rutinaDb = RutinaDb(db)
         dietaDb = DietaDb(db)
-        rutinaEjercicioDb = RutinaEjercicioDb(db)
+        entrenamientoDb = EntrenamientoDb(db)
     }
 
     private lateinit var rutinaDb: RutinaDb
     private lateinit var btnAcceso: Button
     private lateinit var db: DatabaseHelper
-    private lateinit var rutinaEjercicioDb: RutinaEjercicioDb
+    private lateinit var entrenamientoDb: EntrenamientoDb
     private lateinit var usersDb: UserDb
     private lateinit var ejerciciosDb: EjerciciosDb
     private lateinit var dietaDb: DietaDb

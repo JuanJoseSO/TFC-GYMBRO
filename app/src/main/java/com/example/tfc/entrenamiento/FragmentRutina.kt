@@ -16,9 +16,8 @@ import com.example.tfc.clasesAuxiliares.clasesListas.AdapterRVEjercicios
 import com.example.tfc.clasesAuxiliares.clasesListas.AdapterRVRutina
 import com.example.tfc.clasesAuxiliares.clasesListas.EventosListas
 import com.example.tfc.sqlite.DatabaseHelper
-import com.example.tfc.sqlite.sqliteMetodos.RutinaEjercicioDb
+import com.example.tfc.sqlite.sqliteMetodos.EntrenamientoDb
 import com.example.tfc.sqlite.sqliteMetodos.UserDb
-import com.example.tfc.sqlite.sqliteMetodos.UsuarioRutinaDb
 
 
 class FragmentRutina : Fragment() {
@@ -41,7 +40,7 @@ class FragmentRutina : Fragment() {
     private fun mostrartListaRutina() {
         rvEjercicios.visibility = View.GONE
         rvRutina.visibility = View.VISIBLE
-        val listaRutina = usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!)
+        val listaRutina = entrenamientoDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!)
 
         val adapterRutina = AdapterRVRutina(requireContext(), listaRutina).also {
             it.onItemClick = { rutina -> mostrarEjerciciosPorRutina(rutina.id) }
@@ -58,9 +57,9 @@ class FragmentRutina : Fragment() {
 
     //Mostramos los ejercicios que PERTENECEN a una rutina con la tabla rutina_ejercicios
     private fun mostrarEjerciciosPorRutina(id: Int) {
-        val listaEjerciciosPorRutina = rutinaEjercicioDb.getEjerciciosPorRutina(userDb.getUsuarioSeleccionado()!!.id,id)
+        val listaEjerciciosPorRutina = entrenamientoDb.getEjerciciosPorRutina(userDb.getUsuarioSeleccionado()!!.id,id)
         val listaInfoEjercicios = listaEjerciciosPorRutina.map { ejercicio ->
-            rutinaEjercicioDb.getInfoRutina(userDb.getUsuarioSeleccionado()!!.id,id, ejercicio.id)
+            entrenamientoDb.getInfoRutina(userDb.getUsuarioSeleccionado()!!.id,id, ejercicio.id)
         }/*Usamos el adapter del recycler view,ocultamos el listview para evitar tener conflictor entre ellos y mostramos
           el recicler view*/
         rvEjercicios.visibility = View.VISIBLE
@@ -96,8 +95,7 @@ class FragmentRutina : Fragment() {
         contenedor = requireView().findViewById(R.id.contenedor_rutina)
 
         db = DatabaseHelper(requireContext())
-        usuarioRutinaDb = UsuarioRutinaDb(db)
-        rutinaEjercicioDb = RutinaEjercicioDb(db)
+        entrenamientoDb = EntrenamientoDb(db)
         userDb = UserDb(db)
 
     }
@@ -108,7 +106,7 @@ class FragmentRutina : Fragment() {
     private lateinit var btnCrear: AppCompatButton
     private lateinit var db: DatabaseHelper
     private lateinit var userDb: UserDb
-    private lateinit var usuarioRutinaDb: UsuarioRutinaDb
-    private lateinit var rutinaEjercicioDb: RutinaEjercicioDb
+
+    private lateinit var entrenamientoDb: EntrenamientoDb
     private lateinit var evento: EventosListas
 }

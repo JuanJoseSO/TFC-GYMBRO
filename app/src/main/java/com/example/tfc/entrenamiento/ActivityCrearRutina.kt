@@ -12,8 +12,8 @@ import com.example.tfc.R
 import com.example.tfc.clasesAuxiliares.clasesBase.Rutina
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
+import com.example.tfc.sqlite.sqliteMetodos.EntrenamientoDb
 import com.example.tfc.sqlite.sqliteMetodos.UserDb
-import com.example.tfc.sqlite.sqliteMetodos.UsuarioRutinaDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ActivityCrearRutina : AppCompatActivity() {
@@ -83,11 +83,10 @@ class ActivityCrearRutina : AppCompatActivity() {
             } else {
 
                 val rutina = crearRutina()
-
                 try {
                     //Como se explica en rutinaDB añadir rutina devuelve un Long con el id,para añadirlo a la tabla usuario_rutina
-                    usuarioRutinaDb.addRutinaAUsuario(
-                        rutinaDb.addRutina(rutina), userDb.getUsuarioSeleccionado()?.id!!
+                    entrenamientoDb.addRutinaAUsuario(
+                        userDb.getUsuarioSeleccionado()?.id!!, rutinaDb.addRutina(rutina)
                     )
                     Toast.makeText(this, "Rutina creada correctamente", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, ActivityPrincipal::class.java)
@@ -151,7 +150,7 @@ class ActivityCrearRutina : AppCompatActivity() {
         btnRestarDescanso = findViewById(R.id.btnRestarDescanso)
         db = DatabaseHelper(this)
         rutinaDb = RutinaDb(db)
-        usuarioRutinaDb = UsuarioRutinaDb(db)
+        entrenamientoDb = EntrenamientoDb(db)
         userDb = UserDb(db)
         tvResultadoTiempo.text = tiempoInicial.toString()
         tvResultadoIntensidad.text = niveles[nivel]
@@ -174,7 +173,7 @@ class ActivityCrearRutina : AppCompatActivity() {
     private lateinit var btnSumarDescanso: FloatingActionButton
     private lateinit var btnCrearRutina: AppCompatButton
     private lateinit var rutinaDb: RutinaDb
-    private lateinit var usuarioRutinaDb: UsuarioRutinaDb
+    private lateinit var entrenamientoDb: EntrenamientoDb
     private lateinit var db: DatabaseHelper
     private lateinit var userDb: UserDb
     private var descansoInicial = 30

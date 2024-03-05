@@ -246,7 +246,7 @@
         android:text="@string/cambiar"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnEliminarUsuario"
+        app:layout_constraintBottom_toTopOf="@+id/btnEvolucion"
         app:layout_constraintEnd_toStartOf="@+id/btnModificarUsuario"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="VisualLintButtonSize" />
@@ -259,6 +259,23 @@
         android:background="@drawable/layout_btn_eliminar"
         android:padding="4dp"
         android:text="@string/eliminarUser"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCambiarUsuario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnHistorial"
+        app:layout_constraintTop_toBottomOf="@+id/tlInfoUser"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="VisualLintButtonSize" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnEvolucion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/layout_btns"
+        android:padding="4dp"
+        android:text="@string/evolucion"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -277,9 +294,9 @@
         android:text="@string/historial"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnEliminarUsuario"
-        app:layout_constraintEnd_toStartOf="@+id/btnEliminarUsuario"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEvolucion"
+        app:layout_constraintEnd_toStartOf="@+id/btnEvolucion"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnEliminarUsuario"
+        app:layout_constraintTop_toTopOf="@+id/btnEvolucion"
         tools:ignore="VisualLintButtonSize" />
 </androidx.constraintlayout.widget.ConstraintLayout>

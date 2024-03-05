@@ -30,7 +30,7 @@ import com.example.tfc.clasesAuxiliares.clasesBase.Usuario
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.HistorialDb
 import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
-import com.example.tfc.sqlite.sqliteMetodos.RutinaEjercicioDb
+import com.example.tfc.sqlite.sqliteMetodos.EntrenamientoDb
 import com.example.tfc.sqlite.sqliteMetodos.UserDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.SimpleDateFormat
@@ -270,7 +270,7 @@ class ActivityEntrenamiento : AppCompatActivity() {
         //Inicio aquí la hora para tenerla desde el principio de la aplicación
         horaInicio = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
         db = DatabaseHelper(this)
-        rutinaEjericicoDb = RutinaEjercicioDb(db)
+        rutinaEjericicoDb = EntrenamientoDb(db)
         rutinaDb = RutinaDb(db)
         userDb = UserDb(db)
         historialDb = HistorialDb(db)
@@ -299,7 +299,7 @@ class ActivityEntrenamiento : AppCompatActivity() {
     private lateinit var db: DatabaseHelper
     private lateinit var userDb: UserDb
     private lateinit var historialDb: HistorialDb
-    private lateinit var rutinaEjericicoDb: RutinaEjercicioDb
+    private lateinit var rutinaEjericicoDb: EntrenamientoDb
     private lateinit var rutinaDb: RutinaDb
     private lateinit var listaEjercicio: List<Ejercicio>
     private lateinit var rutina: Rutina

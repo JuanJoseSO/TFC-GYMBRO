@@ -17,13 +17,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tfc.clasesAuxiliares.clasesBase.CirculosAnimados
+import com.example.tfc.clasesAuxiliares.clasesBase.Usuario
 import com.example.tfc.clasesAuxiliares.clasesListas.AdapterRVRutina
 import com.example.tfc.entrenamiento.ActivityEntrenamiento
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.HistorialDb
-import com.example.tfc.sqlite.sqliteMetodos.RutinaEjercicioDb
+import com.example.tfc.sqlite.sqliteMetodos.EntrenamientoDb
 import com.example.tfc.sqlite.sqliteMetodos.UserDb
-import com.example.tfc.sqlite.sqliteMetodos.UsuarioRutinaDb
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.Calendar
@@ -59,7 +59,7 @@ class FragmentHome : Fragment() {
     private fun mostrarListaRutinas() {/*Lo que hacemos en esta funcion es abrir un AlertDialog que estamos inflando un adapter con un recyclerview que contiene la lista de
          rutinas lo que hace que en lugar de ser una lista gris sin estilo sea una lista con un fondo y un formato individual
          para cada ejercicio,quedando mucho mas atractiva visualmente*/
-        if (usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!).isEmpty()) {
+        if (entrenamientoDb.getRutinaPorUsuario(user.id).isEmpty()) {
             //Si no hay rutinas no nos permitirá crearlo
             Toast.makeText(requireContext(), "No hay rutinas creadas", Toast.LENGTH_LONG).show()
         } else {
@@ -75,7 +75,7 @@ class FragmentHome : Fragment() {
 
             //Obtenemos las listas
             val listaRutinas =
-                usuarioRutinaDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!)//Obtienemos la lista de rutinas
+                entrenamientoDb.getRutinaPorUsuario(user.id)//Obtienemos la lista de rutinas
             val adapterRutina = AdapterRVRutina(requireContext(), listaRutinas).also {
                 it.onItemClick = { rutina -> navegarAEntrenamiento(rutina.id) }
             }
@@ -96,7 +96,7 @@ class FragmentHome : Fragment() {
     }
 
     private fun navegarAEntrenamiento(id: Int) {
-        if (rutinaEjercicioDb.getEjerciciosPorRutina(userDb.getUsuarioSeleccionado()!!.id,id).isEmpty()) Toast.makeText(
+        if (entrenamientoDb.getEjerciciosPorRutina(user.id,id).isEmpty()) Toast.makeText(
             requireContext(), "La rutina está vacía", Toast.LENGTH_SHORT
         ).show()
         else {
@@ -132,10 +132,10 @@ class FragmentHome : Fragment() {
     }
 
     private fun initCirculoAnimado() {
-        userDb.getUsuarioSeleccionado()?.let {
+        user.let {
             circulosAnimados.rellenarCirculo(
                 historialDb.getTiempoDiarioSesion(
-                    LocalDate.now().toString(), userDb.getUsuarioSeleccionado()?.id
+                    LocalDate.now().toString(), user.id
                 ), it.objetivoDiario
             )
         }
@@ -149,15 +149,16 @@ class FragmentHome : Fragment() {
         db = DatabaseHelper(requireContext())
         userDb = UserDb(db)
         historialDb = HistorialDb(db)
-        usuarioRutinaDb = UsuarioRutinaDb(db)
-        rutinaEjercicioDb = RutinaEjercicioDb(db)
+        entrenamientoDb = EntrenamientoDb(db)
+        user=userDb.getUsuarioSeleccionado()!!
+
     }
 
+    private lateinit var user: Usuario
     private lateinit var db: DatabaseHelper
     private lateinit var userDb: UserDb
     private lateinit var historialDb: HistorialDb
-    private lateinit var rutinaEjercicioDb: RutinaEjercicioDb
-    private lateinit var usuarioRutinaDb: UsuarioRutinaDb
+    private lateinit var entrenamientoDb: EntrenamientoDb
     private lateinit var circulosAnimados: CirculosAnimados
     private lateinit var btnCrearUsuario: AppCompatImageButton
     private lateinit var tvFecha: TextView

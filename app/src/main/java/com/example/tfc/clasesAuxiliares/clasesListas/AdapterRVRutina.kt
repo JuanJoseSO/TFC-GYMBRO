@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tfc.R
 import com.example.tfc.clasesAuxiliares.clasesBase.Rutina
 import com.example.tfc.sqlite.DatabaseHelper
+import com.example.tfc.sqlite.sqliteMetodos.EntrenamientoDb
 import com.example.tfc.sqlite.sqliteMetodos.UserDb
-import com.example.tfc.sqlite.sqliteMetodos.UsuarioRutinaDb
 
 class AdapterRVRutina(
     private val context: Context, private val listaRutina: MutableList<Rutina>
@@ -63,9 +63,9 @@ class AdapterRVRutina(
         notifyItemRangeChanged(position, listaRutina.size - position)
 
         //Lo guardamos en la base de datos
-        val usuarioRutinaDb = UsuarioRutinaDb(DatabaseHelper(context))
+        val entrenamientoDb = EntrenamientoDb(DatabaseHelper(context))
         val userDb = UserDb(DatabaseHelper(context))
-        usuarioRutinaDb.eliminarRutina(userDb.getUsuarioSeleccionado()!!.id)
+        entrenamientoDb.eliminarRutina(userDb.getUsuarioSeleccionado()!!.id, idRutina)
     }
 
     //Variable para eventos de clic,es decir,gestionarlo desde codigo

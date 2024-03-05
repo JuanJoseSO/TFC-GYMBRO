@@ -40,20 +40,16 @@ class DatabaseHelper(context: Context) :
         const val DESCANSO = "descanso"
         const val DIA_PREFERENTE = "dia_preferente"
 
-        //Tabla rutina_ejercicios,resultado de la relación N:M de estas
-        const val TABLA_RUTINA_EJERCICIOS = "rutina_ejercicios"
+        //Tabla rutina_ejercicios,resultado de la relación N:M de esta
+        const val TABLA_ENTRENAMIENTO = "entrenamiento"
+        const val ID_ENTRENAMIENTO = "id_entrenamiento"
+        const val ID_USUARIO_FK = "id_usuario"
         const val ID_RUTINA_FK = "id_rutina"
         const val ID_EJERCICIO_FK = "id_ejercicio"
         const val SERIES = "series"
         const val REPETICIONES = "repeticiones"
         const val PESO_SERIE = "peso"
         const val ORDEN = "orden"
-
-
-        //Tabla usuario-rutina
-        //"id_rutina_fk"
-        const val TABLA_USUARIOS_RUTINAS = "usuarios_rutinas"
-        const val ID_USUARIO_FK = "id_usuario"
 
         //Tabla dietas
         const val TABLA_DIETAS = "dietas"
@@ -65,6 +61,7 @@ class DatabaseHelper(context: Context) :
         //Tabla historial
         const val TABLA_HISTORIAL = "historial"
         const val ID_HISTORIAL = "id_historial"
+
         //id_usuario_fk
         //id_rutina_fk
         const val DIA_ENTRENAMIENTO = "dia_entrenamiento"
@@ -73,20 +70,18 @@ class DatabaseHelper(context: Context) :
         const val CALORIAS_QUEMADAS = "calorias_quemadas"
 
         //Tabla evolucion
-        const val TABLA_EVOLUCION="evolucion"
-        const val ID_EVOLUCION="id_evolucion"
+        const val TABLA_EVOLUCION = "evolucion"
+        const val ID_EVOLUCION = "id_evolucion"
         //usuario_fk
         //ejercicio_fk
-        const val PESO_ANTERIOR="peso_anterior"
-        const val PESO_ACTUAL="peso_actual"
-        const val FECHA="fecha"
+        const val PESO_ANTERIOR = "peso_anterior"
+        const val PESO_ACTUAL = "peso_actual"
+        const val FECHA = "fecha"
     }
 
     //Creamos las tablas
     override fun onCreate(db: SQLiteDatabase?) {
         try {
-            //Sentencia necesaria para borrar en cascada
-            db?.execSQL("PRAGMA foreign_keys=ON;")
 
             val createUserTable = """
                     CREATE TABLE $TABLA_USERS (
@@ -125,7 +120,8 @@ class DatabaseHelper(context: Context) :
             db?.execSQL(createRutinaTable)
 
             val createRutinaEjercicioTable = """
-                   CREATE TABLE $TABLA_RUTINA_EJERCICIOS( 
+                   CREATE TABLE $TABLA_ENTRENAMIENTO( 
+                   $ID_ENTRENAMIENTO INTEGER PRIMARY KEY AUTOINCREMENT,
                    $ID_RUTINA_FK INTEGER,
                    $ID_EJERCICIO_FK INTEGER,
                    $ID_USUARIO_FK INTEGER,
@@ -133,24 +129,12 @@ class DatabaseHelper(context: Context) :
                    $REPETICIONES INTEGER,
                    $PESO_SERIE REAL,
                    $ORDEN INTEGER,
-                   PRIMARY KEY ($ID_RUTINA_FK,$ID_EJERCICIO_FK,$ID_USUARIO_FK),
                    FOREIGN KEY ($ID_USUARIO_FK) REFERENCES $TABLA_USERS($ID_USUARIO),
                    FOREIGN KEY ($ID_RUTINA_FK) REFERENCES $TABLA_RUTINAS($ID_RUTINA),
                    FOREIGN KEY ($ID_EJERCICIO_FK) REFERENCES $TABLA_EJERCICIOS($ID_EJERCICIO)
                 )
                 """.trimIndent()
             db?.execSQL(createRutinaEjercicioTable)
-
-            val createUsuariosRutinasTable = """
-                   CREATE TABLE $TABLA_USUARIOS_RUTINAS(      
-                   $ID_USUARIO_FK INTEGER,                                 
-                   $ID_RUTINA_FK INTEGER,
-                   PRIMARY KEY ($ID_USUARIO_FK,$ID_RUTINA_FK),               
-                   FOREIGN KEY ($ID_USUARIO_FK) REFERENCES $TABLA_USERS($ID_USUARIO),
-                   FOREIGN KEY ($ID_RUTINA_FK) REFERENCES $TABLA_RUTINAS($ID_RUTINA)
-                )
-                """.trimIndent()
-            db?.execSQL(createUsuariosRutinasTable)
 
             //Jugaremos con 0,1 y 2 en nivel_dieta para asisnar 3 niveles distintos
             val createDietaTable = """
@@ -192,9 +176,9 @@ class DatabaseHelper(context: Context) :
             """.trimIndent()
             db?.execSQL(createTableEvolucion)
             //Un trigger que rellenará de fomra automática la tabla evolución
-            val createTriggerUpdateEvolucion="""
+            val createTriggerUpdateEvolucion = """
                 CREATE TRIGGER update_peso
-                AFTER UPDATE ON $TABLA_RUTINA_EJERCICIOS
+                AFTER UPDATE ON $TABLA_ENTRENAMIENTO
                 FOR EACH ROW
                 WHEN OLD.$PESO <> NEW.$PESO
                 BEGIN
