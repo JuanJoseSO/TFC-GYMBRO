@@ -1,6 +1,6 @@
 package com.example.tfc.clasesAuxiliares.clasesBase
 
-data class Evolucion(
+data class HistorialPeso(
     val nombreEjercicio: String,
     val pesoAnterior: Int,
     val pesoActual: Int,

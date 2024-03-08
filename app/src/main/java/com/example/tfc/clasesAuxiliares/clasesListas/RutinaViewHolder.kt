@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tfc.R
 
 class RutinaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    val tvNombreRutina = view.findViewById<TextView>(R.id.tvNombreRutina)
-    val tvDiaRutina = view.findViewById<TextView>(R.id.tvDiaRutina)
-    val borde = view.findViewById<ConstraintLayout>(R.id.celda_rutina)
+    val tvNombreRutina: TextView = view.findViewById(R.id.tvNombreRutina)
+    val tvDiaRutina: TextView = view.findViewById(R.id.tvDiaRutina)
+    val borde: ConstraintLayout = view.findViewById(R.id.celda_rutina)
 }

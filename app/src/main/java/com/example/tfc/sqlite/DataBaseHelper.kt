@@ -5,11 +5,11 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-
 //No hay mucho que comentar,gestión de la base de datos,creación de tablas
 class DatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
+
         private const val DATABASE_VERSION = 1
         private const val DATABASE_NAME = "GYMBROUsers"
 
@@ -41,8 +41,8 @@ class DatabaseHelper(context: Context) :
         const val DIA_PREFERENTE = "dia_preferente"
 
         //Tabla rutina_ejercicios,resultado de la relación N:M de esta
-        const val TABLA_ENTRENAMIENTO = "entrenamiento"
-        const val ID_ENTRENAMIENTO = "id_entrenamiento"
+        const val TABLA_USUARIO_RUTINA_EJERCICIO = "usuario_rutina_ejercicio"
+        const val ID_ENTRENAMIENTO = "usuario_rutina_ejercicio"
         const val ID_USUARIO_FK = "id_usuario"
         const val ID_RUTINA_FK = "id_rutina"
         const val ID_EJERCICIO_FK = "id_ejercicio"
@@ -70,7 +70,7 @@ class DatabaseHelper(context: Context) :
         const val CALORIAS_QUEMADAS = "calorias_quemadas"
 
         //Tabla evolucion
-        const val TABLA_EVOLUCION = "evolucion"
+        const val TABLA_HISTORIAL_PESO = "historial_peso"
         const val ID_EVOLUCION = "id_evolucion"
         //usuario_fk
         //ejercicio_fk
@@ -119,8 +119,8 @@ class DatabaseHelper(context: Context) :
             """.trimIndent()
             db?.execSQL(createRutinaTable)
 
-            val createRutinaEjercicioTable = """
-                   CREATE TABLE $TABLA_ENTRENAMIENTO( 
+            val createEntrenamientoTable = """
+                   CREATE TABLE $TABLA_USUARIO_RUTINA_EJERCICIO( 
                    $ID_ENTRENAMIENTO INTEGER PRIMARY KEY AUTOINCREMENT,
                    $ID_RUTINA_FK INTEGER,
                    $ID_EJERCICIO_FK INTEGER,
@@ -134,18 +134,7 @@ class DatabaseHelper(context: Context) :
                    FOREIGN KEY ($ID_EJERCICIO_FK) REFERENCES $TABLA_EJERCICIOS($ID_EJERCICIO)
                 )
                 """.trimIndent()
-            db?.execSQL(createRutinaEjercicioTable)
-
-            //Jugaremos con 0,1 y 2 en nivel_dieta para asisnar 3 niveles distintos
-            val createDietaTable = """
-                CREATE TABLE $TABLA_DIETAS (
-                $ID_DIETA INTEGER PRIMARY KEY AUTOINCREMENT,
-                $NOMBRE_DIETA TEXT,
-                $NIVEL_DIETA INTEGER, 
-                $IMAGEN_DIETA TEXT
-                )
-            """.trimIndent()
-            db?.execSQL(createDietaTable)
+            db?.execSQL(createEntrenamientoTable)
 
             val createTableHistorial = """
                  CREATE TABLE $TABLA_HISTORIAL(
@@ -162,31 +151,29 @@ class DatabaseHelper(context: Context) :
             """.trimIndent()
             db?.execSQL(createTableHistorial)
 
-            val createTableEvolucion = """
-                 CREATE TABLE $TABLA_EVOLUCION(
+            val createTableHistorialPeso = """
+                 CREATE TABLE $TABLA_HISTORIAL_PESO(
                    $ID_EVOLUCION INTEGER PRIMARY KEY AUTOINCREMENT,
-                   $ID_RUTINA_FK INTEGER,
-                   $ID_EJERCICIO_FK INTEGER,
+                   $ID_ENTRENAMIENTO INTEGER,
                    $PESO_ANTERIOR INTEGER,
                    $PESO_ACTUAL  INTEGER,
                    $FECHA INTEGER,
-                   FOREIGN KEY ($ID_RUTINA_FK) REFERENCES $TABLA_RUTINAS($ID_RUTINA_FK),
-                   FOREIGN KEY ($ID_EJERCICIO_FK) REFERENCES $TABLA_EJERCICIOS($ID_EJERCICIO)
+                   FOREIGN KEY ($ID_ENTRENAMIENTO) REFERENCES $TABLA_USUARIO_RUTINA_EJERCICIO($ID_ENTRENAMIENTO)
                 )                
             """.trimIndent()
-            db?.execSQL(createTableEvolucion)
+            db?.execSQL(createTableHistorialPeso)
             //Un trigger que rellenará de fomra automática la tabla evolución
-            val createTriggerUpdateEvolucion = """
+            val createTriggerUpdatePeso = """
                 CREATE TRIGGER update_peso
-                AFTER UPDATE ON $TABLA_ENTRENAMIENTO
+                AFTER UPDATE ON $TABLA_USUARIO_RUTINA_EJERCICIO
                 FOR EACH ROW
                 WHEN OLD.$PESO <> NEW.$PESO
                 BEGIN
-                    INSERT INTO $TABLA_EVOLUCION($ID_RUTINA_FK,$ID_EJERCICIO_FK,$PESO_ANTERIOR,$PESO_ACTUAL,$FECHA)
-                    VALUES (NEW.$ID_RUTINA_FK,NEW.$ID_EJERCICIO_FK,OLD.$PESO,NEW.$PESO,strftime('%s','now'));
+                    INSERT INTO $TABLA_HISTORIAL_PESO($ID_ENTRENAMIENTO,$PESO_ANTERIOR,$PESO_ACTUAL,$FECHA)
+                    VALUES (NEW.$ID_ENTRENAMIENTO,OLD.$PESO,NEW.$PESO,strftime('%s','now'));
                 END;
             """.trimIndent()
-            db?.execSQL(createTriggerUpdateEvolucion)
+            db?.execSQL(createTriggerUpdatePeso)
             //Dos trigger que mantendra SOLO un usuario seleccionado a la vez ya que SQLite no permite INSERT OR UPDATE
             val createTriggerInsertUser = """
                 CREATE TRIGGER insert_usuario_seleccionado
@@ -217,6 +204,18 @@ class DatabaseHelper(context: Context) :
         } catch (e: SQLiteException) {
             Log.e("SQLite", "Error al crear las tablas", e)
         }
+
+        //Jugaremos con 0,1 y 2 en nivel_dieta para asisnar 3 niveles distintos
+        val createDietaTable = """
+                CREATE TABLE $TABLA_DIETAS (
+                $ID_DIETA INTEGER PRIMARY KEY AUTOINCREMENT,
+                $NOMBRE_DIETA TEXT,
+                $NIVEL_DIETA INTEGER, 
+                $IMAGEN_DIETA TEXT
+                )
+            """.trimIndent()
+        db?.execSQL(createDietaTable)
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

@@ -106,14 +106,13 @@ class ActivityCrearRutina : AppCompatActivity() {
             else -> 3
         }
         //Si no creamos el objeto rutina y lo añadimos a la base de datos
-        val rutina = Rutina(
+        return Rutina(
             etNombreRutina.text.toString(),
             tiempoInicial,
             intensidad,
             descansoInicial,
             tvResultadoDia.text.toString()
         )
-        return rutina
     }
 
     //Funciones para simplificar los listeners anteriores

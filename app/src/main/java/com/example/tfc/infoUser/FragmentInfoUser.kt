@@ -39,6 +39,9 @@ class FragmentInfoUser : Fragment() {
     }
 
     private fun initListeners() {
+        btnEvolucion.setOnClickListener {
+            cargarHistorialPeso()
+        }
         btnHistorial.setOnClickListener {
             cargarHistorial()
         }
@@ -51,6 +54,13 @@ class FragmentInfoUser : Fragment() {
         btnEliminarUsuario.setOnClickListener {
             eliminarUsuario()
         }
+    }
+
+    private fun cargarHistorialPeso() {
+        //Navegamos al fragmento destino,fragmentHistorial
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.contenedor_fragments, FragmentHistorialPeso()).addToBackStack(null).commit()
+
     }
 
     private fun modificarUsuario() {
@@ -190,11 +200,14 @@ class FragmentInfoUser : Fragment() {
         btnModificarUsuario = requireView().findViewById(R.id.btnModificarUsuario)
         btnCambiarUsuario = requireView().findViewById(R.id.btnCambiarUsuario)
         btnEliminarUsuario = requireView().findViewById(R.id.btnEliminarUsuario)
+        btnEvolucion = requireView().findViewById(R.id.btnEvolucion)
+
         db = DatabaseHelper(requireContext())
         userDb = UserDb(db)
         historialDb = HistorialDb(db)
     }
 
+    private lateinit var btnEvolucion: AppCompatButton
     private lateinit var btnCambiarUsuario: AppCompatButton
     private lateinit var btnEliminarUsuario: AppCompatButton
     private lateinit var btnModificarUsuario: AppCompatButton

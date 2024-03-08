@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".infoUser.FragmentEvolucion">
+                                                   tools:context=".infoUser.FragmentHistorialPeso">
 
     <ImageView
         android:id="@+id/logo"
@@ -29,7 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Evolución"
+        android:text="@string/evolucion"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -41,13 +41,16 @@
         app:layout_constraintVertical_bias="0.473" />
 
     <ListView
-        android:id="@+id/flEvolucion"
+            android:id="@+id/lvHistorial"
         android:layout_marginTop="14dp"
         android:layout_marginStart="14dp"
+            android:paddingTop="14dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
         android:layout_marginEnd="14dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/btnEliminarEvolucion"
+            app:layout_constraintBottom_toTopOf="@id/btnEliminarHistorial"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
@@ -57,7 +60,7 @@
         />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnEliminarEvolucion"
+            android:id="@+id/btnEliminarHistorial"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -68,8 +71,9 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/flEvolucion"
+            app:layout_constraintTop_toBottomOf="@id/lvHistorial"
         app:layout_constraintVertical_bias="0.0"
-        tools:ignore="VisualLintButtonSize" />
+            tools:ignore="VisualLintButtonSize"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
