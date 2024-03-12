@@ -67,7 +67,7 @@ class FragmentHome : Fragment() {
             val layoutRutina = LayoutInflater.from(requireContext())
                 .inflate(R.layout.fragment_listas, null)//inflamos la rutina
             layoutRutina.background = ContextCompat.getDrawable(
-                requireContext(), R.drawable.background
+                requireContext(), R.drawable.background_borde
             )//Le cambiamos el fondo
             val rvRutina =
                 layoutRutina.findViewById<RecyclerView>(R.id.rvListas1)//Rlacionamos con nuestro layout
@@ -89,7 +89,6 @@ class FragmentHome : Fragment() {
             //Creamos el Alerdialog y le damos el estilo y un boton atrás
             val builder = AlertDialog.Builder(requireContext())
             builder.setView(layoutRutina)
-            builder.setNegativeButton("Atrás") { dialog, _ -> dialog.dismiss() }
             val dialog = builder.create()
             dialog.show()
         }

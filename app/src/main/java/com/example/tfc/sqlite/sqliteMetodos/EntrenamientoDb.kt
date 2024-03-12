@@ -203,5 +203,4 @@ class EntrenamientoDb(private val dbHelper: DatabaseHelper) {
             db.close()
         }
     }
-
 }

@@ -89,8 +89,7 @@ class ActivityCrearRutina : AppCompatActivity() {
                         userDb.getUsuarioSeleccionado()?.id!!, rutinaDb.addRutina(rutina)
                     )
                     Toast.makeText(this, "Rutina creada correctamente", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, ActivityPrincipal::class.java)
-                    startActivity(intent)
+                    navegarActivityPrincipal()
                 } catch (e: Exception) {
                     Toast.makeText(this, "Error al crear la rutina", Toast.LENGTH_SHORT).show()
                 }
@@ -113,6 +112,12 @@ class ActivityCrearRutina : AppCompatActivity() {
             descansoInicial,
             tvResultadoDia.text.toString()
         )
+    }
+    private fun navegarActivityPrincipal() {
+        val intent = Intent(this, ActivityPrincipal::class.java)
+        intent.putExtra("cargarEjercicio",true)
+        startActivity(intent)
+        finish() //Cierra la activity para evitar volver a ella
     }
 
     //Funciones para simplificar los listeners anteriores

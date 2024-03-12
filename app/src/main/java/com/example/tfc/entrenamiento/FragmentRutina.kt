@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -74,7 +75,16 @@ class FragmentRutina : Fragment() {
         val itemTouchHelper = ItemTouchHelper(evento)
         itemTouchHelper.attachToRecyclerView(rvEjercicios)
 
+        //No habilita el boton atras en esta lsita
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                rvEjercicios.visibility = View.GONE
+                rvRutina.visibility = View.VISIBLE
+            }
+        })
     }
+
+
 
     override fun onDestroy() {
         DatabaseHelper(requireContext()).close()
@@ -93,7 +103,6 @@ class FragmentRutina : Fragment() {
         rvRutina = requireView().findViewById(R.id.rvListas2)
         rvEjercicios = requireView().findViewById(R.id.rvListas1)
         contenedor = requireView().findViewById(R.id.contenedor_rutina)
-
         db = DatabaseHelper(requireContext())
         entrenamientoDb = EntrenamientoDb(db)
         userDb = UserDb(db)
@@ -106,7 +115,6 @@ class FragmentRutina : Fragment() {
     private lateinit var btnCrear: AppCompatButton
     private lateinit var db: DatabaseHelper
     private lateinit var userDb: UserDb
-
     private lateinit var entrenamientoDb: EntrenamientoDb
     private lateinit var evento: EventosListas
 }

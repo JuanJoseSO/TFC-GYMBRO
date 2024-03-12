@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/contenedor_listas"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".entrenamiento.FragmentCategorias">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/contenedor_listas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".entrenamiento.FragmentCategorias">
 
     <ListView
-        android:id="@+id/lvListas"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@color/grey"
-        android:dividerHeight="2dp" />
+            android:id="@+id/lvListas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/grey"
+            android:dividerHeight="2dp"
+            android:paddingStart="5dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="5dp"
+           />
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:visibility="gone"
-        android:id="@+id/rvListas1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@color/grey"
-        android:dividerHeight="2dp" />
+            android:visibility="gone"
+            android:id="@+id/rvListas1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/grey"
+            android:dividerHeight="2dp"
+            android:padding="5dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:visibility="gone"
-        android:id="@+id/rvListas2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@color/grey"
-        android:dividerHeight="2dp" />
+            android:visibility="gone"
+            android:id="@+id/rvListas2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/grey"
+            android:dividerHeight="2dp" />
 </FrameLayout>

@@ -59,7 +59,7 @@ class FragmentInfoUser : Fragment() {
     private fun cargarHistorialPeso() {
         //Navegamos al fragmento destino,fragmentHistorial
         requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.contenedor_fragments, FragmentHistorialPeso()).addToBackStack(null).commit()
+            .replace(R.id.contenedor_fragments, FragmentEvolucion()).addToBackStack(null).commit()
 
     }
 
@@ -101,7 +101,7 @@ class FragmentInfoUser : Fragment() {
             val layoutRutina = LayoutInflater.from(requireContext())
                 .inflate(R.layout.fragment_listas, null)//inflamos la rutina
             layoutRutina.background = ContextCompat.getDrawable(
-                requireContext(), R.drawable.background
+                requireContext(), R.drawable.background_borde
             )//Le cambiamos el fondo
             val lvSesiones =
                 layoutRutina.findViewById<ListView>(R.id.lvListas)//Rlacionamos con nuestro layout
@@ -110,7 +110,7 @@ class FragmentInfoUser : Fragment() {
             //Creamos el Alerdialog y le damos el estilo y un boton atrás
             val builder = AlertDialog.Builder(requireContext())
             builder.setView(layoutRutina)
-            builder.setNegativeButton("Atrás") { dialog, _ -> dialog.dismiss() }
+
             val dialog = builder.create()
             dialog.show()
 

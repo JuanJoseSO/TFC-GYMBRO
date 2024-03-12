@@ -21,7 +21,7 @@
     <string name="altura">Altura</string>
     <string name="peso">Peso</string>
     <string name="objetivo">Objetivo Diario:</string>
-    <string name="crear_usuario">Crear usuario</string>
+    <string name="crear_usuario">Crear perfil</string>
     <string name="alturaDefecto">120 cm</string>
     <string name="informacion">Información</string>
 
@@ -38,7 +38,7 @@
 
 
     <!--FragmentInfoUser-->
-    <string name="informaci_n_personal">Resumén del perfil</string>
+    <string name="informaci_n_personal">Resumen del perfil</string>
     <string name="nombre">Nombre:</string>
     <string name="altura_">Altura:</string>
     <string name="peso_">Peso:</string>
@@ -106,4 +106,7 @@
     <string name="peso_anterior">Peso anterior:</string>
     <string name="nueva_marca">Nueva marca:</string>
     <string name="fecha">Fecha:</string>
+    <string name="_00_00_00">00:00:00</string>
+    <string name="estas_seguro_no_se_puede_deshacer_esta_decisi_n">¿Estas seguro?\nNo se puede deshacer esta decisión.</string>
+    <string name="filtrar">Filtrar</string>
 </resources>

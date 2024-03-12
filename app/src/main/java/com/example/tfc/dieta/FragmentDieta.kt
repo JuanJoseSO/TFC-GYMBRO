@@ -27,7 +27,7 @@ class FragmentDieta : Fragment() {
     }
 
     private fun initUI() {
-        //Eliminamos el divider,gusto personal
+        //Eliminamos el divider y ajunstamos a TOP,gusto personal
         listaDieta.divider = null
         //Recogemos el listado de dietas de la base de datos
         val dietas = dietaDb.getDietas()
