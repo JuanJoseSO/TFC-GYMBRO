@@ -60,5 +60,4 @@ class HistorialPesoDb(private val dbHelper: DatabaseHelper) {
             Log.e("SQLite", "Error al borrar el historial", e)
         }
     }
-
 }

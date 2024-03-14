@@ -173,7 +173,6 @@ class ActivityEntrenamiento : AppCompatActivity() {
         window?.attributes = layoutParams
 
 
-
     }
 
 
@@ -263,12 +262,12 @@ class ActivityEntrenamiento : AppCompatActivity() {
         //Boton que gestiona la lista de ejercicios mostrando el tiempo de descanso entre ellos y pasando a la siguiente repeticion/ejercicio
         btnSiguiente.setOnClickListener {
             secuenciaUI()
-            btnSiguiente.isEnabled=false
+            btnSiguiente.isEnabled = false
 
-            val handler= Handler(Looper.getMainLooper())
+            val handler = Handler(Looper.getMainLooper())
             handler.postDelayed({
-                btnSiguiente.isEnabled=true
-            },1000)
+                btnSiguiente.isEnabled = true
+            }, 1000)
         }
 
         btnSumarPeso.setOnClickListener {

@@ -13,8 +13,8 @@ import com.example.tfc.clasesAuxiliares.clasesBase.Rutina
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.DietaDb
 import com.example.tfc.sqlite.sqliteMetodos.EjerciciosDb
-import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
 import com.example.tfc.sqlite.sqliteMetodos.EntrenamientoDb
+import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
 import com.example.tfc.sqlite.sqliteMetodos.UserDb
 
 

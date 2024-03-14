@@ -11,5 +11,4 @@ class EjerciciosViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val tvRecSeries: TextView = view.findViewById(R.id.tvRecSeries)
     val tvRecRepeticiones: TextView = view.findViewById(R.id.tvRecRepeticiones)
     val clInfoEjercicio: ConstraintLayout = view.findViewById(R.id.clInfoEjercicio)
-
 }

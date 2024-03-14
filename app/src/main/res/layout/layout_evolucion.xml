@@ -1,99 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/tv1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/nombre_del_ejercicio"
-        android:textColor="@color/white"
-        android:gravity="center"
-
-        app:layout_constraintEnd_toStartOf="@id/tvEvoEjercicio"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvEvoEjercicio"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv1"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/tv2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/peso_anterior"
-        android:textColor="@color/white"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/tv1"
-        app:layout_constraintEnd_toStartOf="@id/tvEvoEjercicio"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+            android:id="@+id/tv1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/nombre_del_ejercicio"
+            android:textColor="@color/white"
+            android:gravity="center"
+            app:layout_constraintEnd_toStartOf="@id/tvEvoEjercicio"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvEvoPesoInicial"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/tvPesoFinal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv1"
-        app:layout_constraintTop_toBottomOf="@id/tvEvoEjercicio" />
+            android:id="@+id/tvEvoEjercicio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv1"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/nueva_marca"
-        android:textColor="@color/white"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/tv2"
-        app:layout_constraintEnd_toStartOf="@id/tvEvoEjercicio"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+            android:id="@+id/tv2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/peso_anterior"
+            android:textColor="@color/white"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/tv1"
+            app:layout_constraintEnd_toStartOf="@id/tvEvoEjercicio"
+            app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tvPesoFinal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/tvEvoFecha"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv1"
-        app:layout_constraintTop_toBottomOf="@id/tvEvoPesoInicial"  />
+            android:id="@+id/tvEvoPesoInicial"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/tvPesoFinal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv1"
+            app:layout_constraintTop_toBottomOf="@id/tvEvoEjercicio" />
 
     <TextView
-        android:id="@+id/tv4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/fecha"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@id/tvEvoEjercicio"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv3"/>
+            android:id="@+id/tv3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/nueva_marca"
+            android:textColor="@color/white"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/tv2"
+            app:layout_constraintEnd_toStartOf="@id/tvEvoEjercicio"
+            app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tvEvoFecha"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@id/tv4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv1"
-        app:layout_constraintTop_toTopOf="@id/tv4"/>
+            android:id="@+id/tvPesoFinal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/tvEvoFecha"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv1"
+            app:layout_constraintTop_toBottomOf="@id/tvEvoPesoInicial" />
+
+    <TextView
+            android:id="@+id/tv4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/fecha"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@id/tvEvoEjercicio"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv3" />
+
+    <TextView
+            android:id="@+id/tvEvoFecha"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/tv4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv1"
+            app:layout_constraintTop_toTopOf="@id/tv4" />
+
     <View
-        android:id="@+id/viewEvoInfo"
-        android:layout_width="2dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/red"/>
+            android:id="@+id/viewEvoInfo"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/red" />
 </androidx.constraintlayout.widget.ConstraintLayout>

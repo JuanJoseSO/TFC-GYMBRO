@@ -16,8 +16,8 @@ class AdapterRVEjercicios(
     private val context: Context,
     private val listaEjercicios: MutableList<Ejercicio>,
     private val listaInfoEjercicios: List<ArrayList<Double>>,
-    private val idUsuario:Int,
-    private val idRutina:Int
+    private val idUsuario: Int,
+    private val idRutina: Int
 ) : RecyclerView.Adapter<EjerciciosViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EjerciciosViewHolder {
@@ -70,6 +70,6 @@ class AdapterRVEjercicios(
 
         //Lo guardamos en la base de datos
         val entrenamientoDb = EntrenamientoDb(DatabaseHelper(context))
-        entrenamientoDb.eliminarEjercicio(idUsuario,idRutina,idEjercicio)
+        entrenamientoDb.eliminarEjercicio(idUsuario, idRutina, idEjercicio)
     }
 }

@@ -1,10 +1,12 @@
 <!-- res/drawable/btn_redondo.xml -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval">
+        android:shape="oval">
     <gradient
-        android:startColor="@color/black"
-        android:endColor="@color/background_component"
-        android:angle="45"/>
-    <size android:width="60dp" android:height="60dp"/>
+            android:startColor="@color/black"
+            android:endColor="@color/background_component"
+            android:angle="45" />
+    <size
+            android:width="60dp"
+            android:height="60dp" />
 </shape>
 

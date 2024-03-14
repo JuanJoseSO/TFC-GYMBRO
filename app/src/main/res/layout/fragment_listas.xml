@@ -4,7 +4,8 @@
         android:id="@+id/contenedor_listas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".entrenamiento.FragmentCategorias">
+        tools:context=".entrenamiento.FragmentCategorias"
+        tools:ignore="MergeRootFrame">
 
     <ListView
             android:id="@+id/lvListas"
@@ -14,9 +15,7 @@
             android:dividerHeight="2dp"
             android:paddingStart="5dp"
             android:paddingTop="2dp"
-            android:paddingEnd="5dp"
-           />
-
+            android:paddingEnd="5dp" />
 
     <androidx.recyclerview.widget.RecyclerView
             android:visibility="gone"
@@ -25,7 +24,7 @@
             android:layout_height="match_parent"
             android:divider="@color/grey"
             android:dividerHeight="2dp"
-            android:padding="5dp"/>
+            android:padding="5dp" />
 
     <androidx.recyclerview.widget.RecyclerView
             android:visibility="gone"

@@ -11,8 +11,8 @@ import com.example.tfc.ActivityPrincipal
 import com.example.tfc.R
 import com.example.tfc.clasesAuxiliares.clasesBase.Rutina
 import com.example.tfc.sqlite.DatabaseHelper
-import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
 import com.example.tfc.sqlite.sqliteMetodos.EntrenamientoDb
+import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
 import com.example.tfc.sqlite.sqliteMetodos.UserDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -113,9 +113,10 @@ class ActivityCrearRutina : AppCompatActivity() {
             tvResultadoDia.text.toString()
         )
     }
+
     private fun navegarActivityPrincipal() {
         val intent = Intent(this, ActivityPrincipal::class.java)
-        intent.putExtra("cargarEjercicio",true)
+        intent.putExtra("cargarEjercicio", true)
         startActivity(intent)
         finish() //Cierra la activity para evitar volver a ella
     }

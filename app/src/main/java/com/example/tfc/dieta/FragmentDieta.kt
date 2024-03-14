@@ -11,7 +11,6 @@ import com.example.tfc.clasesAuxiliares.clasesListas.AdapterDieta
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.DietaDb
 
-
 class FragmentDieta : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?

@@ -24,8 +24,8 @@ import com.example.tfc.clasesAuxiliares.clasesBase.Usuario
 import com.example.tfc.clasesAuxiliares.clasesListas.AdapterRVRutina
 import com.example.tfc.sqlite.DatabaseHelper
 import com.example.tfc.sqlite.sqliteMetodos.EjerciciosDb
-import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
 import com.example.tfc.sqlite.sqliteMetodos.EntrenamientoDb
+import com.example.tfc.sqlite.sqliteMetodos.RutinaDb
 import com.example.tfc.sqlite.sqliteMetodos.UserDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -125,7 +125,7 @@ class ActivityInfoEjercicios : AppCompatActivity() {
 
     private fun navegarActivityPrincipal() {
         val intent = Intent(this, ActivityPrincipal::class.java)
-        intent.putExtra("cargarEjercicio",true)
+        intent.putExtra("cargarEjercicio", true)
         startActivity(intent)
         finish() //Cierra la activity para evitar volver a ella
     }
@@ -212,7 +212,7 @@ class ActivityInfoEjercicios : AppCompatActivity() {
         tvNumRepeticiones.text = repeticiones.toString()
         tvNumPeso.text = pesoInicial.toString()
         tvNumSeries.text = series.toString()
-        user=userDb.getUsuarioSeleccionado()!!
+        user = userDb.getUsuarioSeleccionado()!!
         infoEjercicio()
     }
 

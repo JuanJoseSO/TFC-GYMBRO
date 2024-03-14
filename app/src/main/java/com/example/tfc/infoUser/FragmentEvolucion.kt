@@ -55,8 +55,9 @@ class FragmentEvolucion : Fragment() {
             }
         })
     }
-    private fun initListeners(){
-        btnEliminarHistorial.setOnClickListener{
+
+    private fun initListeners() {
+        btnEliminarHistorial.setOnClickListener {
             AlertDialog.Builder(requireContext())
                 .setTitle(getString(R.string.eliminar_historial))
                 .setMessage(getString(R.string.estas_seguro_no_se_puede_deshacer_esta_decisi_n))

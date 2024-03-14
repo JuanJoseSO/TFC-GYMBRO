@@ -1,5 +1,5 @@
-<resources>
-    <style name="Widget.Theme.TFC.ButtonBar.Fullscreen" parent="">
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Widget.Theme.TFC.ButtonBar.Fullscreen" parent="" tools:ignore="UnusedResources">
         <item name="android:background">@color/black_overlay</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
         <item name="android:screenOrientation">portrait</item>

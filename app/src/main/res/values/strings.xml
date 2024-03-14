@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">TFC</string>
     <!--ActivityBienvenida-->
     <string name="acceso">acceso</string>
@@ -25,8 +25,6 @@
     <string name="alturaDefecto">120 cm</string>
     <string name="informacion">Información</string>
 
-    <!--ActvityOpcionesUsuario-->
-    <string name="cambiar_usuario">Cambiar Usuario</string>
 
     <!--ActivityFragmentEntrenamiento-->
     <string name="rutinas">Rutinas</string>
@@ -34,8 +32,6 @@
     <!--FragmentHome-->
     <string name="resumen_diario">Resumen diario:</string>
     <string name="vamos_a_darle_ca_a">¡Vamos a darle caña!</string>
-    <string name="aun_te_queda_mucho_npor_hacer_hoy">¡AÚN TE QUEDA MUCHO \nPOR HACER HOY!</string>
-
 
     <!--FragmentInfoUser-->
     <string name="informaci_n_personal">Resumen del perfil</string>
@@ -43,7 +39,6 @@
     <string name="altura_">Altura:</string>
     <string name="peso_">Peso:</string>
     <string name="imc">IMC:</string>
-    <string name="edad_">Edad:</string>
     <string name="cambiar">cambiar</string>
     <string name="historial">historial</string>
     <string name="eliminarUser">Eliminar perfil</string>
@@ -61,9 +56,6 @@
     <string name="logo_ejercicio">Logo ejercicio</string>
 
     <!--FragmentRutina-->
-    <string name="crear">Crear</string>
-    <string name="eliminar">Eliminar</string>
-    <string name="modificar_rutina">Modificar Rutina</string>
     <string name="creaci_n_rutina">CREACIÓN RUTINA</string>
     <string name="crear_rutina">Crear Rutina</string>
 
@@ -86,11 +78,11 @@
     <string name="peso_ninicial">PESO\nINICIAL:</string>
     <string name="siguiente">SIGUIENTE</string>
     <string name="serie_info">%1$d/%2$d</string>
-    <string name="siguiente_ejercicio">SIGUIENTE EJERCICIO</string>
+    <string name="siguiente_ejercicio" tools:ignore="UnusedResources">SIGUIENTE EJERCICIO</string>
     <string name="ltima_serie">¡ÚLTIMA SERIE!</string>
     <string name="eliminar_historial">Eliminar historial</string>
     <string name="eliminar_perfil">Eliminar perfil</string>
-    <string name="objetivo_cumplido">OBJETIVO DIARIO CUMPLIDO\n¡FELICIDADES!</string>
+    <string name="objetivo_cumplido" tools:ignore="UnusedResources">OBJETIVO DIARIO CUMPLIDO\n¡FELICIDADES!</string>
     <string name="objetivo_no_cumplido">AÚN TE QUEDA MUCHO\nPOR HACER HOY</string>
 
     <!--Menú-->
@@ -100,8 +92,6 @@
     <string name="perfil">Perfil</string>
     <string name="descanso_">DESCANSO</string>
     <string name="evolucion">EVOLUCION</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nombre_del_ejercicio">Nombre del ejercicio:</string>
     <string name="peso_anterior">Peso anterior:</string>
     <string name="nueva_marca">Nueva marca:</string>

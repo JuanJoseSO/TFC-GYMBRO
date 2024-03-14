@@ -1,302 +1,302 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".infoUser.FragmentInfoUser">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".infoUser.FragmentInfoUser">
 
     <ImageView
-        android:id="@+id/logo"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/logo"
-        android:scaleType="fitXY"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:src="@drawable/ic_logo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.016" />
+            android:id="@+id/logo"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/logo"
+            android:scaleType="fitXY"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:src="@drawable/ic_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.016" />
 
     <TextView
-        android:id="@+id/Titulo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/informaci_n_personal"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tlInfoUser"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/logo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39" />
+            android:id="@+id/Titulo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/informaci_n_personal"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tlInfoUser"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/logo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.39" />
 
     <TableLayout
-        android:id="@+id/tlInfoUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/layout_btns"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingStart="8dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnModificarUsuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="0.102">
+            android:id="@+id/tlInfoUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/layout_btns"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnModificarUsuario"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo"
+            app:layout_constraintVertical_bias="0.102">
 
         <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif"
-                android:paddingBottom="4dp"
-                android:text="@string/nombre"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:paddingBottom="4dp"
+                    android:text="@string/nombre"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/tvNombre"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-black"
-                android:paddingBottom="8dp"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
+                    android:id="@+id/tvNombre"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-black"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
         </TableRow>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/grey" />
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey" />
 
         <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif"
-                android:paddingBottom="8dp"
-                android:text="@string/altura_"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:paddingBottom="8dp"
+                    android:text="@string/altura_"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/tvAltura"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-black"
-                android:paddingBottom="8dp"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
+                    android:id="@+id/tvAltura"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-black"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
         </TableRow>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/grey" />
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey" />
 
         <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif"
-                android:paddingBottom="8dp"
-                android:text="@string/peso_"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:paddingBottom="8dp"
+                    android:text="@string/peso_"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/tvPeso"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-black"
-                android:paddingBottom="8dp"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
+                    android:id="@+id/tvPeso"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-black"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
         </TableRow>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/grey" />
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey" />
 
         <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif"
-                android:paddingBottom="8dp"
-                android:text="@string/imc"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:paddingBottom="8dp"
+                    android:text="@string/imc"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/tvIMC"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-black"
-                android:paddingBottom="8dp"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
+                    android:id="@+id/tvIMC"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-black"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
         </TableRow>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/grey" />
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey" />
 
         <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif"
-                android:paddingBottom="8dp"
-                android:text="@string/objetivo"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:paddingBottom="8dp"
+                    android:text="@string/objetivo"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/tvObjetivoDiario"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-black"
-                android:paddingBottom="8dp"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
+                    android:id="@+id/tvObjetivoDiario"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-black"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
         </TableRow>
     </TableLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnModificarUsuario"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="14dp"
-        android:background="@drawable/layout_btns"
-        android:padding="4dp"
-        android:text="@string/modificar"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@id/btnCambiarUsuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnCambiarUsuario"
-        app:layout_constraintTop_toTopOf="@id/btnCambiarUsuario"
-        tools:ignore="VisualLintButtonSize" />
+            android:id="@+id/btnModificarUsuario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="14dp"
+            android:background="@drawable/layout_btns"
+            android:padding="4dp"
+            android:text="@string/modificar"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/btnCambiarUsuario"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnCambiarUsuario"
+            app:layout_constraintTop_toTopOf="@id/btnCambiarUsuario"
+            tools:ignore="VisualLintButtonSize" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnCambiarUsuario"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="@drawable/layout_btns"
-        android:padding="4dp"
-        android:text="@string/cambiar"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnEvolucion"
-        app:layout_constraintEnd_toStartOf="@+id/btnModificarUsuario"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="VisualLintButtonSize" />
+            android:id="@+id/btnCambiarUsuario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/layout_btns"
+            android:padding="4dp"
+            android:text="@string/cambiar"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnEvolucion"
+            app:layout_constraintEnd_toStartOf="@+id/btnModificarUsuario"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="VisualLintButtonSize" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnEliminarUsuario"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="@drawable/layout_btn_eliminar"
-        android:padding="4dp"
-        android:text="@string/eliminarUser"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnCambiarUsuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnHistorial"
-        app:layout_constraintTop_toBottomOf="@+id/tlInfoUser"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="VisualLintButtonSize" />
+            android:id="@+id/btnEliminarUsuario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/layout_btn_eliminar"
+            android:padding="4dp"
+            android:text="@string/eliminarUser"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnCambiarUsuario"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnHistorial"
+            app:layout_constraintTop_toBottomOf="@+id/tlInfoUser"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="VisualLintButtonSize" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnEvolucion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="@drawable/layout_btns"
-        android:padding="4dp"
-        android:text="@string/evolucion"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnHistorial"
-        app:layout_constraintTop_toBottomOf="@+id/btnModificarUsuario"
-        tools:ignore="VisualLintButtonSize" />
+            android:id="@+id/btnEvolucion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/layout_btns"
+            android:padding="4dp"
+            android:text="@string/evolucion"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnHistorial"
+            app:layout_constraintTop_toBottomOf="@+id/btnModificarUsuario"
+            tools:ignore="VisualLintButtonSize" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnHistorial"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="@drawable/layout_btns"
-        android:padding="4dp"
-        android:text="@string/historial"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnEvolucion"
-        app:layout_constraintEnd_toStartOf="@+id/btnEvolucion"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnEvolucion"
-        tools:ignore="VisualLintButtonSize" />
+            android:id="@+id/btnHistorial"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/layout_btns"
+            android:padding="4dp"
+            android:text="@string/historial"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnEvolucion"
+            app:layout_constraintEnd_toStartOf="@+id/btnEvolucion"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnEvolucion"
+            tools:ignore="VisualLintButtonSize" />
 </androidx.constraintlayout.widget.ConstraintLayout>

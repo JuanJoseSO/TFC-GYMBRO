@@ -58,15 +58,22 @@ class FragmentRutina : Fragment() {
 
     //Mostramos los ejercicios que PERTENECEN a una rutina con la tabla rutina_ejercicios
     private fun mostrarEjerciciosPorRutina(id: Int) {
-        val listaEjerciciosPorRutina = entrenamientoDb.getEjerciciosPorRutina(userDb.getUsuarioSeleccionado()!!.id,id)
+        val listaEjerciciosPorRutina =
+            entrenamientoDb.getEjerciciosPorRutina(userDb.getUsuarioSeleccionado()!!.id, id)
         val listaInfoEjercicios = listaEjerciciosPorRutina.map { ejercicio ->
-            entrenamientoDb.getInfoRutina(userDb.getUsuarioSeleccionado()!!.id,id, ejercicio.id)
+            entrenamientoDb.getInfoRutina(userDb.getUsuarioSeleccionado()!!.id, id, ejercicio.id)
         }/*Usamos el adapter del recycler view,ocultamos el listview para evitar tener conflictor entre ellos y mostramos
           el recicler view*/
         rvEjercicios.visibility = View.VISIBLE
         rvRutina.visibility = View.GONE
         val adapterEjercicios =
-            AdapterRVEjercicios(requireContext(), listaEjerciciosPorRutina, listaInfoEjercicios,userDb.getUsuarioSeleccionado()!!.id,id)
+            AdapterRVEjercicios(
+                requireContext(),
+                listaEjerciciosPorRutina,
+                listaInfoEjercicios,
+                userDb.getUsuarioSeleccionado()!!.id,
+                id
+            )
         rvEjercicios.adapter = adapterEjercicios
         rvEjercicios.layoutManager = LinearLayoutManager(requireContext())
         //Usanmos los envento de EventosListas
@@ -76,14 +83,15 @@ class FragmentRutina : Fragment() {
         itemTouchHelper.attachToRecyclerView(rvEjercicios)
 
         //No habilita el boton atras en esta lsita
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                rvEjercicios.visibility = View.GONE
-                rvRutina.visibility = View.VISIBLE
-            }
-        })
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    rvEjercicios.visibility = View.GONE
+                    rvRutina.visibility = View.VISIBLE
+                }
+            })
     }
-
 
 
     override fun onDestroy() {

@@ -104,10 +104,10 @@ class Cronometro {
     //Métodos para iniciar la cuenta atras
     //Le pasamos el textview para gestionar aqui su visibilidad
     fun initCuentaAtras(cuentaInicial: Int, clDesncaso: ConstraintLayout) {
-            //Multiplicamos por mil y pasamos a long para obtener los milisegundos seleccionados de descanso
-            this.cuentaAtrasRestante = (cuentaInicial * 1000).toLong()
-            cuentaAtrasFinal = System.currentTimeMillis() + cuentaAtrasRestante
-            cicloCuentaAtras(clDesncaso)
+        //Multiplicamos por mil y pasamos a long para obtener los milisegundos seleccionados de descanso
+        this.cuentaAtrasRestante = (cuentaInicial * 1000).toLong()
+        cuentaAtrasFinal = System.currentTimeMillis() + cuentaAtrasRestante
+        cicloCuentaAtras(clDesncaso)
     }
 
     // Ciclo del contador regresivo,similar al anterior,pero restando tiempo y cambiando la visibilidad de la cuenta atras
@@ -134,6 +134,7 @@ class Cronometro {
             }
         }, 10)
     }
+
     fun comprobarCuentaAtras() {
         if (cuentaAtrasRestante <= 0) {
             onFinish?.invoke()

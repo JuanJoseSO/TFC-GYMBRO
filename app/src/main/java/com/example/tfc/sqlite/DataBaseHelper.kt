@@ -5,13 +5,14 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+
 //No hay mucho que comentar,gestión de la base de datos,creación de tablas
 class DatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
 
-        private const val DATABASE_VERSION = 1
-        private const val DATABASE_NAME = "GYMBROUsers"
+        private const val DATABASE_VERSION = 2
+        private const val DATABASE_NAME = "GYMBRO"
 
         //Tabla Usuarios
         const val TABLA_USERS = "usuarios"
@@ -72,6 +73,7 @@ class DatabaseHelper(context: Context) :
         //Tabla evolucion
         const val TABLA_HISTORIAL_PESO = "historial_peso"
         const val ID_EVOLUCION = "id_evolucion"
+
         //usuario_fk
         //ejercicio_fk
         const val PESO_ANTERIOR = "peso_anterior"

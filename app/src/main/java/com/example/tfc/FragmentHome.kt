@@ -150,7 +150,6 @@ class FragmentHome : Fragment() {
         historialDb = HistorialDb(db)
         entrenamientoDb = EntrenamientoDb(db)
         user=userDb.getUsuarioSeleccionado()!!
-
     }
 
     private lateinit var user: Usuario

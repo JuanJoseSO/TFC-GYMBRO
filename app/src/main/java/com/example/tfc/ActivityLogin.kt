@@ -54,7 +54,6 @@ class ActivityLogin : AppCompatActivity() {
                 generoF = true
                 setColorGenero()
             }
-
             nombre.text = Editable.Factory.getInstance().newEditable(usuario.nombreUsuario)
         }
     }
@@ -110,7 +109,7 @@ class ActivityLogin : AppCompatActivity() {
         //Creamos el usuario y lo guardamos en la base de datos al pulsar el botón
         if (nombre.text.toString().isEmpty()) {
             Toast.makeText(this, "Por favor, ingrese un nombre", Toast.LENGTH_SHORT).show()
-        }else {
+        } else {
             val usuario = Usuario(
                 nombre.text.toString(),
                 objetivo,
@@ -136,29 +135,29 @@ class ActivityLogin : AppCompatActivity() {
     }
 
     private fun setRutinasPredefinidas(id: Int) {
-        entrenamientoDb.addEjercicioARutina(id,1, 10, 12, 4, 75.0)
-        entrenamientoDb.addEjercicioARutina(id,1, 14, 12, 4, 22.5)
-        entrenamientoDb.addEjercicioARutina(id,1, 2, 12, 4, 12.5)
-        entrenamientoDb.addEjercicioARutina(id,1, 1, 12, 4, 20.0)
-        entrenamientoDb.addEjercicioARutina(id,1, 47, 12, 4, 7.5)
-        entrenamientoDb.addEjercicioARutina(id,1, 52, 12, 4, 0.0)
-        entrenamientoDb.addEjercicioARutina(id,1, 48, 12, 4, 20.0)
+        entrenamientoDb.addEjercicioARutina(id, 1, 10, 12, 4, 75.0)
+        entrenamientoDb.addEjercicioARutina(id, 1, 14, 12, 4, 22.5)
+        entrenamientoDb.addEjercicioARutina(id, 1, 2, 12, 4, 12.5)
+        entrenamientoDb.addEjercicioARutina(id, 1, 1, 12, 4, 20.0)
+        entrenamientoDb.addEjercicioARutina(id, 1, 47, 12, 4, 7.5)
+        entrenamientoDb.addEjercicioARutina(id, 1, 52, 12, 4, 0.0)
+        entrenamientoDb.addEjercicioARutina(id, 1, 48, 12, 4, 20.0)
 
-        entrenamientoDb.addEjercicioARutina(id,2, 20, 12, 4, 0.0)
-        entrenamientoDb.addEjercicioARutina(id,2, 22, 12, 4, 80.0)
-        entrenamientoDb.addEjercicioARutina(id,2, 19, 12, 4, 60.0)
-        entrenamientoDb.addEjercicioARutina(id,2, 28, 12, 4, 50.0)
-        entrenamientoDb.addEjercicioARutina(id,2, 43, 12, 4, 15.0)
-        entrenamientoDb.addEjercicioARutina(id,2, 39, 12, 4, 15.0)
-        entrenamientoDb.addEjercicioARutina(id,2, 38, 12, 4, 25.0)
+        entrenamientoDb.addEjercicioARutina(id, 2, 20, 12, 4, 0.0)
+        entrenamientoDb.addEjercicioARutina(id, 2, 22, 12, 4, 80.0)
+        entrenamientoDb.addEjercicioARutina(id, 2, 19, 12, 4, 60.0)
+        entrenamientoDb.addEjercicioARutina(id, 2, 28, 12, 4, 50.0)
+        entrenamientoDb.addEjercicioARutina(id, 2, 43, 12, 4, 15.0)
+        entrenamientoDb.addEjercicioARutina(id, 2, 39, 12, 4, 15.0)
+        entrenamientoDb.addEjercicioARutina(id, 2, 38, 12, 4, 25.0)
 
 
-        entrenamientoDb.addEjercicioARutina(id,3, 116, 12, 4, 80.0)
-        entrenamientoDb.addEjercicioARutina(id,3, 114, 12, 4, 40.0)
-        entrenamientoDb.addEjercicioARutina(id,3, 120, 30, 4, 20.0)
-        entrenamientoDb.addEjercicioARutina(id,3, 123, 12, 4, 180.0)
-        entrenamientoDb.addEjercicioARutina(id,3, 125, 12, 4, 40.0)
-        entrenamientoDb.addEjercicioARutina(id,3, 122, 12, 4, 90.0)
+        entrenamientoDb.addEjercicioARutina(id, 3, 116, 12, 4, 80.0)
+        entrenamientoDb.addEjercicioARutina(id, 3, 114, 12, 4, 40.0)
+        entrenamientoDb.addEjercicioARutina(id, 3, 120, 30, 4, 20.0)
+        entrenamientoDb.addEjercicioARutina(id, 3, 123, 12, 4, 180.0)
+        entrenamientoDb.addEjercicioARutina(id, 3, 125, 12, 4, 40.0)
+        entrenamientoDb.addEjercicioARutina(id, 3, 122, 12, 4, 90.0)
     }
 
     private fun navegarActivityPrincipal() {
