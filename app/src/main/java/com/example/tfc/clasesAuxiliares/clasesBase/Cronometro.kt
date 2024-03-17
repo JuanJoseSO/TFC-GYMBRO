@@ -1,10 +1,14 @@
 package com.example.tfc.clasesAuxiliares.clasesBase
 
+import android.content.Context
+import android.media.MediaPlayer
 import android.os.Handler
 import android.os.Looper
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.tfc.R
 import java.util.Locale
+
 
 class Cronometro {
     //Variables cronometro
@@ -103,15 +107,15 @@ class Cronometro {
 
     //Métodos para iniciar la cuenta atras
     //Le pasamos el textview para gestionar aqui su visibilidad
-    fun initCuentaAtras(cuentaInicial: Int, clDesncaso: ConstraintLayout) {
+    fun initCuentaAtras(cuentaInicial: Int, clDesncaso: ConstraintLayout,context: Context) {
         //Multiplicamos por mil y pasamos a long para obtener los milisegundos seleccionados de descanso
         this.cuentaAtrasRestante = (cuentaInicial * 1000).toLong()
         cuentaAtrasFinal = System.currentTimeMillis() + cuentaAtrasRestante
-        cicloCuentaAtras(clDesncaso)
+        cicloCuentaAtras(clDesncaso,context)
     }
 
     // Ciclo del contador regresivo,similar al anterior,pero restando tiempo y cambiando la visibilidad de la cuenta atras
-    private fun cicloCuentaAtras(clDesncaso: ConstraintLayout) {
+    private fun cicloCuentaAtras(clDesncaso: ConstraintLayout,context: Context) {
         handler.postDelayed(object : Runnable {
             override fun run() {
                 val tiempoActual = System.currentTimeMillis()
@@ -125,6 +129,9 @@ class Cronometro {
                             Locale.getDefault(), "%02d:%02d", segundos, milisegundos
                         )
                     )
+                    if (segundos == 5.toLong())
+                        tono(context)
+
                     handler.postDelayed(this, 10)
                 } else {
                     onUpdateCuentaAtras?.invoke("0")
@@ -135,6 +142,18 @@ class Cronometro {
         }, 10)
     }
 
+    private fun tono(context: Context) {
+        val mediaPlayer = MediaPlayer.create(context, R.raw.beep)
+        mediaPlayer.setVolume(0.02f, 0.02f) //Ajustamos el volumen,bajo,no buscamos molestar
+        mediaPlayer.start()
+
+        mediaPlayer.setOnCompletionListener {
+            it.release() //liberamos mediaplayer
+        }
+    }
+
+
+
     fun comprobarCuentaAtras() {
         if (cuentaAtrasRestante <= 0) {
             onFinish?.invoke()
@@ -144,5 +163,4 @@ class Cronometro {
     fun terminarCuentaAtras(onFinish: () -> Unit) {
         this.onFinish = onFinish
     }
-
 }

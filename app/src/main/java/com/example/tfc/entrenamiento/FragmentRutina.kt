@@ -41,6 +41,8 @@ class FragmentRutina : Fragment() {
     private fun mostrartListaRutina() {
         rvEjercicios.visibility = View.GONE
         rvRutina.visibility = View.VISIBLE
+        btnCrear.visibility=View.VISIBLE
+
         val listaRutina = entrenamientoDb.getRutinaPorUsuario(userDb.getUsuarioSeleccionado()?.id!!)
 
         val adapterRutina = AdapterRVRutina(requireContext(), listaRutina).also {
@@ -58,14 +60,16 @@ class FragmentRutina : Fragment() {
 
     //Mostramos los ejercicios que PERTENECEN a una rutina con la tabla rutina_ejercicios
     private fun mostrarEjerciciosPorRutina(id: Int) {
+        rvEjercicios.visibility = View.VISIBLE
+        rvRutina.visibility = View.GONE
+        btnCrear.visibility=View.GONE
         val listaEjerciciosPorRutina =
             entrenamientoDb.getEjerciciosPorRutina(userDb.getUsuarioSeleccionado()!!.id, id)
         val listaInfoEjercicios = listaEjerciciosPorRutina.map { ejercicio ->
             entrenamientoDb.getInfoRutina(userDb.getUsuarioSeleccionado()!!.id, id, ejercicio.id)
         }/*Usamos el adapter del recycler view,ocultamos el listview para evitar tener conflictor entre ellos y mostramos
           el recicler view*/
-        rvEjercicios.visibility = View.VISIBLE
-        rvRutina.visibility = View.GONE
+
         val adapterEjercicios =
             AdapterRVEjercicios(
                 requireContext(),

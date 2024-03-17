@@ -100,7 +100,7 @@ class ActivityEntrenamiento : AppCompatActivity() {
     private fun secuenciaUI() {
         //Cargamos tanto la cuenta de descanso por ejercicio
         clDescanso.visibility = View.VISIBLE
-        initCuentaAtras()
+
         //De nuevo una expresion lambda similar a la anterior,que formatea el propio IDE
         //Si serie actual es la ultima,mostramos una View con un mensaje que dura dos segundos en pantalla
         if (serieActual == totalSeries - 1) {
@@ -113,6 +113,7 @@ class ActivityEntrenamiento : AppCompatActivity() {
 
         //Si la serie actual es menor que la serie total,aumentamos la serie
         if (serieActual < totalSeries) {
+            initCuentaAtras()
             serieActual++
             tvSeries.text = getString(R.string.serie_info, serieActual, totalSeries)
             rutinaEjericicoDb.updatePeso(
@@ -125,18 +126,23 @@ class ActivityEntrenamiento : AppCompatActivity() {
         //Si no,es decir,llegamos al limite,pasamos al siguiente ejercicio
         else {
             if (listaEjercicio.isNotEmpty()) {
+                initCuentaAtras()
                 mostrarListaEjercicios()
             }
             //Si no,vamos al resumen de la rutina
             else {
-                val idSession = guardarHistorial()
-                val intent = Intent(this, ActivityPrincipal::class.java)
-                intent.putExtra("cargarHistorial", true)
-                intent.putExtra("idHistorial", idSession)
-                startActivity(intent)
-                finish() //Cierra la activity para evitar volver a ella
+              mostrarHistorial()
             }
         }
+    }
+
+    private fun mostrarHistorial() {
+        val idSession = guardarHistorial()
+        val intent = Intent(this, ActivityPrincipal::class.java)
+        intent.putExtra("cargarHistorial", true)
+        intent.putExtra("idHistorial", idSession)
+        startActivity(intent)
+        finish() //Cierra la activity para evitar volver a ella
     }
 
     private fun mostrarListaEjercicios() {
@@ -157,22 +163,15 @@ class ActivityEntrenamiento : AppCompatActivity() {
         dialog.setCancelable(false)//IMPORTANTE: no permite que se cierre le ventana hasta que el usuario seleccione un perfil
         dialog.show()
 
-
         lvEjercicio.setOnItemClickListener { _, _, position, _ ->
             cargarEjercicio(position)
             dialog.dismiss()
         }
-// Ajustar la altura (y anchura si se desea) del diálogo
         val window = dialog.window
         val layoutParams = window?.attributes
-
-        // Aquí puedes especificar la altura deseada. Por ejemplo:
         layoutParams?.height = 1500 // Altura en píxeles
-        // layoutParams?.width = 300 // Ancho en píxeles (opcional)
 
         window?.attributes = layoutParams
-
-
     }
 
 
@@ -225,7 +224,7 @@ class ActivityEntrenamiento : AppCompatActivity() {
                     cuentaAtras = null
                 }
                 // Iniciar el cronómetro con el valor de descanso configurado
-                initCuentaAtras(rutina.descanso, clDescanso)
+                initCuentaAtras(rutina.descanso, clDescanso,this@ActivityEntrenamiento)
             }
         }
     }
@@ -243,8 +242,9 @@ class ActivityEntrenamiento : AppCompatActivity() {
         dialog.setCancelable(false)
         //Nuevo alerdialog para evitar que el usuario salga sin querrer
         builder.setTitle("¿Estas seguro?")
-            .setMessage("Si no terminas la rutina no se guardará el progreso.")
+            .setMessage("La rutina terminará ahora.")
             .setPositiveButton("Sí") { _, _ ->
+                mostrarHistorial()
                 super.onBackPressed()
             }.setNegativeButton("No", null).show()
     }

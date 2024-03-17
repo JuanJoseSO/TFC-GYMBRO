@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">TFC</string>
+    <string name="app_name">GYMBRO</string>
     <!--ActivityBienvenida-->
     <string name="acceso">acceso</string>
 
